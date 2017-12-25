@@ -1,24 +1,24 @@
-# README
+# POS using rails
+  An open source POS using rails. Hopefully, it can support real world scenario.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Specs
+* Ruby ``` 2.4.2 ```
+* Rails ```5.1.4```
 
-Things you may want to cover:
+# Setting Up
+## Database
+  This app uses ```postgresql```
 
-* Ruby version
+  Run ```rake db:create db:migrate db:seed```
 
-* System dependencies
+## Running Test
+```bundle exec rspec```
 
-* Configuration
+# Mobile App companion
+  Coming soon!
 
-* Database creation
+# Desktop App
+  It will follow after the release of version 1. I plan to utilize the power of ```Electron```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Contributing
+  Contributions/Suggestions are very welcome. https://github.com/neume/posko
