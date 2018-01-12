@@ -3,6 +3,7 @@ class ActiveRecordLike
   # extend ActiveRecord::Naming
   include ActiveModel::Validations
   include ActiveModel::Conversion
+  validate :validate_data
 
   def save
     if valid?
@@ -20,7 +21,17 @@ class ActiveRecordLike
     false
   end
 
-  def add_error message
-    errors.add(:base, message)
-  end
+  private
+    def add_error message
+      errors.add(:base, message)
+    end
+
+    def append_errors obj
+      obj.errors.full_messages.each do |er|
+        add_error er
+      end
+    end
+    # prototype
+    def validate_data
+    end
 end

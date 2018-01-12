@@ -1,0 +1,32 @@
+<div>
+  <%= render "errors", subj: @sign_up %>
+  <%= form_for @sign_up, url: sign_up_path do |f| %>
+    <div>
+      <%= f.label :account_name %>
+      <%= f.text_field :account_name, value: "first_company" %>
+    </div>
+    <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, value: "Juan" %>
+    </div>
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, value: "Dela Cruz" %>
+    </div>
+    <div>
+      <%= f.label :company %>
+      <%= f.text_field :company, value: "First Companyu" %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email, value: "admin@first_company.com" %>
+    </div>
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password, value: "mypassword" %>
+    </div>
+    <div>
+      <%= f.submit "Sign Up" %>
+    </div>
+  <% end %>
+</div>

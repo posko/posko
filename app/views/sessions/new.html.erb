@@ -1,0 +1,23 @@
+<div>
+  <%= render "errors", subj: @sign_in %>
+  <%= form_for @sign_in, url: sign_in_path do |f| %>
+    <div>
+      <%= f.label :account_name %>
+      <%= f.text_field :account_name, value: "first_company" %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email, value: "admin@first_company.com" %>
+    </div>
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password, value: "mypassword" %>
+    </div>
+    <div>
+      <%= f.submit "Sign In" %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <%= link_to "Sign Up", sign_up_path %>
+</div>

@@ -1,0 +1,10 @@
+<% if subj.errors.count > 0 %>
+  <div class="">
+    <ul>
+      <% subj.errors.full_messages.each do |message| %>
+
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
