@@ -15,8 +15,8 @@
 ```bundle exec rspec```
 
 # Mobile App companion
-  Coming soon!
-
+  https://github.com/em4rtinez/posko
+  
 # Desktop App
   It will follow after the release of version 1. I plan to utilize the power of ```Electron```
 
