@@ -33,6 +33,7 @@ class SignUp < ActiveRecordLike
       ActiveRecord::Base.transaction do
         create_account!
         create_user!
+        return true
       end
     rescue ValidationError
       append_errors account if account

@@ -1,0 +1,1 @@
+Role.create(name: "admin")

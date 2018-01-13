@@ -81,6 +81,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    database_cleaner (1.6.2)
     debug_inspector (0.0.3)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -297,6 +298,7 @@ DEPENDENCIES
   cancancan (~> 1.10)
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  database_cleaner
   factory_bot_rails
   guard-rspec
   hirb

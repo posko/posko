@@ -61,6 +61,7 @@ group :test do
   gem 'guard-rspec', require: false
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
