@@ -1,5 +1,5 @@
 <div>
-  <%= render "errors", subj: @sign_in %>
+  <%= render "errors", object: @sign_in %>
   <%= form_for @sign_in, url: sign_in_path do |f| %>
     <div>
       <%= f.label :account_name %>
