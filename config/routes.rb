@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post "sign_up" => "accounts#create"
   get "dashboard" => "pages#dashboard"
   resources :accounts, only: [:create]
+  resources :users
 end

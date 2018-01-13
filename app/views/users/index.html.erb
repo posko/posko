@@ -1,0 +1,23 @@
+<div class="">
+  <table>
+    <thead>
+      <tr>
+        <th> First Name </th>
+        <th> Last Name </th>
+        <th> Email </th>
+        <th> Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td> <%= user.first_name %> </td>
+          <td> <%= user.last_name %> </td>
+          <td> <%= user.email %> </td>
+          <td> <%= render "actions", user: user %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "New", new_user_path %>
+</div>

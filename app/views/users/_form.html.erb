@@ -1,0 +1,24 @@
+<div>
+  <%= form_for user do |f| %>
+    <%= render "errors", object: user %>
+    <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.submit "Submit"%>
+    </div>
+  <% end %>
+</div>

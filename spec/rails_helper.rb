@@ -88,6 +88,7 @@ RSpec.configure do |config|
       example.run
     end
   end
+  config.raise_errors_for_deprecations!
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
