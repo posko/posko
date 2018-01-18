@@ -11,11 +11,12 @@ RSpec.describe User, type: :model do
     end
   end
   describe "validations" do
-    it { expect(user).to validate_uniqueness_of(:email) }
-    it { expect(user).to validate_presence_of(:email) }
-    it { expect(user).to validate_presence_of(:first_name) }
-    it { expect(user).to validate_presence_of(:last_name) }
-    it { expect(user).to allow_value("a.a@a.com").for(:email) }
+    subject { user }
+    it { is_expected.to validate_uniqueness_of(:email) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
+    it { is_expected.to allow_value("a.a@a.com").for(:email) }
   end
   describe "associations" do
     it { expect(user).to belong_to(:account) }

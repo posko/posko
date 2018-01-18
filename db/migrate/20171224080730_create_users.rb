@@ -11,11 +11,13 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :password_digest, null: false
       t.integer :user_type
       t.integer :user_status, default: 0
+      t.string :token
 
       t.integer :status, default: 0
       t.timestamps
     end
     add_index :users, :account_id
     add_index :users, [:account_id, :email], unique: true
+    add_index :users, :token, unique: true
   end
 end

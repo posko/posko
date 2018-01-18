@@ -63,6 +63,7 @@ group :test do
   gem 'shoulda-callback-matchers', '~> 1.1.1'
   gem 'database_cleaner'
   gem 'rails-controller-testing'
+  gem 'rspec-json_expectations'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

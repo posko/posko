@@ -10,4 +10,11 @@ Rails.application.routes.draw do
   get "dashboard" => "pages#dashboard"
   resources :accounts, only: [:create]
   resources :users
+  constraints format: 'json' do
+    namespace :api do
+      namespace :v1 do
+        post "sign_in" => "auth#sign_in"
+      end
+    end
+  end
 end

@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-@sign_up = SignUp.new account_name: "first_company", company: "First Company", email: "admin@first_company.com", password: "mypassword",
+@sign_up = SignUp.new account_name: "first_company", company: "First Company", email: "admin@first_company.com", password: "pass",
   first_name: "Juan", last_name: "Dela Cruz"
 if @sign_up.process
   puts "Sign Up success"
