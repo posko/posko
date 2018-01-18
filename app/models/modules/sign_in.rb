@@ -27,12 +27,8 @@ class SignIn < ActiveRecordLike
   end
   private
     def validate_data
-      if account.nil? and user.nil?
-        puts "nil"
-        add_error "Incorrect credentials" if errors.count > 0
-        return false
-      else
-        return true
+      unless account and user
+        add_error "Incorrect credentials"
       end
     end
 end

@@ -23,8 +23,9 @@ RSpec.describe SignIn do
       end
     end
     context "with incorrect credentials" do
-      let(:with_x_sign_in) { user; SignIn.new account_name: "posko", email: "a@a.com", password: "x pass" }
+      let(:with_x_sign_in) { user; SignIn.new account_name: "poskoa", email: "a@a.com", password: "x pass" }
       it "rejects user" do
+        expect(with_x_sign_in).to be_invalid
         expect(with_x_sign_in.process).to be_falsey
         expect(with_x_sign_in.errors.size).to eq(1)
         expect(with_x_sign_in.errors.full_messages.first).to eq("Incorrect credentials")
