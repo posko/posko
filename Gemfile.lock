@@ -311,7 +311,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.7)
   railroady
-  rails (~> 5.1.1)
+  rails (~> 5.1.6)
   rails-controller-testing
   rspec-json_expectations
   rspec-rails (~> 3.5)
