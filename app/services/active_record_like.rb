@@ -20,7 +20,9 @@ class ActiveRecordLike
   def persisted?
     false
   end
-
+  def errors_messages
+    self.errors.full_messages
+  end
   private
     def add_error message
       errors.add(:base, message)

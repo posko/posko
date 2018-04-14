@@ -5,7 +5,7 @@ class Api::V1::AuthController < Api::V1::ApiController
         @user = @sign_in.user
         render status: :ok
       else
-        render status: :unprocessable_entity, json: { messages: @sign_in.errors.full_messages }
+        render status: :unprocessable_entity, json: { messages: @sign_in.errors_messages }
       end
   end
   private
