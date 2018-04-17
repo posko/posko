@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415132348) do
+ActiveRecord::Schema.define(version: 20180417043130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,19 @@ ActiveRecord::Schema.define(version: 20180415132348) do
     t.index ["account_id", "email"], name: "index_users_on_account_id_and_email", unique: true
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["token"], name: "index_users_on_token", unique: true
+  end
+
+  create_table "variants", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.string "title"
+    t.string "sku"
+    t.decimal "price"
+    t.decimal "compare_at_price"
+    t.string "barcode"
+    t.integer "variant_status", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

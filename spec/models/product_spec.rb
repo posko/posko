@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   let(:product) { create(:product) }
+  describe "#create" do
+    it " adds product with default variant" do
+      expect(product.variants.count).to eq(1)
+    end
+  end
   describe "validations" do
     subject { product }
     it { is_expected.to validate_presence_of(:title) }
