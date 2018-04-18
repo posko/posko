@@ -9,6 +9,7 @@ RSpec.describe Customer, type: :model do
   end
   describe "associations" do
     it { expect(customer).to belong_to(:account) }
+    it { expect(customer).to belong_to(:default_address) }
     # it { expect(customer).to have_one(:customer_account) }
   end
 end
