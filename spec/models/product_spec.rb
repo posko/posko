@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
   let(:product) { create(:product) }
   describe "#create" do
     it " adds product with default variant" do
-      expect(product.variants.count).to eq(1)
+      expect(product.variants.count).to eq(0)
     end
   end
   describe "validations" do
