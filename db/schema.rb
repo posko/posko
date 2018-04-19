@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418135711) do
+ActiveRecord::Schema.define(version: 20180419104835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,31 @@ ActiveRecord::Schema.define(version: 20180418135711) do
     t.text "note"
     t.integer "customer_type", default: 0
     t.integer "customer_status", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "customer_id"
+    t.integer "user_id"
+    t.integer "order_number"
+    t.string "note"
+    t.decimal "total_line_items_price"
+    t.decimal "total_discounts"
+    t.decimal "subtotal"
+    t.decimal "total_price"
+    t.decimal "total_tax"
+    t.decimal "total_weight"
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "contact_number"
+    t.string "suffix"
+    t.integer "fulfillment_status", default: 0
+    t.integer "order_status", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

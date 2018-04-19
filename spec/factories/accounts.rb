@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :account do
-    name "first_company"
-    company "First Company"
+    sequence(:name) { |x| "my_company#{x}" }
+    sequence(:company) { |x| "My Company#{x}" }
   end
 end
