@@ -1,0 +1,11 @@
+{
+  "name": "Posko",
+  "description": "A Point-of-sale written in ruby on rails",
+  "keywords": [
+    "rails",
+    "posko",
+    "point-of-sale"
+  ],
+  "addons": [],
+  "env": {}
+}

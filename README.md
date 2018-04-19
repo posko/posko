@@ -1,6 +1,8 @@
 # POS using rails
   An open source POS using rails. Hopefully, it can support real world scenario.
 
+  Try it on [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/neume/posko)
+
 # Specs
 * Ruby ``` 2.4.2 ```
 * Rails ```5.1.4```
