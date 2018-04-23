@@ -13,7 +13,7 @@
 
   Run ```rake db:create db:migrate db:seed```
 
-  [Model Diagram](../blob/develop/doc/models_brief.svg)
+  [Model Diagram](../develop/doc/models_brief.svg)
 
 ## Running Test
 ```bundle exec rspec```
