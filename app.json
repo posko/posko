@@ -1,11 +1,10 @@
 {
   "name": "Posko",
   "description": "A Point-of-sale written in ruby on rails",
+  "repository": "https://github.com/neume/posko",
   "keywords": [
     "rails",
     "posko",
     "point-of-sale"
-  ],
-  "addons": [],
-  "env": {}
+  ]
 }
