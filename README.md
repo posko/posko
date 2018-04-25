@@ -13,7 +13,6 @@
 
   Run ```rake db:create db:migrate db:seed```
 ### Model Diagram
-Reference-style:
 ![Model Diagram][model-diagram]
 
 [model-diagram]: ../develop/doc/models_brief.svg "Model Diagram"
