@@ -19,6 +19,10 @@
 
 ## Running Test
 ```bundle exec rspec```
+# Dashboard Preview
+
+![Preview][preview]
+[preview]: ../develop/app/assets/images/sample.png "Preview"
 
 # Mobile App companion
   https://github.com/em4rtinez/posko

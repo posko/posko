@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Posko</title>
+    <title>POSko</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if current_user %>
-      <%= link_to "Sign Out", sign_out_path, method: :delete %>
-    <% end %>
-    <%= yield %>
+  <body class="hold-transition skin-green sidebar-mini">
+    <div class="wrapper">
+      <%= render 'layouts/header' %>
+      <!-- Left side column. contains the logo and sidebar -->
+      <%= render 'layouts/sidebar' %>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <%= yield %>
+      </div>
+      <!-- /.content-wrapper -->
+      <%= render 'layouts/footer' %>
+      <%= render 'layouts/control_sidebar' %>
+    </div>
   </body>
 </html>

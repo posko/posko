@@ -76,7 +76,10 @@ gem "cancancan", '~> 1.10'
 
 
 gem 'jquery-datatables-rails'
-
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem "font-awesome-rails"
+gem 'adminlte_theme'
 # gem "faker" #production for now
 #
 # gem "gretel"
