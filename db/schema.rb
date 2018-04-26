@@ -131,8 +131,8 @@ ActiveRecord::Schema.define(version: 20180426125629) do
   create_table "transactions", force: :cascade do |t|
     t.integer "order_id"
     t.integer "customer_id"
-    t.decimal "amount", default: "0.0"
-    t.integer "transaction_type", default: 0
+    t.decimal "amount"
+    t.integer "transaction_type"
     t.integer "transaction_status", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
