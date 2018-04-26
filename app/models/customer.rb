@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
 
   has_many :addresses
   has_many :orders
+  has_many :transactions
   
   validates :first_name, presence: true
   validates :last_name, presence: true
