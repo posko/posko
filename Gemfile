@@ -79,7 +79,7 @@ gem 'jquery-datatables-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
-gem 'adminlte_theme', path: "/Users/joseph/project/gems/adminlte_theme"
+gem 'adminlte_theme'
 # gem "faker" #production for now
 #
 # gem "gretel"
