@@ -22,6 +22,7 @@
 # Dashboard Preview
 
 ![Preview][preview]
+
 [preview]: ../develop/app/assets/images/sample.png "Preview"
 
 # Mobile App companion
