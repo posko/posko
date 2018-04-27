@@ -6,5 +6,35 @@
     "rails",
     "posko",
     "point-of-sale"
-  ]
+  ],
+
+  "env": {
+    "DEMO_ACCOUNT_NAME": {
+      "description": "A unique name for your account. Alphanumeric characters only.",
+      "value": "thebeststore"
+    },
+    "DEMO_COMPANY": {
+      "description": "Company name.",
+      "value": "The Best Store"
+    },
+    "DEMO_EMAIL": {
+      "description": "Email address of admin.",
+      "value": "admin@thebeststore.com"
+    },
+    "DEMO_PASSWORD": {
+      "description": "Admin account password",
+      "value": "posko"
+    },
+    "DEMO_FIRST_NAME": {
+      "description": "First Name",
+      "value": "Juan"
+    },
+    "DEMO_LAST_NAME": {
+      "description": "Last name.",
+      "value": "Dela Cruz"
+    }
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate db:seed"
+  },
 }
