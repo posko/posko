@@ -10,4 +10,13 @@ class User < ApplicationRecord
   # has_many :branches
   validates_presence_of :email, :first_name, :last_name
   validates :email, format: /@/, uniqueness: true
+
+  # TODO: Move to presetation object
+  def name
+    fullname = []
+    fullname << first_name
+    fullname << last_name
+    fullname << suffix if suffix
+    fullname.join(" ")
+  end
 end

@@ -29,7 +29,7 @@
                 <li><!-- start message -->
                   <a href="#">
                     <div class="pull-left">
-                      <%# image_tag("AdminLTE/user2-160x160.jpg", class: "img-circle", alt: "User Image") %>
+                      <img src="assets/AdminLTE/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <h4>
                       Support Team
@@ -216,7 +216,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%# image_tag("AdminLTE/user2-160x160.jpg", class:"user-image", alt: "User Image") %>
-            <span class="hidden-xs"><%#current_user.username %>current_user.username</span>
+            <span class="hidden-xs"><%= current_user.name %></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -224,8 +224,7 @@
               <%# image_tag("AdminLTE/user2-160x160.jpg", class: "img-circle", alt:"User Image") %>
 
               <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
+                <%= current_user.name %>
               </p>
             </li>
             <!-- Menu Body -->
