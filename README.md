@@ -1,7 +1,10 @@
-# POS using rails [![Build Status](https://travis-ci.org/neume/posko.svg?branch=develop)](https://travis-ci.org/neume/posko)
+# POS using rails [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/neume/posko/tree/develop)
   An open source POS written on rails. Hopefully, it can support real world scenario.
 
-  Try it on [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/neume/posko/tree/develop)
+
+[![Build Status](https://travis-ci.org/neume/posko.svg?branch=develop)](https://travis-ci.org/neume/posko)
+[![Maintainability](https://api.codeclimate.com/v1/badges/12cd8cf666a27e7c7b10/maintainability)](https://codeclimate.com/github/neume/posko/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/12cd8cf666a27e7c7b10/test_coverage)](https://codeclimate.com/github/neume/posko/test_coverage)
 
 # Specs
 * Ruby ``` 2.4.2 ```
@@ -12,6 +15,7 @@
   This app uses ```postgresql```
 
   Run ```rake db:create db:migrate db:seed```
+
 ### Model Diagram
 ![Model Diagram][model-diagram]
 
