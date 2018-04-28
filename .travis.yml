@@ -1,7 +1,8 @@
 dist: trusty
 language: ruby
-global:
-  - CC_TEST_REPORTER_ID=29c2351a3fa96cdda810da571ef220ca4e026fdcd85193d7443574ce83a61f32
+env:
+  global:
+    - CC_TEST_REPORTER_ID=29c2351a3fa96cdda810da571ef220ca4e026fdcd85193d7443574ce83a61f32
 addons:
   postgresql: 9.6
 before_script:
