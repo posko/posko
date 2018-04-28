@@ -2,10 +2,10 @@ dist: trusty
 language: ruby
 
 addons:
-  postgresql: 10.2
+  postgresql: 9.6
 before_script:
   - RAILS_ENV=test bundle exec rake db:create
-  
+
 script:
   - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rspec
