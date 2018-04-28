@@ -13,7 +13,7 @@ RSpec.describe SignUp do
     it "creates a new account and user" do
       # maybe I should store record counts before processing in case of leakage
       expect(sign_up).to be_valid
-      expect(sign_up.process).to be_truthy
+      expect(sign_up.save).to be_truthy
       expect(Account.count).to eq(1)
       expect(Account.first.users.count).to eq(1)
     end

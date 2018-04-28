@@ -14,7 +14,7 @@ class SignUp < ActiveRecordLike
   def process
     if valid?
       @processed = true
-      sign_up!
+      persist!
     else
       false
     end
@@ -29,7 +29,7 @@ class SignUp < ActiveRecordLike
     @processed
   end
   private
-    def sign_up!
+    def persist!
       ActiveRecord::Base.transaction do
         create_account!
         create_user!

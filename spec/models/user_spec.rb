@@ -1,13 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user, password: "mypassword") }
+  let(:user) { create(:user, password: "mypassword", first_name: "Juan", last_name: "Dela Cruz", suffix: "Sr.") }
   describe ".authenticate" do
     context "with correct password" do
       it { expect(user.authenticate "mypassword").to be_truthy }
     end
     context "with incorrect password" do
       it { expect(user.authenticate "wrongpass").to be_falsey }
+    end
+  end
+  describe "instance methods" do
+    context "#name" do
+      it "returns full name" do
+        expect(user.name).to eq("Juan Dela Cruz Sr.")
+      end
     end
   end
   describe "validations" do
