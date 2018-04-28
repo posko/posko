@@ -1,0 +1,10 @@
+dist: trusty
+language: ruby
+
+addons:
+  postgresql: 10.2
+before_script:
+  - psql -c 'create database posko_test;' -U postgres
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - bundle exec rspec
