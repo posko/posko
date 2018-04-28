@@ -1,11 +1,18 @@
 dist: trusty
 language: ruby
-
+global:
+  - CC_TEST_REPORTER_ID=29c2351a3fa96cdda810da571ef220ca4e026fdcd85193d7443574ce83a61f32
 addons:
   postgresql: 9.6
 before_script:
   - RAILS_ENV=test bundle exec rake db:create
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rspec
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
