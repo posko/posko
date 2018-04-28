@@ -2,6 +2,14 @@ class UsersController < ApplicationController
   before_action :find_user, except: [:index, :new, :create]
   def index
     @users = current_account.users
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: UserDatatable.new(view_context, {
+          current_account: current_account
+        })
+      end
+    end
   end
   def new
     @user = current_account.users.new

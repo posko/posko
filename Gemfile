@@ -73,13 +73,16 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 ## ActiverRecordLike
 gem 'virtus'
 ## Authorization
-gem "cancancan", '~> 1.10'
+# gem "cancancan", '~> 1.10'
+gem "pundit", '~> 1.1'
 
-
+# datatable
 gem 'jquery-datatables-rails'
-gem 'jquery-rails'
-gem 'bootstrap-sass'
-gem "font-awesome-rails"
+gem 'ajax-datatables-rails'
+
+gem 'jquery-rails', '~> 4.3'
+gem 'bootstrap-sass', '3.3.7'
+gem "font-awesome-rails", '~> 4.7'
 gem 'adminlte_theme'
 # gem "faker" #production for now
 #

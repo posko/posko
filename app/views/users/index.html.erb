@@ -2,30 +2,47 @@
 </section>
 <section class="content">
 	<div class="box">
+	  <div class="box-header">
+			<h3 class="box-title">Users</h3>
+			<div class="box-tools pull-right">
+        <div class="btn-group">
+
+					<%= link_to "Add User", new_user_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+		</div>
 	  <div class="box-body">
       <div class="">
-        <table>
+        <table class="table" id="users-table" data-source="<%= users_path(format: :json)%>" >
           <thead>
             <tr>
-              <th> First Name </th>
-              <th> Last Name </th>
+              <th> Name </th>
               <th> Email </th>
               <th> Actions </th>
             </tr>
           </thead>
           <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <td> <%= user.first_name %> </td>
-                <td> <%= user.last_name %> </td>
-                <td> <%= user.email %> </td>
-                <td> <%= render "actions", user: user %> </td>
-              </tr>
-            <% end %>
           </tbody>
         </table>
-        <%= link_to "New", new_user_path %>
       </div>
 	  </div>
 	</div>
 </section>
+<script>
+	$(document).on('turbolinks:load', function() {
+		$('#users-table').dataTable({
+	  	"processing": true,
+		  "serverSide": true,
+		  "ajax": $('#users-table').data('source'),
+		  "pagingType": "full_numbers",
+		  "columns": [
+		    {"data": "name"},
+		    {"data": "email"},
+		    {"data": "actions"}
+		  ]
+		  // pagingType is optional, if you want full pagination controls.
+		  // Check dataTables documentation to learn more about
+		  // available options.
+		});
+	});
+</script>
