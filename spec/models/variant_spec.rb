@@ -15,6 +15,12 @@ RSpec.describe Variant, type: :model do
     it { is_expected.to validate_presence_of(:price) }
   end
   describe "associations" do
-    it { expect(variant).to belong_to(:product) }
+    it{is_expected.to belong_to(:product) }
+    it{is_expected.to belong_to(:parent_product) }
+    it{is_expected.to belong_to(:parent_variant) }
+
+    it{is_expected.to have_many(:order_lines)}
+    it{is_expected.to have_many(:component_products)}
+
   end
 end

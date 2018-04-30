@@ -2,11 +2,12 @@ class CreateProducts < ActiveRecord::Migration[5.1]
   def change
     create_table :products do |t|
       t.integer :account_id
-      t.string :title
-      t.string :vendor
-      t.string :handle
+      t.string  :title
+      t.string  :vendor
+      t.string  :handle
       t.integer :product_type
 
+      t.integer :product_type, default: 0
       t.integer :status, default: 0
       t.integer :product_status, default: 0
 

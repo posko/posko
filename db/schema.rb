@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20180426125629) do
     t.string "title"
     t.string "vendor"
     t.string "handle"
-    t.integer "product_type"
+    t.integer "product_type", default: 0
     t.integer "status", default: 0
     t.integer "product_status", default: 0
     t.integer "created_by_id"
@@ -171,11 +171,14 @@ ActiveRecord::Schema.define(version: 20180426125629) do
 
   create_table "variants", force: :cascade do |t|
     t.integer "product_id", null: false
+    t.integer "parent_product_id"
+    t.integer "parent_variant_id"
     t.string "title"
     t.string "sku"
     t.decimal "price"
     t.decimal "compare_at_price"
     t.string "barcode"
+    t.integer "variant_type", default: 0
     t.integer "variant_status", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
