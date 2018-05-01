@@ -9,6 +9,15 @@ RSpec.describe UsersController, type: :controller do
       get :index
       expect(assigns(:users)).to eq([user])
     end
+
+    it "assigns @users" do
+      get :index, format: :json,
+        params: {
+          "columns[0][data]": "name",
+          "columns[0][search][regex]": false
+        }
+      expect(assigns(:users)).to eq([user])
+    end
   end
   describe "GET #new" do
     it "assigns @user" do
@@ -17,10 +26,21 @@ RSpec.describe UsersController, type: :controller do
     end
   end
   describe "POST #create" do
-    before { user }
-    it "creates user" do
-      params = { user: valid_user_param }
-      expect{post(:create, params: params)}.to change(User, :count).by(1)
+    context "successful attempt" do
+      before { user }
+      it "creates user" do
+        params = { user: valid_user_param }
+        expect{post(:create, params: params)}.to change(User, :count).by(1)
+      end
+    end
+
+    context "failed attempt" do
+      before { user }
+      it "renders 'new' template" do
+        params = { user: { email: nil, password: nil} }
+        post(:create, params: params)
+        expect(response).to render_template "new"
+      end
     end
   end
   describe "GET #edit" do
@@ -31,10 +51,20 @@ RSpec.describe UsersController, type: :controller do
     end
   end
   describe "PATCH #update" do
-    it "updates user" do
-      params = { id: user.id, user: { email: "updated_email" }}
-      patch :update, params: params
-      expect(assigns(:user).email).to eq("updated_email")
+    context "successful attempt" do
+      it "updates user" do
+        params = { id: user.id, user: { email: "updated@email.com" }}
+        patch :update, params: params
+        expect(assigns(:user).email).to eq("updated@email.com")
+        expect(response).to redirect_to(users_path)
+      end
+    end
+    context "failed attempt" do
+      it "renders 'edit'" do
+        params = { id: user.id, user: { email: "wrongformat" } }
+        patch :update, params: params
+        expect(response).to render_template('edit')
+      end
     end
   end
   describe "GET #show" do
