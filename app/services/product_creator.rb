@@ -4,8 +4,9 @@ class ProductCreator < ActiveRecordLike
   attribute :title, String
   attribute :price, Decimal
   attribute :account, Account
+  attribute :product_type, String
 
-  validates_presence_of :price, :title, :account
+  validates_presence_of :price, :title, :account, :product_type
 
   attr_reader :product, :variant
 
@@ -21,9 +22,9 @@ class ProductCreator < ActiveRecordLike
   end
   private
     def create_product!
-      @product = account.products.create!(title: title)
+      @product = account.products.create!(title: title, product_type: product_type)
     end
     def create_default_variant!
-      @variant = product.variants.create!(title: title, price: price)
+      @variant = product.variants.create!(title: title, price: price, variant_type: product_type)
     end
 end
