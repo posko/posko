@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ProductCreator, :type => :service do
   let(:account) { create(:account) }
-  let(:product_creator) { ProductCreator.new(title: "bag", price: 1000, account: account, product_type: product_type) }
+  let(:user) { create(:user, account: account) }
+  let(:product_creator) { ProductCreator.new(title: "bag", price: 1000, account: account, product_type: product_type, user: user) }
   describe '#process' do
     context "with regular type" do
       let(:product_type){ "regular" }

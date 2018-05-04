@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   has_many :order_lines
   has_many :component_products, through: :variants
   belongs_to :account
+  belongs_to :created_by, class_name: "User"
 
   validates :title, presence: true
   validates :account_id, presence: true
