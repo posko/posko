@@ -19,6 +19,7 @@
               <th> Title </th>
               <th> Vendor </th>
               <th> Type </th>
+              <th> Status </th>
               <th> Actions </th>
             </tr>
           </thead>
@@ -28,7 +29,8 @@
                 <td><%= product.title %></td>
                 <td><%= product.vendor %></td>
                 <td><%= product.product_type.humanize %> </td>
-                <td> </td>
+                <td><%= product.status.humanize %> </td>
+                <td><%= render "actions", product: product %> </td>
               </tr>
             <% end %>
           </tbody>
