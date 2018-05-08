@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "dashboard" => "pages#dashboard"
   resources :accounts, only: [:create]
   resources :users
+  resources :products
   constraints format: 'json' do
     namespace :api do
       namespace :v1 do

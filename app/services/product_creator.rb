@@ -6,6 +6,7 @@ class ProductCreator < ActiveRecordLike
   attribute :account, Account
   attribute :product_type, String
   attribute :user, User
+  attribute :vendor, String
 
   validates_presence_of :price, :title, :account, :product_type, :user
 
