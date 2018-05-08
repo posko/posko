@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get "dashboard" => "pages#dashboard"
   resources :accounts, only: [:create]
   resources :users
-  resources :products
+  resources :products, shallow: true do
+    resources :variants
+  end
   constraints format: 'json' do
     namespace :api do
       namespace :v1 do

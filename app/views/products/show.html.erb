@@ -5,11 +5,14 @@
 
 	  <div class="box-body">
       <h2> Product </h2>
+
+        <%= link_to "Back to Products", products_path %>
         <div> Title: <%= @product.title %></div>
         <div> Vendor: <%= @product.vendor %></div>
         <div> Product Type: <%= @product.product_type.humanize %> </div>
 
-        <%= link_to "Back to Products", products_path %>
+
+        <%= link_to "Variants", product_variants_path(@product.id) %>
     </div>
   </div>
 </section>
