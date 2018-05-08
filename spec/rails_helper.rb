@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require "capybara/rails"
 require 'support/requests_helper'
+require 'support/controller_helpers'
 require "rspec/json_expectations"
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -93,6 +94,7 @@ RSpec.configure do |config|
   config.raise_errors_for_deprecations!
 
   config.include Requests::JsonHelpers, type: :request
+  config.include ControllerHelpers::Session, type: :controller
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

@@ -3,14 +3,13 @@ class ProductsController < ApplicationController
     @products = current_account.products
   end
   def new
-    @products = current_account.products.new
+    @product = current_account.products.new
   end
   def create
-    @product = current_account.products.new product_params.merge(user: current_user)
-    if @product.process
+    @product = current_account.products.new product_params.merge(created_by: current_user)
+    if @product.save
       redirect_to products_path
     else
-      puts @product.errors.full_messages
       render "new"
     end
   end
@@ -20,7 +19,7 @@ class ProductsController < ApplicationController
   def update
     @product = current_account.products.find(params[:id])
     if @product.update_attributes product_params
-      redirect_to users_path
+      redirect_to products_path
     else
       render 'edit'
     end
@@ -29,7 +28,8 @@ class ProductsController < ApplicationController
     @product = current_account.products.find(params[:id])
   end
   def destroy
-    @product = current_account.products.find(params[:id]).deleted_status!
+    @product = current_account.products.find(params[:id])
+    @product.deleted_status!
     redirect_to products_path
   end
   private
