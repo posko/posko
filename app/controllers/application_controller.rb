@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
   end
   def check_session
     redirect_to sign_in_path unless current_user
-
   end
 end
+ 
