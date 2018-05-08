@@ -20,7 +20,7 @@ RSpec.describe Variant, type: :model do
     it{is_expected.to belong_to(:parent_variant) }
 
     it{is_expected.to have_many(:order_lines)}
-    it{is_expected.to have_many(:component_products)}
+    it{is_expected.to have_many(:product_components)}
 
   end
 end

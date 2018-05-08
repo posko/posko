@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
   has_many :variants
   has_many :order_lines
-  has_many :component_products, through: :variants
+  has_many :product_components, through: :variants
   belongs_to :account
   belongs_to :created_by, class_name: "User"
 
