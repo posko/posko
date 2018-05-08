@@ -1,0 +1,41 @@
+<section class="content-header">
+</section>
+<section class="content">
+	<div class="box">
+	  <div class="box-header">
+			<h3 class="box-title">Product</h3>
+			<div class="box-tools pull-right">
+        <div class="btn-group">
+
+					<%= link_to "Add Product", new_product_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+		</div>
+	  <div class="box-body">
+      <div class="">
+        <table class="table" id="users-table" data-source="<%= users_path(format: :json)%>" >
+          <thead>
+            <tr>
+              <th> Title </th>
+              <th> Vendor </th>
+              <th> Type </th>
+              <th> Status </th>
+              <th> Actions </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%= product.title %></td>
+                <td><%= product.vendor %></td>
+                <td><%= product.product_type.humanize %> </td>
+                <td><%= product.status.humanize %> </td>
+                <td><%= render "actions", product: product %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+	  </div>
+	</div>
+</section>
