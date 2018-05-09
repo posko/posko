@@ -8,14 +8,16 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/neume/posko/badge)](https://www.codefactor.io/repository/github/neume/posko)
 
 # Specs
-* Ruby ``` 2.4.2 ```
+* Tested on Ruby ``` 2.4.3 ```
 * Rails ```5.1.6```
 
 # Setting Up
 ## Database
-  This app uses ```postgresql```
+  This app is under development. Existing migrations change everytime so expect errors.
 
   Run ```rake db:create db:migrate db:seed```
+
+  If you fall and stumbled down, just ```rollback```
 
 ### Model Diagram
 ![Model Diagram][model-diagram]
@@ -24,6 +26,8 @@
 
 ## Running Test
 ```bundle exec rspec```
+or
+```bundle exec guard```
 # Dashboard Preview
 
 ![Preview][preview]
@@ -31,24 +35,31 @@
 [preview]: ../develop/app/assets/images/sample.png "Preview"
 
 # Mobile App companion
-  https://github.com/em4rtinez/posko
+[Android App](https://github.com/em4rtinez/posko]) by [em4rtinez](https://github.com/em4rtinez])
 
 # Desktop App
   It will follow after the release of version 1. I plan to utilize the power of ```Electron```
 
 # Contributing
-  Contributions/Suggestions are very welcome. https://github.com/neume/posko
+  Contributions/Suggestions are very welcome. Check it out [here](https://github.com/neume/posko])
 
-# Supported Modules
+
+# Supported Modules(Basic Functionality)
 + User
++ Products
+  + Variants
+  + Composite
+    + Product Components
+
+Check the diagram for more info.
 
 # TODOS (Basic Modules)
 + Roles (Ability later)
-+ Products
-  - composite
-+ Variants
+  - Pundit
 + Collections
 + Orders
+  - OrderLines
+  - Fullfillments
 + Payments
 + Customers
 + Cart(ecommerce later)
