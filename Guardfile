@@ -24,6 +24,7 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
+require 'active_support/inflector'
 guard :rspec, cmd: "bundle exec rspec" do
   require "guard/rspec/dsl"
   # require "terminal-notifier-guard"
@@ -67,6 +68,19 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+  end
+
+  watch(%r{^app/controllers/api/v1/(.+)\.rb$}) do |m|
+    %W[
+      spec/requests/#{m[1]}_spec.rb
+    ]
+  end
+
+
+  watch(%r{^spec/factories/(.+)\.rb$}) do |m|
+    %W[
+      spec/models/#{m[1].singularize}_spec.rb
+    ]
   end
 	# notification :terminal_notifier
 end
