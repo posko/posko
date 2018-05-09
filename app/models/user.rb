@@ -11,6 +11,7 @@ class User < ApplicationRecord
   # has_many :branches
   validates_presence_of :email, :first_name, :last_name
   validates :email, format: /@/, uniqueness: true
+  after_create :generate_new_access_key
 
   # TODO: Move to presetation object
   def name
@@ -19,5 +20,8 @@ class User < ApplicationRecord
     fullname << last_name
     fullname << suffix if suffix
     fullname.join(" ")
+  end
+  def generate_new_access_key
+    self.access_keys.create
   end
 end
