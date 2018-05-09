@@ -29,5 +29,10 @@ RSpec.describe User, type: :model do
     it { expect(user).to belong_to(:account) }
     it { expect(user).to have_many(:user_roles) }
     it { expect(user).to have_many(:roles).through(:user_roles) }
+    it { expect(user).to have_many(:access_keys) }
+  end
+
+  describe "callbacks" do
+    it { expect(user).to callback(:generate_new_access_key).after(:create) }
   end
 end
