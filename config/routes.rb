@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         post "sign_in" => "auth#sign_in"
         resources :users
+        resources :access_keys
       end
     end
   end
