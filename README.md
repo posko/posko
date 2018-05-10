@@ -34,8 +34,14 @@ or
 
 [preview]: ../develop/app/assets/images/sample.png "Preview"
 
+
+# API
+The API references is available on [POSko API Docs](https://neume.github.io/posko-api-docs/).
+
+You can contribute by documenting our API [here](https://github.com/neume/posko-api-docs).
+
 # Mobile App companion
-[Android App](https://github.com/em4rtinez/posko]) by [em4rtinez](https://github.com/em4rtinez])
+[Android App](https://github.com/edwnmrtnz/posko) by [edwnmrtnz](https://github.com/edwnmrtnz)
 
 # Desktop App
   It will follow after the release of version 1. I plan to utilize the power of ```Electron```
