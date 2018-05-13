@@ -1,0 +1,16 @@
+<div>
+  <%= form_for order do |f| %>
+    <%= render "errors", object: order %>
+    <div class="form-group">
+      <%= f.label :order_number %>
+      <%= f.number_field :order_number, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :customer_id, "Customer" %>
+      <%= f.select :customer_id, current_account.customers.collect{ |c| [c.first_name, c.id]},{},  class: "form-control" %>
+    </div>
+    <div>
+      <%= f.submit "Submit", class: "btn btn-primary"%>
+    </div>
+  <% end %>
+</div>

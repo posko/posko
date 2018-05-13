@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :variants
   end
   resources :customers
+  resources :orders
   constraints format: 'json' do
     namespace :api do
       namespace :v1 do

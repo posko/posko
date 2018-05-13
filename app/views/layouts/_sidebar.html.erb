@@ -50,6 +50,12 @@
           <span> Customers </span>
         </a>
       </li>
+      <li class="<%= params["controller"] == "orders" ? "active" : ""%>">
+        <a href="<%= orders_path %>">
+          <i class="fa fa-briefcase"></i>
+          <span> Order </span>
+        </a>
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->
