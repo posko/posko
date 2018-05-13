@@ -12,12 +12,16 @@
 * Rails ```5.1.6```
 
 # Setting Up
-## Database
-  This app is under development. Existing migrations change everytime so expect errors.
+## First Time
+  Run ``` bin/setup ```
 
-  Run ```rake db:create db:migrate db:seed```
+## Else (development)
+  Instead of ```db:rollback && db:migrate```,
 
-  If you fall and stumbled down, just ```rollback```
+  Run ``` bin/update ```
+
+  This command will drop your database and recreates it. **Your data will be purged**.
+
 
 ### Model Diagram
 ![Model Diagram][model-diagram]
