@@ -1,0 +1,37 @@
+<section class="content-header">
+</section>
+<section class="content">
+	<div class="box">
+	  <div class="box-header">
+			<h3 class="box-title">Customers</h3>
+			<div class="box-tools pull-right">
+        <div class="btn-group">
+
+					<%= link_to "Add Customer", new_customer_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+		</div>
+	  <div class="box-body">
+      <div class="">
+        <table class="table" id="customers-table" >
+          <thead>
+            <tr>
+              <th> First Name </th>
+              <th> Last Name </th>
+              <th> Actions </th>
+            </tr>
+          </thead>
+          <tbody>
+						<% @customers.each do |customer| %>
+							<tr>
+								<td> <%= customer.first_name %> </td>
+								<td> <%= customer.last_name %> </td>
+								<td> <%= render 'actions', customer: customer %> </td>
+							</tr>
+						<% end %>
+          </tbody>
+        </table>
+      </div>
+	  </div>
+	</div>
+</section>

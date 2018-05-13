@@ -44,6 +44,12 @@
           <span> Products </span>
         </a>
       </li>
+      <li class="<%= params["controller"] == "customers" ? "active" : ""%>">
+        <a href="<%= customers_path %>">
+          <i class="fa fa-users"></i>
+          <span> Customers </span>
+        </a>
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :products, shallow: true do
     resources :variants
   end
+  resources :customers
   constraints format: 'json' do
     namespace :api do
       namespace :v1 do
