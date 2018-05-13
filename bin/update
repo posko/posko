@@ -18,8 +18,19 @@ chdir APP_ROOT do
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
 
-  puts "\n== Updating database =="
+  puts "\n Recreating Database from scratch =="
+
+  puts "\n== Dropping database =="
+  system! 'bin/rails db:drop'
+
+  puts "\n== Recreating database =="
+  system! 'bin/rails db:create'
+
+  puts "\n== Migrating database =="
   system! 'bin/rails db:migrate'
+
+  puts "\n== Seeding database =="
+  system! 'bin/rails db:seed'
 
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
