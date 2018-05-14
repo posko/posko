@@ -1,0 +1,2 @@
+class OrderCreator < ActiveRecordLike
+end
