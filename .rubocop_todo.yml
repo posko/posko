@@ -6,6 +6,59 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+# Offense count: 1
+# Cop supports --auto-correct.
+Layout/CommentIndentation:
+  Exclude:
+    - 'Guardfile'
+
+# Offense count: 55
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAdjacentOneLineDefs, NumberOfEmptyLines.
+Layout/EmptyLineBetweenDefs:
+  Exclude:
+    - 'app/controllers/accounts_controller.rb'
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/customers_controller.rb'
+    - 'app/controllers/orders_controller.rb'
+    - 'app/controllers/products_controller.rb'
+    - 'app/controllers/sessions_controller.rb'
+    - 'app/controllers/users_controller.rb'
+    - 'app/controllers/variants_controller.rb'
+    - 'app/datatables/user_datatable.rb'
+    - 'app/models/user.rb'
+    - 'app/services/active_record_like.rb'
+    - 'app/services/sign_in.rb'
+    - 'app/services/sign_up.rb'
+    - 'spec/support/controller_helpers.rb'
+
+# Offense count: 4
+# Cop supports --auto-correct.
+Layout/EmptyLines:
+  Exclude:
+    - 'Guardfile'
+    - 'app/models/transaction.rb'
+    - 'bin/setup'
+    - 'db/seeds.rb'
+
+# Offense count: 13
+# Cop supports --auto-correct.
+Layout/EmptyLinesAroundAccessModifier:
+  Exclude:
+    - 'app/controllers/accounts_controller.rb'
+    - 'app/controllers/api/v1/api_controller.rb'
+    - 'app/controllers/api/v1/auth_controller.rb'
+    - 'app/controllers/customers_controller.rb'
+    - 'app/controllers/orders_controller.rb'
+    - 'app/controllers/products_controller.rb'
+    - 'app/controllers/sessions_controller.rb'
+    - 'app/controllers/users_controller.rb'
+    - 'app/controllers/variants_controller.rb'
+    - 'app/datatables/user_datatable.rb'
+    - 'app/services/active_record_like.rb'
+    - 'app/services/sign_in.rb'
+    - 'app/services/sign_up.rb'
+
 # Offense count: 15
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
