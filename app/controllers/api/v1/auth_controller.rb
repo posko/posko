@@ -8,7 +8,9 @@ class Api::V1::AuthController < Api::V1::ApiController
         render status: :unprocessable_entity, json: { messages: @sign_in.errors_messages }
       end
   end
+
   private
+
     def sign_in_params
       params.permit(:account_name, :email, :password)
     end

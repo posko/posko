@@ -21,6 +21,7 @@ class User < ApplicationRecord
     fullname << suffix if suffix
     fullname.join(" ")
   end
+
   def generate_new_access_key
     self.access_keys.create
   end

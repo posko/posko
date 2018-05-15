@@ -13,7 +13,6 @@ options["password"]      = ENV["DEMO_PASSWORD"] || "pass"
 options["first_name"]    = ENV["DEMO_FIRST_NAME"] || "Juan"
 options["last_name"]     = ENV["DEMO_LAST_NAME"] || "Dela Cruz"
 
-
 @sign_up = SignUp.new options
 if @sign_up.process
   puts "Sign Up success"

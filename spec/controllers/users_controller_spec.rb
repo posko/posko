@@ -12,10 +12,10 @@ RSpec.describe UsersController, type: :controller do
 
     it "assigns @users" do
       get :index, format: :json,
-        params: {
-          "columns[0][data]": "name",
-          "columns[0][search][regex]": false
-        }
+                  params: {
+                    "columns[0][data]": "name",
+                    "columns[0][search][regex]": false
+                  }
       expect(assigns(:users)).to eq([user])
     end
   end

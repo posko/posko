@@ -3,7 +3,6 @@ class Transaction < ApplicationRecord
   belongs_to :order
   belongs_to :customer
 
-
   validates :amount, presence: true
   validates :transaction_type, presence: true
 end

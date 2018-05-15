@@ -19,16 +19,21 @@ class SignUp < ActiveRecordLike
       false
     end
   end
+
   def user
     @user ||= account.users.find_by_email(email)
   end
+
   def account
     @account
   end
+
   def processed?
     @processed
   end
+
   private
+
     def persist!
       ActiveRecord::Base.transaction do
         create_account!
@@ -40,10 +45,12 @@ class SignUp < ActiveRecordLike
       append_errors user if account and user
       return false
     end
+
     def create_account!
       @account = Account.new(name: account_name, company: company)
       raise ValidationError unless @account.save
     end
+
     def create_user!
       # add roles if implemeted
       @user = account.users.new(email: email, password: password, first_name: first_name, last_name: last_name)

@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
   def new
     @sign_up = SignUp.new
   end
+
   def create
     @sign_up = SignUp.new sign_up_params
     if @sign_up.process
@@ -11,7 +12,9 @@ class AccountsController < ApplicationController
       render 'new'
     end
   end
+
   private
+
   def sign_up_params
     params.require(:sign_up).permit(
       :account_name,

@@ -76,11 +76,10 @@ guard :rspec, cmd: "bundle exec rspec" do
     ]
   end
 
-
   watch(%r{^spec/factories/(.+)\.rb$}) do |m|
     %W[
       spec/models/#{m[1].singularize}_spec.rb
     ]
   end
-	# notification :terminal_notifier
+	 # notification :terminal_notifier
 end

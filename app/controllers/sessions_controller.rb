@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   def new
     @sign_in = SignIn.new
   end
+
   def create
     @sign_in = SignIn.new sign_in_params
     if @sign_in.process
@@ -13,11 +14,14 @@ class SessionsController < ApplicationController
       render "new"
     end
   end
+
   def destroy
     session[:user_id] = nil
     redirect_to sign_in_path
   end
+
   private
+
     def sign_in_params
       params.require(:sign_in).permit(:account_name, :email, :password)
     end

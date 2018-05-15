@@ -13,6 +13,7 @@ class ActiveRecordLike
       false
     end
   end
+
   def persist!
     raise "persist! method Not implemented"
   end
@@ -20,10 +21,13 @@ class ActiveRecordLike
   def persisted?
     false
   end
+
   def errors_messages
     self.errors.full_messages
   end
+
   private
+
     def add_error message
       errors.add(:base, message)
     end
@@ -33,6 +37,7 @@ class ActiveRecordLike
         add_error er
       end
     end
+
     # prototype
     def validate_data
     end

@@ -2,7 +2,8 @@ class Api::V1::ApiController < ActionController::API
   include ActionController::HttpAuthentication::Basic::ControllerMethods
   helper_method :current_user, :current_account
 
-private
+  private
+
   def current_user
     @current_user ||= @current_access_token.user
   end
