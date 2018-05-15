@@ -16,7 +16,7 @@ class SignIn < ActiveRecordLike
       add_error "Incorrect credentials"
       return false
     else
-      return true
+      true
     end
   end
   def user
@@ -27,8 +27,6 @@ class SignIn < ActiveRecordLike
   end
   private
     def validate_data
-      unless account and user
-        add_error "Incorrect credentials"
-      end
+      add_error "Incorrect credentials" unless account and user
     end
 end
