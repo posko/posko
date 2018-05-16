@@ -27,7 +27,7 @@ RSpec.describe OrdersController, type: :controller do
       before { order }
       it "creates order" do
         params = { order: valid_order_param }
-        expect{post(:create, params: params)}.to change(Order, :count).by(1)
+        expect {post(:create, params: params)}.to change(Order, :count).by(1)
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe OrdersController, type: :controller do
       expect(assigns(:order)).to eq(order)
     end
     it "raises an exception" do
-      expect{ delete :destroy, params: { id:"nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { delete :destroy, params: { id: "nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

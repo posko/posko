@@ -25,7 +25,7 @@ RSpec.describe CustomersController, type: :controller do
       before { customer }
       it "creates customer" do
         params = { customer: valid_customer_param }
-        expect{post(:create, params: params)}.to change(Customer, :count).by(1)
+        expect {post(:create, params: params)}.to change(Customer, :count).by(1)
       end
     end
 
@@ -76,7 +76,7 @@ RSpec.describe CustomersController, type: :controller do
       expect(assigns(:customer)).to eq(customer)
     end
     it "raises an exception" do
-      expect{ delete :destroy, params: { id:"nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { delete :destroy, params: { id: "nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

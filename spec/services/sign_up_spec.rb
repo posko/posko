@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe SignUp do
-  let(:sign_up){
-    SignUp.new account_name: "newcompany", company: "New Company",email: "ceo@new_company.com", password: "mypassword",
+  let(:sign_up) {
+    SignUp.new account_name: "newcompany", company: "New Company", email: "ceo@new_company.com", password: "mypassword",
                first_name: "Juan", last_name: "Dela Cruz"
   }
-  let(:duplicate_account){
-    SignUp.new account_name: "newcompany", company: "New Company",email: "ceo@new_company.com", password: "mypassword",
+  let(:duplicate_account) {
+    SignUp.new account_name: "newcompany", company: "New Company", email: "ceo@new_company.com", password: "mypassword",
                first_name: "Juan", last_name: "Dela Cruz"
   }
   describe '#process' do
@@ -30,7 +30,7 @@ RSpec.describe SignUp do
       sign_up.process
     end
     subject { sign_up.user }
-    it{is_expected.to be_truthy}
+    it {is_expected.to be_truthy}
   end
   describe '#account' do
     subject { -> { sign_up.account } }

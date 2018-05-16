@@ -21,6 +21,6 @@ class Order < ApplicationRecord
     self.subtotal = 0
     self.total_price = 0
     self.total_tax = 0
-    self.total_weight =0
+    self.total_weight = 0
   end
 end

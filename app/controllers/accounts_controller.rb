@@ -22,6 +22,7 @@ class AccountsController < ApplicationController
       :last_name,
       :email,
       :company,
-      :password )
+      :password
+    )
   end
 end

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe VariantsController, type: :controller do
-  let(:account){ create(:account) }
-  let(:user){ create(:user, account: account)}
+  let(:account) { create(:account) }
+  let(:user) { create(:user, account: account)}
   let(:product) { create(:product, account: account)}
   let(:variant) { create(:variant, product: product) }
   let(:valid_variant_param) { { title: "Red Bag", price: "99.9", variant_type: "regular", vendor: "Bag Company" } }
@@ -76,7 +76,7 @@ RSpec.describe VariantsController, type: :controller do
       expect(assigns(:variant).deleted_status?).to be_truthy
     end
     it "raises an exception" do
-      expect{ delete :destroy, params: { id:"nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { delete :destroy, params: { id: "nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

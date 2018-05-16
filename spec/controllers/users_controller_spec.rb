@@ -30,7 +30,7 @@ RSpec.describe UsersController, type: :controller do
       before { user }
       it "creates user" do
         params = { user: valid_user_param }
-        expect{post(:create, params: params)}.to change(User, :count).by(1)
+        expect {post(:create, params: params)}.to change(User, :count).by(1)
       end
     end
 
@@ -81,7 +81,7 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq(user)
     end
     it "raises an exception" do
-      expect{ delete :destroy, params: { id:"nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { delete :destroy, params: { id: "nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

@@ -22,7 +22,7 @@ RSpec.describe ActiveRecordLike, :type => :service do
     context "unimplemented persist method" do
       it "raises and error" do
         test = EmptyRecord.new
-        expect{ test.save }.to raise_exception.with_message("persist! method Not implemented")
+        expect { test.save }.to raise_exception.with_message("persist! method Not implemented")
       end
     end
   end

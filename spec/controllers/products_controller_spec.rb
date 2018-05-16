@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
-  let(:account){ create(:account) }
-  let(:user){ create(:user, account: account)}
+  let(:account) { create(:account) }
+  let(:user) { create(:user, account: account)}
   let(:product) { create(:product, account: account) }
   let(:valid_product_param) { { title: "Bag", price: "99.9", product_type: "regular", vendor: "Bag Company" } }
   before { sign_in }
@@ -75,7 +75,7 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:product).deleted_status?).to be_truthy
     end
     it "raises an exception" do
-      expect{ delete :destroy, params: { id:"nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { delete :destroy, params: { id: "nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
