@@ -41,7 +41,7 @@ class SignUp < ActiveRecordLike
   rescue ValidationError
     append_errors account if account
     append_errors user if account && user
-    return false
+    false
   end
 
   def create_account!

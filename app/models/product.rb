@@ -14,8 +14,8 @@ class Product < ApplicationRecord
   validate :default_variant_only, if: :composite?
 
   def default_variant_only
-    if self.variants.size > 1
-      self.errors[:base] << 'Composite product should only have 1 variant'
+    if variants.size > 1
+      errors[:base] << 'Composite product should only have 1 variant'
     else
       false
     end

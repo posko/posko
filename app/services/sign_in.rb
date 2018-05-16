@@ -17,7 +17,7 @@ class SignIn < ActiveRecordLike
       true
     else
       add_error "Incorrect credentials"
-      return false
+      false
     end
   end
 

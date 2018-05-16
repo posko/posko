@@ -240,13 +240,6 @@ Style/MixinUsage:
     - 'bin/setup'
     - 'bin/update'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: Whitelist.
-# Whitelist: be, be_a, be_an, be_between, be_falsey, be_kind_of, be_instance_of, be_truthy, be_within, eq, eql, end_with, include, match, raise_error, respond_to, start_with
-Style/NestedParenthesizedCalls:
-  Exclude:
-    - 'spec/models/user_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -262,22 +255,6 @@ Style/PercentLiteralDelimiters:
     - 'Guardfile'
     - 'config/initializers/assets.rb'
     - 'config/spring.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Exclude:
-    - 'app/services/sign_in.rb'
-    - 'app/services/sign_up.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'app/models/product.rb'
-    - 'app/models/user.rb'
-    - 'app/services/active_record_like.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.

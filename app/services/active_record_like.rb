@@ -23,7 +23,7 @@ class ActiveRecordLike
   end
 
   def errors_messages
-    self.errors.full_messages
+    errors.full_messages
   end
 
   private

@@ -23,6 +23,6 @@ class User < ApplicationRecord
   end
 
   def generate_new_access_key
-    self.access_keys.create
+    access_keys.create
   end
 end
