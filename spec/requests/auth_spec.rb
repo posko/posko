@@ -1,16 +1,17 @@
 require "rails_helper"
 
-RSpec.describe "Auth", :type => :request do
+RSpec.describe "Auth", type: :request do
   let(:account) { create(:account) }
   let(:user) { create(:user, password: "pass", account: account) }
   let(:access_key) { user.access_keys.first }
-  let(:successful_sign_in) {
+  let(:successful_sign_in) do
     { user: {
       email: user.email,
       token: access_key.token,
       auth_token: access_key.auth_token,
       created_at: user.created_at.as_json
-    } } }
+    } }
+  end
   let(:failed_sign_in) { { messages: ["Incorrect credentials"] } }
   context "with correct credentials" do
     it "authenticates user" do

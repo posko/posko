@@ -22,11 +22,11 @@ class UserDatatable < AjaxDatatablesRails::Base
 
   private
 
-  def actions _record
+  def actions(_record)
     ""
   end
 
-  def name record
+  def name(record)
     link_to record.name, record
   end
 

@@ -1,0 +1,6 @@
+
+Style/MixinUsage:
+  Enabled: false
+  
+HttpPositionalArguments:
+  Enabled: false

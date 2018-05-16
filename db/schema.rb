@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 20180509142140) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id", "email"], name: "index_users_on_account_id_and_email", unique: true
+    t.index %w[account_id email], name: "index_users_on_account_id_and_email", unique: true
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["token"], name: "index_users_on_token", unique: true
   end

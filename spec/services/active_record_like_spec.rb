@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe ActiveRecordLike, :type => :service do
+RSpec.describe ActiveRecordLike, type: :service do
   describe '#save' do
     class TestRecord < ActiveRecordLike
       attribute :name, String
       validates_presence_of :name
-      def persist!
-      end
+      def persist!; end
     end
     context "with a validation error" do
       it "" do

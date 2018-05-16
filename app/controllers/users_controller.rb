@@ -5,9 +5,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: UserDatatable.new(view_context, {
-                                         current_account: current_account
-                                       })
+        render json: UserDatatable.new(view_context,
+                                       current_account: current_account)
       end
     end
   end
@@ -25,19 +24,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       redirect_to users_path
     else
       render 'edit'
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @user.destroy

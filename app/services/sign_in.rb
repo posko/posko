@@ -13,25 +13,25 @@ class SignIn < ActiveRecordLike
   end
 
   def authenticate
-    unless user.authenticate password
+    if user.authenticate password
+      true
+    else
       add_error "Incorrect credentials"
       return false
-    else
-      true
     end
   end
 
   def user
-    @user ||= account.users.find_by_email(email)
+    @user ||= account.users.find_by(email: email)
   end
 
   def account
-    @account ||= Account.find_by_name(account_name)
+    @account ||= Account.find_by(name: account_name)
   end
 
   private
 
   def validate_data
-    add_error "Incorrect credentials" unless account and user
+    add_error "Incorrect credentials" unless account && user
   end
 end

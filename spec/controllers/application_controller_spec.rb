@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationController, :type => :controller do
+RSpec.describe ApplicationController, type: :controller do
   let(:user) { create(:user) }
   let(:session) { { user_id: user.id } }
   describe '#current_user' do
@@ -19,8 +19,7 @@ RSpec.describe ApplicationController, :type => :controller do
 
   describe '#check_session' do
     controller do
-      def index
-      end
+      def index; end
     end
     it "returns current account" do
       get :index

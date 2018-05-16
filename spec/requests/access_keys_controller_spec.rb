@@ -8,7 +8,7 @@ RSpec.describe Api::V1::AccessKeysController, type: :request do
     it "returns current account" do
       user.access_keys.create
       get "/api/v1/access_keys", headers: headers
-      expect(json).to include_json({ access_keys: [] })
+      expect(json).to include_json(access_keys: [])
     end
   end
 end

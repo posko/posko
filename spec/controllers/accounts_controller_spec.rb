@@ -30,7 +30,7 @@ RSpec.describe AccountsController, type: :controller do
     end
     context "invalid" do
       it "renders 'new' " do
-        get :create, { params: { sign_up: { account_name: "Incomplete Company" } } }
+        get :create, params: { sign_up: { account_name: "Incomplete Company" } }
 
         expect(response).to render_template :new
       end

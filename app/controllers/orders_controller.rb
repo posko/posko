@@ -18,19 +18,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @order.update_attributes(order_params)
+    if @order.update(order_params)
       redirect_to orders_path
     else
       render 'edit'
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @order.destroy

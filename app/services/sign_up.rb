@@ -21,12 +21,10 @@ class SignUp < ActiveRecordLike
   end
 
   def user
-    @user ||= account.users.find_by_email(email)
+    @user ||= account.users.find_by(email: email)
   end
 
-  def account
-    @account
-  end
+  attr_reader :account
 
   def processed?
     @processed
@@ -42,7 +40,7 @@ class SignUp < ActiveRecordLike
     end
   rescue ValidationError
     append_errors account if account
-    append_errors user if account and user
+    append_errors user if account && user
     return false
   end
 

@@ -28,17 +28,16 @@ class ActiveRecordLike
 
   private
 
-  def add_error message
+  def add_error(message)
     errors.add(:base, message)
   end
 
-  def append_errors obj
+  def append_errors(obj)
     obj.errors.full_messages.each do |er|
       add_error er
     end
   end
 
   # prototype
-  def validate_data
-  end
+  def validate_data; end
 end

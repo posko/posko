@@ -23,7 +23,7 @@ class VariantsController < ApplicationController
 
   def update
     @variant = current_account.variants.find(params[:id])
-    if @variant.update_attributes variant_params
+    if @variant.update variant_params
       redirect_to product_variants_path(@variant.product_id)
     else
       render 'edit'

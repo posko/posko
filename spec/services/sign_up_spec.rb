@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe SignUp do
-  let(:sign_up) {
+  let(:sign_up) do
     SignUp.new account_name: "newcompany", company: "New Company", email: "ceo@new_company.com", password: "mypassword",
                first_name: "Juan", last_name: "Dela Cruz"
-  }
-  let(:duplicate_account) {
+  end
+  let(:duplicate_account) do
     SignUp.new account_name: "newcompany", company: "New Company", email: "ceo@new_company.com", password: "mypassword",
                first_name: "Juan", last_name: "Dela Cruz"
-  }
+  end
   describe '#process' do
     it "creates a new account and user" do
       # maybe I should store record counts before processing in case of leakage

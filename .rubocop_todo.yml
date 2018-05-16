@@ -6,6 +6,13 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'app/datatables/user_datatable.rb'
+
 # Offense count: 3
 Metrics/AbcSize:
   Max: 22
@@ -142,26 +149,6 @@ RSpec/RepeatedDescription:
     - 'spec/controllers/sessions_controller_spec.rb'
     - 'spec/controllers/users_controller_spec.rb'
 
-# Offense count: 5
-# Cop supports --auto-correct.
-Rails/ActiveRecordAliases:
-  Exclude:
-    - 'app/controllers/customers_controller.rb'
-    - 'app/controllers/orders_controller.rb'
-    - 'app/controllers/products_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/controllers/variants_controller.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: Whitelist.
-# Whitelist: find_by_sql
-Rails/DynamicFindBy:
-  Exclude:
-    - 'app/controllers/api/v1/api_controller.rb'
-    - 'app/services/sign_in.rb'
-    - 'app/services/sign_up.rb'
-
 # Offense count: 2
 Rails/FilePath:
   Exclude:
@@ -205,54 +192,13 @@ Rails/Output:
   Exclude:
     - 'db/seeds.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/Validation:
-  Exclude:
-    - 'app/models/access_key.rb'
-    - 'app/models/account.rb'
-    - 'app/models/user.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, conditionals
-Style/AndOr:
-  Exclude:
-    - 'app/services/sign_in.rb'
-    - 'app/services/sign_up.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# IgnoredMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'spec/requests/auth_spec.rb'
-    - 'spec/services/sign_up_spec.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: braces, no_braces, context_dependent
-Style/BracesAroundHashParameters:
-  Exclude:
-    - 'app/controllers/users_controller.rb'
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/requests/access_keys_controller_spec.rb'
-    - 'spec/requests/api_controller_spec.rb'
-    - 'spec/requests/users_controller_spec.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.
@@ -269,19 +215,6 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 10
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/customers_controller.rb'
-    - 'app/controllers/orders_controller.rb'
-    - 'app/controllers/pages_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/services/active_record_like.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/services/active_record_like_spec.rb'
 
 # Offense count: 6
 # Cop supports --auto-correct.
@@ -300,34 +233,6 @@ Style/ExpandPathArguments:
 # SupportedStyles: when_needed, always, never
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-Style/HashSyntax:
-  Exclude:
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/models/access_key_spec.rb'
-    - 'spec/requests/auth_spec.rb'
-    - 'spec/services/active_record_like_spec.rb'
-    - 'spec/services/order_creator_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/controllers/api/v1/api_controller.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_parentheses, require_no_parentheses, require_no_parentheses_except_multiline
-Style/MethodDefParentheses:
-  Exclude:
-    - 'app/datatables/user_datatable.rb'
-    - 'app/services/active_record_like.rb'
-    - 'spec/support/requests_helper.rb'
 
 # Offense count: 2
 Style/MixinUsage:
@@ -415,20 +320,6 @@ Style/StringLiteralsInInterpolation:
 Style/SymbolArray:
   EnforcedStyle: percent
   MinSize: 4
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: ExactNameMatch, AllowPredicates, AllowDSLWriters, IgnoreClassMethods, Whitelist.
-# Whitelist: to_ary, to_a, to_c, to_enum, to_h, to_hash, to_i, to_int, to_io, to_open, to_path, to_proc, to_r, to_regexp, to_str, to_s, to_sym
-Style/TrivialAccessors:
-  Exclude:
-    - 'app/services/sign_up.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/UnlessElse:
-  Exclude:
-    - 'app/services/sign_in.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

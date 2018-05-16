@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :access_keys
   # has_many :user_branches
   # has_many :branches
-  validates_presence_of :email, :first_name, :last_name
+  validates :email, :first_name, :last_name, presence: true
   validates :email, format: /@/, uniqueness: true
   after_create :generate_new_access_key
 

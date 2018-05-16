@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OrderCreator, :type => :service do
+RSpec.describe OrderCreator, type: :service do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   let(:customer) { create(:customer, account: account) }

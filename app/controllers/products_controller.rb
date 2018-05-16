@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = current_account.products.find(params[:id])
-    if @product.update_attributes product_params
+    if @product.update product_params
       redirect_to products_path
     else
       render 'edit'

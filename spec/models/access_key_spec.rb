@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AccessKey, :type => :model do
+RSpec.describe AccessKey, type: :model do
   let(:access_key) { create(:access_key) }
   describe "tokens" do
     it "generates random characters" do

@@ -17,19 +17,17 @@ class CustomersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @customer.update_attributes(customer_params)
+    if @customer.update(customer_params)
       redirect_to customers_path
     else
       render 'edit'
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @customer.destroy

@@ -7,6 +7,6 @@ class Account < ApplicationRecord
   has_many :variants, through: :products
   alias_attribute :account_name, :name
   # has_many :branches
-  validates_presence_of :name, :company
+  validates :name, :company, presence: true
   validates :account_name, format: { without: /\s/ }, uniqueness: true
 end
