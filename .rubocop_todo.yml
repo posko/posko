@@ -9,14 +9,6 @@
 # Offense count: 9
 # Cop supports --auto-correct.
 # Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'app/controllers/api/v1/auth_controller.rb'
-    - 'db/migrate/20180508150252_create_product_components.rb'
-    - 'spec/controllers/application_controller_spec.rb'
-    - 'spec/models/role_spec.rb'
-    - 'spec/models/user_role_spec.rb'
-    - 'spec/support/controller_helpers.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

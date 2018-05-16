@@ -1,12 +1,12 @@
 class Api::V1::AuthController < Api::V1::ApiController
   def sign_in
-      @sign_in = SignIn.new sign_in_params
-      if @sign_in.process
-        @user = @sign_in.user
-        render status: :ok
-      else
-        render status: :unprocessable_entity, json: { messages: @sign_in.errors_messages }
-      end
+    @sign_in = SignIn.new sign_in_params
+    if @sign_in.process
+      @user = @sign_in.user
+      render status: :ok
+    else
+      render status: :unprocessable_entity, json: { messages: @sign_in.errors_messages }
+    end
   end
 
   private
