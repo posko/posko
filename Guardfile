@@ -81,5 +81,5 @@ guard :rspec, cmd: "bundle exec rspec" do
       spec/models/#{m[1].singularize}_spec.rb
     ]
   end
-	 # notification :terminal_notifier
+  # notification :terminal_notifier
 end

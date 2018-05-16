@@ -4,7 +4,7 @@ RSpec.describe OrdersController, type: :controller do
   let(:user) { create(:user) }
   let(:customer) { create(:customer) }
   let(:account) { user.account }
-  let(:order) { create(:order, account: account ) }
+  let(:order) { create(:order, account: account) }
   let(:valid_order_param) { { customer_id: customer.id, order_number: 1 } }
   before do
     allow(controller).to receive(:current_user).and_return(user)
@@ -27,14 +27,14 @@ RSpec.describe OrdersController, type: :controller do
       before { order }
       it "creates order" do
         params = { order: valid_order_param }
-        expect {post(:create, params: params)}.to change(Order, :count).by(1)
+        expect { post(:create, params: params) }.to change(Order, :count).by(1)
       end
     end
 
     context "failed attempt" do
       before { order }
       it "renders 'new' template" do
-        params = { order: {customer_id: nil} }
+        params = { order: { customer_id: nil } }
         post(:create, params: params)
         expect(response).to render_template "new"
       end
@@ -42,7 +42,7 @@ RSpec.describe OrdersController, type: :controller do
   end
   describe "GET #edit" do
     it "assigns @order" do
-      params = {id: order.id}
+      params = { id: order.id }
       get :edit, params: params
       expect(assigns(:order)).to eq(order)
     end
@@ -50,7 +50,7 @@ RSpec.describe OrdersController, type: :controller do
   describe "PATCH #update" do
     context "successful attempt" do
       it "updates order" do
-        params = { id: order.id, order: { order_number: 2 }}
+        params = { id: order.id, order: { order_number: 2 } }
         patch :update, params: params
         expect(assigns(:order).order_number).to eq(2)
         expect(response).to redirect_to(orders_path)

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController, :type => :controller do
-  let(:user) {create(:user)}
-  let(:session) { {user_id: user.id} }
+  let(:user) { create(:user) }
+  let(:session) { { user_id: user.id } }
   describe '#current_user' do
     it "returns current user" do
       allow(controller).to receive(:session).and_return(session)

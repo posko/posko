@@ -30,7 +30,7 @@ RSpec.describe SignUp do
       sign_up.process
     end
     subject { sign_up.user }
-    it {is_expected.to be_truthy}
+    it { is_expected.to be_truthy }
   end
   describe '#account' do
     subject { -> { sign_up.account } }

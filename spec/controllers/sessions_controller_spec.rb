@@ -25,7 +25,7 @@ RSpec.describe SessionsController, type: :controller do
   end
   describe "GET #create" do
     let(:account) { create(:account, account_name: "firstcompany") }
-    let(:user) { create(:user, email: "admin@firstcompany.com", password: "password", account: account)}
+    let(:user) { create(:user, email: "admin@firstcompany.com", password: "password", account: account) }
     context "correct credentials" do
       before do
         # create user

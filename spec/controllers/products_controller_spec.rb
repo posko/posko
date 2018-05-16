@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
   let(:account) { create(:account) }
-  let(:user) { create(:user, account: account)}
+  let(:user) { create(:user, account: account) }
   let(:product) { create(:product, account: account) }
   let(:valid_product_param) { { title: "Bag", price: "99.9", product_type: "regular", vendor: "Bag Company" } }
   before { sign_in }
@@ -20,8 +20,8 @@ RSpec.describe ProductsController, type: :controller do
   end
   describe "POST #create" do
     context "successful attempt" do
-      let(:params) {{ product: valid_product_param }}
-      before { post(:create, params: params)}
+      let(:params) { { product: valid_product_param } }
+      before { post(:create, params: params) }
       it "creates product" do
         expect(account.products.count).to eq(1)
       end
@@ -30,7 +30,7 @@ RSpec.describe ProductsController, type: :controller do
     context "failed attempt" do
       before { product }
       it "renders 'new' template" do
-        params = { product: { title: nil, price: "99.9"} }
+        params = { product: { title: nil, price: "99.9" } }
         post(:create, params: params)
         expect(response).to render_template "new"
       end
@@ -38,7 +38,7 @@ RSpec.describe ProductsController, type: :controller do
   end
   describe "GET #edit" do
     it "assigns @product" do
-      params = {id: product.id}
+      params = { id: product.id }
       get :edit, params: params
       expect(assigns(:product)).to eq(product)
     end
@@ -46,7 +46,7 @@ RSpec.describe ProductsController, type: :controller do
   describe "PATCH #update" do
     context "successful attempt" do
       it "updates product" do
-        params = { id: product.id, product: { title: "High Quality Bag" }}
+        params = { id: product.id, product: { title: "High Quality Bag" } }
         patch :update, params: params
         expect(assigns(:product).title).to eq("High Quality Bag")
         expect(response).to redirect_to(products_path)
@@ -54,7 +54,7 @@ RSpec.describe ProductsController, type: :controller do
     end
     context "failed attempt" do
       it "renders 'edit'" do
-        params = { id: product.id, product: { title: nil }}
+        params = { id: product.id, product: { title: nil } }
         patch :update, params: params
         expect(response).to render_template('edit')
       end

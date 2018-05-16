@@ -27,7 +27,7 @@ RSpec.describe OrderCreator, :type => :service do
     }
   end
   describe '#process' do
-    let(:order_creator) { OrderCreator.new params}
+    let(:order_creator) { OrderCreator.new params }
     it "creates an order" do
       order_creator.process
       expect(account.orders.count).to eq(1)

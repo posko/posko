@@ -8,9 +8,9 @@ class SignUp < ActiveRecordLike
   attribute :last_name, String
 
   validates_presence_of :account_name, :email, :password, :company
-	 validates :account_name, format: { without: /\s/ }
+  validates :account_name, format: { without: /\s/ }
   validates :email, format: /@/
-  validates :password, length: {minimum: 4}
+  validates :password, length: { minimum: 4 }
   def process
     if valid?
       @processed = true

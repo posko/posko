@@ -11,5 +11,5 @@ RSpec.describe Role, type: :model do
   describe "Associations" do
     it { is_expected.to have_many(:user_roles) }
     it { is_expected.to have_many(:users).through(:user_roles) }
- 	end
+  end
 end

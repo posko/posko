@@ -4,13 +4,13 @@ RSpec.describe Product, type: :model do
   let(:product) { create(:product) }
   describe "#create" do
     context "regular" do
-      let(:product) { create(:product, product_type: :regular)}
+      let(:product) { create(:product, product_type: :regular) }
       it " adds product with default variant" do
         expect(product.variants.count).to eq(0)
       end
     end
     context "regular" do
-      let(:product) { create(:product, :composite)}
+      let(:product) { create(:product, :composite) }
       # should only contain 1 variant with type :composite
     end
   end

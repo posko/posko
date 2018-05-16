@@ -10,7 +10,7 @@ RSpec.describe "Auth", :type => :request do
       token: access_key.token,
       auth_token: access_key.auth_token,
       created_at: user.created_at.as_json
-    }} }
+    } } }
   let(:failed_sign_in) { { messages: ["Incorrect credentials"] } }
   context "with correct credentials" do
     it "authenticates user" do

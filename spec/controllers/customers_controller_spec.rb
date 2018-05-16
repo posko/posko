@@ -25,14 +25,14 @@ RSpec.describe CustomersController, type: :controller do
       before { customer }
       it "creates customer" do
         params = { customer: valid_customer_param }
-        expect {post(:create, params: params)}.to change(Customer, :count).by(1)
+        expect { post(:create, params: params) }.to change(Customer, :count).by(1)
       end
     end
 
     context "failed attempt" do
       before { customer }
       it "renders 'new' template" do
-        params = { customer: { email: nil, password: nil} }
+        params = { customer: { email: nil, password: nil } }
         post(:create, params: params)
         expect(response).to render_template "new"
       end
@@ -40,7 +40,7 @@ RSpec.describe CustomersController, type: :controller do
   end
   describe "GET #edit" do
     it "assigns @customer" do
-      params = {id: customer.id}
+      params = { id: customer.id }
       get :edit, params: params
       expect(assigns(:customer)).to eq(customer)
     end
@@ -48,7 +48,7 @@ RSpec.describe CustomersController, type: :controller do
   describe "PATCH #update" do
     context "successful attempt" do
       it "updates customer" do
-        params = { id: customer.id, customer: { email: "updated@email.com" }}
+        params = { id: customer.id, customer: { email: "updated@email.com" } }
         patch :update, params: params
         expect(assigns(:customer).email).to eq("updated@email.com")
         expect(response).to redirect_to(customers_path)

@@ -22,7 +22,7 @@ class UserDatatable < AjaxDatatablesRails::Base
 
   private
 
-  def actions record
+  def actions _record
     ""
   end
 
