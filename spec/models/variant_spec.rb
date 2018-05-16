@@ -21,6 +21,5 @@ RSpec.describe Variant, type: :model do
 
     it{is_expected.to have_many(:order_lines)}
     it{is_expected.to have_many(:product_components)}
-
   end
 end

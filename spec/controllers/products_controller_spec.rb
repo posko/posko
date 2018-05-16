@@ -11,7 +11,6 @@ RSpec.describe ProductsController, type: :controller do
       get :index
       expect(assigns(:products)).to eq([product])
     end
-
   end
   describe "GET #new" do
     it "assigns @product" do

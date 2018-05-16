@@ -12,7 +12,6 @@ RSpec.describe VariantsController, type: :controller do
       get :index, params: {product_id: product.id}
       expect(assigns(:variants)).to eq([variant])
     end
-
   end
   describe "GET #new" do
     it "assigns @variant" do

@@ -12,7 +12,6 @@ RSpec.describe Product, type: :model do
     context "regular" do
       let(:product) { create(:product, :composite)}
       # should only contain 1 variant with type :composite
-
     end
   end
   describe "validations" do

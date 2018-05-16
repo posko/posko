@@ -6,8 +6,8 @@ class UsersController < ApplicationController
       format.html
       format.json do
         render json: UserDatatable.new(view_context, {
-          current_account: current_account
-        })
+                                         current_account: current_account
+                                       })
       end
     end
   end
@@ -46,11 +46,11 @@ class UsersController < ApplicationController
 
   private
 
-    def find_user
-      @user ||= current_account.users.find(params[:id])
-    end
+  def find_user
+    @user ||= current_account.users.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
+  end
 end

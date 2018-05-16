@@ -38,11 +38,11 @@ class CustomersController < ApplicationController
 
   private
 
-    def find_customer
-      @customer ||= current_account.customers.find(params[:id])
-    end
+  def find_customer
+    @customer ||= current_account.customers.find(params[:id])
+  end
 
-    def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :email)
-    end
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :email)
+  end
 end

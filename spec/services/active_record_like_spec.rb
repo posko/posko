@@ -41,5 +41,4 @@ RSpec.describe ActiveRecordLike, :type => :service do
 
   describe '#validate_data' do
   end
-
 end

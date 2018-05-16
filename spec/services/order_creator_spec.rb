@@ -34,5 +34,4 @@ RSpec.describe OrderCreator, :type => :service do
       expect(customer.count).to eq(1)
     end
   end
-
 end

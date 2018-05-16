@@ -42,11 +42,11 @@ class VariantsController < ApplicationController
 
   private
 
-    def variant_params
-      params.require(:variant).permit(:title, :price, :sku, :variant_type)
-    end
+  def variant_params
+    params.require(:variant).permit(:title, :price, :sku, :variant_type)
+  end
 
-    def product
-      @product ||= current_account.products.find(params[:product_id])
-    end
+  def product
+    @product ||= current_account.products.find(params[:product_id])
+  end
 end

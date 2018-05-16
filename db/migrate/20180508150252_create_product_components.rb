@@ -15,7 +15,7 @@ class CreateProductComponents < ActiveRecord::Migration[5.1]
         t.integer :status, default: 0
         t.integer :product_component_status, default: 0
 
-      t.timestamps
+        t.timestamps
     end
   end
 end

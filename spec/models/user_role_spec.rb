@@ -8,8 +8,8 @@ RSpec.describe UserRole, type: :model do
   		expect(Role.count).to eq(1)
     end
   end
-	describe "Associations" do
-    it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:role) }
-	end
+	 describe "Associations" do
+     it { is_expected.to belong_to(:user) }
+     it { is_expected.to belong_to(:role) }
+ 	end
 end

@@ -17,10 +17,10 @@ RSpec.describe "Auth", :type => :request do
 
       expect(json).to include_json(successful_sign_in)
     end
-      it "does not authenticates user" do
-        post "/api/v1/sign_in.json", params: { account_name: account.name, email: user.email, password: "wrongpass" }
-        expect(json).to include_json(failed_sign_in)
-      end
+    it "does not authenticates user" do
+      post "/api/v1/sign_in.json", params: { account_name: account.name, email: user.email, password: "wrongpass" }
+      expect(json).to include_json(failed_sign_in)
+    end
   end
 end
 # require 'rails_helper'

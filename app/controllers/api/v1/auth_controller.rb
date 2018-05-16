@@ -11,7 +11,7 @@ class Api::V1::AuthController < Api::V1::ApiController
 
   private
 
-    def sign_in_params
-      params.permit(:account_name, :email, :password)
-    end
+  def sign_in_params
+    params.permit(:account_name, :email, :password)
+  end
 end

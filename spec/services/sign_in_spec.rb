@@ -19,7 +19,6 @@ RSpec.describe SignIn do
         expect(sign_in.errors.count).to eq(0)
         expect(sign_in.process).to be_truthy
         expect(sign_in.user).to eq(user)
-
       end
     end
     context "with incorrect credentials" do
@@ -44,5 +43,4 @@ RSpec.describe SignIn do
     subject { sign_in.account }
     it { is_expected.to be_present }
   end
-
 end

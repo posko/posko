@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
   private
 
-    def sign_in_params
-      params.require(:sign_in).permit(:account_name, :email, :password)
-    end
+  def sign_in_params
+    params.require(:sign_in).permit(:account_name, :email, :password)
+  end
 end

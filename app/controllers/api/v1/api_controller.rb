@@ -3,6 +3,7 @@ class Api::V1::ApiController < ActionController::API
   helper_method :current_user, :current_account
 
   private
+
   def current_user
     @current_user ||= @current_access_token.user
   end

@@ -39,11 +39,11 @@ class OrdersController < ApplicationController
 
   private
 
-    def find_order
-      @order ||= current_account.orders.find(params[:id])
-    end
+  def find_order
+    @order ||= current_account.orders.find(params[:id])
+  end
 
-    def order_params
-      params.require(:order).permit(:customer_id, :order_number)
-    end
+  def order_params
+    params.require(:order).permit(:customer_id, :order_number)
+  end
 end
