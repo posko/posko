@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         post "sign_in" => "auth#sign_in"
         resources :users
         resources :access_keys
+        resources :customers
       end
     end
   end
