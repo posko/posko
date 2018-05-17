@@ -13,6 +13,15 @@ class Api::V1::CustomersController < Api::V1::ApiController
     end
   end
 
+  def show
+    @customer = current_account.customers.find_by id: params[:id]
+    if @customer
+      render json: { customer: @customer}
+    else
+      render status: :not_found, json: { messages: ["Customer not found"]}
+    end
+  end
+
   private
 
   def customer_params
