@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         resources :users
         resources :access_keys
         resources :customers
+        resources :orders
       end
     end
   end
