@@ -6,6 +6,10 @@ env:
 addons:
   postgresql: 9.6
 before_script:
+
+  - cp 'config/database.sample.yml', 'config/database.yml'
+  - cp 'config/secrets.sample.yml', 'config/secrets.yml'
+
   - RAILS_ENV=test bundle exec rake db:create
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
