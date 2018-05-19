@@ -22,7 +22,9 @@ Rails.application.routes.draw do
         resources :users
         resources :access_keys
         resources :customers
-        resources :orders
+        resources :orders, shallow: true do
+          resources :order_lines
+        end
       end
     end
   end
