@@ -1,6 +1,15 @@
 
 Style/MixinUsage:
   Enabled: false
-  
+
 HttpPositionalArguments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/FilePath:
   Enabled: false
