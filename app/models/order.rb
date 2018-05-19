@@ -15,6 +15,8 @@ class Order < ApplicationRecord
 
   # Temporary code to comply to orders requirement
   before_validation :pass_validations, on: :create
+  # before_validation :compute_values, on: :create
+
   def pass_validations
     self.total_line_items_price = 0
     self.total_discounts = 0
@@ -22,5 +24,14 @@ class Order < ApplicationRecord
     self.total_price = 0
     self.total_tax = 0
     self.total_weight = 0
+  end
+
+  def compute_values
+    order_lines_collection= order_lines.active_status.sum("order_lines.price")
+    self.total_line_items_price = order_lines_collection
+  end
+  def recompute_values
+    compute_values
+    save
   end
 end
