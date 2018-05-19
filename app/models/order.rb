@@ -27,9 +27,10 @@ class Order < ApplicationRecord
   end
 
   def compute_values
-    order_lines_collection= order_lines.active_status.sum("order_lines.price")
+    order_lines_collection = order_lines.active_status.sum("order_lines.price")
     self.total_line_items_price = order_lines_collection
   end
+
   def recompute_values
     compute_values
     save

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-
   let(:product) { create(:product) }
   let(:variant) { product.variants.create(price: 100, title: "Large") }
   let(:customer) { create(:customer) }
@@ -10,7 +9,6 @@ RSpec.describe Order, type: :model do
     before { order }
     it "creates new order " do
       expect(customer.orders.count).to eq(1)
-      expect(customer.orders)
     end
   end
   describe "validations" do

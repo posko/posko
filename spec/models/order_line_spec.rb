@@ -8,11 +8,9 @@ RSpec.describe OrderLine, type: :model do
   describe "create order_line" do
     it "add an order_line" do
       order.order_lines.create(product: product, variant: variant, price: 100, title: "Large")
-      expect(product.variants.count).to eq(1)
       expect(order.total_line_items_price).to eq(100)
-      
       order.order_lines.create(product: product, variant: variant, price: 50, title: "Small")
-      expect(product.variants.count).to eq(1)
+      expect(order.order_lines.count).to eq(2)
       expect(order.total_line_items_price).to eq(150)
     end
   end

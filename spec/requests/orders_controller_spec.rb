@@ -27,7 +27,7 @@ RSpec.describe Api::V1::OrdersController, type: :request do
         }
         post "/api/v1/orders", params: params, headers: headers
         expect(account.orders.count).to eq(1)
-        expect(json).to include_json(order: {order_number: 25, customer_id: customer.id})
+        expect(json).to include_json(order: { order_number: 25, customer_id: customer.id })
       end
     end
     context "with incorrect params" do
@@ -50,13 +50,13 @@ RSpec.describe Api::V1::OrdersController, type: :request do
       it "returns the order" do
         get "/api/v1/orders/#{order.id}", headers: headers
         expect(json).to include_json(order: {})
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
     context "with a non-existent order" do
       it "returns the 404" do
         get "/api/v1/orders/0", headers: headers
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

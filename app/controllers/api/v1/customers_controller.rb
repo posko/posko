@@ -4,21 +4,22 @@ class Api::V1::CustomersController < Api::V1::ApiController
     @customers = current_account.customers
     render json: { customers: @customers }
   end
+
   def create
     @customer = current_account.customers.new customer_params
     if @customer.save
       render json: { customer: @customer }
     else
-      render status: :unprocessable_entity, json: { messages: @customer.errors.full_messages}
+      render status: :unprocessable_entity, json: { messages: @customer.errors.full_messages }
     end
   end
 
   def show
     @customer = current_account.customers.find_by id: params[:id]
     if @customer
-      render json: { customer: @customer}
+      render json: { customer: @customer }
     else
-      render status: :not_found, json: { messages: ["Customer not found"]}
+      render status: :not_found, json: { messages: ["Customer not found"] }
     end
   end
 

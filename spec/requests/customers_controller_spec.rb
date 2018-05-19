@@ -27,7 +27,7 @@ RSpec.describe Api::V1::CustomersController, type: :request do
         }
         post "/api/v1/customers", params: params, headers: headers
         expect(account.customers.count).to eq(1)
-        expect(json).to include_json(customer: {first_name: "Cardo", last_name: "Dalisay"})
+        expect(json).to include_json(customer: { first_name: "Cardo", last_name: "Dalisay" })
       end
     end
     context "with incorrect params" do
@@ -51,13 +51,13 @@ RSpec.describe Api::V1::CustomersController, type: :request do
       it "returns the customer" do
         get "/api/v1/customers/#{customer.id}", headers: headers
         expect(json).to include_json(customer: {})
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
     context "with a non-existent customer" do
       it "returns the 404" do
         get "/api/v1/customers/0", headers: headers
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

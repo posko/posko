@@ -36,7 +36,7 @@ end
 #       before { user && post('/api/v1/auth/sign_in', params: {email: "a@a.com", password: "pass"}) }
 #       it "returns user" do
 #         expect(json).not_to be_empty
-#         expect(response).to have_http_status(200)
+#         expect(response).to have_http_status(:ok)
 #         expect(json).to include_json(successful_sign_in)
 #       end
 #     end
