@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20180509142140) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -144,9 +145,10 @@ ActiveRecord::Schema.define(version: 20180509142140) do
   end
 
   create_table "roles", force: :cascade do |t|
+    t.integer "account_id"
     t.string "name"
     t.string "description"
-    t.integer "level"
+    t.integer "level", default: 5
     t.integer "role_type", default: 0
     t.integer "role_status", default: 0
     t.string "code"
@@ -191,7 +193,7 @@ ActiveRecord::Schema.define(version: 20180509142140) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index %w[account_id email], name: "index_users_on_account_id_and_email", unique: true
+    t.index ["account_id", "email"], name: "index_users_on_account_id_and_email", unique: true
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["token"], name: "index_users_on_token", unique: true
   end
@@ -211,4 +213,5 @@ ActiveRecord::Schema.define(version: 20180509142140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 end
