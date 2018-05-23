@@ -25,7 +25,8 @@ chdir APP_ROOT do
   unless File.exist?('config/database.yml')
     puts "== Copying database.yml =="
     cp 'config/database.sample.yml', 'config/database.yml'
-
+  end
+  unless File.exist?('config/secrets.yml')
     puts "== Copying secrets.yml =="
     cp 'config/secrets.sample.yml', 'config/secrets.yml'
   end
