@@ -54,7 +54,13 @@
       <li class="<%= params["controller"] == "orders" ? "active" : ""%>">
         <a href="<%= orders_path %>">
           <i class="fa fa-briefcase"></i>
-          <span> Order </span>
+          <span> Orders </span>
+        </a>
+      </li>
+      <li class="<%= params["controller"] == "roles" ? "active" : ""%>">
+        <a href="<%= roles_path %>">
+          <i class="fa fa-circle"></i>
+          <span> Roles </span>
         </a>
       </li>
     </ul>
