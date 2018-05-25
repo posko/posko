@@ -1,11 +1,11 @@
-class <%= object.capitalize %>Datatable < AjaxDatatablesRails::Base
+class <%= object.camelize %>Datatable < AjaxDatatablesRails::Base
   def_delegator :@view, :link_to
   def view_columns
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
-      name: { source: "<%= object.capitalize %>.first_name", cond: :like },
-      email: { source: "<%= object.capitalize %>.email", cond: :like }
+      name: { source: "<%= object.camelize %>.first_name", cond: :like },
+      email: { source: "<%= object.camelize %>.email", cond: :like }
     }
   end
 

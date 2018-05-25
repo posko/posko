@@ -1,11 +1,11 @@
-class <%= objects%>Controller < ApplicationController
+class <%= objects.camelize %>Controller < ApplicationController
   before_action :find_<%= object %>, except: [:index, :new, :create]
   def index
     @<%= objects %> = current_account.<%= objects %>
     respond_to do |format|
       format.html<% if with_datatable? %>
       format.json do
-        render json: <%= object.capitalize %>Datatable.new(view_context,
+        render json: <%= object.camelize %>Datatable.new(view_context,
                                        current_account: current_account)
       end<% end %>
     end
