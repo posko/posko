@@ -1,0 +1,53 @@
+class <%= objects%>Controller < ApplicationController
+  before_action :find_<%= object %>, except: [:index, :new, :create]
+  def index
+    @<%= objects %> = current_account.<%= objects %>
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: <%= object.capitalize %>Datatable.new(view_context,
+                                       current_account: current_account)
+      end
+    end
+  end
+
+  def new
+    @<%= object %> = current_account.<%= objects %>.new
+  end
+
+  def create
+    @<%= object %> = current_account.<%= objects %>.new <%= object %>_params
+    if @<%= object %>.save
+      redirect_to <%= objects %>_path
+    else
+      render 'new'
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @<%= object %>.update(<%= object %>_params)
+      redirect_to <%= objects %>_path
+    else
+      render 'edit'
+    end
+  end
+
+  def show; end
+
+  def destroy
+    @<%= object %>.destroy
+    redirect_to <%= objects %>_path
+  end
+
+  private
+
+  def find_<%= object %>
+    @<%= object %> ||= current_account.<%= objects %>.find(params[:id])
+  end
+
+  def <%= object %>_params
+    params.require(:<%= object %>).permit(:first_name, :last_name, :email, :password)
+  end
+end
