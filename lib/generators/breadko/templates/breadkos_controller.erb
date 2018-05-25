@@ -3,11 +3,11 @@ class <%= objects%>Controller < ApplicationController
   def index
     @<%= objects %> = current_account.<%= objects %>
     respond_to do |format|
-      format.html
+      format.html<% if with_datatable? %>
       format.json do
         render json: <%= object.capitalize %>Datatable.new(view_context,
                                        current_account: current_account)
-      end
+      end<% end %>
     end
   end
 
