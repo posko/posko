@@ -19,3 +19,53 @@ if @sign_up.process
 else
   puts "Sign Up Failed"
 end
+
+account = @sign_up.account
+user = @sign_up.user
+starting_products = [
+  {
+    title: "Bag",
+    variants: [
+      {
+        title: "Green Bag",
+        sku: "0001",
+        price: 1000,
+        compare_at_price: 1500,
+        barcode: "00000001",
+      },
+      {
+        title: "Blue Bag",
+        sku: "0002",
+        price: 950,
+        compare_at_price: 1400,
+        barcode: "00000002",
+      }
+    ]
+  },
+  {
+    title: "Laptop",
+    variants: [
+      {
+        title: "i7",
+        sku: "0005",
+        price: 31000,
+        compare_at_price: 38000,
+        barcode: "00000006",
+      },
+      {
+        title: "i5",
+        sku: "0006",
+        price: 25000,
+        compare_at_price: 30000,
+        barcode: "00000007",
+      }
+    ]
+  },
+
+]
+starting_products.each do |prod|
+  product = account.products.create(title: prod[:title], created_by: user)
+  prod[:variants].each do |var|
+    product.variants.create(var)
+  end
+end
