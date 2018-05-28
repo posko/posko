@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+
 options = {}
 options["account_name"]  = ENV["DEMO_ACCOUNT_NAME"] || "first_company"
 options["company"]       = ENV["DEMO_COMPANY"] || "First Company"
@@ -22,50 +25,19 @@ end
 
 account = @sign_up.account
 user = @sign_up.user
-starting_products = [
-  {
-    title: "Bag",
-    variants: [
-      {
-        title: "Green Bag",
-        sku: "0001",
-        price: 1000,
-        compare_at_price: 1500,
-        barcode: "00000001",
-      },
-      {
-        title: "Blue Bag",
-        sku: "0002",
-        price: 950,
-        compare_at_price: 1400,
-        barcode: "00000002",
-      }
-    ]
-  },
-  {
-    title: "Laptop",
-    variants: [
-      {
-        title: "i7",
-        sku: "0005",
-        price: 31000,
-        compare_at_price: 38000,
-        barcode: "00000006",
-      },
-      {
-        title: "i5",
-        sku: "0006",
-        price: 25000,
-        compare_at_price: 30000,
-        barcode: "00000007",
-      }
-    ]
-  },
-
-]
-starting_products.each do |prod|
-  product = account.products.create(title: prod[:title], created_by: user)
-  prod[:variants].each do |var|
+sku = "000001"
+3.times.each do |x|
+  title = Faker::Commerce.product_name
+  product = account.products.create(title: title, created_by: user)
+  2.times do |y|
+    var = {
+      title: "#{Faker::Color.unique.color_name.titleize} #{title}",
+      sku: sku.next!,
+      price: Faker::Commerce.price(range = 100..200, as_string = false),
+      compare_at_price: Faker::Commerce.price(range = 200..300, as_string = false),
+      barcode: "B#{sku}"
+    }
     product.variants.create(var)
   end
+  Faker::Color.unique.clear
 end
