@@ -7,6 +7,10 @@ class BreadkoGenerator < Rails::Generators::NamedBase
     template "breadkos_controller.erb", "app/controllers/#{objects}_controller.rb"
     template "breadko_model.erb", "app/models/#{object}.rb"
 
+    template "views/index.html.erb", "app/views/#{objects}/index.html.erb"
+    template "views/show.html.erb", "app/views/#{objects}/show.html.erb"
+
+
     template "breadkos_controller_spec.erb", "spec/controllers/#{objects}_controller_spec.rb"
     template "breadko_model_spec.erb", "spec/models/#{object}_spec.rb"
 		template "breadkos_factory.erb", "spec/factories/#{objects}.rb"
