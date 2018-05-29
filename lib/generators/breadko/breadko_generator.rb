@@ -5,7 +5,9 @@ class BreadkoGenerator < Rails::Generators::NamedBase
   argument :attributes, type: :array, default: []
   def generate_layout
     template "breadkos_controller.erb", "app/controllers/#{objects}_controller.rb"
-		template "breadko_model.erb", "app/models/#{object}.rb"
+    template "breadko_model.erb", "app/models/#{object}.rb"
+    
+		template "breadkos_controller_spec.erb", "spec/controllers/#{objects}_controller_spec.rb"
     if with_datatable?
       template "breadko_datatable.erb", "app/datatables/#{object}_datatable.rb"
     end
