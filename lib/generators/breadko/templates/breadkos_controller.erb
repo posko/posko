@@ -3,11 +3,13 @@ class <%= objects.camelize %>Controller < ApplicationController
   def index
     @<%= objects %> = current_account.<%= objects %>
     respond_to do |format|
-      format.html<% if with_datatable? %>
+      format.html
+      <% if with_datatable? -%>
       format.json do
         render json: <%= object.camelize %>Datatable.new(view_context,
                                        current_account: current_account)
-      end<% end %>
+      end
+      <% end -%>
     end
   end
 
@@ -48,6 +50,6 @@ class <%= objects.camelize %>Controller < ApplicationController
   end
 
   def <%= object %>_params
-    params.require(:<%= object %>).permit(:first_name, :last_name, :email, :password)
+    params.require(:<%= object %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
   end
 end

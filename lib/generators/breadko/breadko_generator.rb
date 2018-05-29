@@ -2,6 +2,7 @@ class BreadkoGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('../templates', __FILE__)
   class_option :with_datatable, type: :boolean, default: false, description: "Add datatable"
 
+  argument :attributes, type: :array, default: []
   def generate_layout
 		template "breadkos_controller.erb", "app/controllers/#{objects}_controller.rb"
     if with_datatable?
