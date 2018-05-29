@@ -8,6 +8,7 @@ class BreadkoGenerator < Rails::Generators::NamedBase
     template "breadko_model.erb", "app/models/#{object}.rb"
 
     template "breadkos_controller_spec.erb", "spec/controllers/#{objects}_controller_spec.rb"
+    template "breadko_model_spec.erb", "spec/models/#{object}_spec.rb"
 		template "breadkos_factory.erb", "spec/factories/#{objects}.rb"
     if with_datatable?
       template "breadko_datatable.erb", "app/datatables/#{object}_datatable.rb"
