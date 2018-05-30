@@ -4,10 +4,10 @@
 	<div class="box">
 	  <div class="box-body">
       <h2> <%= object.camelize %> </h2>
-        <%%= link_to "Back to <%= objects.camelize %>", <%= objects %>_path %>
-   <% attributes.each do |attribute| -%>
-    <div><%= attribute.name.humanize %>:  <%%= @<%= object %>.<%= attribute.name %> %> </div>
-   <% end -%>
-  </div>
+      <%%= link_to "Back to <%= objects.camelize %>", <%= objects %>_path %>
+    <% attributes.each do |attribute| -%>
+  <div> <%= attribute.name.humanize %>:  <%%= @<%= object %>.<%= attribute.name %> %> </div>
+    <% end -%>
+ </div>
   </div>
 </section>
