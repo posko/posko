@@ -1,0 +1,7 @@
+FactoryBot.define do
+  factory :<%= object %> do
+  <% attributes.each do |attribute| -%>
+  <%= attribute.name %> "Sample String"
+  <% end -%>
+  end
+end

@@ -1,0 +1,14 @@
+require 'rails_helper'
+
+RSpec.describe <%= object.camelize %>, type: :model do
+  let(:<%= object %>) { create(:<%= object %>) }
+  describe "Factory" do
+    it "creates necessary data" do
+      expect(<%= object %>).to be_present
+      expect(<%= object.camelize %>.count).to eq(1)
+    end
+  end
+  # describe "Associations" do
+  #   it { is_expected.to have_many(:user_<%= object %>s) }
+  # end
+end

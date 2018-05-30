@@ -109,6 +109,9 @@ GEM
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     formatador (0.2.5)
+    generator_spec (0.9.4)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.14.2)
@@ -348,6 +351,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-rails (~> 4.7)
+  generator_spec
   guard-rspec
   hirb
   jbuilder (~> 2.5)
