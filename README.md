@@ -53,6 +53,12 @@ You can contribute by documenting our API [here](https://github.com/neume/posko-
 # Contributing
   Contributions/Suggestions are very welcome. Check it out [here](https://github.com/neume/posko])
 
+  There is a generator named ```breadko``` in this app. You can use it by typing this command:
+
+``` sh
+rails g breadko posts contents:string user_id:integer
+```
+  Then, modify the files to fit your needs.
 
 # Supported Modules(Basic Functionality)
 + User
