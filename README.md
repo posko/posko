@@ -78,7 +78,6 @@ Check the diagram for more info.
   - Fullfillments
 + Payments
 + Customers
-+ Cart(ecommerce later)
 + Addresses
 + Contacts
 + Reports(later)
