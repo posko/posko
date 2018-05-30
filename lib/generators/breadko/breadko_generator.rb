@@ -14,6 +14,7 @@ class BreadkoGenerator < Rails::Generators::NamedBase
     template "views/show.html.erb", "app/views/#{objects}/show.html.erb"
     template "views/new.html.erb", "app/views/#{objects}/new.html.erb"
     template "views/_actions.html.erb", "app/views/#{objects}/_actions.html.erb"
+    template "views/edit.html.erb", "app/views/#{objects}/edit.html.erb"
 
     template "breadkos_controller_spec.erb", "spec/controllers/#{objects}_controller_spec.rb"
     template "breadko_model_spec.erb", "spec/models/#{object}_spec.rb"
