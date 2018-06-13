@@ -16,11 +16,12 @@ options["password"]      = ENV["DEMO_PASSWORD"] || "pass"
 options["first_name"]    = ENV["DEMO_FIRST_NAME"] || "Juan"
 options["last_name"]     = ENV["DEMO_LAST_NAME"] || "Dela Cruz"
 
+puts "\nSigning Up:"
 @sign_up = SignUp.new options
 if @sign_up.process
-  puts "Sign Up success"
+  puts "\t Created #{@sign_up.account.company}"
 else
-  puts "Sign Up Failed"
+  puts "\tSign Up Failed"
 end
 
 account = @sign_up.account
@@ -41,3 +42,10 @@ sku = "000001"
   end
   Faker::Color.unique.clear
 end
+
+puts "\nCreating Customer:"
+customer = account.customers.create(
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name
+)
+puts "\t#{customer.first_name} #{customer.last_name} is created"
