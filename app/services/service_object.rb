@@ -1,8 +1,5 @@
 class ServiceObject
   attr_reader :performed
-  def initialize
-    @performed = false
-  end
   def self.perform options={}
     obj = self.new options
     obj.perform

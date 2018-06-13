@@ -21,6 +21,11 @@ class OrderCreationService < ServiceObject
     @account ||= user.account
   end
 
+  def valid?
+    return false unless find_errors
+    return true
+  end
+
 private
 
   attr_reader :customer_id, :order_params, :order_lines_params
@@ -36,17 +41,12 @@ private
   def create_order_lines
     @order.order_lines.create!(order_lines_params)
   end
-  def valid?
-    return false unless find_errors
-    return true
-  end
-
   def find_errors
     return false unless find_customer
     return true
   end
 
   def find_customer
-    @customer = account.customers.find(customer_id)
+    @customer = account.customers.find_by(id: customer_id) rescue nil
   end
 end
