@@ -8,7 +8,7 @@ RSpec.describe Address, type: :model do
     it { is_expected.to validate_presence_of(:address1) }
   end
   describe "associations" do
-    it { expect(address).to belong_to(:customer) }
+    it { is_expected.to belong_to(:customer) }
     # it { expect(address).to have_one(:address_account) }
   end
 end

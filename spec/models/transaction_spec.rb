@@ -22,6 +22,6 @@ RSpec.describe Transaction, type: :model do
     it { is_expected.to validate_presence_of(:transaction_type) }
   end
   describe "associations" do
-    it { expect(transaction).to belong_to(:order) }
+    it { is_expected.to belong_to(:order) }
   end
 end

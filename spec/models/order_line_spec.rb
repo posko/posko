@@ -20,9 +20,9 @@ RSpec.describe OrderLine, type: :model do
     it { is_expected.to validate_presence_of(:price) }
   end
   describe "associations" do
-    it { expect(order_line).to belong_to(:order) }
-    it { expect(order_line).to belong_to(:product) }
-    it { expect(order_line).to belong_to(:variant) }
+    it { is_expected.to belong_to(:order) }
+    it { is_expected.to belong_to(:product) }
+    it { is_expected.to belong_to(:variant) }
   end
   describe "#recompute order" do
     subject { order_line }

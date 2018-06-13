@@ -13,6 +13,6 @@ RSpec.describe AccessKey, type: :model do
     it { is_expected.to validate_uniqueness_of(:token) }
   end
   describe "associations" do
-    it { expect(access_key).to belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 end
