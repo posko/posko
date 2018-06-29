@@ -73,8 +73,8 @@ Check the diagram for more info.
 + Roles (Ability later)
   - Pundit
 + Collections
-+ Orders
-  - OrderLines
++ Invoices
+  - InvoiceLines
   - Fullfillments
 + Payments
 + Customers

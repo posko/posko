@@ -39,14 +39,14 @@
 <text text-anchor="start" x="64" y="-361.3" font-family="Times,serif" font-size="14.00" fill="#000000">created_at :timestamp without time zone</text>
 <text text-anchor="start" x="64" y="-347.3" font-family="Times,serif" font-size="14.00" fill="#000000">id :bigint</text>
 </g>
-<!-- OrderLine -->
+<!-- InvoiceLine -->
 <g id="node6" class="node">
-<title>OrderLine</title>
+<title>InvoiceLine</title>
 <path fill="none" stroke="#000000" d="M278,-7.5C278,-7.5 501.7246,-7.5 501.7246,-7.5 507.7246,-7.5 513.7246,-13.5 513.7246,-19.5 513.7246,-19.5 513.7246,-207.5 513.7246,-207.5 513.7246,-213.5 507.7246,-219.5 501.7246,-219.5 501.7246,-219.5 278,-219.5 278,-219.5 272,-219.5 266,-213.5 266,-207.5 266,-207.5 266,-19.5 266,-19.5 266,-13.5 272,-7.5 278,-7.5"/>
-<text text-anchor="middle" x="389.8623" y="-204.3" font-family="Times,serif" font-size="14.00" fill="#000000">OrderLine</text>
+<text text-anchor="middle" x="389.8623" y="-204.3" font-family="Times,serif" font-size="14.00" fill="#000000">InvoiceLine</text>
 <polyline fill="none" stroke="#000000" points="266,-197.5 513.7246,-197.5 "/>
 <text text-anchor="start" x="274" y="-182.3" font-family="Times,serif" font-size="14.00" fill="#000000">updated_at :timestamp without time zone</text>
-<text text-anchor="start" x="274" y="-168.3" font-family="Times,serif" font-size="14.00" fill="#000000">order_id :integer</text>
+<text text-anchor="start" x="274" y="-168.3" font-family="Times,serif" font-size="14.00" fill="#000000">invoice_id :integer</text>
 <text text-anchor="start" x="274" y="-154.3" font-family="Times,serif" font-size="14.00" fill="#000000">variant_id :integer</text>
 <text text-anchor="start" x="274" y="-140.3" font-family="Times,serif" font-size="14.00" fill="#000000">product_id :integer</text>
 <text text-anchor="start" x="274" y="-126.3" font-family="Times,serif" font-size="14.00" fill="#000000">title :character varying</text>
@@ -54,14 +54,14 @@
 <text text-anchor="start" x="274" y="-98.3" font-family="Times,serif" font-size="14.00" fill="#000000">price :numeric</text>
 <text text-anchor="start" x="274" y="-84.3" font-family="Times,serif" font-size="14.00" fill="#000000">compare_at_price :numeric</text>
 <text text-anchor="start" x="274" y="-70.3" font-family="Times,serif" font-size="14.00" fill="#000000">barcode :character varying</text>
-<text text-anchor="start" x="274" y="-56.3" font-family="Times,serif" font-size="14.00" fill="#000000">order_line_status :integer</text>
+<text text-anchor="start" x="274" y="-56.3" font-family="Times,serif" font-size="14.00" fill="#000000">invoice_line_status :integer</text>
 <text text-anchor="start" x="274" y="-42.3" font-family="Times,serif" font-size="14.00" fill="#000000">status :integer</text>
 <text text-anchor="start" x="274" y="-28.3" font-family="Times,serif" font-size="14.00" fill="#000000">created_at :timestamp without time zone</text>
 <text text-anchor="start" x="274" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">id :bigint</text>
 </g>
-<!-- Variant&#45;&gt;OrderLine -->
+<!-- Variant&#45;&gt;InvoiceLine -->
 <g id="edge1" class="edge">
-<title>Variant&#45;&gt;OrderLine</title>
+<title>Variant&#45;&gt;InvoiceLine</title>
 <path fill="none" stroke="#dc72f4" d="M254.0427,-333.3983C275.172,-299.189 298.1282,-262.0219 319.0513,-228.1464"/>
 <ellipse fill="none" stroke="#dc72f4" cx="251.8913" cy="-336.8817" rx="4" ry="4"/>
 <polygon fill="#dc72f4" stroke="#dc72f4" points="319.0696,-228.1167 328.1532,-221.9734 321.6971,-223.8627 324.3246,-219.6087 324.3246,-219.6087 324.3246,-219.6087 321.6971,-223.8627 320.496,-217.2439 319.0696,-228.1167 319.0696,-228.1167"/>
@@ -177,17 +177,17 @@
 <ellipse fill="none" stroke="#f382e9" cx="472.4355" cy="-955.8994" rx="4" ry="4"/>
 <polygon fill="#f382e9" stroke="#f382e9" points="427.3882,-887.9085 425.6162,-877.0868 424.6265,-883.7404 421.8649,-879.5722 421.8649,-879.5722 421.8649,-879.5722 424.6265,-883.7404 418.1135,-882.0577 427.3882,-887.9085 427.3882,-887.9085"/>
 </g>
-<!-- Order -->
+<!-- Invoice -->
 <g id="node9" class="node">
-<title>Order</title>
+<title>Invoice</title>
 <path fill="none" stroke="#000000" d="M410,-277.5C410,-277.5 633.7246,-277.5 633.7246,-277.5 639.7246,-277.5 645.7246,-283.5 645.7246,-289.5 645.7246,-289.5 645.7246,-617.5 645.7246,-617.5 645.7246,-623.5 639.7246,-629.5 633.7246,-629.5 633.7246,-629.5 410,-629.5 410,-629.5 404,-629.5 398,-623.5 398,-617.5 398,-617.5 398,-289.5 398,-289.5 398,-283.5 404,-277.5 410,-277.5"/>
-<text text-anchor="middle" x="521.8623" y="-614.3" font-family="Times,serif" font-size="14.00" fill="#000000">Order</text>
+<text text-anchor="middle" x="521.8623" y="-614.3" font-family="Times,serif" font-size="14.00" fill="#000000">Invoice</text>
 <polyline fill="none" stroke="#000000" points="398,-607.5 645.7246,-607.5 "/>
 <text text-anchor="start" x="406" y="-592.3" font-family="Times,serif" font-size="14.00" fill="#000000">updated_at :timestamp without time zone</text>
 <text text-anchor="start" x="406" y="-578.3" font-family="Times,serif" font-size="14.00" fill="#000000">account_id :integer</text>
 <text text-anchor="start" x="406" y="-564.3" font-family="Times,serif" font-size="14.00" fill="#000000">customer_id :integer</text>
 <text text-anchor="start" x="406" y="-550.3" font-family="Times,serif" font-size="14.00" fill="#000000">user_id :integer</text>
-<text text-anchor="start" x="406" y="-536.3" font-family="Times,serif" font-size="14.00" fill="#000000">order_number :integer</text>
+<text text-anchor="start" x="406" y="-536.3" font-family="Times,serif" font-size="14.00" fill="#000000">invoice_number :integer</text>
 <text text-anchor="start" x="406" y="-522.3" font-family="Times,serif" font-size="14.00" fill="#000000">note :character varying</text>
 <text text-anchor="start" x="406" y="-508.3" font-family="Times,serif" font-size="14.00" fill="#000000">total_line_items_price :numeric</text>
 <text text-anchor="start" x="406" y="-494.3" font-family="Times,serif" font-size="14.00" fill="#000000">total_discounts :numeric</text>
@@ -202,14 +202,14 @@
 <text text-anchor="start" x="406" y="-368.3" font-family="Times,serif" font-size="14.00" fill="#000000">contact_number :character varying</text>
 <text text-anchor="start" x="406" y="-354.3" font-family="Times,serif" font-size="14.00" fill="#000000">suffix :character varying</text>
 <text text-anchor="start" x="406" y="-340.3" font-family="Times,serif" font-size="14.00" fill="#000000">fulfillment_status :integer</text>
-<text text-anchor="start" x="406" y="-326.3" font-family="Times,serif" font-size="14.00" fill="#000000">order_status :integer</text>
+<text text-anchor="start" x="406" y="-326.3" font-family="Times,serif" font-size="14.00" fill="#000000">invoice_status :integer</text>
 <text text-anchor="start" x="406" y="-312.3" font-family="Times,serif" font-size="14.00" fill="#000000">status :integer</text>
 <text text-anchor="start" x="406" y="-298.3" font-family="Times,serif" font-size="14.00" fill="#000000">created_at :timestamp without time zone</text>
 <text text-anchor="start" x="406" y="-284.3" font-family="Times,serif" font-size="14.00" fill="#000000">id :bigint</text>
 </g>
-<!-- Account&#45;&gt;Order -->
+<!-- Account&#45;&gt;Invoice -->
 <g id="edge6" class="edge">
-<title>Account&#45;&gt;Order</title>
+<title>Account&#45;&gt;Invoice</title>
 <path fill="none" stroke="#910150" d="M521.8623,-951.39C521.8623,-871.517 521.8623,-745.2325 521.8623,-639.8367"/>
 <ellipse fill="none" stroke="#910150" cx="521.8624" cy="-955.4594" rx="4" ry="4"/>
 <polygon fill="#910150" stroke="#910150" points="521.8624,-639.7046 526.3623,-629.7045 521.8624,-634.7046 521.8623,-629.7046 521.8623,-629.7046 521.8623,-629.7046 521.8624,-634.7046 517.3623,-629.7046 521.8624,-639.7046 521.8624,-639.7046"/>
@@ -250,7 +250,7 @@
 <text text-anchor="middle" x="797.8623" y="-176.3" font-family="Times,serif" font-size="14.00" fill="#000000">Transaction</text>
 <polyline fill="none" stroke="#000000" points="674,-169.5 921.7246,-169.5 "/>
 <text text-anchor="start" x="682" y="-154.3" font-family="Times,serif" font-size="14.00" fill="#000000">updated_at :timestamp without time zone</text>
-<text text-anchor="start" x="682" y="-140.3" font-family="Times,serif" font-size="14.00" fill="#000000">order_id :integer</text>
+<text text-anchor="start" x="682" y="-140.3" font-family="Times,serif" font-size="14.00" fill="#000000">invoice_id :integer</text>
 <text text-anchor="start" x="682" y="-126.3" font-family="Times,serif" font-size="14.00" fill="#000000">customer_id :integer</text>
 <text text-anchor="start" x="682" y="-112.3" font-family="Times,serif" font-size="14.00" fill="#000000">amount :numeric</text>
 <text text-anchor="start" x="682" y="-98.3" font-family="Times,serif" font-size="14.00" fill="#000000">transaction_type :integer</text>
@@ -266,9 +266,9 @@
 <ellipse fill="none" stroke="#a3a660" cx="858.1538" cy="-708.7267" rx="4" ry="4"/>
 <polygon fill="#a3a660" stroke="#a3a660" points="878.5466,-199.4805 876.1092,-188.7889 875.5326,-195.491 872.5186,-191.5015 872.5186,-191.5015 872.5186,-191.5015 875.5326,-195.491 868.9281,-194.2141 878.5466,-199.4805 878.5466,-199.4805"/>
 </g>
-<!-- Customer&#45;&gt;Order -->
+<!-- Customer&#45;&gt;Invoice -->
 <g id="edge10" class="edge">
-<title>Customer&#45;&gt;Order</title>
+<title>Customer&#45;&gt;Invoice</title>
 <path fill="none" stroke="#4a4a80" d="M655.8313,-667.594C649.847,-658.0306 643.7223,-648.2428 637.5449,-638.3707"/>
 <ellipse fill="none" stroke="#4a4a80" cx="657.9826" cy="-671.032" rx="4" ry="4"/>
 <polygon fill="#4a4a80" stroke="#4a4a80" points="637.4095,-638.1543 635.9196,-627.29 634.7572,-633.9157 632.1049,-629.6771 632.1049,-629.6771 632.1049,-629.6771 634.7572,-633.9157 628.2902,-632.0642 637.4095,-638.1543 637.4095,-638.1543"/>
@@ -314,9 +314,9 @@
 <ellipse fill="none" stroke="#97ee21" cx="309.0183" cy="-691.8321" rx="4" ry="4"/>
 <polygon fill="#97ee21" stroke="#97ee21" points="246.0137,-575.5694 245.2055,-564.6333 243.6314,-571.1734 241.2491,-566.7774 241.2491,-566.7774 241.2491,-566.7774 243.6314,-571.1734 237.2927,-568.9214 246.0137,-575.5694 246.0137,-575.5694"/>
 </g>
-<!-- Product&#45;&gt;OrderLine -->
+<!-- Product&#45;&gt;InvoiceLine -->
 <g id="edge13" class="edge">
-<title>Product&#45;&gt;OrderLine</title>
+<title>Product&#45;&gt;InvoiceLine</title>
 <path fill="none" stroke="#f810d0" d="M365.1839,-687.0598C370.4412,-564.873 379.3001,-358.9802 384.8511,-229.9662"/>
 <ellipse fill="none" stroke="#f810d0" cx="365.0058" cy="-691.2001" rx="4" ry="4"/>
 <polygon fill="#f810d0" stroke="#f810d0" points="384.8648,-229.6477 389.7906,-219.8504 385.0797,-224.6523 385.2947,-219.6569 385.2947,-219.6569 385.2947,-219.6569 385.0797,-224.6523 380.7989,-219.4634 384.8648,-229.6477 384.8648,-229.6477"/>
@@ -372,16 +372,16 @@
 <ellipse fill="none" stroke="#de6c75" cx="1221.6935" cy="-941.5088" rx="4" ry="4"/>
 <polygon fill="#de6c75" stroke="#de6c75" points="1339.2517,-520.1975 1346.2738,-511.7749 1340.5955,-515.3815 1341.9394,-510.5655 1341.9394,-510.5655 1341.9394,-510.5655 1340.5955,-515.3815 1337.6049,-509.356 1339.2517,-520.1975 1339.2517,-520.1975"/>
 </g>
-<!-- Order&#45;&gt;OrderLine -->
+<!-- Invoice&#45;&gt;InvoiceLine -->
 <g id="edge17" class="edge">
-<title>Order&#45;&gt;OrderLine</title>
+<title>Invoice&#45;&gt;InvoiceLine</title>
 <path fill="none" stroke="#1febc5" d="M450.326,-269.2398C445.0386,-255.6209 439.799,-242.1249 434.7441,-229.1047"/>
 <ellipse fill="none" stroke="#1febc5" cx="451.9015" cy="-273.2979" rx="4" ry="4"/>
 <polygon fill="#1febc5" stroke="#1febc5" points="434.7173,-229.0353 435.293,-218.0846 432.9076,-224.3743 431.098,-219.7132 431.098,-219.7132 431.098,-219.7132 432.9076,-224.3743 426.9031,-221.3419 434.7173,-229.0353 434.7173,-229.0353"/>
 </g>
-<!-- Order&#45;&gt;Transaction -->
+<!-- Invoice&#45;&gt;Transaction -->
 <g id="edge18" class="edge">
-<title>Order&#45;&gt;Transaction</title>
+<title>Invoice&#45;&gt;Transaction</title>
 <path fill="none" stroke="#83897d" d="M650.8818,-281.9176C652.2123,-280.2683 653.5394,-278.6287 654.8623,-277 675.7631,-251.2692 699.1714,-223.9308 720.9006,-199.1229"/>
 <ellipse fill="none" stroke="#83897d" cx="648.2397" cy="-285.2068" rx="4" ry="4"/>
 <polygon fill="#83897d" stroke="#83897d" points="720.9874,-199.024 730.9671,-194.4788 724.2865,-195.2668 727.5856,-191.5097 727.5856,-191.5097 727.5856,-191.5097 724.2865,-195.2668 724.2042,-188.5405 720.9874,-199.024 720.9874,-199.024"/>
@@ -407,9 +407,9 @@
 <ellipse fill="none" stroke="#000000" cx="1415.8623" cy="-1030.5" rx="77.2916" ry="18"/>
 <text text-anchor="middle" x="1415.8623" y="-1026.3" font-family="Times,serif" font-size="14.00" fill="#000000">ApplicationRecord</text>
 </g>
-<!-- User&#45;&gt;Order -->
+<!-- User&#45;&gt;Invoice -->
 <g id="edge20" class="edge">
-<title>User&#45;&gt;Order</title>
+<title>User&#45;&gt;Invoice</title>
 <path fill="none" stroke="#3c5058" d="M960.4041,-709.1768C929.5429,-693.3075 896.2045,-678.1035 863.8623,-667 774.6406,-636.369 735.2775,-679.3169 654.8623,-630 654.7703,-629.9436 654.6784,-629.8871 654.5865,-629.8305"/>
 <ellipse fill="none" stroke="#3c5058" cx="964.2268" cy="-711.1615" rx="4" ry="4"/>
 <polygon fill="#3c5058" stroke="#3c5058" points="654.5288,-629.7928 648.6229,-620.5531 650.3443,-627.056 646.1598,-624.3192 646.1598,-624.3192 646.1598,-624.3192 650.3443,-627.056 643.6966,-628.0852 654.5288,-629.7928 654.5288,-629.7928"/>

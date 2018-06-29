@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   attr_accessor :price
 
   has_many :variants
-  has_many :order_lines
+  has_many :invoice_lines
   has_many :product_components, through: :variants
   belongs_to :account
   belongs_to :created_by, class_name: "User"

@@ -1,9 +1,9 @@
 <div>
-  <%= form_for order do |f| %>
-    <%= render "errors", object: order %>
+  <%= form_for invoice do |f| %>
+    <%= render "errors", object: invoice %>
     <div class="form-group">
-      <%= f.label :order_number %>
-      <%= f.number_field :order_number, class: "form-control" %>
+      <%= f.label :invoice_number %>
+      <%= f.number_field :invoice_number, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :customer_id, "Customer" %>

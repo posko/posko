@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20180509142140) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "order_lines", force: :cascade do |t|
-    t.integer "order_id"
+  create_table "invoice_lines", force: :cascade do |t|
+    t.integer "invoice_id"
     t.integer "variant_id"
     t.integer "product_id"
     t.string "title"
@@ -84,17 +84,17 @@ ActiveRecord::Schema.define(version: 20180509142140) do
     t.decimal "price"
     t.decimal "compare_at_price"
     t.string "barcode"
-    t.integer "order_line_status", default: 0
+    t.integer "invoice_line_status", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "invoices", force: :cascade do |t|
     t.integer "account_id"
     t.integer "customer_id"
     t.integer "user_id"
-    t.integer "order_number"
+    t.integer "invoice_number"
     t.string "note"
     t.decimal "total_line_items_price"
     t.decimal "total_discounts"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20180509142140) do
     t.string "contact_number"
     t.string "suffix"
     t.integer "fulfillment_status", default: 0
-    t.integer "order_status", default: 0
+    t.integer "invoice_status", default: 0
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20180509142140) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "order_id"
+    t.integer "invoice_id"
     t.integer "customer_id"
     t.decimal "amount"
     t.integer "transaction_type"

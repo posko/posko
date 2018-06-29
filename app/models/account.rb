@@ -1,8 +1,8 @@
 class Account < ApplicationRecord
   has_many :users
   has_many :products
-  has_many :orders
-  has_many :order_lines, through: :orders
+  has_many :invoices
+  has_many :invoice_lines, through: :invoices
   has_many :customers
   has_many :roles
   has_many :variants, through: :products

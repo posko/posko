@@ -36,7 +36,7 @@ Naming/AccessorMethodName:
 Naming/MemoizedInstanceVariableName:
   Exclude:
     - 'app/controllers/customers_controller.rb'
-    - 'app/controllers/orders_controller.rb'
+    - 'app/controllers/invoices_controller.rb'
     - 'app/controllers/users_controller.rb'
 
 # Offense count: 29
@@ -46,7 +46,7 @@ RSpec/ContextWording:
   Exclude:
     - 'spec/controllers/accounts_controller_spec.rb'
     - 'spec/controllers/customers_controller_spec.rb'
-    - 'spec/controllers/orders_controller_spec.rb'
+    - 'spec/controllers/invoices_controller_spec.rb'
     - 'spec/controllers/products_controller_spec.rb'
     - 'spec/controllers/sessions_controller_spec.rb'
     - 'spec/controllers/users_controller_spec.rb'
@@ -83,8 +83,8 @@ RSpec/EmptyLineAfterSubject:
     - 'spec/models/access_key_spec.rb'
     - 'spec/models/address_spec.rb'
     - 'spec/models/customer_spec.rb'
-    - 'spec/models/order_line_spec.rb'
-    - 'spec/models/order_spec.rb'
+    - 'spec/models/invoice_line_spec.rb'
+    - 'spec/models/invoice_spec.rb'
     - 'spec/models/product_spec.rb'
     - 'spec/models/transaction_spec.rb'
     - 'spec/models/user_spec.rb'
@@ -162,7 +162,7 @@ Rails/HasManyOrHasOneDependent:
   Exclude:
     - 'app/models/account.rb'
     - 'app/models/customer.rb'
-    - 'app/models/order.rb'
+    - 'app/models/invoice.rb'
     - 'app/models/product.rb'
     - 'app/models/role.rb'
     - 'app/models/user.rb'

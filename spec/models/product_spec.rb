@@ -32,7 +32,7 @@ RSpec.describe Product, type: :model do
   describe "associations" do
     it { is_expected.to belong_to(:account) }
     it { is_expected.to have_many(:variants) }
-    it { is_expected.to have_many(:order_lines) }
+    it { is_expected.to have_many(:invoice_lines) }
     it { is_expected.to have_many(:product_components) }
   end
 end

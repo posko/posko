@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :variants
   end
   resources :customers
-  resources :orders
+  resources :invoices
   resources :roles
 
   constraints format: 'json' do
@@ -24,8 +24,8 @@ Rails.application.routes.draw do
         resources :users
         resources :access_keys
         resources :customers
-        resources :orders, shallow: true do
-          resources :order_lines
+        resources :invoices, shallow: true do
+          resources :invoice_lines
         end
       end
     end

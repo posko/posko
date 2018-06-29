@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_many :user_roles
   has_many :roles, through: :user_roles
-  has_many :orders
+  has_many :invoices
   has_many :access_keys
   # has_many :user_branches
   # has_many :branches

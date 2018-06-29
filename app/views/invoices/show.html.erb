@@ -1,0 +1,10 @@
+<div>
+  <h2> Invoice </h2>
+  <div class="">
+    Invoice Number: <%= @invoice.invoice_number %>
+  </div>
+  <div class="">
+    Customer: <%= @invoice.customer.first_name %>
+  </div>
+</div>
+<%= link_to "Customer", customers_path %>

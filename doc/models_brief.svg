@@ -24,15 +24,15 @@
 <ellipse fill="none" stroke="#000000" cx="199.8855" cy="-104" rx="35.7887" ry="18"/>
 <text text-anchor="middle" x="199.8855" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">Variant</text>
 </g>
-<!-- OrderLine -->
+<!-- InvoiceLine -->
 <g id="node6" class="node">
-<title>OrderLine</title>
+<title>InvoiceLine</title>
 <ellipse fill="none" stroke="#000000" cx="263.8855" cy="-18" rx="46.8719" ry="18"/>
-<text text-anchor="middle" x="263.8855" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">OrderLine</text>
+<text text-anchor="middle" x="263.8855" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">InvoiceLine</text>
 </g>
-<!-- Variant&#45;&gt;OrderLine -->
+<!-- Variant&#45;&gt;InvoiceLine -->
 <g id="edge1" class="edge">
-<title>Variant&#45;&gt;OrderLine</title>
+<title>Variant&#45;&gt;InvoiceLine</title>
 <path fill="none" stroke="#c39a33" d="M217.4685,-80.3728C225.9564,-68.9672 236.1553,-55.2625 244.8285,-43.6078"/>
 <ellipse fill="none" stroke="#c39a33" cx="214.9179" cy="-83.8002" rx="4" ry="4"/>
 <polygon fill="#c39a33" stroke="#c39a33" points="244.8579,-43.5683 254.4381,-38.2325 247.843,-39.5571 250.828,-35.546 250.828,-35.546 250.828,-35.546 247.843,-39.5571 247.218,-32.8594 244.8579,-43.5683 244.8579,-43.5683"/>
@@ -90,15 +90,15 @@
 <ellipse fill="none" stroke="#5953e7" cx="349.2075" cy="-249.9622" rx="4" ry="4"/>
 <polygon fill="#5953e7" stroke="#5953e7" points="289.91,-199.2546 285.2345,-189.3354 286.1099,-196.005 282.3099,-192.7554 282.3099,-192.7554 282.3099,-192.7554 286.1099,-196.005 279.3853,-196.1755 289.91,-199.2546 289.91,-199.2546"/>
 </g>
-<!-- Order -->
+<!-- Invoice -->
 <g id="node9" class="node">
-<title>Order</title>
+<title>Invoice</title>
 <ellipse fill="none" stroke="#000000" cx="418.8855" cy="-104" rx="30.9619" ry="18"/>
-<text text-anchor="middle" x="418.8855" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">Order</text>
+<text text-anchor="middle" x="418.8855" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">Invoice</text>
 </g>
-<!-- Account&#45;&gt;Order -->
+<!-- Account&#45;&gt;Invoice -->
 <g id="edge6" class="edge">
-<title>Account&#45;&gt;Order</title>
+<title>Account&#45;&gt;Invoice</title>
 <path fill="none" stroke="#057cb1" d="M363.751,-242.3835C358.8705,-219.5299 355.0428,-185.8778 365.8855,-159 371.2619,-145.6725 381.5847,-133.7722 391.7023,-124.4792"/>
 <ellipse fill="none" stroke="#057cb1" cx="364.673" cy="-246.3843" rx="4" ry="4"/>
 <polygon fill="#057cb1" stroke="#057cb1" points="391.7482,-124.4396 402.2566,-121.3053 395.5311,-121.1701 399.314,-117.9006 399.314,-117.9006 399.314,-117.9006 395.5311,-121.1701 396.3715,-114.496 391.7482,-124.4396 391.7482,-124.4396"/>
@@ -129,9 +129,9 @@
 <ellipse fill="none" stroke="#e07949" cx="437.9343" cy="-157.2004" rx="4" ry="4"/>
 <polygon fill="#e07949" stroke="#e07949" points="457.5338,-45.8082 459.3069,-34.9866 456.2462,-40.9768 454.9587,-36.1454 454.9587,-36.1454 454.9587,-36.1454 456.2462,-40.9768 450.6104,-37.3043 457.5338,-45.8082 457.5338,-45.8082"/>
 </g>
-<!-- Customer&#45;&gt;Order -->
+<!-- Customer&#45;&gt;Invoice -->
 <g id="edge9" class="edge">
-<title>Customer&#45;&gt;Order</title>
+<title>Customer&#45;&gt;Invoice</title>
 <path fill="none" stroke="#fb1456" d="M418.8855,-150.9079C418.8855,-144.9427 418.8855,-138.5729 418.8855,-132.512"/>
 <ellipse fill="none" stroke="#fb1456" cx="418.8855" cy="-154.9551" rx="4" ry="4"/>
 <polygon fill="#fb1456" stroke="#fb1456" points="418.8856,-132.0904 423.3855,-122.0903 418.8855,-127.0904 418.8855,-122.0904 418.8855,-122.0904 418.8855,-122.0904 418.8855,-127.0904 414.3855,-122.0904 418.8856,-132.0904 418.8856,-132.0904"/>
@@ -156,9 +156,9 @@
 <ellipse fill="none" stroke="#0063ef" cx="246.4048" cy="-157.0611" rx="4" ry="4"/>
 <polygon fill="#0063ef" stroke="#0063ef" points="221.0205,-128.1071 217.8118,-117.6211 217.7243,-124.3474 214.4281,-120.5877 214.4281,-120.5877 214.4281,-120.5877 217.7243,-124.3474 211.0444,-123.5542 221.0205,-128.1071 221.0205,-128.1071"/>
 </g>
-<!-- Product&#45;&gt;OrderLine -->
+<!-- Product&#45;&gt;InvoiceLine -->
 <g id="edge12" class="edge">
-<title>Product&#45;&gt;OrderLine</title>
+<title>Product&#45;&gt;InvoiceLine</title>
 <path fill="none" stroke="#42784d" d="M263.8855,-150.6239C263.8855,-121.749 263.8855,-75.6357 263.8855,-46.0968"/>
 <ellipse fill="none" stroke="#42784d" cx="263.8855" cy="-154.7607" rx="4" ry="4"/>
 <polygon fill="#42784d" stroke="#42784d" points="263.8856,-46.0266 268.3855,-36.0266 263.8855,-41.0266 263.8855,-36.0266 263.8855,-36.0266 263.8855,-36.0266 263.8855,-41.0266 259.3855,-36.0267 263.8856,-46.0266 263.8856,-46.0266"/>
@@ -182,16 +182,16 @@
 <ellipse fill="none" stroke="#e2ea78" cx="666.8855" cy="-154.9551" rx="4" ry="4"/>
 <polygon fill="#e2ea78" stroke="#e2ea78" points="666.8856,-132.0904 671.3855,-122.0903 666.8855,-127.0904 666.8855,-122.0904 666.8855,-122.0904 666.8855,-122.0904 666.8855,-127.0904 662.3855,-122.0904 666.8856,-132.0904 666.8856,-132.0904"/>
 </g>
-<!-- Order&#45;&gt;OrderLine -->
+<!-- Invoice&#45;&gt;InvoiceLine -->
 <g id="edge14" class="edge">
-<title>Order&#45;&gt;OrderLine</title>
+<title>Invoice&#45;&gt;InvoiceLine</title>
 <path fill="none" stroke="#f14845" d="M389.0673,-87.4557C363.4717,-73.2543 326.5268,-52.7558 299.4055,-37.7079"/>
 <ellipse fill="none" stroke="#f14845" cx="392.8495" cy="-89.5542" rx="4" ry="4"/>
 <polygon fill="#f14845" stroke="#f14845" points="299.3593,-37.6823 292.7983,-28.8957 294.9871,-35.2564 290.615,-32.8306 290.615,-32.8306 290.615,-32.8306 294.9871,-35.2564 288.4318,-36.7655 299.3593,-37.6823 299.3593,-37.6823"/>
 </g>
-<!-- Order&#45;&gt;Transaction -->
+<!-- Invoice&#45;&gt;Transaction -->
 <g id="edge15" class="edge">
-<title>Order&#45;&gt;Transaction</title>
+<title>Invoice&#45;&gt;Transaction</title>
 <path fill="none" stroke="#34e91c" d="M427.7702,-78.5306C431.376,-68.1938 435.5508,-56.2262 439.2314,-45.675"/>
 <ellipse fill="none" stroke="#34e91c" cx="426.419" cy="-82.4039" rx="4" ry="4"/>
 <polygon fill="#34e91c" stroke="#34e91c" points="439.2804,-45.5343 446.8231,-37.5745 440.9273,-40.8133 442.5742,-36.0923 442.5742,-36.0923 442.5742,-36.0923 440.9273,-40.8133 438.3253,-34.6101 439.2804,-45.5343 439.2804,-45.5343"/>
@@ -208,9 +208,9 @@
 <ellipse fill="none" stroke="#000000" cx="505.8855" cy="-268.5" rx="77.2916" ry="18"/>
 <text text-anchor="middle" x="505.8855" y="-264.3" font-family="Times,serif" font-size="14.00" fill="#000000">ApplicationRecord</text>
 </g>
-<!-- User&#45;&gt;Order -->
+<!-- User&#45;&gt;Invoice -->
 <g id="edge17" class="edge">
-<title>User&#45;&gt;Order</title>
+<title>User&#45;&gt;Invoice</title>
 <path fill="none" stroke="#4491cf" d="M510.0227,-160.3815C491.7578,-149.082 467.5796,-134.1243 448.7165,-122.4547"/>
 <ellipse fill="none" stroke="#4491cf" cx="513.4667" cy="-162.5121" rx="4" ry="4"/>
 <polygon fill="#4491cf" stroke="#4491cf" points="448.7031,-122.4465 442.5664,-113.3585 444.451,-119.816 440.1989,-117.1854 440.1989,-117.1854 440.1989,-117.1854 444.451,-119.816 437.8314,-121.0123 448.7031,-122.4465 448.7031,-122.4465"/>
