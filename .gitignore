@@ -21,3 +21,5 @@
 .byebug_history
 coverage
 /spec/tmp/*
+
+*.swp
