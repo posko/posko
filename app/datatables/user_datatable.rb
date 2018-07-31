@@ -12,8 +12,7 @@ class UserDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |record|
       {
-        # example:
-        name: name(record),
+        name: record.decorate.name_link,
         email: record.email,
         actions: actions(record)
       }

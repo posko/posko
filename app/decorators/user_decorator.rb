@@ -9,4 +9,7 @@ class UserDecorator < Draper::Decorator
     fullname.join(" ")
   end
 
+  def name_link
+    h.link_to name, self
+  end
 end
