@@ -20,10 +20,5 @@ chdir APP_ROOT do
 
   puts "\nMigrating database"
   system! 'bin/rails db:migrate'
-
-  puts "\nSeeding database"
-  system! 'bin/rails db:seed'
-
-  puts "\nRemoving old logs and tempfiles"
-  system! 'bin/rails log:clear tmp:clear'
+  
 end

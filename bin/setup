@@ -39,7 +39,7 @@ chdir APP_ROOT do
   system! 'bin/rails db:create'
 
   puts "\nMigrating database"
-  system! 'bin/rails db:migrate'
+  system! 'bin/rails db:schema:load db:migrate'
 
   puts "\nSeeding database"
   system! 'bin/rails db:seed'

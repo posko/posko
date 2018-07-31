@@ -14,23 +14,12 @@ chdir APP_ROOT do
   # This script resets your database to get rid of unecessary data. Be aware
   # that it will drop your database and recreate it from scratch
 
-  puts "\nRecreating Database from scratch"
-
-  puts "\nDropping database"
-  system! 'bin/rails db:drop'
-
-  puts "\nRecreating database"
-  system! 'bin/rails db:create'
+  puts "\nReseting Database with seed"
 
   puts "\nMigrating database"
-  system! 'bin/rails db:migrate'
+  system! 'bin/rails db:reset'
 
   puts "\nSeeding database"
   system! 'bin/rails db:seed'
 
-  puts "\nRemoving old logs and tempfiles"
-  system! 'bin/rails log:clear tmp:clear'
-
-  puts "\nStarting application server"
-  system! 'bin/rails restart'
 end
