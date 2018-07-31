@@ -17,6 +17,6 @@ FactoryBot.define do
     "Juan#{n}"
   end
   sequence :last_name_sequence do |n|
-    "Dela Cruz#{n}@example.com"
+    "Dela Cruz#{n}"
   end
 end

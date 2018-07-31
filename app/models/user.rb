@@ -13,15 +13,6 @@ class User < ApplicationRecord
   validates :email, format: /@/, uniqueness: true
   after_create :generate_new_access_key
 
-  # TODO: Move to presetation object
-  def name
-    fullname = []
-    fullname << first_name
-    fullname << last_name
-    fullname << suffix if suffix
-    fullname.join(" ")
-  end
-
   def generate_new_access_key
     access_keys.create
   end
