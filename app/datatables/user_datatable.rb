@@ -25,10 +25,6 @@ class UserDatatable < AjaxDatatablesRails::Base
     ""
   end
 
-  def name(record)
-    link_to record.name, record
-  end
-
   def get_raw_records
     options[:current_account].users.active_status
   end
