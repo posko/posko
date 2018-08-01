@@ -13,15 +13,27 @@ RSpec.describe "Auth", type: :request do
     } }
   end
   let(:failed_sign_in) { { messages: ["Incorrect credentials"] } }
-  context "with correct credentials" do
-    it "authenticates user" do
-      post "/api/v1/sign_in.json", params: { account_name: account.name, email: user.email, password: "pass" }
 
-      expect(json).to include_json(successful_sign_in)
+  describe 'POST sign_in' do
+    let(:params) do
+      { account_name: account.name, email: user.email, password: password }
     end
-    it "does not authenticates user" do
-      post "/api/v1/sign_in.json", params: { account_name: account.name, email: user.email, password: "wrongpass" }
-      expect(json).to include_json(failed_sign_in)
+
+    context "with correct credentials" do
+      let(:password) { "pass"}
+      it "authenticates user" do
+        post "/api/v1/sign_in.json", params: params
+        expect(json).to include_json(successful_sign_in)
+      end
+    end
+
+    context "with incorrect credentials" do
+      let(:password) { "wrong pass" }
+      it "does not authenticates user" do
+        post "/api/v1/sign_in.json", params: params
+        expect(json).to include_json(failed_sign_in)
+        expect(response).to have_http_status(:unauthorized)
+      end
     end
   end
 end
