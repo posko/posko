@@ -1,22 +1,22 @@
 FactoryBot.define do
   factory :user do
     account         { create(:account) }
-    email           { generate(:email_sequence) }
-    first_name      { generate(:first_name_sequence) }
+    sequence(:email) { |n| "user#{n}@example.com" }
+    sequence(:first_name) { |n| "Juan#{n}" }
     middle_name     "Masigasig"
-    last_name       { generate(:last_name_sequence) }
+    sequence(:last_name) { |n| "Dela Cruz#{n}" }
     suffix          "Jr."
     title           "Mr"
-    password        { generate(:email_sequence) }
-  end
+    password        { "password" }
 
-  sequence :email_sequence do |n|
-    "user#{n}@example.com"
-  end
-  sequence :first_name_sequence do |n|
-    "Juan#{n}"
-  end
-  sequence :last_name_sequence do |n|
-    "Dela Cruz#{n}"
+    transient do
+      access_key_count 1
+    end
+
+    after(:create) do |user, evaluator|
+      evaluator.access_key_count.times do
+        create_list(:access_key, 1, user: user)
+      end
+    end
   end
 end

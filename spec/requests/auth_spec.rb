@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Auth", type: :request do
   let(:account) { create(:account) }
-  let(:user) { create(:user, password: "pass", account: account) }
+  let(:user) { create(:user, password: "pass", account: account, access_key_count: 0) }
   let(:access_key) { user.access_keys.first }
   let(:successful_sign_in) do
     { user: {

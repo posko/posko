@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe SignIn do
   let(:account) { create(:account, name: "posko") }
-  let(:user) { create(:user, email: "a@a.com", password: "pass", account: account) }
+  let(:user) { create(:user, email: "a@a.com", password: "pass", account: account, access_key_count: 0) }
   let(:sign_in) { user; SignIn.new account_name: "posko", email: "a@a.com", password: "pass" }
+
   describe "Factory" do
     it "creates necessary data" do
       expect(user).to be_present
@@ -12,6 +13,7 @@ RSpec.describe SignIn do
       expect(Account.count).to eq(1)
     end
   end
+
   describe '#process' do
     context "with correct credentials" do
       it "accepts user" do
@@ -19,8 +21,11 @@ RSpec.describe SignIn do
         expect(sign_in.errors.count).to eq(0)
         expect(sign_in.process).to be_truthy
         expect(sign_in.user).to eq(user)
+        expect(sign_in.user.access_keys.count).to eq(1)
+        expect(sign_in.access_key).to be_instance_of(AccessKey)
       end
     end
+
     context "with incorrect credentials" do
       let(:with_x_sign_in) { user; SignIn.new account_name: "poskoa", email: "a@a.com", password: "x pass" }
       it "rejects user" do
