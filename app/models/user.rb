@@ -11,9 +11,5 @@ class User < ApplicationRecord
   # has_many :branches
   validates :email, :first_name, :last_name, presence: true
   validates :email, format: /@/, uniqueness: true
-  after_create :generate_new_access_key
-
-  def generate_new_access_key
-    access_keys.create
-  end
+  # after_create :generate_new_access_key
 end

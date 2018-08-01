@@ -30,8 +30,4 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:roles).through(:user_roles) }
     it { is_expected.to have_many(:access_keys) }
   end
-
-  describe "callbacks" do
-    it { is_expected.to callback(:generate_new_access_key).after(:create) }
-  end
 end
