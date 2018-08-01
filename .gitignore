@@ -23,3 +23,6 @@ coverage
 /spec/tmp/*
 
 *.swp
+
+# Ignore atom imdone files
+.imdone
