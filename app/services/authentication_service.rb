@@ -1,16 +1,17 @@
-class SignIn < ActiveRecordLike
-  attribute :account_name, String
-  attribute :email, String
-  attribute :password, String
-  validates_presence_of :account_name, :email, :password
-  validate :validate_data
+class AuthenticationService < ServiceObject
+  attr_reader :access_key, :account_name, :email, :password
 
-  attr_reader :access_key
+  def initialize(options={})
+    @account_name = options.fetch(:account_name)
+    @email = options.fetch(:email)
+    @password = options.fetch(:password)
+  end
 
   def process
-    if valid?
-      authenticate
+    if valid? and authenticate
+      self
     else
+      add_error "Incorrect credentials"
       false
     end
   end
@@ -30,7 +31,6 @@ class SignIn < ActiveRecordLike
       create_access_key
       true
     else
-      add_error "Incorrect credentials"
       false
     end
   end
@@ -39,7 +39,7 @@ class SignIn < ActiveRecordLike
     @access_key = user.access_keys.create
   end
 
-  def validate_data
-    add_error "Incorrect credentials" unless account && user
+  def valid?
+    account && user
   end
 end

@@ -5,6 +5,7 @@ class SignInForm < FormObject
 
   delegate :user, to: :service_object
   delegate :access_key, to: :service_object
+  delegate :account, to: :service_object
 
   attr_reader
 
@@ -20,7 +21,7 @@ class SignInForm < FormObject
 
   def service_object
     @service_object ||= begin
-      SignIn.new(
+      AuthenticationService.new(
         account_name: account_name,
         email: email,
         password: password

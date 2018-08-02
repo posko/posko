@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe SignIn do
+RSpec.describe AuthenticationService do
   let(:account) { create(:account, name: "posko") }
   let(:user) { create(:user, email: "a@a.com", password: "pass", account: account, access_key_count: 0) }
-  let(:sign_in) { user; SignIn.new account_name: "posko", email: "a@a.com", password: "pass" }
+  let(:sign_in) { user; AuthenticationService.new account_name: "posko", email: "a@a.com", password: "pass" }
+  before { user }
 
   describe "Factory" do
     it "creates necessary data" do
@@ -17,7 +18,6 @@ RSpec.describe SignIn do
   describe '#process' do
     context "with correct credentials" do
       it "accepts user" do
-        expect(sign_in).to be_valid
         expect(sign_in.errors.count).to eq(0)
         expect(sign_in.process).to be_truthy
         expect(sign_in.user).to eq(user)
@@ -27,12 +27,11 @@ RSpec.describe SignIn do
     end
 
     context "with incorrect credentials" do
-      let(:with_x_sign_in) { user; SignIn.new account_name: "poskoa", email: "a@a.com", password: "x pass" }
+      let(:with_x_sign_in) { AuthenticationService.new account_name: "poskoa", email: "a@a.com", password: "x pass" }
       it "rejects user" do
-        expect(with_x_sign_in).to be_invalid
         expect(with_x_sign_in.process).to be_falsey
         expect(with_x_sign_in.errors.size).to eq(1)
-        expect(with_x_sign_in.errors.full_messages.first).to eq("Incorrect credentials")
+        expect(with_x_sign_in.errors.first).to eq("Incorrect credentials")
       end
     end
   end

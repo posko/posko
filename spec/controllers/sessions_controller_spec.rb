@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   # def new
-  #   @sign_in = SignIn.new
+  #   @sign_in = AuthenticationService.new
   # end
   # def create
-  #   @sign_in = SignIn.new sign_in_params
+  #   @sign_in = AuthenticationService.new sign_in_params
   #   if @sign_in.process
   #     session[:user_id] = @sign_in.user.id
   #     redirect_to dashboard_path
@@ -20,7 +20,7 @@ RSpec.describe SessionsController, type: :controller do
   describe "GET #new" do
     it "assigns @sign_in" do
       get :new
-      expect(assigns(:sign_in).class).to eq(SignIn)
+      expect(assigns(:sign_in)).to be_instance_of(SignInForm)
     end
   end
   describe "GET #create" do

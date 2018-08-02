@@ -2,12 +2,12 @@ class SessionsController < ApplicationController
   skip_before_action :check_session
   layout "base"
   def new
-    @sign_in = SignIn.new
+    @sign_in = SignInForm.new
   end
 
   def create
-    @sign_in = SignIn.new sign_in_params
-    if @sign_in.process
+    @sign_in = SignInForm.new sign_in_params
+    if @sign_in.save
       session[:user_id] = @sign_in.user.id
       redirect_to dashboard_path
     else
