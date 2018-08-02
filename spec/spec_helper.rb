@@ -20,7 +20,13 @@ if ENV["TEST_ENVIRONMENT"] == "travis"
   SimpleCov.formatter = SimpleCov.formatter = SimpleCov::Formatter::Console
 end
 
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_group "Services", "app/services"
+  add_group "Forms", "app/forms"
+  add_group "Decorators", "app/decorators"
+  add_group "Datatables", "app/datatables"
+
+end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
