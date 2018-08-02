@@ -8,15 +8,6 @@ class InvoiceCreationService < ServiceObject
     @user = options.fetch(:user)
   end
 
-  def perform
-    if valid?
-      perform_actions
-      performed!
-    else
-      false
-    end
-  end
-
   def account
     @account ||= user.account
   end
@@ -31,7 +22,8 @@ private
   attr_reader :customer_id, :invoice_params, :invoice_lines_params
 
 
-  def perform_actions
+  def perform_service
+    return false unless valid?
     create_invoice
     create_invoice_lines
   end
