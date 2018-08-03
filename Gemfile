@@ -72,6 +72,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'simplecov-console', require: false
   gem "generator_spec"
+  gem 'timecop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -94,7 +95,9 @@ gem 'jquery-rails', '~> 4.3'
 # Decorator
 gem 'draper'
 # gem "faker" #production for now
-#
+
+# Pagination
+gem 'kaminari'
 # gem "gretel"
 # gem 'carrierwave', '~> 1.0'
 # gem "cocoon"
