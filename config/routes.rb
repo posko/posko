@@ -24,7 +24,9 @@ Rails.application.routes.draw do
         resources :users
         resources :access_keys
         resources :customers
-        resources :products
+        resources :products, shallow: true do
+          resources :variants
+        end
         resources :invoices, shallow: true do
           resources :invoice_lines
         end
