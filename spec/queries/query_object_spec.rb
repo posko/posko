@@ -7,21 +7,19 @@ RSpec.describe QueryObject do
   describe 'anonymous class' do
     let(:products_query_class) {
       Class.new(QueryObject) do
+        add_range_attributes :created_at
+        add_range_attributes :id
         def all
           @relation = paginate
           @relation = by_ids if params[:ids]
           @relation = since_id if params[:since_id]
-          @relation = created_at_min if params[:created_at_min]
-          @relation = created_at_max if params[:created_at_max]
-          @relation = id_max if params[:id_max]
-          @relation = id_min if params[:id_min]
           return @relation
         end
       end
     }
 
     let(:query) { products_query_class.new params, account.products }
-    describe '#all' do
+    describe '#call' do
       let(:params) do
         {
           ids: [products[0].id, products[1].id],
@@ -30,7 +28,7 @@ RSpec.describe QueryObject do
       end
 
       it "filters query with params" do
-        expect(query.all.count).to eq(1)
+        expect(query.call.count).to eq(1)
       end
     end
 
@@ -38,7 +36,7 @@ RSpec.describe QueryObject do
       let(:params) { { ids: [products[0].id, products[1].id] } }
 
       it "filters query" do
-        expect(query.all.count).to eq(2)
+        expect(query.call.count).to eq(2)
       end
     end
 
@@ -47,7 +45,7 @@ RSpec.describe QueryObject do
       let(:params) { { limit: 2, page: 1} }
 
       it "filters query" do
-        expect(query.all.count).to eq(2)
+        expect(query.call.count).to eq(2)
       end
     end
 
@@ -55,14 +53,14 @@ RSpec.describe QueryObject do
       context "1" do
         let(:params) { { limit: 2, page: 1} }
         it "returns first page" do
-          expect(query.all.count).to eq(2)
+          expect(query.call.count).to eq(2)
         end
       end
 
       context "1" do
         let(:params) { { limit: 2, page: 2} }
         it "returns first page" do
-          expect(query.all.count).to eq(1)
+          expect(query.call.count).to eq(1)
         end
       end
     end
@@ -70,10 +68,9 @@ RSpec.describe QueryObject do
     context "using since_id" do
       let(:params) { { since_id: products[1].id } }
       it "returns list of products" do
-        expect(query.all.count).to eq(1)
+        expect(query.call.count).to eq(1)
       end
     end
-
 
     context "using attribute_min" do
       it "returns list of products" do
@@ -86,7 +83,7 @@ RSpec.describe QueryObject do
         product2 = create(:product, account: account)
         Timecop.return
         q = products_query_class.new({ created_at_min: product1.created_at }, account.products)
-        expect(q.all.count).to eq(2)
+        expect(q.call.count).to eq(2)
       end
 
       it "returns list of products" do
@@ -100,7 +97,13 @@ RSpec.describe QueryObject do
         product2 = create(:product, account: account)
         Timecop.return
         q = products_query_class.new({ created_at_max: product1.created_at + 1 }, account.products)
-        expect(q.all.count).to eq(2)
+        expect(q.call.count).to eq(2)
+      end
+    end
+
+    describe "#add_range_attributes" do
+      it "adds created_at" do
+        expect(products_query_class.range_attributes.count).to eq(2)
       end
     end
   end
