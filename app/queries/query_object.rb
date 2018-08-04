@@ -23,9 +23,6 @@ class QueryObject
     @relation
   end
 
-  def send_max range_attribute
-    method_name = range
-  end
   def paginate
     relation.page(page).per(limit)
   end
@@ -62,16 +59,5 @@ class QueryObject
     # Calm down. column_name is whitelisted. check #add_range_attributes method
     column_name = key.to_s.gsub(/_max$/, "")
     relation.where("products.#{column_name} <= ?", params[key.to_sym])
-  end
-
-  def method_missing m
-
-    if m[/_max$/]
-      send "attribute_max", m
-    elsif m[/_min$/]
-      send"attribute_min", m
-    else
-      raise NoMethodError
-    end
   end
 end
