@@ -5,7 +5,7 @@ RSpec.describe ProductsQuery, type: :query do
   let(:products) { create_list(:product, 3, account: account) }
   let(:query) { ProductsQuery.new params, account.products }
   before { products }
-  describe '#all' do
+  describe '#call' do
     let(:params) do
       {
         ids: [products[0].id, products[1].id],
@@ -14,7 +14,7 @@ RSpec.describe ProductsQuery, type: :query do
     end
 
     it "filters query with params" do
-      expect(query.all.count).to eq(1)
+      expect(query.call.count).to eq(1)
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe ProductsQuery, type: :query do
     let(:params) { { ids: [products[0].id, products[1].id] } }
 
     it "filters query" do
-      expect(query.all.count).to eq(2)
+      expect(query.call.count).to eq(2)
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe ProductsQuery, type: :query do
     let(:params) { { limit: 2, page: 1} }
 
     it "filters query" do
-      expect(query.all.count).to eq(2)
+      expect(query.call.count).to eq(2)
     end
   end
 
@@ -39,14 +39,14 @@ RSpec.describe ProductsQuery, type: :query do
     context "1" do
       let(:params) { { limit: 2, page: 1} }
       it "returns first page" do
-        expect(query.all.count).to eq(2)
+        expect(query.call.count).to eq(2)
       end
     end
 
     context "1" do
       let(:params) { { limit: 2, page: 2} }
       it "returns first page" do
-        expect(query.all.count).to eq(1)
+        expect(query.call.count).to eq(1)
       end
     end
   end
@@ -54,7 +54,7 @@ RSpec.describe ProductsQuery, type: :query do
   context "using since_id" do
     let(:params) { { since_id: products[1].id } }
     it "returns list of products" do
-      expect(query.all.count).to eq(1)
+      expect(query.call.count).to eq(1)
     end
   end
 
@@ -70,7 +70,7 @@ RSpec.describe ProductsQuery, type: :query do
       product2 = create(:product, account: account)
       Timecop.return
       q = ProductsQuery.new({ created_at_min: product1.created_at }, account.products)
-      expect(q.all.count).to eq(2)
+      expect(q.call.count).to eq(2)
     end
 
     it "returns list of products" do
@@ -84,7 +84,13 @@ RSpec.describe ProductsQuery, type: :query do
       product2 = create(:product, account: account)
       Timecop.return
       q = ProductsQuery.new({ created_at_max: product1.created_at + 1 }, account.products)
-      expect(q.all.count).to eq(2)
+      expect(q.call.count).to eq(2)
+    end
+  end
+
+  describe "#add_range_attributes" do
+    it "adds created_at" do
+      expect(ProductsQuery.range_attributes.count).to eq(2)
     end
   end
 end
