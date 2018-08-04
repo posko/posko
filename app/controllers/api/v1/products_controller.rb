@@ -19,8 +19,6 @@ class Api::V1::ProductsController < Api::V1::ApiController
     end
 
     if params[:created_at_max].present?
-      puts @products.pluck(:created_at)
-      puts params[:created_at_max]
       @products = @products.where("products.created_at <= ?",  params[:created_at_max])
     end
 
