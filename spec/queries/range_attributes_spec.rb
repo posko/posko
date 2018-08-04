@@ -37,8 +37,7 @@ RSpec.describe RangeAttributes do
       end
 
       it "doesn't override range_attributes" do
-        query_instance.range_attributes = [:hello]
-        expect(query_instance.range_attributes.first).to eq(:id)
+        expect{ query_instance.range_attributes = [:hello] }.to raise_error(NoMethodError)
       end
     end
 
