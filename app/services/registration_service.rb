@@ -6,7 +6,8 @@ class RegistrationService < ServiceObject
     :email,
     :password,
     :first_name,
-    :last_name
+    :last_name,
+    :user
   )
   attr_reader :account
 
@@ -19,18 +20,8 @@ class RegistrationService < ServiceObject
     @last_name = options.fetch(:last_name)
   end
 
-  def user
-    @user ||= account.users.find_by(email: email)
-  end
 
   private
-
-  def perform_service
-    return false unless valid?
-    perform_service
-  end
-
-  attr_reader :account
 
   def processed?
     @processed
@@ -46,17 +37,15 @@ class RegistrationService < ServiceObject
   end
 
   def create_account!
-    @account = Account.new(name: account_name, company: company)
-    raise ValidationError unless @account.save
+    @account = Account.create!(name: account_name, company: company)
   end
 
   def create_user!
     # add roles if implemeted
-    @user = account.users.new(email: email, password: password, first_name: first_name, last_name: last_name)
-    raise ValidationError unless @user.save
+    @user = account.users.create!(email: email, password: password, first_name: first_name, last_name: last_name)
   end
 
   def valid?
-    account && user
+    account_name && company_name
   end
 end

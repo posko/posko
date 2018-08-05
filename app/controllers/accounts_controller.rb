@@ -1,12 +1,12 @@
 class AccountsController < ApplicationController
   skip_before_action :check_session
   def new
-    @sign_up = SignUp.new
+    @registration_form = RegistrationForm.new
   end
 
   def create
-    @sign_up = SignUp.new sign_up_params
-    if @sign_up.process
+    @registration_form = RegistrationForm.new registration_form_params
+    if @registration_form.save
       redirect_to sign_in_path, notice: "Success"
     else
       render 'new'
@@ -15,8 +15,8 @@ class AccountsController < ApplicationController
 
   private
 
-  def sign_up_params
-    params.require(:sign_up).permit(
+  def registration_form_params
+    params.require(:registration_form).permit(
       :account_name,
       :first_name,
       :last_name,

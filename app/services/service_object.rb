@@ -9,8 +9,8 @@ class ServiceObject
   end
 
   def perform
-    perform_service
     @performed = true
+    perform_service
   end
 
   def performed?

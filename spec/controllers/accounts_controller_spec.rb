@@ -5,9 +5,9 @@ RSpec.describe AccountsController, type: :controller do
   let(:valid_user_param) { { email: "valid@email.com", first_name: "first", last_name: "last", password: "pass" } }
   before { allow(controller).to receive(:current_user).and_return(user) }
   describe "GET #new" do
-    it "assigns @sign_up" do
+    it "assigns @registration_form" do
       get :new
-      expect(assigns(:sign_up).persisted?).to be_falsey
+      expect(assigns(:registration_form).persisted?).to be_falsey
     end
   end
   describe "POST #create" do
@@ -15,7 +15,7 @@ RSpec.describe AccountsController, type: :controller do
       it "signs up an account" do
         get :create,
             params: {
-              sign_up: {
+              registration_form: {
                 account_name: "new_company",
                 company: "New Company Inc.",
                 first_name: "Juan",
@@ -24,13 +24,13 @@ RSpec.describe AccountsController, type: :controller do
                 password: "thebestjuan"
               }
             }
-        expect(assigns(:sign_up).account.persisted?).to be_truthy
-        expect(assigns(:sign_up).user.persisted?).to be_truthy
+        expect(assigns(:registration_form).account.persisted?).to be_truthy
+        expect(assigns(:registration_form).user.persisted?).to be_truthy
       end
     end
     context "invalid" do
       it "renders 'new' " do
-        get :create, params: { sign_up: { account_name: "Incomplete Company" } }
+        get :create, params: { registration_form: { account_name: "Incomplete Company" } }
 
         expect(response).to render_template :new
       end
