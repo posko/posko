@@ -1,26 +1,45 @@
 class QueryObject
   include RangeAttributes
-
+  @relation = nil
   def initialize(params = {}, rel)
     @relation = rel
     @params = params
   end
 
   def call
-    @relation = all
-    @relation = filter_by_range_attributes
-    return @relation
+    pre_filter
+    filter
+    filter_by_range_attributes
+    return relation
   end
 
   private
+
   attr_reader :params, :relation
+  attr_writer :relation
+
+  def config
+    @config ||= {
+      paginate: true,
+      since_id: true,
+      ids: true
+    }
+  end
+
+  def pre_filter
+      self.relation = paginate if config[:paginate]
+      self.relation = by_ids if config[:ids] && params[:ids]
+      self.relation = since_id if config[:since_id] && params[:since_id]
+  end
+
+  def filter
+  end
 
   def filter_by_range_attributes
     self.range_attributes.each do |range_attribute|
-      @relation = send("attribute_max", "#{range_attribute}_max") if params["#{range_attribute}_max".to_sym]
-      @relation = send("attribute_min", "#{range_attribute}_min") if params["#{range_attribute}_min".to_sym]
+      self.relation = send("attribute_max", "#{range_attribute}_max") if params["#{range_attribute}_max".to_sym]
+      self.relation = send("attribute_min", "#{range_attribute}_min") if params["#{range_attribute}_min".to_sym]
     end
-    @relation
   end
 
   def paginate
