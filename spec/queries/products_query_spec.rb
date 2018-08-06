@@ -90,7 +90,7 @@ RSpec.describe ProductsQuery, type: :query do
 
   describe "#add_range_attributes" do
     it "adds created_at" do
-      expect(ProductsQuery.range_attributes.count).to eq(2)
+      expect(ProductsQuery.range_attributes.count).to eq(3)
     end
   end
 end
