@@ -9,8 +9,8 @@ RSpec.describe QueryObject do
       Class.new(QueryObject) do
         add_range_attributes :created_at
         add_range_attributes :id
-        def filter
-        end
+        add_searchables :title
+        add_searchables :id
       end
     }
 
@@ -35,7 +35,6 @@ RSpec.describe QueryObject do
         expect(query.call.count).to eq(2)
       end
     end
-
 
     context 'using limit' do
       let(:params) { { limit: 2, page: 1} }
@@ -100,6 +99,19 @@ RSpec.describe QueryObject do
     describe "#add_range_attributes" do
       it "adds created_at" do
         expect(products_query_class.range_attributes.count).to eq(2)
+      end
+    end
+
+    describe "#add_searchables" do
+      it "adds created_at" do
+        expect(products_query_class.searchables.count).to eq(2)
+      end
+    end
+
+    describe "#add_searchables" do
+      let(:params) { { id: products[0]}}
+      it "adds created_at" do
+        expect(query.call.count).to eq(1)
       end
     end
   end

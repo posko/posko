@@ -1,15 +1,19 @@
 class QueryObject
   include RangeAttributes
+  include Searchables
   @relation = nil
   def initialize(params = {}, rel)
     @relation = rel
     @params = params
+    searchables = []
+    range_attributes = []
   end
 
   def call
     pre_filter
     filter
     filter_by_range_attributes
+    filter_searchables
     return relation
   end
 
@@ -27,9 +31,16 @@ class QueryObject
   end
 
   def pre_filter
-      self.relation = paginate if config[:paginate]
-      self.relation = by_ids if config[:ids] && params[:ids]
-      self.relation = since_id if config[:since_id] && params[:since_id]
+    self.relation = paginate if config[:paginate]
+    self.relation = by_ids if config[:ids] && params[:ids]
+    self.relation = since_id if config[:since_id] && params[:since_id]
+  end
+
+  def filter_searchables
+    self.searchables.each do |searchable|
+      column = searchable.to_sym
+      self.relation = relation.where(column => params[column]) if params[column].present?
+    end
   end
 
   def filter
