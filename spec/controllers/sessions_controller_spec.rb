@@ -1,26 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  # def new
-  #   @sign_in = AuthenticationService.new
-  # end
-  # def create
-  #   @sign_in = AuthenticationService.new sign_in_params
-  #   if @sign_in.process
-  #     session[:user_id] = @sign_in.user.id
-  #     redirect_to dashboard_path
-  #   else
-  #     render "new"
-  #   end
-  # end
-  # def destroy
-  #   session[:user_id] = nil
-  #   redirect_to sign_in_path
-  # end
   describe "GET #new" do
-    it "assigns @sign_in" do
+    it "assigns @sign_in_form" do
       get :new
-      expect(assigns(:sign_in)).to be_instance_of(SignInForm)
+      expect(assigns(:sign_in_form)).to be_instance_of(SignInForm)
     end
   end
   describe "GET #create" do
@@ -31,7 +15,7 @@ RSpec.describe SessionsController, type: :controller do
         # create user
         user
         post :create, params: {
-          sign_in: {
+          sign_in_form: {
             account_name: "firstcompany",
             email: "admin@firstcompany.com",
             password: "password"
@@ -39,8 +23,8 @@ RSpec.describe SessionsController, type: :controller do
         }
       end
       it "redirects to dashboard" do
-        expect(assigns(:sign_in).account.persisted?).to be_truthy
-        expect(assigns(:sign_in).user.persisted?).to be_truthy
+        expect(assigns(:sign_in_form).account.persisted?).to be_truthy
+        expect(assigns(:sign_in_form).user.persisted?).to be_truthy
         expect(response).to redirect_to(dashboard_path)
       end
     end
@@ -49,16 +33,16 @@ RSpec.describe SessionsController, type: :controller do
         # create user
         user
         post :create, params: {
-          sign_in: {
+          sign_in_form: {
             account_name: "firstcompany",
             email: "admin@firstcompany.com",
             password: "wrongpassword"
           }
         }
       end
-      it "assigns @sign_in" do
-        expect(assigns(:sign_in).account.persisted?).to be_truthy
-        expect(assigns(:sign_in).user.persisted?).to be_truthy
+      it "assigns @sign_in_form" do
+        expect(assigns(:sign_in_form).account.persisted?).to be_truthy
+        expect(assigns(:sign_in_form).user.persisted?).to be_truthy
         expect(response).to render_template(:new)
       end
     end
