@@ -57,5 +57,19 @@ RSpec.describe RangeAttributes do
         end
       end
     end
+
+    describe 'included' do
+      context "with attributeless class" do
+        let(:attributeless_class) {
+          Class.new do
+            include RangeAttributes
+          end
+        }
+        it "is working well" do
+          object = attributeless_class.new
+          expect(object.range_attributes).to eq([])
+        end
+      end
+    end
   end
 end

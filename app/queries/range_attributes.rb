@@ -3,6 +3,7 @@ module RangeAttributes
     base.extend(ClassMethods)
     base.class_eval do
       class_attribute :range_attributes, default: Array.new, instance_writer: false
+      self.range_attributes = []
 
       private
 
