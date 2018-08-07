@@ -1,17 +1,17 @@
 <section class="content-header">
 </section>
 <section class="content">
-  <div class="box">
-    <div class="box-header">
-      <h3 class="box-title">Users</h3>
-      <div class="box-tools pull-right">
+	<div class="box">
+	  <div class="box-header">
+			<h3 class="box-title">Users</h3>
+			<div class="box-tools pull-right">
         <div class="btn-group">
 
-          <%= link_to "Add User", new_user_path, class: "btn btn-primary" %>
+					<%= link_to "Add User", new_user_path, class: "btn btn-primary" %>
         </div>
       </div>
-    </div>
-    <div class="box-body">
+		</div>
+	  <div class="box-body">
       <div class="">
         <table class="table" id="users-table" data-source="<%= users_path(format: :json)%>" >
           <thead>
@@ -25,24 +25,26 @@
           </tbody>
         </table>
       </div>
-    </div>
-  </div>
+	  </div>
+	</div>
 </section>
 <script>
-  $(document).on('turbolinks:load', function() {
-    $('#users-table').dataTable({
-      "processing": true,
-      "serverSide": true,
-      "ajax": $('#users-table').data('source'),
-      "pagingType": "full_numbers",
-      "columns": [
-        {"data": "name"},
-        {"data": "email"},
-        {"data": "actions"}
-      ]
-      // pagingType is optional, if you want full pagination controls.
-      // Check dataTables documentation to learn more about
-      // available options.
-    });
-  });
+	$(document).on('turbolinks:load', function() {
+		if ($('#users-table_wrapper').length == 0) {
+			$('#users-table').dataTable({
+		  	"processing": true,
+			  "serverSide": true,
+			  "ajax": $('#users-table').data('source'),
+			  "pagingType": "full_numbers",
+			  "columns": [
+			    {"data": "name"},
+			    {"data": "email"},
+			    {"data": "actions"}
+			  ]
+			  // pagingType is optional, if you want full pagination controls.
+			  // Check dataTables documentation to learn more about
+			  // available options.
+			});
+		}
+	});
 </script>
