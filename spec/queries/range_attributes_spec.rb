@@ -1,23 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe RangeAttributes do
-  let(:query_object_class) {
+  let(:query_object_class) do
     Class.new do
       include RangeAttributes
-      # class_attribute :range_attributes
-      add_range_attributes :id
-      # def self.add_range_attribute
-      #   range_attributes = []
-      # end
-    end
-  }
-  describe 'anonymous class' do
-
-    describe 'main class' do
-      it "has range attributes :id" do
-        expect(query_object_class.range_attributes.first).to eq(:id)
+      attr_accessor :params, :relation
+      def initialize(params = {}, relation)
+        @relation = relation
+        @params = params
       end
+      def call
+        filter_by_range_attributes
+        relation
+      end
+      add_range_attributes :id
     end
+  end
+
+  describe 'anonymous class' do
     describe 'subclass' do
       let(:query_object_subclass) {
         Class.new(query_object_class) do
@@ -31,16 +31,31 @@ RSpec.describe RangeAttributes do
       end
     end
     describe 'instance' do
-      let(:query_instance) { query_object_class.new }
-      it "has range attributes :id" do
-        expect(query_instance.range_attributes.first).to eq(:id)
+      context '#range_attribute' do
+        let(:query_instance) { query_object_class.new nil, nil}
+        it "has range attributes :id" do
+          expect(query_instance.range_attributes.first).to eq(:id)
+        end
+
+        it "doesn't override range_attributes" do
+          expect{ query_instance.range_attributes = [:hello] }.to raise_error(NoMethodError)
+        end
       end
 
-      it "doesn't override range_attributes" do
-        expect{ query_instance.range_attributes = [:hello] }.to raise_error(NoMethodError)
+      context '#filter_range_attributes' do
+        it "filters attributes" do
+          products = create_list(:product, 5)
+          query = query_object_class.new({ id_min: products[3] }, Product.all)
+          expect(query.call.count).to eq(2)
+        end
+        context "using min and max" do
+          it "filters attributes" do
+            products = create_list(:product, 5)
+            query = query_object_class.new({ id_max: products[1]}, Product.all)
+            expect(query.call.count).to eq(2)
+          end
+        end
       end
     end
-
   end
-
 end
