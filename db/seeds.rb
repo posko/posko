@@ -17,15 +17,15 @@ options["first_name"]    = ENV["DEMO_FIRST_NAME"] || "Juan"
 options["last_name"]     = ENV["DEMO_LAST_NAME"] || "Dela Cruz"
 
 puts "\nSigning Up:"
-@sign_up = SignUp.new options
-if @sign_up.process
-  puts "\t Created #{@sign_up.account.company}"
+@registration_form = RegistrationForm.new options
+if @registration_form.save
+  puts "\t Created #{@registration_form.account.company}"
 else
   puts "\tSign Up Failed"
 end
 
-account = @sign_up.account
-user = @sign_up.user
+account = @registration_form.account
+user = @registration_form.user
 sku = "000001"
 3.times.each do |x|
   title = Faker::Commerce.product_name
