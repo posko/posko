@@ -216,7 +216,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%# image_tag("AdminLTE/user2-160x160.jpg", class:"user-image", alt: "User Image") %>
-            <span class="hidden-xs"><%= current_user.name %></span>
+            <span class="hidden-xs"><%= current_user.decorate.name %></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -225,7 +225,7 @@
               <%= image_tag "AdminLTE/user1-128x128.jpg", class:"img-circle", alt:"User Image" %>
 
               <p>
-                <%= current_user.name %>
+                <%= current_user.decorate.name %>
               </p>
             </li>
             <!-- Menu Body -->

@@ -5,8 +5,8 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in</p>
-      <%= render "errors", object: @sign_in %>
-      <%= form_for @sign_in, url: sign_in_path do |f| %>
+      <%= render "errors", object: @sign_in_form %>
+      <%= form_for @sign_in_form, url: sign_in_path do |f| %>
         <div class="form-group has-feedback">
           <%= f.text_field :account_name, class: "form-control", value: "first_company", placeholder: "Account ID" %>
           <span class="glyphicon glyphicon-briefcase form-control-feedback"></span>
