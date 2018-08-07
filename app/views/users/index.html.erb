@@ -30,19 +30,21 @@
 </section>
 <script>
   $(document).on('turbolinks:load', function() {
-    $('#users-table').dataTable({
-      "processing": true,
-      "serverSide": true,
-      "ajax": $('#users-table').data('source'),
-      "pagingType": "full_numbers",
-      "columns": [
-        {"data": "name"},
-        {"data": "email"},
-        {"data": "actions"}
-      ]
-      // pagingType is optional, if you want full pagination controls.
-      // Check dataTables documentation to learn more about
-      // available options.
-    });
+    if ($('#users-table_wrapper').length == 0) {
+      $('#users-table').dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": $('#users-table').data('source'),
+        "pagingType": "full_numbers",
+        "columns": [
+          {"data": "name"},
+          {"data": "email"},
+          {"data": "actions"}
+        ]
+        // pagingType is optional, if you want full pagination controls.
+        // Check dataTables documentation to learn more about
+        // available options.
+      });
+    }
   });
 </script>
