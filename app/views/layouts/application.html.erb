@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="hold-transition skin-green sidebar-mini">
+  <body class="hold-transition skin-green sidebar-mini" id="main-body">
     <div class="wrapper">
       <%= render 'layouts/header' %>
       <!-- Left side column. contains the logo and sidebar -->
@@ -21,6 +21,7 @@
       <!-- /.content-wrapper -->
       <%= render 'layouts/footer' %>
       <%= render 'layouts/control_sidebar' %>
+      <%= render 'layouts/scripts' %>
     </div>
   </body>
 </html>
