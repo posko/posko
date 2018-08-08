@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+  if (localStorage['_navbar_collapsed'] == null) localStorage['_navbar_collapsed'] = '0';
+
+  if (localStorage['_navbar_collapsed'] == '1') {
+    $('#main-body').addClass('sidebar-collapse');
+  } else {
+    $('#main-body').removeClass('sidebar-collapse');
+  }
+
+  $('#main-sidebar-toggle').click(function () {
+    if (localStorage['_navbar_collapsed'] == '0') {
+      localStorage['_navbar_collapsed'] = '1';
+    } else if (localStorage['_navbar_collapsed'] == '1') {
+      localStorage['_navbar_collapsed'] = '0';
+    } else
+    {
+      localStorage['_navbar_collapsed'] = '0';
+    }
+  });
+</script>
