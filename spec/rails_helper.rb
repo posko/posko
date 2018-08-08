@@ -10,6 +10,7 @@ require 'capybara/rspec'
 require "capybara/rails"
 require 'support/requests_helper'
 require 'support/controller_helpers'
+require 'support/query_object'
 require "rspec/json_expectations"
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -97,6 +98,7 @@ RSpec.configure do |config|
 
   config.include Requests::AuthHelpers, type: :request
   config.include ControllerHelpers::Session, type: :controller
+  config.include QueryObjectHelpers::Matchers, type: :query
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
