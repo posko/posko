@@ -1,7 +1,7 @@
 class Api::V1::VariantsController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @variants = product.variants
+    @variants = VariantsQuery.new(params, product.variants).call
     render json: { variants: @variants }
   end
 

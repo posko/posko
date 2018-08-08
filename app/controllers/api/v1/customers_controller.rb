@@ -1,7 +1,7 @@
 class Api::V1::CustomersController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @customers = current_account.customers
+    @customers = CustomersQuery.new(params, current_account.customers).call
     render json: { customers: @customers }
   end
 
