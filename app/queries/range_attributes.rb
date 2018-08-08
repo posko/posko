@@ -9,8 +9,8 @@ module RangeAttributes
 
       def filter_by_range_attributes
         self.range_attributes.each do |range_attribute|
-          self.relation = send("attribute_max", "#{range_attribute}_max") if params["#{range_attribute}_max".to_sym]
-          self.relation = send("attribute_min", "#{range_attribute}_min") if params["#{range_attribute}_min".to_sym]
+          self.relation = attribute_max("#{range_attribute}_max") if params["#{range_attribute}_max".to_sym]
+          self.relation = attribute_min("#{range_attribute}_min") if params["#{range_attribute}_min".to_sym]
         end
       end
 
