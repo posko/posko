@@ -4,16 +4,7 @@ class Api::V1::InvoiceLinesController < Api::V1::ApiController
     @invoice_lines = InvoiceLinesQuery.new(params, invoice.invoice_lines).call
     render json: { invoice_lines: @invoice_lines }
   end
-
-  def create
-    @invoice_line = invoice.invoice_lines.new invoice_line_params
-    if @invoice_line.save
-      render status: :ok, json: { invoice_line: @invoice_line, invoice: @invoice }
-    else
-      render status: :unprocessable_entity, json: { messages: @invoice_line.errors.full_messages }
-    end
-  end
-
+  
   def show
     @invoice_line = InvoiceLine.find_by id: params[:id]
     if @invoice_line

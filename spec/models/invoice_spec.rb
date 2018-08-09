@@ -28,14 +28,14 @@ RSpec.describe Invoice, type: :model do
     # it { expect(user).to have_many(:variants) }
   end
   describe "#recompute_values" do
-    it "recomputes values and save itself" do
-      invoice.invoice_lines.create(product: product, variant: variant, price: 100, title: "Large")
-      invoice.recompute_values
-      expect(invoice.total_line_items_price).to eq(100)
-      invoice.invoice_lines.create(product: product, variant: variant, price: 50, title: "small")
-      invoice.recompute_values
-      expect(invoice.total_line_items_price).to eq(150)
-    end
+    # it "recomputes values and save itself" do
+    #   invoice.invoice_lines.create(product: product, variant: variant, price: 100, title: "Large")
+    #   invoice.recompute_values
+    #   expect(invoice.total_line_items_price).to eq(100)
+    #   invoice.invoice_lines.create(product: product, variant: variant, price: 50, title: "small")
+    #   invoice.recompute_values
+    #   expect(invoice.total_line_items_price).to eq(150)
+    # end
   end
   # describe "#recompute callback" do
   #   subject { create(:invoice) }

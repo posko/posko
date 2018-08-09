@@ -6,6 +6,7 @@ class InvoiceCreationService < ServiceObject
     @user = options[:user]
     @customer_id = invoice_params[:customer_id]
     find_customer
+    @total_amount = 0
   end
 
   def account
@@ -17,34 +18,43 @@ class InvoiceCreationService < ServiceObject
     return false unless find_user
     return true
   end
-
+protected
+  attr_accessor :total_amount
 private
 
   attr_reader :customer_id, :invoice_params, :invoice_lines_params
 
   def perform_service
     return false unless valid?
-
     ActiveRecord::Base.transaction do
-      create_invoice!
-      create_invoice_lines!
+      build_invoice
+      build_invoice_lines
+      recompute_invoice
+      invoice.save!
     end
   rescue ActiveRecord::RecordInvalid => exception
     add_error exception.message.split(": ").last
-    puts exception.inspect
     return false
   end
 
-  def create_invoice!
-      @invoice = account.invoices.create!(
+  def build_invoice
+      @invoice = account.invoices.build(
         invoice_number: invoice_params[:invoice_number],
         customer: customer,
         invoice_status: "fulfilled",
         user: user)
   end
 
-  def create_invoice_lines!
-    @invoice.invoice_lines.create!(invoice_lines_params)
+  def build_invoice_lines
+    invoice_lines_params.each do |invoice_line|
+      self.invoice.invoice_lines.build(invoice_line)
+      self.total_amount += invoice_line[:price].to_f
+    end
+    @invoice_lines = invoice.invoice_lines
+  end
+
+  def recompute_invoice
+    self.invoice.total_line_items_price = self.total_amount
   end
 
   def find_customer

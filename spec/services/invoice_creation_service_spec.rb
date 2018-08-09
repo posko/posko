@@ -32,7 +32,9 @@ RSpec.describe InvoiceCreationService do
     context "correct params" do
       let(:customer_id) { customer.id }
       it "creates an invoice" do
-        service = InvoiceCreationService.perform(user: user, params: params)
+        service = InvoiceCreationService.new(user: user, params: params)
+        expect(service).to be_valid
+        expect(service.perform).to be_truthy
         invoice = service.invoice
         expect(service).to be_truthy
         expect(service).to be_performed

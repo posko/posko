@@ -5,9 +5,9 @@ class InvoiceLine < ApplicationRecord
 
   validates :title, presence: true
   validates :price, presence: true
-  after_create :recompute_invoice
+  # after_create :recompute_invoice
 
-  def recompute_invoice
-    invoice.recompute_values
-  end
+  # def recompute_invoice
+  #   invoice.recompute_values
+  # end
 end
