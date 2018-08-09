@@ -6,12 +6,12 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   end
 
   def create
-    @invoice = current_account.invoices.new invoice_params
-    @invoice.user = current_user
-    if @invoice.save
-      render json: { invoice: @invoice }
+    @service = InvoiceCreationService.new(params: invoice_params, user: current_user)
+    if @service.valid? and @service.perform
+
+      render json: { invoice: @service.invoice }
     else
-      render status: :unprocessable_entity, json: { messages: @invoice.errors.full_messages }
+      render status: :unprocessable_entity, json: { messages: @service.errors }
     end
   end
 
@@ -27,6 +27,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:customer_id, :invoice_number)
+    params.require(:invoice).permit(:customer_id, :invoice_number,
+      invoice_lines: [ :variant_id, :product_id, :price, :title])
   end
 end

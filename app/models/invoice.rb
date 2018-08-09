@@ -3,7 +3,7 @@ class Invoice < ApplicationRecord
   has_many :transactions
   belongs_to :account
   belongs_to :user
-  belongs_to :customer
+  belongs_to :customer, optional: true
 
   validates :invoice_number, presence: true
   validates :total_line_items_price, presence: true

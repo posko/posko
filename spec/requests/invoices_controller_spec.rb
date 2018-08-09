@@ -5,6 +5,8 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
   let(:account) { user.account }
   let(:customer) { create(:customer, account: account) }
   let(:invoice) { create(:invoice, account: user.account, user: user) }
+  let(:product) { create(:product, account: account) }
+  let(:variant) { product.variants.create(price: 100, title: "Large") }
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
   describe 'GET /api/v1/invoices' do
@@ -17,27 +19,40 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
   end
 
   describe 'POST /api/v1/invoices' do
+    let(:params) do
+      params = {
+        invoice: {
+          customer_id: customer.id,
+          invoice_number: 25,
+          invoice_lines: [
+            {
+              variant_id: variant.id,
+              product_id: product.id,
+              price: 101,
+              title: variant.title
+            },
+            {
+              variant_id: variant.id,
+              product_id: product.id,
+              price: 101,
+              title: variant.title
+            }
+          ]
+        }
+      }
+    end
+
     context "with correct params" do
       it "creates a invoice" do
-        params = {
-          invoice: {
-            customer_id: customer.id,
-            invoice_number: 25
-          }
-        }
         post "/api/v1/invoices", params: params, headers: headers
         expect(account.invoices.count).to eq(1)
         expect(json).to include_json(invoice: { invoice_number: 25, customer_id: customer.id })
       end
     end
+
     context "with incorrect params" do
       it "rejects request" do
-        params = {
-          invoice: {
-            customer_id: customer.id,
-            invoice_number: nil
-          }
-        }
+        params[:invoice][:invoice_number] = nil
         post "/api/v1/invoices", params: params, headers: headers
         expect(account.invoices.count).to eq(0)
         expect(json).to include_json(messages: ["Invoice number can't be blank"])

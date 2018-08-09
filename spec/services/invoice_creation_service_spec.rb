@@ -6,13 +6,12 @@ RSpec.describe InvoiceCreationService do
   let(:product) { create(:product, account: account) }
   let(:variant) { product.variants.create(price: 100, title: "Large") }
   let(:customer) { create(:customer, account: account) }
+
   describe '#perform' do
     let(:params) do
       {
-        invoice: {
-          customer_id: customer_id,
-          invoice_number: "1232"
-        },
+        customer_id: customer_id,
+        invoice_number: "1232",
         invoice_lines: [
           {
             variant_id: variant.id,
@@ -41,10 +40,11 @@ RSpec.describe InvoiceCreationService do
         expect(invoice.total_line_items_price).to eq(202)
       end
     end
+
     context "faulty params" do
       let(:customer_id) { nil }
       it "returns false" do
-        service = InvoiceCreationService.perform(user: user, params: params)
+        service = InvoiceCreationService.perform(user: nil, params: params)
         expect(service.valid?).to be_falsey
       end
     end
