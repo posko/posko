@@ -60,7 +60,7 @@ class QueryObject
   end
 
   def since_id
-    relation.where("products.id < ?", params[:since_id])
+    relation.where("id > ?", params[:since_id])
   end
 
 end

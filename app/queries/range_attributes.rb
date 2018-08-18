@@ -14,16 +14,17 @@ module RangeAttributes
         end
       end
 
+
       def attribute_min key
         # Calm down. column_name is whitelisted. check #add_range_attributes method
         column_name = key.to_s.gsub(/_min$/, "")
-        relation.where("products.#{column_name} >= ?", params[key.to_sym])
+        relation.where("#{column_name} >= ?", params[key.to_sym])
       end
 
       def attribute_max key
         # Calm down. column_name is whitelisted. check #add_range_attributes method
         column_name = key.to_s.gsub(/_max$/, "")
-        relation.where("products.#{column_name} <= ?", params[key.to_sym])
+        relation.where("#{column_name} <= ?", params[key.to_sym])
       end
     end
   end
