@@ -101,3 +101,5 @@ gem 'kaminari'
 # gem "gretel"
 # gem 'carrierwave', '~> 1.0'
 # gem "cocoon"
+
+gem 'queryko'

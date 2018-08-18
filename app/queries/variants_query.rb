@@ -1,4 +1,4 @@
-class VariantsQuery < QueryObject
+class VariantsQuery < Queryko::QueryObject
   add_range_attributes :updated_at, :created_at
   add_searchables :title
 
