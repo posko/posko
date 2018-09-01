@@ -1,32 +1,44 @@
-<div>
-  <%= render "errors", subj: @sign_up %>
-  <%= form_for @sign_up, url: sign_up_path do |f| %>
-    <div>
-      <%= f.label :account_name %>
-      <%= f.text_field :account_name, value: "first_company" %>
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>POS</b>ko</a>
+  </div>
+  <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">Sign Up</p>
+      <%= render "errors", object: @registration_form %>
+      <%= form_for @registration_form, url: sign_up_path do |f| %>
+        <div class="form-group">
+          <%= f.label :account_name %>
+          <%= f.text_field :account_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :company %>
+          <%= f.text_field :company, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Sign Up", class: "btn btn-primary btn-block btn-flat"%>
+          <p>
+            Already have an account?
+            <%= link_to "Sign In", sign_in_path %>
+          </p>
+        </div>
+      <% end %>
     </div>
-    <div>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name, value: "Juan" %>
-    </div>
-    <div>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name, value: "Dela Cruz" %>
-    </div>
-    <div>
-      <%= f.label :company %>
-      <%= f.text_field :company, value: "First Companyu" %>
-    </div>
-    <div>
-      <%= f.label :email %>
-      <%= f.text_field :email, value: "admin@first_company.com" %>
-    </div>
-    <div>
-      <%= f.label :password %>
-      <%= f.password_field :password, value: "mypassword" %>
-    </div>
-    <div>
-      <%= f.submit "Sign Up" %>
-    </div>
-  <% end %>
+  </div>
 </div>
