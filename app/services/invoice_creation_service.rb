@@ -1,12 +1,11 @@
 class InvoiceCreationService < ServiceObject
   attr_reader :invoice, :invoice_lines, :user, :customer
   def initialize(options={})
-    @invoice_params = options.fetch(:params)
-    @invoice_lines_params = invoice_params.fetch(:invoice_lines)
-    @user = options[:user]
-    @customer_id = invoice_params[:customer_id]
-    find_customer
-    @total_amount = 0
+    @invoice_number         = options.fetch(:invoice_number)
+    @invoice_lines_params   = options.fetch(:invoice_lines)
+    @user                   = options[:user]
+    @customer               = options[:customer]
+    @total_amount           = 0
   end
 
   def account
@@ -14,15 +13,16 @@ class InvoiceCreationService < ServiceObject
   end
 
   def valid?
-    # return false unless find_customer
-    return false unless find_user
-    return true
+    true
   end
-protected
-  attr_accessor :total_amount
-private
 
-  attr_reader :customer_id, :invoice_params, :invoice_lines_params
+  protected
+
+    attr_accessor :total_amount
+
+  private
+
+  attr_reader :customer_id, :invoice_number, :invoice_params, :invoice_lines_params
 
   def perform_service
     return false unless valid?
@@ -33,16 +33,17 @@ private
       invoice.save!
     end
   rescue ActiveRecord::RecordInvalid => exception
-    add_error exception.message.split(": ").last
+    @errors =  exception.model.errors.full_messages.last
     return false
   end
 
   def build_invoice
       @invoice = account.invoices.build(
-        invoice_number: invoice_params[:invoice_number],
+        invoice_number: invoice_number,
         customer: customer,
         invoice_status: "fulfilled",
-        user: user)
+        user: user
+      )
   end
 
   def build_invoice_lines
@@ -55,13 +56,5 @@ private
 
   def recompute_invoice
     self.invoice.total_line_items_price = self.total_amount
-  end
-
-  def find_customer
-    @customer = account.customers.find_by(id: customer_id) rescue nil
-  end
-
-  def find_user
-    user && user.persisted?
   end
 end

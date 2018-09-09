@@ -1,5 +1,5 @@
 class InvoiceForm < FormObject
-  attr_accessor :customer_id, :invoice_number, :invoice_lines, :subtotal, :user
+  attr_accessor :invoice_number, :invoice_lines, :subtotal, :user, :customer_id
 
   validates :invoice_number, presence: true
   validates :invoice_number, numericality: true
@@ -20,6 +20,7 @@ class InvoiceForm < FormObject
     InvoiceCreationService.new(
       invoice_number: invoice_number,
       invoice_lines: invoice_lines,
+      subtotal: subtotal,
       user: user,
       customer: customer
     )
