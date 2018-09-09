@@ -2,14 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user, password: "mypassword", first_name: "Juan", last_name: "Dela Cruz", suffix: "Sr.") }
-  describe ".authenticate" do
-    context "with correct password" do
-      it { expect(user.authenticate("mypassword")).to be_truthy }
-    end
-
-    context "with incorrect password" do
-      it { expect(user.authenticate("wrongpass")).to be_falsey }
-    end
+  describe "bcrypt" do
+    it { is_expected.to have_secure_password }
   end
 
   # describe "instance methods" do
