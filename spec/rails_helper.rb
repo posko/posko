@@ -11,7 +11,8 @@ require "capybara/rails"
 require 'support/requests_helper'
 require 'support/controller_helpers'
 require 'support/query_object'
-require "rspec/json_expectations"
+require 'support/validate_with_matcher'
+require 'rspec/json_expectations'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -99,6 +100,7 @@ RSpec.configure do |config|
   config.include Requests::AuthHelpers, type: :request
   config.include ControllerHelpers::Session, type: :controller
   config.include QueryObjectHelpers::Matchers, type: :query
+  config.include Shoulda::Matchers::ActiveModel, type: :form
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
