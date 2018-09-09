@@ -1,6 +1,6 @@
 class SubtotalValidator < ActiveModel::Validator
   def validate(record)
-    unless has_required_attributes(record) and total_line_amount(record) == record.subtotal
+    unless has_required_attributes(record) and total_line_amount(record) == record.subtotal.to_f
       record.errors.add(:subtotal, "does not match the total invoice line amount")
     end
   end
@@ -10,6 +10,6 @@ class SubtotalValidator < ActiveModel::Validator
   end
 
   def total_line_amount(record)
-    record.invoice_lines.sum { |i| i[:price] }
+    record.invoice_lines.sum { |i| i[:price].to_f }
   end
 end

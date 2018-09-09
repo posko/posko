@@ -5,11 +5,8 @@ class InvoiceCreationService < ServiceObject
     @invoice_lines_params   = options.fetch(:invoice_lines)
     @user                   = options[:user]
     @customer               = options[:customer]
+    @account               = options.fetch(:account)
     @total_amount           = 0
-  end
-
-  def account
-    @account ||= user.account
   end
 
   def valid?
@@ -22,7 +19,8 @@ class InvoiceCreationService < ServiceObject
 
   private
 
-  attr_reader :customer_id, :invoice_number, :invoice_params, :invoice_lines_params
+  attr_reader :customer_id, :invoice_number, :invoice_params, :invoice_lines_params,
+    :account
 
   def perform_service
     return false unless valid?
@@ -33,7 +31,7 @@ class InvoiceCreationService < ServiceObject
       invoice.save!
     end
   rescue ActiveRecord::RecordInvalid => exception
-    @errors =  exception.model.errors.full_messages.last
+    @errors =  exception.record.errors.full_messages.last
     return false
   end
 

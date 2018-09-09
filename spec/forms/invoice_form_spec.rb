@@ -1,13 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe InvoiceForm, type: :form do
+  let(:user) { create(:user) }
+  let(:account)  {user.account }
+  let(:product) { create(:product, account: account) }
+  let(:variant) { product.variants.create(price: 100, title: "Large") }
+  let(:customer) { create(:customer, account: account) }
+
   let(:invoice_form) do
     InvoiceForm.new(
       customer_id: customer.id,
       invoice_lines: invoice_lines,
       invoice_number: invoice_number,
       subtotal: subtotal,
-      user: create(:user)
+      user: user,
+      account: user.account
     )
   end
   let(:customer) { create(:customer) }
@@ -16,24 +23,26 @@ RSpec.describe InvoiceForm, type: :form do
   let(:invoice_lines) do
     [
       {
-        variant_id: 1,
-        product_id: 1,
+        variant_id: variant.id,
+        product_id: product.id,
         price: 101,
-        title: "White Bag"
+        title: variant.title
       },
       {
-        variant_id: 2,
-        product_id: 1,
+        variant_id: variant.id,
+        product_id: product.id,
         price: 101,
-        title: "Blue Bag"
+        title: variant.title
       }
     ]
   end
 
 
   describe '#save' do
-    before { allow(invoice_form).to receive(:service_object).and_return(double(perform: true)) }
+    # before { allow(invoice_form).to receive(:service_object).and_return(double(perform: true)) }
     context "with correct input" do
+      before { invoice_form.save }
+      it { puts invoice_form.service_object.errors }
       it { expect(invoice_form.save).to be_truthy }
     end
   end

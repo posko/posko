@@ -13,6 +13,7 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
     it "returns list of invoices" do
       invoice
       get "/api/v1/invoices", headers: headers
+      expect(response).to have_http_status(:ok)
       expect(account.invoices.count).to eq(1)
       expect(json).to include_json(invoices: [])
     end
@@ -20,10 +21,11 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
 
   describe 'POST /api/v1/invoices' do
     let(:params) do
-      params = {
+      {
         invoice: {
           customer_id: customer.id,
           invoice_number: 25,
+          subtotal: 202,
           invoice_lines: [
             {
               variant_id: variant.id,

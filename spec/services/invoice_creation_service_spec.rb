@@ -13,6 +13,7 @@ RSpec.describe InvoiceCreationService do
         customer_id: customer_id,
         invoice_number: "1232",
         user: user,
+        account: account,
         invoice_lines: invoice_lines
       }
     end
