@@ -29,9 +29,9 @@
 [model-diagram]: ../develop/doc/models_brief.svg "Model Diagram"
 
 ## Running Test
-```bundle exec rspec```
+  bundle exec rspec
 or
-```bundle exec guard```
+  bundle exec guard
 # Dashboard Preview
 
 ![Preview][preview]
@@ -59,29 +59,3 @@ You can contribute by documenting our API [here](https://github.com/neume/posko-
 rails g breadko posts contents:string user_id:integer
 ```
   Then, modify the files to fit your needs.
-
-# Supported Modules(Basic Functionality)
-+ User
-+ Products
-  + Variants
-  + Composite
-    + Product Components
-
-Check the diagram for more info.
-
-# TODOS (Basic Modules)
-+ Roles (Ability later)
-  - Pundit
-+ Collections
-+ Invoices
-  - InvoiceLines
-  - Fullfillments
-+ Payments
-+ Customers
-+ Addresses
-+ Contacts
-+ Reports(later)
-+ Blog(not yet sure)
-+ API with Documentation
-+ Breadcrumbs
-+ Branches
