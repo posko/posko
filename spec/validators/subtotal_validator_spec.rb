@@ -6,14 +6,17 @@ RSpec.describe SubtotalValidator do
       include ActiveModel::Model
       attr_accessor :invoice_lines, :subtotal
       validates_with SubtotalValidator
+      def self.model_name
+        ActiveModel::Name.new(self, nil, "validatable")
+      end
     end
   end
-  let(:invoice_lines) { [ { price: 10}, { price: 12 } ] }
+  let(:invoice_lines) { [ { price: 10, quantity: 2 }, { price: 12 } ] }
   subject { validatable.new(subtotal: subtotal, invoice_lines: invoice_lines ) }
 
   describe '#validate' do
     context "with correct subtotal" do
-      let(:subtotal) { 22 }
+      let(:subtotal) { 32 }
       it { is_expected.to be_valid }
     end
     context "with incorrect subtotal" do

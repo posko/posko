@@ -31,7 +31,8 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
               variant_id: variant.id,
               product_id: product.id,
               price: 101,
-              title: variant.title
+              title: variant.title,
+              quanity: 2
             },
             {
               variant_id: variant.id,

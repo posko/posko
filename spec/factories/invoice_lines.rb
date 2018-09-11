@@ -4,5 +4,6 @@ FactoryBot.define do
     product { association(:product) }
     variant { association(:variant, product: product) }
     price   1000
+    quantity 1
   end
 end

@@ -10,6 +10,10 @@ class SubtotalValidator < ActiveModel::Validator
   end
 
   def total_line_amount(record)
-    record.invoice_lines.sum { |i| i[:price].to_f }
+
+    record.invoice_lines.sum do |i|
+      quantity = i[:quantity] ? i[:quantity].to_f : 1
+      i[:price].to_f * quantity
+    end
   end
 end

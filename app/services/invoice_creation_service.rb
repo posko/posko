@@ -47,7 +47,8 @@ class InvoiceCreationService < ServiceObject
   def build_invoice_lines
     invoice_lines_params.each do |invoice_line|
       self.invoice.invoice_lines.build(invoice_line)
-      self.total_amount += invoice_line[:price].to_f
+      quantity =  invoice_line[:quantity] ? invoice_line[:quantity].to_f : 1
+      self.total_amount += invoice_line[:price].to_f * quantity
     end
     @invoice_lines = invoice.invoice_lines
   end
