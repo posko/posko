@@ -19,20 +19,22 @@ RSpec.describe InvoiceForm, type: :form do
   end
   let(:customer) { create(:customer) }
   let(:invoice_number) { "00001"}
-  let(:subtotal) { 202 }
+  let(:subtotal) { 303 }
   let(:invoice_lines) do
     [
       {
         variant_id: variant.id,
         product_id: product.id,
         price: 101,
-        title: variant.title
+        title: variant.title,
+        quantity: 2
       },
       {
         variant_id: variant.id,
         product_id: product.id,
         price: 101,
-        title: variant.title
+        title: variant.title,
+        quantity: 1
       }
     ]
   end
@@ -42,7 +44,6 @@ RSpec.describe InvoiceForm, type: :form do
     # before { allow(invoice_form).to receive(:service_object).and_return(double(perform: true)) }
     context "with correct input" do
       before { invoice_form.save }
-      it { puts invoice_form.service_object.errors }
       it { expect(invoice_form.save).to be_truthy }
     end
   end
@@ -52,7 +53,7 @@ RSpec.describe InvoiceForm, type: :form do
     it { expect(invoice_form).to validate_presence_of(:invoice_number) }
     it { expect(invoice_form).to validate_numericality_of(:invoice_number) }
     it { expect(invoice_form).to validate_presence_of(:subtotal) }
-    it { expect(invoice_form).to validate_with(SubtotalValidator) }
+    it { expect(invoice_form).to validate_with(InvoiceValidator) }
 
     context "with incorrect subtotal" do
       let(:subtotal) { 1 }

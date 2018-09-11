@@ -11,7 +11,8 @@ class InvoiceForm < FormObject
   validates :subtotal, presence: true
   validates :user, presence: true
   validates :account, presence: true
-  validates_with SubtotalValidator
+  # validates_with SubtotalValidator
+  validates_with InvoiceValidator, if: :invoice_lines
 
   def save
     if valid? and service_object.perform

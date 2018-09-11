@@ -17,7 +17,7 @@ RSpec.describe Api::V1::InvoiceLinesController, type: :request do
       expect(json).to include_json(invoice_lines: [])
     end
   end
-  
+
 
   describe 'GET /api/v1/invoice_lines/:id' do
     context "with existing invoice" do

@@ -25,20 +25,21 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
         invoice: {
           customer_id: customer.id,
           invoice_number: 25,
-          subtotal: 202,
+          subtotal: 303,
           invoice_lines: [
             {
               variant_id: variant.id,
               product_id: product.id,
               price: 101,
               title: variant.title,
-              quanity: 2
+              quantity: 2
             },
             {
               variant_id: variant.id,
               product_id: product.id,
               price: 101,
-              title: variant.title
+              title: variant.title,
+              quantity: 1
             }
           ]
         }
