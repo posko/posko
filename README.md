@@ -40,9 +40,26 @@ or
 
 
 # API
+## Documentation
 The API references is available on [POSko API Docs](https://neume.github.io/posko-api-docs/).
 
 You can contribute by documenting our API [here](https://github.com/neume/posko-api-docs).
+
+## Postman
+[Here](https://www.getpostman.com/collections/9dfaf1eb5d5768ecaae0)'s the postman collection.
+
+There are some automations implemented there using postman test script. It stores your token and then includes it on requests with authorization procedure.
+
+You need to set up your environment variables to fully utilize that automation. These are the variables this collection needs:
+
+| Variable     |          Value          |
+|:-------------|:-----------------------:|
+| url          |  https://localhost:300  |
+| account_name |      first_company      |
+| email        | admin@first_company.com |
+| password     |          pass           |
+
+These variables are based on rails defaults and seed data. Change it according to your needs.
 
 # Mobile App companion
 [Android App](https://github.com/edwnmrtnz/posko) by [edwnmrtnz](https://github.com/edwnmrtnz)
