@@ -1,5 +1,7 @@
 class Variant < ApplicationRecord
   enum variant_type: [:regular, :composite, :component]
+  enum selling_policy: [:each, :weight]
+
   has_many :invoice_lines
   has_many :product_components
   has_many :child_product_components, foreign_key: "parent_variant_id", class_name: "ProductComponent"
