@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :accounts, only: [:create]
   resources :users
   resources :products, shallow: true do
-    resources :variants
+    resources :variants, shallow: true do
+      resources :components
+    end
   end
   resources :customers
   resources :invoices
@@ -25,7 +27,9 @@ Rails.application.routes.draw do
         resources :access_keys
         resources :customers
         resources :products, shallow: true do
-          resources :variants
+          resources :variants, shallow: true do
+            resources :components
+          end
         end
         resources :invoices, shallow: true do
           resources :invoice_lines

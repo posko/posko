@@ -1,0 +1,41 @@
+<section class="content-header">
+</section>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Components</h3>
+      <div class="box-tools pull-right">
+        <div class="btn-group">
+
+          <%= link_to "Add Component", new_variant_component_path(@variant.id), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+      <div class="">
+        <table class="table" id="users-table" data-source="<%= users_path(format: :json)%>" >
+          <thead>
+            <tr>
+              <th> Title </th>
+              <th> SKU </th>
+              <th> Type </th>
+              <th> Status </th>
+              <th> Actions </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @components.each do |component| %>
+              <tr>
+                <td><%= component.title %></td>
+                <td><%= component.quantity %></td>
+                <td><%= component.cost %> </td>
+                <td><%= component.status.humanize %> </td>
+                <td><%= render "actions", component: component %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<section class="content-header">
+</section>
+<section class="content">
+  <div class="box">
+    <%= form_for [@variant, @component] do |f| %>
+      <div class="box-header">
+        <h3 class="box-title">New Component</h3>
+        <div class="box-tools pull-right">
+          <div class="btn-group">
+            <%= link_to "Cancel", variant_components_path(@variant.id), class: "btn btn-danger" %>
+          </div>
+
+          <%= f.submit "Create", class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="form-group">
+          <%= f.label :variant_id %>
+          <%= f.text_field :variant_id, class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= f.label :quantity %>
+          <%= f.number_field :quantity, class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= f.label :cost %>
+          <%= f.text_field :cost, class: "form-control", readonly: true %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
