@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180912151524) do
+ActiveRecord::Schema.define(version: 20180912154837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 20180912151524) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "components", force: :cascade do |t|
+    t.integer "variant_id"
+    t.decimal "quantity"
+    t.decimal "cost"
+    t.integer "status", default: 0
+    t.integer "component_status", default: 0
+    t.integer "component_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["variant_id"], name: "index_components_on_variant_id"
   end
 
   create_table "customers", force: :cascade do |t|
