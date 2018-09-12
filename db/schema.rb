@@ -128,22 +128,6 @@ ActiveRecord::Schema.define(version: 20180912154837) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_components", force: :cascade do |t|
-    t.bigint "variant_id"
-    t.bigint "parent_variant_id"
-    t.bigint "parent_product_id"
-    t.string "title"
-    t.string "sku"
-    t.decimal "price"
-    t.decimal "compare_at_price"
-    t.string "barcode"
-    t.integer "product_component_type", default: 0
-    t.integer "status", default: 0
-    t.integer "product_component_status", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.integer "account_id"
     t.string "title"
