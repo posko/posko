@@ -27,14 +27,16 @@ RSpec.describe InvoiceForm, type: :form do
         product_id: product.id,
         price: 101,
         title: variant.title,
-        quantity: 2
+        quantity: 2,
+        weight: 1
       },
       {
         variant_id: variant.id,
         product_id: product.id,
         price: 101,
         title: variant.title,
-        quantity: 1
+        quantity: 1,
+        weight: 1
       }
     ]
   end

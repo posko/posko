@@ -32,14 +32,16 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
               product_id: product.id,
               price: 101,
               title: variant.title,
-              quantity: 2
+              quantity: 2,
+              weight: 1
             },
             {
               variant_id: variant.id,
               product_id: product.id,
               price: 101,
               title: variant.title,
-              quantity: 1
+              quantity: 1,
+              weight: 1
             }
           ]
         }
@@ -50,7 +52,7 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
       it "creates a invoice" do
         post "/api/v1/invoices", params: params, headers: headers
         expect(account.invoices.count).to eq(1)
-        expect(json).to include_json(invoice: { invoice_number: 25, customer_id: customer.id })
+        expect(json).to include_json(invoice: { invoice_number: 25, customer_id: customer.id, total_weight: "3.0" })
       end
     end
 

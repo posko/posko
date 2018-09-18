@@ -1,8 +1,8 @@
 class InvoiceValidator < ActiveModel::Validator
-  attr_reader :incomplete_attributes, :record, :total_amount
+  attr_reader :incomplete_attributes, :record, :subtotal
   def validate(record)
     @record = record
-    @total_amount = 0
+    @subtotal = 0
     record.invoice_lines.each do |line|
       check_attributes line
       # stop accumulating if attributes are incomplete
@@ -13,13 +13,13 @@ class InvoiceValidator < ActiveModel::Validator
 
   # Validates the subtotal of invoice
   def subtotal_validation
-    if total_amount != record.subtotal.to_f
+    if subtotal != record.subtotal.to_f
       record.errors.add(:subtotal, 'does not match the total invoice line amount')
     end
   end
 
   def add_line_amount(line)
-    @total_amount += line[:price].to_f * line[:quantity].to_f
+    @subtotal += line[:price].to_f * line[:quantity].to_f
   end
 
   def required_attributes

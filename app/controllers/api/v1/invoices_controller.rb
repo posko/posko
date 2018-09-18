@@ -29,6 +29,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
 
   def invoice_params
     params.require(:invoice).permit(:customer_id, :invoice_number, :subtotal,
-      invoice_lines: [ :variant_id, :product_id, :price, :title, :quantity])
+      invoice_lines: [ :variant_id, :product_id, :price, :title, :quantity,
+        :weight])
   end
 end

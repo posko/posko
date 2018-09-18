@@ -24,7 +24,8 @@ RSpec.describe InvoiceCreationService do
           product_id: product.id,
           price: 101,
           title: variant.title,
-          quantity: 2
+          quantity: 2,
+          weight: 1
         },
         {
           variant_id: variant.id,
@@ -46,6 +47,7 @@ RSpec.describe InvoiceCreationService do
         expect(service).to be_performed
         expect(account.invoice_lines.count).to be(2)
         expect(invoice.total_line_items_price).to eq(303)
+        expect(invoice.total_weight).to eq(2)
       end
     end
 

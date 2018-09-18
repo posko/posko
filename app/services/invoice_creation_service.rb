@@ -68,7 +68,7 @@ class InvoiceCreationService < ServiceObject
   end
 
   def compute_weight line
-    self.total_weight += line.weight
+    self.total_weight += line.weight * line.quantity
   end
 
   # TODO: implement tax lines
@@ -98,5 +98,6 @@ class InvoiceCreationService < ServiceObject
 
     invoice.total_line_items_price = self.total_line_items_price
     invoice.total_price = self.total_price
+    invoice.total_weight = self.total_weight
   end
 end
