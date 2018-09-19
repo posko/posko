@@ -76,3 +76,14 @@ These variables are based on rails defaults and seed data. Change it according t
 rails g breadko posts contents:string user_id:integer
 ```
   Then, modify the files to fit your needs.
+
+
+# Project 'Raspberry Pi 3 server'
+This POS project is planned to work on mini computers. I don't have yet these physical
+devices to test if this approach will actually work. I plan on partnering with
+store owners to test its capabilities, drawbacks and upkeep. But due to the slow
+development and the lack of hardware, this project maybe out by late 2019.
+
+If you are generous enough to support this idea, you can send help. I will gratefully accept a unit of Raspberry Pi 3 ;)
+
+Or initiate this project yourself and share your experience with us
