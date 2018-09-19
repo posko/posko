@@ -85,6 +85,6 @@ store owners to test its capabilities, drawbacks and upkeep once it is fully fun
 But due to the slow development and the lack of hardware, this project maybe out
 by late 2019.
 
-If you are generous enough to support this idea, you can send help. I will gratefully accept a unit of Raspberry Pi 3 from you. ;)
+If you have a spare device and would like to support this idea, you can send some help. I will gratefully accept a unit of Raspberry Pi 3 from you. ;)
 
 Or you can initiate and work on this project yourself and share your experience with us
