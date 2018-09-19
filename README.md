@@ -79,11 +79,12 @@ rails g breadko posts contents:string user_id:integer
 
 
 # Project 'Raspberry Pi 3 server'
-This POS project is planned to work on mini computers. I don't have yet these physical
-devices to test if this approach will actually work. I plan on partnering with
-store owners to test its capabilities, drawbacks and upkeep. But due to the slow
-development and the lack of hardware, this project maybe out by late 2019.
+This POS project is being developed to work on mini computers. I don't have yet these physical
+devices to test if this approach will actually work. I am partnering with local
+store owners to test its capabilities, drawbacks and upkeep once it is fully functional.
+But due to the slow development and the lack of hardware, this project maybe out
+by late 2019.
 
-If you are generous enough to support this idea, you can send help. I will gratefully accept a unit of Raspberry Pi 3 ;)
+If you are generous enough to support this idea, you can send help. I will gratefully accept a unit of Raspberry Pi 3 from you. ;)
 
-Or initiate this project yourself and share your experience with us
+Or you can initiate and work on this project yourself and share your experience with us
