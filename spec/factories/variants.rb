@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :variant do
     product
     price    100
-    title    "Large"
+    title    'Large'
   end
 end

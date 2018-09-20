@@ -26,9 +26,8 @@
 
 require 'active_support/inflector'
 group :red_green_refactor, halt_on_fail: true do
-
-  guard :rspec, cmd: "bundle exec rspec" do
-    require "guard/rspec/dsl"
+  guard :rspec, cmd: 'bundle exec rspec' do
+    require 'guard/rspec/dsl'
     # require "terminal-notifier-guard"
     dsl = Guard::RSpec::Dsl.new(self)
 
@@ -45,7 +44,7 @@ group :red_green_refactor, halt_on_fail: true do
     dsl.watch_spec_files_for(ruby.lib_files)
 
     # Rails files
-    rails = dsl.rails(view_extensions: %w(erb haml slim))
+    rails = dsl.rails(view_extensions: %w[erb haml slim])
     dsl.watch_spec_files_for(rails.app_files)
     dsl.watch_spec_files_for(rails.views)
 
@@ -69,7 +68,7 @@ group :red_green_refactor, halt_on_fail: true do
     # Turnip features and steps
     watch(%r{^spec/acceptance/(.+)\.feature$})
     watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-      Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+      Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
     end
 
     watch(%r{^app/controllers/api/v1/(.+)\.rb$}) do |m|
@@ -88,7 +87,7 @@ group :red_green_refactor, halt_on_fail: true do
   end
 
   guard :rubocop, cli: '--rails' do
-    watch(%r{.+\.rb$})
+    watch(/.+\.rb$/)
     watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
   end
 end

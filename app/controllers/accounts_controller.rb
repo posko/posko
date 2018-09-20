@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   skip_before_action :check_session
-  layout "base"
+  layout 'base'
 
   def new
     @registration_form = RegistrationForm.new
@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   def create
     @registration_form = RegistrationForm.new registration_form_params
     if @registration_form.save
-      redirect_to sign_in_path, notice: "Success"
+      redirect_to sign_in_path, notice: 'Success'
     else
       render 'new'
     end

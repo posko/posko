@@ -10,7 +10,7 @@ class Api::V1::ProductsController < Api::V1::ApiController
     if @product
       render json: { product: @product }
     else
-      render status: :not_found, json: { messages: ["Variant not found"] }
+      render status: :not_found, json: { messages: ['Variant not found'] }
     end
   end
 

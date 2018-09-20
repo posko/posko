@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe InvoiceValidator do
   let(:validatable) do
-    Class.new() do
+    Class.new do
       include ActiveModel::Model
       attr_accessor :invoice_lines, :subtotal
       validates_with InvoiceValidator
       def self.model_name
-        ActiveModel::Name.new(self, nil, "validatable")
+        ActiveModel::Name.new(self, nil, 'validatable')
       end
     end
   end
@@ -19,24 +19,24 @@ RSpec.describe InvoiceValidator do
   end
   let(:subtotal) { 32 }
 
-  subject { validatable.new(subtotal: subtotal, invoice_lines: invoice_lines ) }
+  subject { validatable.new(subtotal: subtotal, invoice_lines: invoice_lines) }
   describe 'invoice subtotal' do
-    context "with correct subtotal" do
+    context 'with correct subtotal' do
       it { is_expected.to be_valid }
     end
-    context "with incorrect subtotal" do
+    context 'with incorrect subtotal' do
       let(:subtotal) { 10 }
       it { is_expected.to be_invalid }
     end
 
-    context "without subtotal" do
+    context 'without subtotal' do
       let(:subtotal) { nil }
       it { is_expected.to be_invalid }
     end
   end
 
   describe 'invoice lines\' attributes' do
-    context "with complete attributes" do
+    context 'with complete attributes' do
       it { is_expected.to be_valid }
     end
 

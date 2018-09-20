@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :check_session
-  layout "base"
+  layout 'base'
   def new
     @sign_in_form = SignInForm.new
   end
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @sign_in_form.user.id
       redirect_to dashboard_path
     else
-      render "new"
+      render 'new'
     end
   end
 

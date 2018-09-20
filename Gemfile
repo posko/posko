@@ -37,14 +37,14 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'hirb'
   gem 'selenium-webdriver'
-  gem "faker"
 end
 
 group :development do
@@ -55,16 +55,17 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
+  gem 'guard-rubocop'
   gem 'license_finder'
   gem 'railroady'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
-  gem 'guard-rubocop'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 group :test do
   gem 'database_cleaner'
+  gem 'generator_spec'
   gem 'guard-rspec', require: false
   gem 'rails-controller-testing'
   gem 'rspec-json_expectations', require: false
@@ -72,12 +73,11 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'simplecov-console', require: false
-  gem "generator_spec"
   gem 'timecop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 ## ActiverRecordLike
 gem 'virtus'
 ## Authorization

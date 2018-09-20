@@ -2,22 +2,22 @@ require 'rails_helper'
 
 RSpec.describe InvoiceCreationService do
   let(:user) { create(:user) }
-  let(:account)  {user.account }
+  let(:account) { user.account }
   let(:product) { create(:product, account: account) }
-  let(:variant) { product.variants.create(price: 100, title: "Large") }
+  let(:variant) { product.variants.create(price: 100, title: 'Large') }
   let(:customer) { create(:customer, account: account) }
 
   describe '#perform' do
     let(:params) do
       {
         customer_id: customer_id,
-        invoice_number: "1232",
+        invoice_number: '1232',
         user: user,
         account: account,
         invoice_lines: invoice_lines
       }
     end
-    let(:invoice_lines) {
+    let(:invoice_lines) do
       [
         {
           variant_id: variant.id,
@@ -34,11 +34,11 @@ RSpec.describe InvoiceCreationService do
           title: variant.title
         }
       ]
-    }
+    end
 
-    context "correct params" do
+    context 'correct params' do
       let(:customer_id) { customer.id }
-      it "creates an invoice" do
+      it 'creates an invoice' do
         service = InvoiceCreationService.new(params)
         expect(service).to be_valid
         expect(service.perform).to be_truthy
@@ -60,5 +60,4 @@ RSpec.describe InvoiceCreationService do
     #   end
     # end
   end
-
 end

@@ -4,7 +4,7 @@ require 'fileutils'
 include FileUtils
 
 # path to your application root.
-APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+APP_ROOT = Pathname.new File.expand_path('..', __dir__)
 
 def system!(*args)
   system(*args) || abort("\nCommand #{args} failed")
@@ -20,5 +20,4 @@ chdir APP_ROOT do
 
   puts "\nMigrating database"
   system! 'bin/rails db:migrate'
-  
 end

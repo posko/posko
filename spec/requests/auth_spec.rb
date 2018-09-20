@@ -1,8 +1,8 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe "Auth", type: :request do
+RSpec.describe 'Auth', type: :request do
   let(:account) { create(:account) }
-  let(:user) { create(:user, password: "pass", account: account, access_key_count: 0) }
+  let(:user) { create(:user, password: 'pass', account: account, access_key_count: 0) }
   let(:access_key) { user.access_keys.first }
   let(:successful_sign_in) do
     { user: {
@@ -12,25 +12,25 @@ RSpec.describe "Auth", type: :request do
       created_at: user.created_at.as_json
     } }
   end
-  let(:failed_sign_in) { { messages: ["Incorrect credentials"] } }
+  let(:failed_sign_in) { { messages: ['Incorrect credentials'] } }
 
   describe 'POST sign_in' do
     let(:params) do
       { account_name: account.name, email: user.email, password: password }
     end
 
-    context "with correct credentials" do
-      let(:password) { "pass"}
-      it "authenticates user" do
-        post "/api/v1/sign_in.json", params: params
+    context 'with correct credentials' do
+      let(:password) { 'pass' }
+      it 'authenticates user' do
+        post '/api/v1/sign_in.json', params: params
         expect(json).to include_json(successful_sign_in)
       end
     end
 
-    context "with incorrect credentials" do
-      let(:password) { "wrong pass" }
-      it "does not authenticates user" do
-        post "/api/v1/sign_in.json", params: params
+    context 'with incorrect credentials' do
+      let(:password) { 'wrong pass' }
+      it 'does not authenticates user' do
+        post '/api/v1/sign_in.json', params: params
         expect(json).to include_json(failed_sign_in)
         expect(response).to have_http_status(:unauthorized)
       end

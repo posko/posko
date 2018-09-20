@@ -13,7 +13,7 @@ class VariantsController < ApplicationController
     if @variant.save
       redirect_to product_variants_path(@variant.product_id)
     else
-      render "new"
+      render 'new'
     end
   end
 

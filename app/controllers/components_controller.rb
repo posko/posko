@@ -13,7 +13,7 @@ class ComponentsController < ApplicationController
     if @component.save
       redirect_to variant_components_path(@component.variant_id)
     else
-      render "new"
+      render 'new'
     end
   end
 

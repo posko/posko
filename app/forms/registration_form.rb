@@ -17,10 +17,10 @@ class RegistrationForm < FormObject
   delegate :account, to: :service_object
   delegate :user, to: :service_object
   def save
-    if valid? and service_object.perform
-      return true
+    if valid? && service_object.perform
+      true
     else
-      return false
+      false
     end
   end
 

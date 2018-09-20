@@ -1,17 +1,17 @@
 class AuthenticationService < ServiceObject
   attr_reader :access_key, :account_name, :email, :password
 
-  def initialize(options={})
+  def initialize(options = {})
     @account_name = options.fetch(:account_name)
     @email = options.fetch(:email)
     @password = options.fetch(:password)
   end
 
   def process
-    if valid? and authenticate
+    if valid? && authenticate
       self
     else
-      add_error "Incorrect credentials"
+      add_error 'Incorrect credentials'
       false
     end
   end

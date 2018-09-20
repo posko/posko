@@ -2,3 +2,15 @@ require: rubocop-rspec
 inherit_from:
   - .rubocop_todo.yml
   - .rubocop-disabled.yml
+
+AllCops:
+  Exclude:
+    - db/schema.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/WordArray:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false

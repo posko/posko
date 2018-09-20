@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Component, type: :model do
-
-  let(:component){ create(:component) }
+  let(:component) { create(:component) }
 
   it 'has a valid factory' do
     expect(build(:component)).to be_valid

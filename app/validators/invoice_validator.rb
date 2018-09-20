@@ -13,9 +13,7 @@ class InvoiceValidator < ActiveModel::Validator
 
   # Validates the subtotal of invoice
   def subtotal_validation
-    if subtotal != record.subtotal.to_f
-      record.errors.add(:subtotal, 'does not match the total invoice line amount')
-    end
+    record.errors.add(:subtotal, 'does not match the total invoice line amount') if subtotal != record.subtotal.to_f
   end
 
   def add_line_amount(line)

@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   has_many :invoice_lines
   has_many :components, through: :variants
   belongs_to :account
-  belongs_to :created_by, class_name: "User"
+  belongs_to :created_by, class_name: 'User'
 
   validates :title, presence: true
   validates :account_id, presence: true

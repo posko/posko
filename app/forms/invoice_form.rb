@@ -1,6 +1,6 @@
 class InvoiceForm < FormObject
   attr_accessor :invoice_number, :invoice_lines, :subtotal, :user, :customer_id,
-    :account
+                :account
   attr_reader :service_object
 
   delegate :invoice, to: :service_object
@@ -14,10 +14,10 @@ class InvoiceForm < FormObject
   validates_with InvoiceValidator, if: :invoice_lines
 
   def save
-    if valid? and service_object.perform
-      return true
+    if valid? && service_object.perform
+      true
     else
-      return false
+      false
     end
   end
 
@@ -36,5 +36,4 @@ class InvoiceForm < FormObject
   def customer
     @customer = Customer.find_by(id: customer_id)
   end
-
 end

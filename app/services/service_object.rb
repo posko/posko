@@ -1,11 +1,12 @@
 
 class ServiceObject
   attr_reader :performed
-  def initialize options={}; end
-  def self.perform options={}
-    obj = self.new options
+  def initialize(options = {}); end
+
+  def self.perform(options = {})
+    obj = new options
     obj.perform
-    return obj
+    obj
   end
 
   def perform
@@ -27,7 +28,7 @@ class ServiceObject
     raise "'perform_service' method Not implemented"
   end
 
-  def add_error message
+  def add_error(message)
     errors.push(message)
   end
 end

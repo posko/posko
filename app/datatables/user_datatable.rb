@@ -4,8 +4,8 @@ class UserDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
-      name: { source: "User.first_name", cond: :like },
-      email: { source: "User.email", cond: :like }
+      name: { source: 'User.first_name', cond: :like },
+      email: { source: 'User.email', cond: :like }
     }
   end
 
@@ -22,7 +22,7 @@ class UserDatatable < AjaxDatatablesRails::Base
   private
 
   def actions(_record)
-    ""
+    ''
   end
 
   def get_raw_records

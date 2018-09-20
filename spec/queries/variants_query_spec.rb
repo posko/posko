@@ -7,6 +7,6 @@ RSpec.describe VariantsQuery, type: :query do
   end
 
   describe 'searchables' do
-    it { is_expected.to have_searchable(:title)}
+    it { is_expected.to have_searchable(:title) }
   end
 end

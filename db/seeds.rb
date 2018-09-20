@@ -9,12 +9,12 @@
 require 'faker'
 
 options = {}
-options["account_name"]  = ENV["DEMO_ACCOUNT_NAME"] || "first_company"
-options["company"]       = ENV["DEMO_COMPANY"] || "First Company"
-options["email"]         = ENV["DEMO_EMAIL"] || "admin@first_company.com"
-options["password"]      = ENV["DEMO_PASSWORD"] || "pass"
-options["first_name"]    = ENV["DEMO_FIRST_NAME"] || "Juan"
-options["last_name"]     = ENV["DEMO_LAST_NAME"] || "Dela Cruz"
+options['account_name']  = ENV['DEMO_ACCOUNT_NAME'] || 'first_company'
+options['company']       = ENV['DEMO_COMPANY'] || 'First Company'
+options['email']         = ENV['DEMO_EMAIL'] || 'admin@first_company.com'
+options['password']      = ENV['DEMO_PASSWORD'] || 'pass'
+options['first_name']    = ENV['DEMO_FIRST_NAME'] || 'Juan'
+options['last_name']     = ENV['DEMO_LAST_NAME'] || 'Dela Cruz'
 
 puts "\nSigning Up:"
 @registration_form = RegistrationForm.new options
@@ -26,11 +26,11 @@ end
 
 account = @registration_form.account
 user = @registration_form.user
-sku = "000001"
-3.times.each do |x|
+sku = '000001'
+3.times.each do |_x|
   title = Faker::Commerce.product_name
   product = account.products.create(title: title, created_by: user)
-  2.times do |y|
+  2.times do |_y|
     var = {
       title: "#{Faker::Color.unique.color_name.titleize} #{title}",
       sku: sku.next!,

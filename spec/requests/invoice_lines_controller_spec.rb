@@ -8,9 +8,9 @@ RSpec.describe Api::V1::InvoiceLinesController, type: :request do
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
 
-  let(:invoice_line) { create(:invoice_line, price: 100, title: "Large", invoice: invoice) }
+  let(:invoice_line) { create(:invoice_line, price: 100, title: 'Large', invoice: invoice) }
   describe 'GET /api/v1/invoices/:invoice_id/invoice_lines' do
-    it "returns list of invoices" do
+    it 'returns list of invoices' do
       invoice_line
       get "/api/v1/invoices/#{invoice.id}/invoice_lines", headers: headers
       expect(invoice.invoice_lines.count).to eq(1)
@@ -18,18 +18,17 @@ RSpec.describe Api::V1::InvoiceLinesController, type: :request do
     end
   end
 
-
   describe 'GET /api/v1/invoice_lines/:id' do
-    context "with existing invoice" do
-      it "returns the invoice" do
+    context 'with existing invoice' do
+      it 'returns the invoice' do
         get "/api/v1/invoice_lines/#{invoice_line.id}", headers: headers
         expect(json).to include_json(invoice_line: {})
         expect(response).to have_http_status(:ok)
       end
     end
-    context "with a non-existent invoice" do
-      it "returns the 404" do
-        get "/api/v1/invoice_lines/0", headers: headers
+    context 'with a non-existent invoice' do
+      it 'returns the 404' do
+        get '/api/v1/invoice_lines/0', headers: headers
         expect(response).to have_http_status(:not_found)
       end
     end

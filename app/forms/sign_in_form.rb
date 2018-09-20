@@ -10,12 +10,11 @@ class SignInForm < FormObject
   attr_reader
 
   def save
-
-    if valid? and service_object.process
-      return true
+    if valid? && service_object.process
+      true
     else
-      errors.add(:base, "Incorrect credentials")
-      return false
+      errors.add(:base, 'Incorrect credentials')
+      false
     end
   end
 
@@ -34,5 +33,4 @@ class SignInForm < FormObject
   # end
 
   private
-
 end

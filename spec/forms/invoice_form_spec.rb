@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe InvoiceForm, type: :form do
   let(:user) { create(:user) }
-  let(:account)  {user.account }
+  let(:account) { user.account }
   let(:product) { create(:product, account: account) }
-  let(:variant) { product.variants.create(price: 100, title: "Large") }
+  let(:variant) { product.variants.create(price: 100, title: 'Large') }
   let(:customer) { create(:customer, account: account) }
 
   let(:invoice_form) do
@@ -18,7 +18,7 @@ RSpec.describe InvoiceForm, type: :form do
     )
   end
   let(:customer) { create(:customer) }
-  let(:invoice_number) { "00001"}
+  let(:invoice_number) { '00001' }
   let(:subtotal) { 303 }
   let(:invoice_lines) do
     [
@@ -41,31 +41,29 @@ RSpec.describe InvoiceForm, type: :form do
     ]
   end
 
-
   describe '#save' do
     # before { allow(invoice_form).to receive(:service_object).and_return(double(perform: true)) }
-    context "with correct input" do
+    context 'with correct input' do
       before { invoice_form.save }
       it { expect(invoice_form.save).to be_truthy }
     end
   end
 
-  describe "validations" do
+  describe 'validations' do
     it { expect(invoice_form).to validate_presence_of(:invoice_lines) }
     it { expect(invoice_form).to validate_presence_of(:invoice_number) }
     it { expect(invoice_form).to validate_numericality_of(:invoice_number) }
     it { expect(invoice_form).to validate_presence_of(:subtotal) }
     it { expect(invoice_form).to validate_with(InvoiceValidator) }
 
-    context "with incorrect subtotal" do
+    context 'with incorrect subtotal' do
       let(:subtotal) { 1 }
       it { expect(invoice_form).to be_invalid }
     end
 
-    context "with incorrect subtotal" do
+    context 'with incorrect subtotal' do
       let(:subtotal) { 1 }
       it { expect(invoice_form).to be_invalid }
     end
   end
-
 end

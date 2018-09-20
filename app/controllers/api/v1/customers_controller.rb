@@ -19,7 +19,7 @@ class Api::V1::CustomersController < Api::V1::ApiController
     if @customer
       render json: { customer: @customer }
     else
-      render status: :not_found, json: { messages: ["Customer not found"] }
+      render status: :not_found, json: { messages: ['Customer not found'] }
     end
   end
 

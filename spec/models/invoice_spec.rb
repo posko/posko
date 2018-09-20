@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
   let(:product) { create(:product) }
-  let(:variant) { product.variants.create(price: 100, title: "Large") }
+  let(:variant) { product.variants.create(price: 100, title: 'Large') }
   let(:customer) { create(:customer) }
   let(:invoice) { create(:invoice, customer: customer, account: customer.account) }
-  describe "#create" do
+  describe '#create' do
     before { invoice }
-    it "creates new invoice " do
+    it 'creates new invoice ' do
       expect(customer.invoices.count).to eq(1)
     end
   end
-  describe "validations" do
+  describe 'validations' do
     subject { invoice }
     it { is_expected.to validate_presence_of(:invoice_number) }
     it { is_expected.to validate_presence_of(:total_line_items_price) }
@@ -21,13 +21,13 @@ RSpec.describe Invoice, type: :model do
     it { is_expected.to validate_presence_of(:total_tax) }
     it { is_expected.to validate_presence_of(:total_weight) }
   end
-  describe "associations" do
+  describe 'associations' do
     it { expect(invoice).to belong_to(:user) }
     it { expect(invoice).to belong_to(:account) }
     it { expect(invoice).to belong_to(:customer) }
     # it { expect(user).to have_many(:variants) }
   end
-  describe "#recompute_values" do
+  describe '#recompute_values' do
     # it "recomputes values and save itself" do
     #   invoice.invoice_lines.create(product: product, variant: variant, price: 100, title: "Large")
     #   invoice.recompute_values

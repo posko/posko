@@ -1,6 +1,6 @@
 class Customer < ApplicationRecord
   belongs_to :account
-  belongs_to :default_address, class_name: "Address", optional: true
+  belongs_to :default_address, class_name: 'Address', optional: true
 
   has_many :addresses
   has_many :invoices

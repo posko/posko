@@ -11,7 +11,7 @@ class RegistrationService < ServiceObject
   )
   attr_reader :account
 
-  def initialize(options={})
+  def initialize(options = {})
     @account_name = options.fetch(:account_name)
     @company = options.fetch(:company)
     @email = options.fetch(:email)
@@ -19,7 +19,6 @@ class RegistrationService < ServiceObject
     @first_name = options.fetch(:first_name)
     @last_name = options.fetch(:last_name)
   end
-
 
   private
 

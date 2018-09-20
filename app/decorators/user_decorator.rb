@@ -6,7 +6,7 @@ class UserDecorator < Draper::Decorator
     fullname << first_name
     fullname << last_name
     fullname << suffix if suffix
-    fullname.join(" ")
+    fullname.join(' ')
   end
 
   def name_link

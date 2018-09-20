@@ -10,7 +10,7 @@ class Api::V1::VariantsController < Api::V1::ApiController
     if @variant
       render json: { variant: @variant }
     else
-      render status: :not_found, json: { messages: ["Variant not found"] }
+      render status: :not_found, json: { messages: ['Variant not found'] }
     end
   end
 

@@ -12,8 +12,8 @@ RSpec.describe Api::V1::ApiController, type: :request do
   end
 
   describe '#current_user' do
-    it "returns current account" do
-      get "/api/v1/users", headers: headers
+    it 'returns current account' do
+      get '/api/v1/users', headers: headers
       expect(json).to include_json(users: [{ id: user.id }])
     end
   end

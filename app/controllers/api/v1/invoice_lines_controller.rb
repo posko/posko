@@ -4,13 +4,13 @@ class Api::V1::InvoiceLinesController < Api::V1::ApiController
     @invoice_lines = InvoiceLinesQuery.new(params, invoice.invoice_lines).call
     render json: { invoice_lines: @invoice_lines }
   end
-  
+
   def show
     @invoice_line = InvoiceLine.find_by id: params[:id]
     if @invoice_line
       render json: { invoice_line: @invoice_line }
     else
-      render status: :not_found, json: { messages: ["Invoice not found"] }
+      render status: :not_found, json: { messages: ['Invoice not found'] }
     end
   end
 

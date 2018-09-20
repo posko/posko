@@ -5,7 +5,7 @@ module QueryObjectHelpers
         actual.range_attributes.include? expected
       end
     end
-    
+
     RSpec::Matchers.define :have_searchable do |expected|
       match do |actual|
         actual.searchables.include? expected

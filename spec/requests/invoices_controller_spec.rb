@@ -6,13 +6,13 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
   let(:customer) { create(:customer, account: account) }
   let(:invoice) { create(:invoice, account: user.account, user: user) }
   let(:product) { create(:product, account: account) }
-  let(:variant) { product.variants.create(price: 100, title: "Large") }
+  let(:variant) { product.variants.create(price: 100, title: 'Large') }
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
   describe 'GET /api/v1/invoices' do
-    it "returns list of invoices" do
+    it 'returns list of invoices' do
       invoice
-      get "/api/v1/invoices", headers: headers
+      get '/api/v1/invoices', headers: headers
       expect(response).to have_http_status(:ok)
       expect(account.invoices.count).to eq(1)
       expect(json).to include_json(invoices: [])
@@ -48,18 +48,18 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
       }
     end
 
-    context "with correct params" do
-      it "creates a invoice" do
-        post "/api/v1/invoices", params: params, headers: headers
+    context 'with correct params' do
+      it 'creates a invoice' do
+        post '/api/v1/invoices', params: params, headers: headers
         expect(account.invoices.count).to eq(1)
-        expect(json).to include_json(invoice: { invoice_number: 25, customer_id: customer.id, total_weight: "3.0" })
+        expect(json).to include_json(invoice: { invoice_number: 25, customer_id: customer.id, total_weight: '3.0' })
       end
     end
 
-    context "with incorrect params" do
-      it "rejects request" do
+    context 'with incorrect params' do
+      it 'rejects request' do
         params[:invoice][:invoice_number] = nil
-        post "/api/v1/invoices", params: params, headers: headers
+        post '/api/v1/invoices', params: params, headers: headers
         expect(account.invoices.count).to eq(0)
         expect(json).to include_json(messages: ["Invoice number can't be blank"])
       end
@@ -67,16 +67,16 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
   end
 
   describe 'GET /api/v1/invoices/:id' do
-    context "with existing invoice" do
-      it "returns the invoice" do
+    context 'with existing invoice' do
+      it 'returns the invoice' do
         get "/api/v1/invoices/#{invoice.id}", headers: headers
         expect(json).to include_json(invoice: {})
         expect(response).to have_http_status(:ok)
       end
     end
-    context "with a non-existent invoice" do
-      it "returns the 404" do
-        get "/api/v1/invoices/0", headers: headers
+    context 'with a non-existent invoice' do
+      it 'returns the 404' do
+        get '/api/v1/invoices/0', headers: headers
         expect(response).to have_http_status(:not_found)
       end
     end
