@@ -59,6 +59,7 @@ group :development do
   gem 'railroady'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
+  gem 'guard-rubocop'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
