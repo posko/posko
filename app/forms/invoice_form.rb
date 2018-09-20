@@ -1,7 +1,6 @@
 class InvoiceForm < FormObject
   attr_accessor :invoice_number, :invoice_lines, :subtotal, :user, :customer_id,
                 :account
-  attr_reader :service_object
 
   delegate :invoice, to: :service_object
 

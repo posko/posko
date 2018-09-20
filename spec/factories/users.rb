@@ -7,7 +7,7 @@ FactoryBot.define do
     sequence(:last_name)  { |n| "Dela Cruz#{n}" }
     suffix                'Jr.'
     title                 'Mr'
-    password              { 'password' }
+    password              'password'
 
     transient do
       access_key_count 1

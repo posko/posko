@@ -76,10 +76,6 @@ class InvoiceCreationService < ServiceObject
   # TODO: implement discount lines
   def compute_discount(line); end
 
-  def compute_total_price
-    self.total_weight += line[:weight].to_f
-  end
-
   def compute_subtotal
     self.total_price = self.total_line_items_price - total_discounts
   end
