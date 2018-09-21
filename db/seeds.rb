@@ -8,12 +8,12 @@ options['password']      = ENV['DEMO_PASSWORD'] || 'pass'
 options['first_name']    = ENV['DEMO_FIRST_NAME'] || 'Juan'
 options['last_name']     = ENV['DEMO_LAST_NAME'] || 'Dela Cruz'
 
-logger.debug "\nSigning Up:"
+Rails.logger.debug "\nSigning Up:"
 @registration_form = RegistrationForm.new options
 if @registration_form.save
-  logger.debug "\t Created #{@registration_form.account.company}"
+  Rails.logger.debug "\t Created #{@registration_form.account.company}"
 else
-  logger.debug "\tSign Up Failed"
+  Rails.logger.debug "\tSign Up Failed"
 end
 
 account = @registration_form.account
@@ -35,9 +35,9 @@ sku = '000001'
   Faker::Color.unique.clear
 end
 
-logger.debug "\nCreating Customer:"
+Rails.logger.debug "\nCreating Customer:"
 customer = account.customers.create(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name
 )
-logger.debug "\t#{customer.first_name} #{customer.last_name} is created"
+Rails.logger.debug "\t#{customer.first_name} #{customer.last_name} is created"
