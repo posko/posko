@@ -1,4 +1,3 @@
-
 class ServiceObject
   attr_reader :performed
   def initialize(options = {}); end

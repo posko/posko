@@ -39,6 +39,7 @@ class BreadkoGenerator < Rails::Generators::NamedBase
 
   def generate_additional_classes
     return unless with_datatable?
+
     template 'breadko_datatable.erb', "app/datatables/#{object}_datatable.rb"
   end
 

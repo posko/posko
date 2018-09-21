@@ -25,6 +25,7 @@ class InvoiceCreationService < ServiceObject
 
   def perform_service
     return false unless valid?
+
     ActiveRecord::Base.transaction do
       build_invoice
       build_invoice_lines

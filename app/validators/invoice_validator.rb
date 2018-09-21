@@ -14,6 +14,7 @@ class InvoiceValidator < ActiveModel::Validator
   # Validates the subtotal of invoice
   def subtotal_validation
     return unless subtotal != record.subtotal.to_f
+
     record.errors.add(:subtotal, 'does not match the total invoice line amount')
   end
 
@@ -28,6 +29,7 @@ class InvoiceValidator < ActiveModel::Validator
   def check_attributes(line)
     required_attributes.each do |attribute|
       next if line[attribute]
+
       record.errors.add(attribute,
                         "does not exist on item #{line[:variant_id]}")
       @incomplete_attributes = true
