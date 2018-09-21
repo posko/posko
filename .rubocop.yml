@@ -5,6 +5,7 @@ inherit_from:
 AllCops:
   Exclude:
     - db/schema.rb
+    - vendor/**/*
 
 Style/FrozenStringLiteralComment:
   Enabled: false
