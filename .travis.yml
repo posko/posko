@@ -18,6 +18,7 @@ before_script:
 script:
   - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rspec spec
+  - ls
   - bundle exec rubocop
 
 after_script:
