@@ -20,8 +20,8 @@ class InvoiceCreationService < ServiceObject
 
   private
 
-  attr_reader :customer_id, :invoice_number, :invoice_params, :invoice_lines_params,
-              :account
+  attr_reader :customer_id, :invoice_number, :invoice_params,
+              :invoice_lines_params, :account
 
   def perform_service
     return false unless valid?

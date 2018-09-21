@@ -15,7 +15,9 @@ class Api::V1::ApiController < ActionController::API
   def authenticate_user
     authenticate_or_request_with_http_basic do |token, auth_token|
       @current_access_key = AccessKey.find_by token: token
-      @current_user = @current_access_key.user if @current_access_key && @current_access_key.auth_token == auth_token
+      if @current_access_key && @current_access_key.auth_token == auth_token
+        @current_user = @current_access_key.user
+      end
     end
   end
 end

@@ -5,7 +5,11 @@ RSpec.describe Api::V1::ProductsController, type: :request do
   let(:account) { user.account }
   let(:product) { create(:product, account: user.account) }
   let(:access_key) { user.access_keys.first }
-  let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+  let(:headers) do
+    token = access_key.token
+    auth_token = access_key.auth_token
+    { 'HTTP_AUTHORIZATION': basic_auth(token, auth_token) }
+  end
   let(:products) { create_list(:product, 3, account: account) }
 
   before { products }
@@ -19,7 +23,9 @@ RSpec.describe Api::V1::ProductsController, type: :request do
 
     context 'when using ids' do
       it 'retrieves products by id' do
-        get '/api/v1/products', params: { ids: [products[0].id, products[1].id] }, headers: headers
+        get '/api/v1/products',
+            params: { ids: [products[0].id, products[1].id] },
+            headers: headers
         expect(json['products'].count).to eq(2)
       end
     end
@@ -38,7 +44,9 @@ RSpec.describe Api::V1::ProductsController, type: :request do
 
     context 'when using since_id' do
       it 'returns list of products' do
-        get '/api/v1/products', params: { since_id: products[1].id }, headers: headers
+        get '/api/v1/products',
+            params: { since_id: products[1].id },
+            headers: headers
         expect(json['products'].count).to eq(1)
       end
     end
@@ -52,7 +60,9 @@ RSpec.describe Api::V1::ProductsController, type: :request do
         Timecop.freeze(Time.current + 2.days)
         create(:product, account: account)
         Timecop.return
-        get '/api/v1/products', params: { created_at_min: product1.created_at }, headers: headers
+        get '/api/v1/products',
+            params: { created_at_min: product1.created_at },
+            headers: headers
         expect(json['products'].count).to eq(2)
       end
     end
@@ -65,7 +75,9 @@ RSpec.describe Api::V1::ProductsController, type: :request do
         Timecop.freeze(Time.current - 2.days)
         create(:product, account: account)
         Timecop.return
-        get '/api/v1/products', params: { created_at_max: product1.created_at + 1.second }, headers: headers
+        get '/api/v1/products',
+            params: { created_at_max: product1.created_at + 1.second },
+            headers: headers
         expect(json['products'].count).to eq(2)
       end
     end

@@ -4,7 +4,11 @@ RSpec.describe Invoice, type: :model do
   let(:product) { create(:product) }
   let(:variant) { product.variants.create(price: 100, title: 'Large') }
   let(:customer) { create(:customer) }
-  let(:invoice) { create(:invoice, customer: customer, account: customer.account) }
+  let(:invoice) do
+    create(:invoice,
+           customer: customer,
+           account: customer.account)
+  end
 
   describe '#create' do
     before { invoice }
@@ -31,16 +35,25 @@ RSpec.describe Invoice, type: :model do
   end
   # describe '#recompute_values' do
   #   it "recomputes values and save itself" do
-  #     invoice.invoice_lines.create(product: product, variant: variant, price: 100, title: "Large")
+  #    invoice.invoice_lines.create(product: product,
+  #                                 variant: variant,
+  #                                 price: 100,
+  #                                 title: 'Large')
   #     invoice.recompute_values
   #     expect(invoice.total_line_items_price).to eq(100)
-  #     invoice.invoice_lines.create(product: product, variant: variant, price: 50, title: "small")
+  #     invoice.invoice_lines.create(product: product,
+  #                                 variant: variant,
+  #                                 price: 50,
+  #                                 title: "small")
   #     invoice.recompute_values
   #     expect(invoice.total_line_items_price).to eq(150)
   #   end
   # end
   # describe "#recompute callback" do
   #   subject { create(:invoice) }
-  #   it { is_expected.to callback(:compute_values).before(:validation).on(:create) }
+  it {
+    is_expected.to callback(:pass_validations)
+      .before(:validation).on(:create)
+  }
   # end
 end

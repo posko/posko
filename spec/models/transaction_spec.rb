@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe Transaction, type: :model do
   let(:customer) { create(:customer) }
   let(:invoice) { create(:invoice) }
-  let(:transaction) { invoice.transactions.create(amount: 100, transaction_type: 'sale', customer: customer) }
+  let(:transaction) do
+    invoice.transactions.create(amount: 100,
+                                transaction_type: 'sale',
+                                customer: customer)
+  end
 
   describe 'create transaction' do
     before { transaction }

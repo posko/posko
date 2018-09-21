@@ -5,7 +5,12 @@ RSpec.describe VariantsController, type: :controller do
   let(:user) { create(:user, account: account) }
   let(:product) { create(:product, account: account) }
   let(:variant) { create(:variant, product: product) }
-  let(:valid_variant_param) { { title: 'Red Bag', price: '99.9', variant_type: 'regular', vendor: 'Bag Company' } }
+  let(:valid_variant_param) do
+    { title: 'Red Bag',
+      price: '99.9',
+      variant_type: 'regular',
+      vendor: 'Bag Company' }
+  end
 
   before { sign_in }
   describe 'GET #index' do
@@ -33,7 +38,8 @@ RSpec.describe VariantsController, type: :controller do
     context 'with failed attempt' do
       before { variant }
       it "renders 'new' template" do
-        params = { variant: { title: nil, price: '99.9' }, product_id: product.id }
+        params = { variant: { title: nil, price: '99.9' },
+                   product_id: product.id }
         post(:create, params: params)
         expect(response).to render_template 'new'
       end
@@ -78,7 +84,9 @@ RSpec.describe VariantsController, type: :controller do
       expect(assigns(:variant)).to be_deleted_status
     end
     it 'raises an exception' do
-      expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: 'nothing' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe InvoiceValidator do
   subject { validatable_object }
 
-  let(:validatable_object) { validatable.new(subtotal: subtotal, invoice_lines: invoice_lines) }
+  let(:validatable_object) do
+    validatable.new(subtotal: subtotal, invoice_lines: invoice_lines)
+  end
   let(:validatable) do
     Class.new do
       include ActiveModel::Model

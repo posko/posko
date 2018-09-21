@@ -3,7 +3,14 @@ require 'rails_helper'
 RSpec.describe CustomersController, type: :controller do
   let(:user) { create(:user) }
   let(:customer) { create(:customer) }
-  let(:valid_customer_param) { { email: 'valid@email.com', first_name: 'first', last_name: 'last', password: 'pass' } }
+  let(:valid_customer_param) do
+    {
+      email: 'valid@email.com',
+      first_name: 'first',
+      last_name: 'last',
+      password: 'pass'
+    }
+  end
 
   before do
     allow(controller).to receive(:current_user).and_return(user)
@@ -26,7 +33,8 @@ RSpec.describe CustomersController, type: :controller do
       before { customer }
       it 'creates customer' do
         params = { customer: valid_customer_param }
-        expect { post(:create, params: params) }.to change(Customer, :count).by(1)
+        expect { post(:create, params: params) }
+          .to change(Customer, :count).by(1)
       end
     end
 
@@ -77,7 +85,9 @@ RSpec.describe CustomersController, type: :controller do
       expect(assigns(:customer)).to eq(customer)
     end
     it 'raises an exception' do
-      expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: 'nothing' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

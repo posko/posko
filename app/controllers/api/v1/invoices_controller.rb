@@ -12,7 +12,9 @@ class Api::V1::InvoicesController < Api::V1::ApiController
     if @invoice_form.save
       render json: { invoice: @invoice_form.invoice }
     else
-      render status: :unprocessable_entity, json: { messages: @invoice_form.errors.full_messages }
+      render status: :unprocessable_entity, json: {
+        messages: @invoice_form.errors.full_messages
+      }
     end
   end
 
@@ -32,7 +34,11 @@ class Api::V1::InvoicesController < Api::V1::ApiController
       :customer_id,
       :invoice_number,
       :subtotal,
-      invoice_lines: [:variant_id, :product_id, :price, :title, :quantity, :weight]
+      invoice_lines: invoice_line_params
     )
+  end
+
+  def invoice_line_params
+    [:variant_id, :product_id, :price, :title, :quantity, :weight]
   end
 end

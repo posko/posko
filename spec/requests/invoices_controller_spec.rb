@@ -8,7 +8,12 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
   let(:product) { create(:product, account: account) }
   let(:variant) { product.variants.create(price: 100, title: 'Large') }
   let(:access_key) { user.access_keys.first }
-  let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+
+  let(:headers) do
+    token = access_key.token
+    auth_token = access_key.auth_token
+    { 'HTTP_AUTHORIZATION': basic_auth(token, auth_token) }
+  end
 
   describe 'GET /api/v1/invoices' do
     it 'returns list of invoices' do
@@ -53,7 +58,11 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
       it 'creates a invoice' do
         post '/api/v1/invoices', params: params, headers: headers
         expect(account.invoices.count).to eq(1)
-        expect(json).to include_json(invoice: { invoice_number: 25, customer_id: customer.id, total_weight: '3.0' })
+        expect(json).to include_json(invoice: {
+                                       invoice_number: 25,
+                                       customer_id: customer.id,
+                                       total_weight: '3.0'
+                                     })
       end
     end
 
@@ -62,7 +71,9 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
         params[:invoice][:invoice_number] = nil
         post '/api/v1/invoices', params: params, headers: headers
         expect(account.invoices.count).to eq(0)
-        expect(json).to include_json(messages: ["Invoice number can't be blank"])
+        expect(json).to include_json(
+          messages: ["Invoice number can't be blank"]
+        )
       end
     end
   end

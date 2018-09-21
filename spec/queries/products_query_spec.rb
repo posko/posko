@@ -71,7 +71,8 @@ RSpec.describe ProductsQuery, type: :query do
       Timecop.freeze(Time.current + 2.days)
       create(:product, account: account)
       Timecop.return
-      q = ProductsQuery.new({ created_at_min: product1.created_at }, account.products)
+      q = ProductsQuery.new({ created_at_min: product1.created_at },
+                            account.products)
       expect(q.call.count).to eq(2)
     end
 
@@ -85,7 +86,8 @@ RSpec.describe ProductsQuery, type: :query do
       Timecop.freeze(Time.current - 2.days)
       create(:product, account: account)
       Timecop.return
-      q = ProductsQuery.new({ created_at_max: product1.created_at + 1 }, account.products)
+      q = ProductsQuery.new({ created_at_max: product1.created_at + 1 },
+                            account.products)
       expect(q.call.count).to eq(2)
     end
   end

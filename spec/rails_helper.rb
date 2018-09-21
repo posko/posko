@@ -4,7 +4,11 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort('The Rails environment is running in production mode!') if Rails.env.production?
+if Rails.env.production?
+  abort(
+    'The Rails environment is running in production mode!'
+  )
+end
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
@@ -50,8 +54,10 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.before(:each, type: :feature) do
-    # Note (Mike Coutermarsh): Make browser huge so that no content is hidden during tests
-    Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
+    # Note (Mike Coutermarsh): Make browser huge so that no content
+    # is hidden during tests
+    Capybara.current_session.driver.browser
+            .manage.window.resize_to(2_500, 2_500)
   end
 
   config.include FactoryBot::Syntax::Methods

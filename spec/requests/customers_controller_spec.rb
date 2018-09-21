@@ -5,7 +5,12 @@ RSpec.describe Api::V1::CustomersController, type: :request do
   let(:account) { user.account }
   let(:customer) { create(:customer, account: user.account) }
   let(:access_key) { user.access_keys.first }
-  let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+
+  let(:headers) do
+    token = access_key.token
+    auth_token = access_key.auth_token
+    { 'HTTP_AUTHORIZATION': basic_auth(token, auth_token) }
+  end
 
   describe 'GET /api/v1/customers' do
     it 'returns list of customers' do
@@ -28,7 +33,10 @@ RSpec.describe Api::V1::CustomersController, type: :request do
         }
         post '/api/v1/customers', params: params, headers: headers
         expect(account.customers.count).to eq(1)
-        expect(json).to include_json(customer: { first_name: 'Cardo', last_name: 'Dalisay' })
+        expect(json).to include_json(customer: {
+                                       first_name: 'Cardo',
+                                       last_name: 'Dalisay'
+                                     })
       end
     end
     context 'with incorrect params' do
@@ -42,7 +50,9 @@ RSpec.describe Api::V1::CustomersController, type: :request do
         }
         post '/api/v1/customers', params: params, headers: headers
         expect(account.customers.count).to eq(0)
-        expect(json).to include_json(messages: ["First name can't be blank", "Last name can't be blank"])
+        expect(json).to include_json(
+          messages: ["First name can't be blank", "Last name can't be blank"]
+        )
       end
     end
   end

@@ -8,7 +8,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = current_account.products.new product_params.merge(created_by: current_user)
+    @product = current_account.products.new(
+      product_params.merge(created_by: current_user)
+    )
     if @product.save
       redirect_to products_path
     else

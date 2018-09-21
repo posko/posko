@@ -76,7 +76,9 @@ RSpec.describe RolesController, type: :controller do
       expect(assigns(:role)).to eq(role)
     end
     it 'raises an exception' do
-      expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: 'nothing' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:user, password: 'mypassword', first_name: 'Juan', last_name: 'Dela Cruz', suffix: 'Sr.') }
+  let(:user) do
+    create(:user,
+           password: 'mypassword',
+           first_name: 'Juan',
+           last_name: 'Dela Cruz',
+           suffix: 'Sr.')
+  end
 
   describe 'bcrypt' do
     it { is_expected.to have_secure_password }

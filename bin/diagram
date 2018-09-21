@@ -15,5 +15,7 @@ chdir APP_ROOT do
   # Add necessary setup steps to this file.
 
   puts 'Generating model diagram'
-  system! "railroady -blamM --hide-through | sed -E 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' | dot -Tsvg > doc/models_brief.svg"
+  system! "railroady -blamM --hide-through | \
+  sed -E 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' | \
+  dot -Tsvg > doc/models_brief.svg"
 end

@@ -6,6 +6,7 @@
 #     describe User do
 #       it { should validate_with CustomValidator }
 #     end
+# rubocop:disable BlockLength
 RSpec::Matchers.define :validate_with do |expected_validator, _options|
   match do |subject|
     @validator = subject.class.validators.find do |validator|
@@ -31,10 +32,14 @@ RSpec::Matchers.define :validate_with do |expected_validator, _options|
   end
 
   failure_message do |_text|
-    "expected to validate with #{validator}#{@options.present? ? (' with options ' + @options) : ''}"
+    option = @options.present? ? (' with options ' + @options) : ''
+    "expected to validate with #{validator}#{option}"
   end
 
   failure_message_when_negated do |_text|
-    "do not expected to validate with #{validator}#{@options.present? ? (' with options ' + @options) : ''}"
+    option = @options.present? ? (' with options ' + @options) : ''
+
+    "do not expected to validate with #{validator}#{option}"
   end
 end
+# rubocop:enable BlockLength

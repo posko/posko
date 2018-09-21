@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe AccountsController, type: :controller do
   let(:user) { create(:user) }
-  let(:valid_user_param) { { email: 'valid@email.com', first_name: 'first', last_name: 'last', password: 'pass' } }
+  let(:valid_user_param) do
+    { email: 'valid@email.com',
+      first_name: 'first',
+      last_name: 'last',
+      password: 'pass' }
+  end
 
   before { allow(controller).to receive(:current_user).and_return(user) }
   describe 'GET #new' do
@@ -31,7 +36,9 @@ RSpec.describe AccountsController, type: :controller do
     end
     context 'with invalid params' do
       it "renders 'new' " do
-        get :create, params: { registration_form: { account_name: 'Incomplete Company' } }
+        get :create, params: { registration_form: {
+          account_name: 'Incomplete Company'
+        } }
 
         expect(response).to render_template :new
       end

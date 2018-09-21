@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe UserDatatable do
-  let(:user_datatable) { described_class.new(double('view', params: params), options) }
+  let(:user_datatable) do
+    described_class.new(instance_double('view', params: params),
+                        options)
+  end
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   # supporting data

@@ -4,7 +4,12 @@ RSpec.describe Api::V1::UsersController, type: :request do
   let(:user) { create(:user) }
   let(:user2) { create(:user, account: user.account) }
   let(:access_key) { user.access_keys.first }
-  let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+
+  let(:headers) do
+    token = access_key.token
+    auth_token = access_key.auth_token
+    { 'HTTP_AUTHORIZATION': basic_auth(token, auth_token) }
+  end
 
   describe 'GET /api/v1/users' do
     it 'returns current account' do

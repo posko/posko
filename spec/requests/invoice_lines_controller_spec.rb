@@ -6,9 +6,19 @@ RSpec.describe Api::V1::InvoiceLinesController, type: :request do
   let(:customer) { create(:customer, account: account) }
   let(:invoice) { create(:invoice, account: user.account, user: user) }
   let(:access_key) { user.access_keys.first }
-  let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
 
-  let(:invoice_line) { create(:invoice_line, price: 100, title: 'Large', invoice: invoice) }
+  let(:headers) do
+    token = access_key.token
+    auth_token = access_key.auth_token
+    { 'HTTP_AUTHORIZATION': basic_auth(token, auth_token) }
+  end
+
+  let(:invoice_line) do
+    create(:invoice_line,
+           price: 100,
+           title: 'Large',
+           invoice: invoice)
+  end
 
   describe 'GET /api/v1/invoices/:invoice_id/invoice_lines' do
     it 'returns list of invoices' do

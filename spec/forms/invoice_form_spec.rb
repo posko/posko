@@ -41,7 +41,8 @@ RSpec.describe InvoiceForm, type: :form do
   end
 
   describe '#save' do
-    # before { allow(invoice_form).to receive(:service_object).and_return(double(perform: true)) }
+    # before { allow(invoice_form).to receive(:service_object).
+    # and_return(double(perform: true)) }
     context 'with correct input' do
       before { invoice_form.save }
       it { expect(invoice_form.save).to be_truthy }

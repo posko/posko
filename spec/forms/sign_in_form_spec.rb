@@ -2,7 +2,13 @@ require 'rails_helper'
 
 RSpec.describe SignInForm do
   let(:account) { create(:account, name: 'posko') }
-  let(:user) { create(:user, email: 'a@a.com', password: 'pass', account: account, access_key_count: 0) }
+  let(:user) do
+    create(:user,
+           email: 'a@a.com',
+           password: 'pass',
+           account: account,
+           access_key_count: 0)
+  end
   let(:sign_in_form) do
     described_class.new(
       account_name: 'posko',

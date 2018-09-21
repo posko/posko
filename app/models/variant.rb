@@ -11,5 +11,6 @@ class Variant < ApplicationRecord
   validates :price, presence: true
 end
 
-# parent_variant_id and parent_product_id are no longer used. Components are now maintained by associative relation
+# parent_variant_id and parent_product_id are no longer used.
+# Components are now maintained by associative relation
 # delete it if there's no future use

@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'faker'
 
 options = {}
@@ -16,12 +8,12 @@ options['password']      = ENV['DEMO_PASSWORD'] || 'pass'
 options['first_name']    = ENV['DEMO_FIRST_NAME'] || 'Juan'
 options['last_name']     = ENV['DEMO_LAST_NAME'] || 'Dela Cruz'
 
-puts "\nSigning Up:"
+logger.debug "\nSigning Up:"
 @registration_form = RegistrationForm.new options
 if @registration_form.save
-  puts "\t Created #{@registration_form.account.company}"
+  logger.debug "\t Created #{@registration_form.account.company}"
 else
-  puts "\tSign Up Failed"
+  logger.debug "\tSign Up Failed"
 end
 
 account = @registration_form.account
@@ -43,9 +35,9 @@ sku = '000001'
   Faker::Color.unique.clear
 end
 
-puts "\nCreating Customer:"
+logger.debug "\nCreating Customer:"
 customer = account.customers.create(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name
 )
-puts "\t#{customer.first_name} #{customer.last_name} is created"
+logger.debug "\t#{customer.first_name} #{customer.last_name} is created"

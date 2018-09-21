@@ -9,7 +9,10 @@ RSpec.describe SessionsController, type: :controller do
   end
   describe 'GET #create' do
     let(:account) { create(:account, account_name: 'firstcompany') }
-    let(:user) { create(:user, email: 'admin@firstcompany.com', password: 'password', account: account) }
+    let(:user) do
+      create(:user, email: 'admin@firstcompany.com', password: 'password',
+                    account: account)
+    end
 
     context 'with correct credentials' do
       before do

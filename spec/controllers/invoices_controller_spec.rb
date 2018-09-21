@@ -29,7 +29,9 @@ RSpec.describe InvoicesController, type: :controller do
       it 'creates invoice' do
         # params = { invoice: valid_invoice_param }
         # TODO: Recreate this one
-        # expect { post(:create, params: params) }.to change(Invoice, :count).by(1)
+        # expect do
+        #   post(:create, params: params)
+        # end.to change(Invoice, :count).by(1)
       end
     end
 
@@ -80,7 +82,9 @@ RSpec.describe InvoicesController, type: :controller do
       expect(assigns(:invoice)).to eq(invoice)
     end
     it 'raises an exception' do
-      expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: 'nothing' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

@@ -30,7 +30,8 @@ class Invoice < ApplicationRecord
   end
 
   # def compute_values
-  #   invoice_lines_collection = invoice_lines.active_status.sum("invoice_lines.price")
+  #   invoice_lines_collection = invoice_lines.active_status.
+  #     sum("invoice_lines.price")
   #   self.total_line_items_price = invoice_lines_collection
   # end
   #

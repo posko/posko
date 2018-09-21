@@ -2,7 +2,14 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
-  let(:valid_user_param) { { email: 'valid@email.com', first_name: 'first', last_name: 'last', password: 'pass' } }
+  let(:valid_user_param) do
+    {
+      email: 'valid@email.com',
+      first_name: 'first',
+      last_name: 'last',
+      password: 'pass'
+    }
+  end
 
   before { allow(controller).to receive(:current_user).and_return(user) }
   describe 'GET #index' do
@@ -17,7 +24,7 @@ RSpec.describe UsersController, type: :controller do
                     "columns[0][data]": 'name',
                     "columns[0][search][regex]": false
                   }
-      expect(response).to include_json
+      expect(response.body).to include_json("recordsTotal": 1)
     end
   end
   describe 'GET #new' do
@@ -82,7 +89,9 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq(user)
     end
     it 'raises an exception' do
-      expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: 'nothing' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

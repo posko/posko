@@ -29,7 +29,8 @@ RSpec.describe Product, type: :model do
       product.variants.new(attributes_for(:variant))
       expect(product).to be_invalid
       expect(product.variants.count).to eq(1)
-      expect(product.errors.full_messages).to include('Composite product should only have 1 variant')
+      expect(product.errors.full_messages)
+        .to include('Composite product should only have 1 variant')
     end
   end
   describe 'associations' do

@@ -2,8 +2,12 @@ require 'rails_helper'
 
 RSpec.describe RegistrationService do
   let(:registration_service) do
-    described_class.new account_name: 'newcompany', company: 'New Company', email: 'ceo@new_company.com', password: 'mypassword',
-                        first_name: 'Juan', last_name: 'Dela Cruz'
+    described_class.new account_name: 'newcompany',
+                        company: 'New Company',
+                        email: 'ceo@new_company.com',
+                        password: 'mypassword',
+                        first_name: 'Juan',
+                        last_name: 'Dela Cruz'
   end
 
   describe '#perform' do
@@ -18,7 +22,9 @@ RSpec.describe RegistrationService do
       expect(Account.count).to eq(0)
       expect(User.count).to eq(0)
       expect(registration_service.perform).to be_truthy
-      expect { registration_service.deep_dup.perform }.to raise_error(ActiveRecord::RecordInvalid)
+      expect do
+        registration_service.deep_dup.perform
+      end.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 

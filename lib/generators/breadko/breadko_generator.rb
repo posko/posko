@@ -1,6 +1,7 @@
 class BreadkoGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('templates', __dir__)
-  class_option :with_datatable, type: :boolean, default: false, description: 'Add datatable'
+  class_option :with_datatable, type: :boolean, default: false,
+                                description: 'Add datatable'
 
   argument :attributes, type: :array, default: []
 
@@ -16,7 +17,8 @@ class BreadkoGenerator < Rails::Generators::NamedBase
   end
 
   def generate_app_classes
-    template 'breadkos_controller.erb', "app/controllers/#{objects}_controller.rb"
+    template 'breadkos_controller.erb',
+             "app/controllers/#{objects}_controller.rb"
     template 'breadko_model.erb', "app/models/#{object}.rb"
   end
 
@@ -29,13 +31,15 @@ class BreadkoGenerator < Rails::Generators::NamedBase
   end
 
   def generate_specs
-    template 'breadkos_controller_spec.erb', "spec/controllers/#{objects}_controller_spec.rb"
+    template 'breadkos_controller_spec.erb',
+             "spec/controllers/#{objects}_controller_spec.rb"
     template 'breadko_model_spec.erb', "spec/models/#{object}_spec.rb"
     template 'breadkos_factory.erb', "spec/factories/#{objects}.rb"
   end
 
   def generate_additional_classes
-    template 'breadko_datatable.erb', "app/datatables/#{object}_datatable.rb" if with_datatable?
+    return unless with_datatable?
+    template 'breadko_datatable.erb', "app/datatables/#{object}_datatable.rb"
   end
 
   private

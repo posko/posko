@@ -17,7 +17,10 @@ class Api::V1::InvoiceLinesController < Api::V1::ApiController
   private
 
   def invoice_line_params
-    params.require(:invoice_line).permit(:variant_id, :product_id, :title, :price)
+    params.require(:invoice_line).permit(:variant_id,
+                                         :product_id,
+                                         :title,
+                                         :price)
   end
 
   def invoice

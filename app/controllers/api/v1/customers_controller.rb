@@ -10,7 +10,9 @@ class Api::V1::CustomersController < Api::V1::ApiController
     if @customer.save
       render json: { customer: @customer }
     else
-      render status: :unprocessable_entity, json: { messages: @customer.errors.full_messages }
+      render status: :unprocessable_entity, json: {
+        messages: @customer.errors.full_messages
+      }
     end
   end
 

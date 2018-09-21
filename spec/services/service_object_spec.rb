@@ -25,7 +25,11 @@ RSpec.describe ServiceObject do
 
     context 'without #perform definition' do
       it 'raise and error' do
-        expect { performless_service_class.perform }.to raise_exception.with_message("'perform_service' method Not implemented")
+        expect do
+          performless_service_class.perform
+        end.to raise_exception.with_message(
+          "'perform_service' method Not implemented"
+        )
       end
     end
   end

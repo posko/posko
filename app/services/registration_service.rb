@@ -39,7 +39,10 @@ class RegistrationService < ServiceObject
 
   def create_user!
     # add roles if implemeted
-    @user = account.users.create!(email: email, password: password, first_name: first_name, last_name: last_name)
+    @user = account.users.create!(email: email,
+                                  password: password,
+                                  first_name: first_name,
+                                  last_name: last_name)
   end
 
   def valid?

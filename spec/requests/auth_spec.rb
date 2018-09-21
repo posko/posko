@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Auth', type: :request do
   let(:account) { create(:account) }
-  let(:user) { create(:user, password: 'pass', account: account, access_key_count: 0) }
+  let(:user) do
+    create(:user,
+           password: 'pass',
+           account: account,
+           access_key_count: 0)
+  end
   let(:access_key) { user.access_keys.first }
   let(:successful_sign_in) do
     { user: {
@@ -43,11 +48,16 @@ end
 
 # RSpec.describe "Auth", type: :request do
 #   let(:user) { create(:user, email: "a@a.com", password: "pass") }
-#   let(:successful_sign_in) { { user: { email: user.email, token: user.token} } }
+#   let(:successful_sign_in) { { user: {
+#                                 email: user.email,
+#                                 token: user.token} } }
 #   let(:failed_sign_in) { { messages: [ "Invalid Credentials"] } }
 #   describe 'POST /sign_in' do
 #     context "with correct credentials" do
-#       before { user && post('/api/v1/auth/sign_in', params: {email: "a@a.com", password: "pass"}) }
+#         before do
+#           user && post('/api/v1/auth/sign_in',
+#             params: { email: 'a@a.com', password: 'pass' })
+#         end
 #       it "returns user" do
 #         expect(json).not_to be_empty
 #         expect(response).to have_http_status(:ok)
@@ -55,7 +65,8 @@ end
 #       end
 #     end
 #     context "with incorrect credentials" do
-#       before { post('/api/v1/auth/sign_in', params: {email: 'a@a.com', password: "wrong_pass"}) }
+#       before { post('/api/v1/auth/sign_in',
+#                params: {email: 'a@a.com', password: "wrong_pass"}) }
 #       it "returns user" do
 #         expect(json).not_to be_empty
 #         expect(response).to have_http_status(401)

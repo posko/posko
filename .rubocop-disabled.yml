@@ -13,3 +13,6 @@ RSpec/ExampleLength:
 
 RSpec/FilePath:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false

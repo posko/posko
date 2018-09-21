@@ -2,10 +2,18 @@ require 'rails_helper'
 
 RSpec.describe AuthenticationService do
   let(:account) { create(:account, name: 'posko') }
-  let(:user) { create(:user, email: 'a@a.com', password: 'pass', account: account, access_key_count: 0) }
+  let(:user) do
+    create(:user,
+           email: 'a@a.com',
+           password: 'pass',
+           account: account,
+           access_key_count: 0)
+  end
   let(:sign_in) do
     user
-    described_class.new account_name: 'posko', email: 'a@a.com', password: 'pass'
+    described_class.new account_name: 'posko',
+                        email: 'a@a.com',
+                        password: 'pass'
   end
 
   before { user }
@@ -31,7 +39,11 @@ RSpec.describe AuthenticationService do
     end
 
     context 'with incorrect credentials' do
-      let(:with_x_sign_in) { described_class.new account_name: 'poskoa', email: 'a@a.com', password: 'x pass' }
+      let(:with_x_sign_in) do
+        described_class.new account_name: 'poskoa',
+                            email: 'a@a.com',
+                            password: 'x pass'
+      end
 
       it 'rejects user' do
         expect(with_x_sign_in.process).to be_falsey

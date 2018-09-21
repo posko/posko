@@ -23,7 +23,10 @@ RSpec.describe ComponentsController, type: :controller do
   end
   describe 'POST #create' do
     context 'with successful attempt' do
-      let(:params) { { component: valid_component_param, variant_id: variant.id } }
+      let(:params) do
+        { component: valid_component_param,
+          variant_id: variant.id }
+      end
 
       before { post(:create, params: params) }
       it 'creates component' do
@@ -34,7 +37,8 @@ RSpec.describe ComponentsController, type: :controller do
     context 'with failed attempt' do
       before { component }
       it "renders 'new' template" do
-        params = { component: { quantity: nil, cost: 99 }, variant_id: variant.id }
+        params = { component: { quantity: nil, cost: 99 },
+                   variant_id: variant.id }
         post(:create, params: params)
         expect(response).to render_template 'new'
       end
@@ -79,7 +83,9 @@ RSpec.describe ComponentsController, type: :controller do
       expect(assigns(:component)).to be_deleted_status
     end
     it 'raises an exception' do
-      expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: 'nothing' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

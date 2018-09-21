@@ -4,7 +4,12 @@ RSpec.describe ProductsController, type: :controller do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   let(:product) { create(:product, account: account) }
-  let(:valid_product_param) { { title: 'Bag', price: '99.9', product_type: 'regular', vendor: 'Bag Company' } }
+  let(:valid_product_param) do
+    { title: 'Bag',
+      price: '99.9',
+      product_type: 'regular',
+      vendor: 'Bag Company' }
+  end
 
   before { sign_in }
   describe 'GET #index' do
@@ -77,7 +82,9 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:product)).to be_deleted_status
     end
     it 'raises an exception' do
-      expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: 'nothing' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
