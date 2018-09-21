@@ -6,6 +6,7 @@ RSpec.describe InvoicesController, type: :controller do
   let(:account) { user.account }
   let(:invoice) { create(:invoice, account: account) }
   let(:valid_invoice_param) { { customer_id: customer.id, invoice_number: 1 } }
+
   before do
     allow(controller).to receive(:current_user).and_return(user)
     allow(controller).to receive(:current_account).and_return(account)
@@ -23,16 +24,16 @@ RSpec.describe InvoicesController, type: :controller do
     end
   end
   describe 'POST #create' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       before { invoice }
       it 'creates invoice' do
-        params = { invoice: valid_invoice_param }
+        # params = { invoice: valid_invoice_param }
         # TODO: Recreate this one
         # expect { post(:create, params: params) }.to change(Invoice, :count).by(1)
       end
     end
 
-    context 'failed attempt' do
+    context 'with failed attempt' do
       before { invoice }
       it "renders 'new' template" do
         params = { invoice: { customer_id: nil } }
@@ -49,7 +50,7 @@ RSpec.describe InvoicesController, type: :controller do
     end
   end
   describe 'PATCH #update' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       it 'updates invoice' do
         params = { id: invoice.id, invoice: { invoice_number: 2 } }
         patch :update, params: params
@@ -57,7 +58,7 @@ RSpec.describe InvoicesController, type: :controller do
         expect(response).to redirect_to(invoices_path)
       end
     end
-    context 'failed attempt' do
+    context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: invoice.id, invoice: { invoice_number: nil } }
         patch :update, params: params

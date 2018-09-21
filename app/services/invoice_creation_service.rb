@@ -6,12 +6,7 @@ class InvoiceCreationService < ServiceObject
     @user                   = options.fetch(:user)
     @customer               = options[:customer]
     @account                = options.fetch(:account)
-    @total_price            = 0
-    @subtotal               = 0
-    @total_weight           = 0
-    @total_tax              = 0
-    @total_discounts        = 0
-    @total_line_items_price = 0
+    reset_variables
   end
 
   def valid?
@@ -39,6 +34,15 @@ class InvoiceCreationService < ServiceObject
   rescue ActiveRecord::RecordInvalid => exception
     @errors = exception.record.errors.full_messages.last
     false
+  end
+
+  def reset_variables
+    @total_price            = 0
+    @subtotal               = 0
+    @total_weight           = 0
+    @total_tax              = 0
+    @total_discounts        = 0
+    @total_line_items_price = 0
   end
 
   def build_invoice

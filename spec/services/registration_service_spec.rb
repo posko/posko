@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe RegistrationService do
   let(:registration_service) do
-    RegistrationService.new account_name: 'newcompany', company: 'New Company', email: 'ceo@new_company.com', password: 'mypassword',
-                            first_name: 'Juan', last_name: 'Dela Cruz'
+    described_class.new account_name: 'newcompany', company: 'New Company', email: 'ceo@new_company.com', password: 'mypassword',
+                        first_name: 'Juan', last_name: 'Dela Cruz'
   end
+
   describe '#perform' do
     it 'creates a new account and user' do
       # maybe I should store record counts before processing in case of leakage
@@ -26,11 +27,13 @@ RSpec.describe RegistrationService do
       registration_service.perform
     end
     subject { registration_service.user }
+
     it { is_expected.to be_truthy }
   end
 
   describe '#account' do
     subject { -> { registration_service.account } }
+
     context 'when processed' do
       before { registration_service.perform }
       it { is_expected.to be_truthy }
@@ -39,6 +42,7 @@ RSpec.describe RegistrationService do
 
   describe '#processed?' do
     subject { registration_service.performed? }
+
     context 'when processed' do
       before { registration_service.perform }
       it { is_expected.to be_truthy }

@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe InvoiceValidator do
+  subject { validatable_object }
+
+  let(:validatable_object) { validatable.new(subtotal: subtotal, invoice_lines: invoice_lines) }
   let(:validatable) do
     Class.new do
       include ActiveModel::Model
@@ -19,18 +22,19 @@ RSpec.describe InvoiceValidator do
   end
   let(:subtotal) { 32 }
 
-  subject { validatable.new(subtotal: subtotal, invoice_lines: invoice_lines) }
   describe 'invoice subtotal' do
     context 'with correct subtotal' do
       it { is_expected.to be_valid }
     end
     context 'with incorrect subtotal' do
       let(:subtotal) { 10 }
+
       it { is_expected.to be_invalid }
     end
 
     context 'without subtotal' do
       let(:subtotal) { nil }
+
       it { is_expected.to be_invalid }
     end
   end
@@ -48,9 +52,10 @@ RSpec.describe InvoiceValidator do
           {} # 3 missing
         ]
       end
-      before { subject.validate }
+
+      before { validatable_object.validate }
       it { is_expected.to be_invalid }
-      it { expect(subject.errors.count).to eq 5 }
+      it { expect(validatable_object.errors.count).to eq 5 }
     end
   end
 end

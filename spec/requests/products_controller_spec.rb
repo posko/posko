@@ -10,64 +10,63 @@ RSpec.describe Api::V1::ProductsController, type: :request do
 
   before { products }
   describe 'GET /api/v1/products' do
-    context 'retrieve all products' do
+    context 'when retrieving all products' do
       before { get '/api/v1/products', headers: headers }
       it 'returns list of products' do
         expect(json['products'].count).to eq(3)
       end
     end
 
-    context 'using ids' do
+    context 'when using ids' do
       it 'retrieves products by id' do
         get '/api/v1/products', params: { ids: [products[0].id, products[1].id] }, headers: headers
         expect(json['products'].count).to eq(2)
       end
     end
 
-    context 'using page and limit' do
-      it 'returns list of products' do
+    context 'when using page and limit' do
+      it 'returns products from page 1' do
         get '/api/v1/products', params: { limit: 2, page: 1 }, headers: headers
         expect(json['products'].count).to eq(2)
       end
 
-      it 'returns list of products' do
+      it 'returns products from page 2' do
         get '/api/v1/products', params: { limit: 2, page: 2 }, headers: headers
         expect(json['products'].count).to eq(1)
       end
     end
 
-    context 'using since_id' do
+    context 'when using since_id' do
       it 'returns list of products' do
         get '/api/v1/products', params: { since_id: products[1].id }, headers: headers
         expect(json['products'].count).to eq(1)
       end
     end
 
-    context 'using created_at_min' do
+    context 'when using created_at_min' do
       it 'returns list of products' do
         # TODO: test this using past date
         Timecop.freeze(Time.current + 1.day)
         product1 = create(:product, account: account)
         Timecop.return
         Timecop.freeze(Time.current + 2.days)
-        product2 = create(:product, account: account)
+        create(:product, account: account)
         Timecop.return
         get '/api/v1/products', params: { created_at_min: product1.created_at }, headers: headers
         expect(json['products'].count).to eq(2)
       end
-
-      context 'using created_at_max' do
-        it 'returns list of products' do
-          # TODO: test this using past date
-          Timecop.freeze(Time.current - 1.day)
-          product1 = create(:product, account: account)
-          Timecop.return
-          Timecop.freeze(Time.current - 2.days)
-          product2 = create(:product, account: account)
-          Timecop.return
-          get '/api/v1/products', params: { created_at_max: product1.created_at + 1.second }, headers: headers
-          expect(json['products'].count).to eq(2)
-        end
+    end
+    context 'when using created_at_max' do
+      it 'returns list of products' do
+        # TODO: test this using past date
+        Timecop.freeze(Time.current - 1.day)
+        product1 = create(:product, account: account)
+        Timecop.return
+        Timecop.freeze(Time.current - 2.days)
+        create(:product, account: account)
+        Timecop.return
+        get '/api/v1/products', params: { created_at_max: product1.created_at + 1.second }, headers: headers
+        expect(json['products'].count).to eq(2)
       end
     end
   end

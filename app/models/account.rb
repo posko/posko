@@ -1,10 +1,10 @@
 class Account < ApplicationRecord
-  has_many :users
-  has_many :products
-  has_many :invoices
+  has_many :users, dependent: :destroy
+  has_many :products, dependent: :destroy
+  has_many :invoices, dependent: :destroy
   has_many :invoice_lines, through: :invoices
-  has_many :customers
-  has_many :roles
+  has_many :customers, dependent: :destroy
+  has_many :roles, dependent: :destroy
   has_many :variants, through: :products
 
   alias_attribute :account_name, :name

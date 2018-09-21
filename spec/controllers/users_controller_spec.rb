@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
   let(:valid_user_param) { { email: 'valid@email.com', first_name: 'first', last_name: 'last', password: 'pass' } }
+
   before { allow(controller).to receive(:current_user).and_return(user) }
   describe 'GET #index' do
     it 'assigns @users' do
@@ -10,13 +11,13 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:users)).to eq([user])
     end
 
-    it 'assigns @users' do
+    it 'returns a json object' do
       get :index, format: :json,
                   params: {
                     "columns[0][data]": 'name',
                     "columns[0][search][regex]": false
                   }
-      expect(assigns(:users)).to eq([user])
+      expect(response).to include_json
     end
   end
   describe 'GET #new' do
@@ -26,7 +27,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
   describe 'POST #create' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       before { user }
       it 'creates user' do
         params = { user: valid_user_param }
@@ -34,7 +35,7 @@ RSpec.describe UsersController, type: :controller do
       end
     end
 
-    context 'failed attempt' do
+    context 'with failed attempt' do
       before { user }
       it "renders 'new' template" do
         params = { user: { email: nil, password: nil } }
@@ -51,7 +52,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
   describe 'PATCH #update' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       it 'updates user' do
         params = { id: user.id, user: { email: 'updated@email.com' } }
         patch :update, params: params
@@ -59,7 +60,7 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to redirect_to(users_path)
       end
     end
-    context 'failed attempt' do
+    context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: user.id, user: { email: 'wrongformat' } }
         patch :update, params: params

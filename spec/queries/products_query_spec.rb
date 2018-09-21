@@ -4,6 +4,7 @@ RSpec.describe ProductsQuery, type: :query do
   let(:account) { create(:account) }
   let(:products) { create_list(:product, 3, account: account) }
   let(:query) { ProductsQuery.new params, account.products }
+
   before { products }
   describe '#call' do
     let(:params) do
@@ -18,7 +19,7 @@ RSpec.describe ProductsQuery, type: :query do
     end
   end
 
-  context 'using ids' do
+  context 'when using ids' do
     let(:params) { { ids: [products[0].id, products[1].id] } }
 
     it 'filters query' do
@@ -26,7 +27,7 @@ RSpec.describe ProductsQuery, type: :query do
     end
   end
 
-  context 'using limit' do
+  context 'when using limit' do
     let(:params) { { limit: 2, page: 1 } }
 
     it 'filters query' do
@@ -34,44 +35,47 @@ RSpec.describe ProductsQuery, type: :query do
     end
   end
 
-  context 'with page' do
-    context '1' do
+  describe 'page' do
+    context 'with value 1' do
       let(:params) { { limit: 2, page: 1 } }
+
       it 'returns first page' do
         expect(query.call.count).to eq(2)
       end
     end
 
-    context '1' do
+    context 'with value 2' do
       let(:params) { { limit: 2, page: 2 } }
+
       it 'returns first page' do
         expect(query.call.count).to eq(1)
       end
     end
   end
 
-  context 'using since_id' do
+  context 'when using since_id' do
     let(:params) { { since_id: products[1].id } }
+
     it 'returns list of products' do
       expect(query.call.count).to eq(1)
     end
   end
 
-  context 'using attribute_min' do
-    it 'returns list of products' do
+  context 'when using attribute_min' do
+    it 'returns products with min created_at' do
       # TODO: Improve this test
       # there are 3 default products
       Timecop.freeze(Time.current + 1.day)
       product1 = create(:product, account: account)
       Timecop.return
       Timecop.freeze(Time.current + 2.days)
-      product2 = create(:product, account: account)
+      create(:product, account: account)
       Timecop.return
       q = ProductsQuery.new({ created_at_min: product1.created_at }, account.products)
       expect(q.call.count).to eq(2)
     end
 
-    it 'returns list of products' do
+    it 'returns products with max created_at' do
       # TODO: Improve this test
       # there are 3 default products
       # create products before the the current date
@@ -79,7 +83,7 @@ RSpec.describe ProductsQuery, type: :query do
       product1 = create(:product, account: account)
       Timecop.return
       Timecop.freeze(Time.current - 2.days)
-      product2 = create(:product, account: account)
+      create(:product, account: account)
       Timecop.return
       q = ProductsQuery.new({ created_at_max: product1.created_at + 1 }, account.products)
       expect(q.call.count).to eq(2)

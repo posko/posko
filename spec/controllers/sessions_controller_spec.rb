@@ -10,7 +10,8 @@ RSpec.describe SessionsController, type: :controller do
   describe 'GET #create' do
     let(:account) { create(:account, account_name: 'firstcompany') }
     let(:user) { create(:user, email: 'admin@firstcompany.com', password: 'password', account: account) }
-    context 'correct credentials' do
+
+    context 'with correct credentials' do
       before do
         # create user
         user
@@ -23,12 +24,12 @@ RSpec.describe SessionsController, type: :controller do
         }
       end
       it 'redirects to dashboard' do
-        expect(assigns(:sign_in_form).account.persisted?).to be_truthy
-        expect(assigns(:sign_in_form).user.persisted?).to be_truthy
+        expect(assigns(:sign_in_form).account).to be_persisted
+        expect(assigns(:sign_in_form).user).to be_persisted
         expect(response).to redirect_to(dashboard_path)
       end
     end
-    context 'incorrect credentials' do
+    context 'with incorrect credentials' do
       before do
         # create user
         user
@@ -41,19 +42,19 @@ RSpec.describe SessionsController, type: :controller do
         }
       end
       it 'assigns @sign_in_form' do
-        expect(assigns(:sign_in_form).account.persisted?).to be_truthy
-        expect(assigns(:sign_in_form).user.persisted?).to be_truthy
+        expect(assigns(:sign_in_form).account).to be_persisted
+        expect(assigns(:sign_in_form).user).to be_persisted
         expect(response).to render_template(:new)
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'signs out user' do
+    it 'signs out user using get' do
       get :destroy
       expect(response).to redirect_to(sign_in_path)
     end
-    it 'signs out user' do
+    it 'signs out user using delete' do
       delete :destroy
       expect(response).to redirect_to(sign_in_path)
     end

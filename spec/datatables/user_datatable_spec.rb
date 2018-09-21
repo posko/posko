@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserDatatable do
-  let(:user_datatable) { UserDatatable.new(double('view', params: params), options) }
+  let(:user_datatable) { described_class.new(double('view', params: params), options) }
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   # supporting data
@@ -13,6 +13,7 @@ RSpec.describe UserDatatable do
       current_account: account
     }
   end
+
   before { user }
   describe '#to_json' do
     let(:expected_json) do
@@ -23,6 +24,7 @@ RSpec.describe UserDatatable do
         }]
       }
     end
+
     it { expect(user_datatable.to_json).to include_json(expected_json) }
   end
 end

@@ -5,11 +5,11 @@ RSpec.describe BreadkoGenerator, type: :generator do
   destination File.expand_path('../tmp', __dir__)
   arguments %w[posts content:string tags:string --with-datatable]
 
-  before(:all) do
+  before do
     prepare_destination
     run_generator
   end
-  after(:all) do
+  after do
     system 'rm -rf spec/tmp'
   end
 

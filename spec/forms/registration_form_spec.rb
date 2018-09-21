@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RegistrationForm do
   let(:registration_form) do
-    RegistrationForm.new(
+    described_class.new(
       account_name: 'newcompany',
       company: 'New Company',
       email: 'ceo@new_company.com',
@@ -23,7 +23,8 @@ RSpec.describe RegistrationForm do
     end
 
     context 'with incorrect input' do
-      let(:registration_form) { RegistrationForm.new }
+      let(:registration_form) { described_class.new }
+
       it { expect(registration_form).to be_invalid }
     end
   end

@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :find_customer, except: [:index, :new, :create]
+  before_action :customer, except: [:index, :new, :create]
   def index
     @customers = current_account.customers
   end
@@ -36,7 +36,7 @@ class CustomersController < ApplicationController
 
   private
 
-  def find_customer
+  def customer
     @customer ||= current_account.customers.find(params[:id])
   end
 

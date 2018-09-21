@@ -5,6 +5,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
   let(:user2) { create(:user, account: user.account) }
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+
   describe 'GET /api/v1/users' do
     it 'returns current account' do
       user2 # invoke to create user before request

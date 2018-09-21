@@ -26,8 +26,6 @@ class RegistrationService < ServiceObject
     @processed
   end
 
-  private
-
   def perform_service
     ActiveRecord::Base.transaction do
       create_account!

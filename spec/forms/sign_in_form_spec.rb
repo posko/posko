@@ -4,7 +4,7 @@ RSpec.describe SignInForm do
   let(:account) { create(:account, name: 'posko') }
   let(:user) { create(:user, email: 'a@a.com', password: 'pass', account: account, access_key_count: 0) }
   let(:sign_in_form) do
-    SignInForm.new(
+    described_class.new(
       account_name: 'posko',
       email: 'a@a.com',
       password: password
@@ -13,6 +13,7 @@ RSpec.describe SignInForm do
 
   # supporting data
   let(:password) { 'pass' }
+
   before { user }
   describe '#save' do
     context 'with correct credentials' do
@@ -25,6 +26,7 @@ RSpec.describe SignInForm do
 
     context 'with incorrect credentials' do
       let(:password) { 'wrong password' }
+
       before { sign_in_form.save }
       it { expect(user.access_keys.count).to be 0 }
       it { expect(sign_in_form.errors.count).to be 1 }

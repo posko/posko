@@ -21,6 +21,7 @@ RSpec.describe 'Auth', type: :request do
 
     context 'with correct credentials' do
       let(:password) { 'pass' }
+
       it 'authenticates user' do
         post '/api/v1/sign_in.json', params: params
         expect(json).to include_json(successful_sign_in)
@@ -29,6 +30,7 @@ RSpec.describe 'Auth', type: :request do
 
     context 'with incorrect credentials' do
       let(:password) { 'wrong pass' }
+
       it 'does not authenticates user' do
         post '/api/v1/sign_in.json', params: params
         expect(json).to include_json(failed_sign_in)

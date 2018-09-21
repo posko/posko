@@ -44,6 +44,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'hirb'
+  gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
 end
 
@@ -59,7 +60,6 @@ group :development do
   gem 'license_finder'
   gem 'railroady'
   gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

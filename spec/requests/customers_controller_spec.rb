@@ -6,6 +6,7 @@ RSpec.describe Api::V1::CustomersController, type: :request do
   let(:customer) { create(:customer, account: user.account) }
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+
   describe 'GET /api/v1/customers' do
     it 'returns list of customers' do
       create(:customer, account: account)

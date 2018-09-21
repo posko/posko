@@ -5,7 +5,7 @@ RSpec.describe AuthenticationService do
   let(:user) { create(:user, email: 'a@a.com', password: 'pass', account: account, access_key_count: 0) }
   let(:sign_in) do
     user
-    AuthenticationService.new account_name: 'posko', email: 'a@a.com', password: 'pass'
+    described_class.new account_name: 'posko', email: 'a@a.com', password: 'pass'
   end
 
   before { user }
@@ -31,7 +31,8 @@ RSpec.describe AuthenticationService do
     end
 
     context 'with incorrect credentials' do
-      let(:with_x_sign_in) { AuthenticationService.new account_name: 'poskoa', email: 'a@a.com', password: 'x pass' }
+      let(:with_x_sign_in) { described_class.new account_name: 'poskoa', email: 'a@a.com', password: 'x pass' }
+
       it 'rejects user' do
         expect(with_x_sign_in.process).to be_falsey
         expect(with_x_sign_in.errors.size).to eq(1)
@@ -43,12 +44,14 @@ RSpec.describe AuthenticationService do
   describe '#user' do
     before { sign_in.process }
     subject { sign_in.user }
+
     it { is_expected.to be_present }
   end
 
   describe '#account' do
     before { sign_in.process }
     subject { sign_in.account }
+
     it { is_expected.to be_present }
   end
 end

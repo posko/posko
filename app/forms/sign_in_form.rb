@@ -31,6 +31,4 @@ class SignInForm < FormObject
   # def user
   #   service_object.user
   # end
-
-  private
 end

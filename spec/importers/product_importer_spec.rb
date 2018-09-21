@@ -5,6 +5,7 @@ RSpec.describe ProductImporter, type: :importer do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
   let(:importer) { ProductImporter.new(filepath: filepath, account_id: account.id, user_id: user.id) }
+
   describe '#perform' do
     it 'imports product from csv' do
       importer.perform

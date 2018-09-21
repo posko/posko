@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :find_invoice, except: [:index, :new, :create]
+  before_action :invoice, except: [:index, :new, :create]
   def index
     @invoices = current_account.invoices
   end
@@ -37,7 +37,7 @@ class InvoicesController < ApplicationController
 
   private
 
-  def find_invoice
+  def invoice
     @invoice ||= current_account.invoices.find(params[:id])
   end
 

@@ -9,8 +9,38 @@ AllCops:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
 Style/WordArray:
   Enabled: false
 
 Style/SymbolArray:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - Guardfile
+    - '**/*_spec.rb'
+    - db/schema.rb
+    - config/routes.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - Guardfile
+    - '**/*_spec.rb'
+    - config/routes.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - Guardfile
+    - '**/*_spec.rb'
+    - config/routes.rb
+
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/datatables/*.rb'
+
+RSpec/MultipleExpectations:
+  Max: 10

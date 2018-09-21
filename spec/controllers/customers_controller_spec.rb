@@ -4,6 +4,7 @@ RSpec.describe CustomersController, type: :controller do
   let(:user) { create(:user) }
   let(:customer) { create(:customer) }
   let(:valid_customer_param) { { email: 'valid@email.com', first_name: 'first', last_name: 'last', password: 'pass' } }
+
   before do
     allow(controller).to receive(:current_user).and_return(user)
     allow(controller).to receive(:current_account).and_return(user.account)
@@ -21,7 +22,7 @@ RSpec.describe CustomersController, type: :controller do
     end
   end
   describe 'POST #create' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       before { customer }
       it 'creates customer' do
         params = { customer: valid_customer_param }
@@ -29,7 +30,7 @@ RSpec.describe CustomersController, type: :controller do
       end
     end
 
-    context 'failed attempt' do
+    context 'with failed attempt' do
       before { customer }
       it "renders 'new' template" do
         params = { customer: { email: nil, password: nil } }
@@ -46,7 +47,7 @@ RSpec.describe CustomersController, type: :controller do
     end
   end
   describe 'PATCH #update' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       it 'updates customer' do
         params = { id: customer.id, customer: { email: 'updated@email.com' } }
         patch :update, params: params
@@ -54,7 +55,7 @@ RSpec.describe CustomersController, type: :controller do
         expect(response).to redirect_to(customers_path)
       end
     end
-    context 'failed attempt' do
+    context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: customer.id, customer: { first_name: '' } }
         patch :update, params: params

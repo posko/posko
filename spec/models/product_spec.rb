@@ -2,20 +2,23 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   let(:product) { create(:product) }
+
   describe '#create' do
-    context 'regular' do
+    describe 'regular' do
       let(:product) { create(:product, product_type: :regular) }
+
       it ' adds product with default variant' do
         expect(product.variants.count).to eq(0)
       end
     end
-    context 'regular' do
-      let(:product) { create(:product, :composite) }
-      # should only contain 1 variant with type :composite
-    end
+    # describe 'composite' do
+    #   let(:product) { create(:product, :composite) }
+    #   # should only contain 1 variant with type :composite
+    # end
   end
   describe 'validations' do
     subject { product }
+
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:account_id) }
     it 'validates composite_variant_count to be 1' do

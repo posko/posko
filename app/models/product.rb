@@ -3,8 +3,8 @@ class Product < ApplicationRecord
 
   attr_accessor :price
 
-  has_many :variants
-  has_many :invoice_lines
+  has_many :variants, dependent: :destroy
+  has_many :invoice_lines, dependent: :destroy
   has_many :components, through: :variants
   belongs_to :account
   belongs_to :created_by, class_name: 'User'

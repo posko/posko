@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Role, type: :model do
   let(:role) { create(:role) }
+
   describe 'Factory' do
     it 'creates necessary data' do
       expect(role).to be_present

@@ -9,6 +9,7 @@ RSpec.describe FormObject, type: :model do
 
   describe 'anonymous class' do
     let(:custom_form) { custom_form_class.new(title: 'Product') }
+
     it { expect(custom_form.title).to eq('Product') }
   end
 end

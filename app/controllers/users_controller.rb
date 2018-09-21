@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, except: [:index, :new, :create]
+  before_action :user, except: [:index, :new, :create]
   def index
     @users = current_account.users
     respond_to do |format|
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   private
 
-  def find_user
+  def user
     @user ||= current_account.users.find(params[:id])
   end
 

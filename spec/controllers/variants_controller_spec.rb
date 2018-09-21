@@ -6,6 +6,7 @@ RSpec.describe VariantsController, type: :controller do
   let(:product) { create(:product, account: account) }
   let(:variant) { create(:variant, product: product) }
   let(:valid_variant_param) { { title: 'Red Bag', price: '99.9', variant_type: 'regular', vendor: 'Bag Company' } }
+
   before { sign_in }
   describe 'GET #index' do
     it 'assigns @variants' do
@@ -20,15 +21,16 @@ RSpec.describe VariantsController, type: :controller do
     end
   end
   describe 'POST #create' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       let(:params) { { variant: valid_variant_param, product_id: product.id } }
+
       before { post(:create, params: params) }
       it 'creates variant' do
         expect(account.variants.count).to eq(1)
       end
     end
 
-    context 'failed attempt' do
+    context 'with failed attempt' do
       before { variant }
       it "renders 'new' template" do
         params = { variant: { title: nil, price: '99.9' }, product_id: product.id }
@@ -45,7 +47,7 @@ RSpec.describe VariantsController, type: :controller do
     end
   end
   describe 'PATCH #update' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       it 'updates variant' do
         params = { id: variant.id, variant: { title: 'High Quality Bag' } }
         patch :update, params: params
@@ -53,7 +55,7 @@ RSpec.describe VariantsController, type: :controller do
         expect(response).to redirect_to(product_variants_path(product.id))
       end
     end
-    context 'failed attempt' do
+    context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: variant.id, variant: { title: nil } }
         patch :update, params: params
@@ -73,7 +75,7 @@ RSpec.describe VariantsController, type: :controller do
       params = { id: variant.id }
       delete :destroy, params: params
       expect(assigns(:variant)).to eq(variant)
-      expect(assigns(:variant).deleted_status?).to be_truthy
+      expect(assigns(:variant)).to be_deleted_status
     end
     it 'raises an exception' do
       expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)

@@ -2,8 +2,8 @@ class Variant < ApplicationRecord
   enum variant_type: [:regular, :composite]
   enum selling_policy: [:each, :weight]
 
-  has_many :invoice_lines
-  has_many :components
+  has_many :invoice_lines, dependent: :destroy
+  has_many :components, dependent: :destroy
 
   belongs_to :product
 

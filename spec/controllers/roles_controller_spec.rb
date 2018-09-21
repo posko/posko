@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe RolesController, type: :controller do
   let(:user) { create(:user) }
   let(:role) { create(:role, name: 'manager', account: user.account) }
+
   before do
     allow(controller).to receive(:current_user).and_return(user)
     allow(controller).to receive(:current_account).and_return(user.account)
@@ -20,7 +21,7 @@ RSpec.describe RolesController, type: :controller do
     end
   end
   describe 'POST #create' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       before { role }
       it 'creates role' do
         params = { role: { name: 'supervisor' } }
@@ -28,7 +29,7 @@ RSpec.describe RolesController, type: :controller do
       end
     end
 
-    context 'failed attempt' do
+    context 'with failed attempt' do
       before { role }
       it "renders 'new' template" do
         params = { role: { name: nil } }
@@ -45,7 +46,7 @@ RSpec.describe RolesController, type: :controller do
     end
   end
   describe 'PATCH #update' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       it 'updates role' do
         params = { id: role.id, role: { name: 'admin' } }
         patch :update, params: params
@@ -53,7 +54,7 @@ RSpec.describe RolesController, type: :controller do
         expect(response).to redirect_to(roles_path)
       end
     end
-    context 'failed attempt' do
+    context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: role.id, role: { name: nil } }
         patch :update, params: params

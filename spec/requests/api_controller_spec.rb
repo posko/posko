@@ -5,11 +5,11 @@ RSpec.describe Api::V1::ApiController, type: :request do
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
 
-  describe '#current_account' do
-  end
-
-  describe '#http_basic_authenticate' do
-  end
+  # describe '#current_account' do
+  # end
+  #
+  # describe '#http_basic_authenticate' do
+  # end
 
   describe '#current_user' do
     it 'returns current account' do

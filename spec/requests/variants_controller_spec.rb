@@ -7,6 +7,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
   let(:variant) { create(:variant, product: product) }
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+
   before { variant }
   describe 'GET /api/v1/products/:product_id/variants' do
     it 'returns list of variants' do

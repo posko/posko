@@ -36,10 +36,11 @@ RSpec.describe InvoiceCreationService do
       ]
     end
 
-    context 'correct params' do
+    context 'with correct params' do
       let(:customer_id) { customer.id }
+
       it 'creates an invoice' do
-        service = InvoiceCreationService.new(params)
+        service = described_class.new(params)
         expect(service).to be_valid
         expect(service.perform).to be_truthy
         invoice = service.invoice

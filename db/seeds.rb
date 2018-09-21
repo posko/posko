@@ -34,8 +34,8 @@ sku = '000001'
     var = {
       title: "#{Faker::Color.unique.color_name.titleize} #{title}",
       sku: sku.next!,
-      price: Faker::Commerce.price(range = 100..200, as_string = false),
-      compare_at_price: Faker::Commerce.price(range = 200..300, as_string = false),
+      price: Faker::Commerce.price(100..200, false),
+      compare_at_price: Faker::Commerce.price(200..300, false),
       barcode: "B#{sku}"
     }
     product.variants.create(var)

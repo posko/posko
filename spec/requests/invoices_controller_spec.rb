@@ -9,6 +9,7 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
   let(:variant) { product.variants.create(price: 100, title: 'Large') }
   let(:access_key) { user.access_keys.first }
   let(:headers) { { 'HTTP_AUTHORIZATION': basic_auth(access_key.token, access_key.auth_token) } }
+
   describe 'GET /api/v1/invoices' do
     it 'returns list of invoices' do
       invoice

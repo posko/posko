@@ -17,7 +17,6 @@ RSpec.describe InvoiceForm, type: :form do
       account: user.account
     )
   end
-  let(:customer) { create(:customer) }
   let(:invoice_number) { '00001' }
   let(:subtotal) { 303 }
   let(:invoice_lines) do
@@ -58,11 +57,13 @@ RSpec.describe InvoiceForm, type: :form do
 
     context 'with incorrect subtotal' do
       let(:subtotal) { 1 }
+
       it { expect(invoice_form).to be_invalid }
     end
 
     context 'with incorrect subtotal' do
       let(:subtotal) { 1 }
+
       it { expect(invoice_form).to be_invalid }
     end
   end

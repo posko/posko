@@ -5,6 +5,7 @@ RSpec.describe ProductsController, type: :controller do
   let(:user) { create(:user, account: account) }
   let(:product) { create(:product, account: account) }
   let(:valid_product_param) { { title: 'Bag', price: '99.9', product_type: 'regular', vendor: 'Bag Company' } }
+
   before { sign_in }
   describe 'GET #index' do
     it 'assigns @products' do
@@ -19,15 +20,16 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
   describe 'POST #create' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       let(:params) { { product: valid_product_param } }
+
       before { post(:create, params: params) }
       it 'creates product' do
         expect(account.products.count).to eq(1)
       end
     end
 
-    context 'failed attempt' do
+    context 'with failed attempt' do
       before { product }
       it "renders 'new' template" do
         params = { product: { title: nil, price: '99.9' } }
@@ -44,7 +46,7 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
   describe 'PATCH #update' do
-    context 'successful attempt' do
+    context 'with successful attempt' do
       it 'updates product' do
         params = { id: product.id, product: { title: 'High Quality Bag' } }
         patch :update, params: params
@@ -52,7 +54,7 @@ RSpec.describe ProductsController, type: :controller do
         expect(response).to redirect_to(products_path)
       end
     end
-    context 'failed attempt' do
+    context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: product.id, product: { title: nil } }
         patch :update, params: params
@@ -72,7 +74,7 @@ RSpec.describe ProductsController, type: :controller do
       params = { id: product.id }
       delete :destroy, params: params
       expect(assigns(:product)).to eq(product)
-      expect(assigns(:product).deleted_status?).to be_truthy
+      expect(assigns(:product)).to be_deleted_status
     end
     it 'raises an exception' do
       expect { delete :destroy, params: { id: 'nothing' } }.to raise_error(ActiveRecord::RecordNotFound)

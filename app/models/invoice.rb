@@ -1,8 +1,8 @@
 class Invoice < ApplicationRecord
   enum invoice_status: [:drafted, :unfulfilled, :fulfilled]
 
-  has_many :invoice_lines
-  has_many :transactions
+  has_many :invoice_lines, dependent: :destroy
+  has_many :transactions, dependent: :destroy
   belongs_to :account
   belongs_to :user
   belongs_to :customer, optional: true
