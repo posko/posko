@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180923114430) do
     t.boolean "tax_feature"
     t.boolean "shifts_feature"
     t.boolean "discounts_feature"
+    t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

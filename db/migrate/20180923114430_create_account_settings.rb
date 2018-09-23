@@ -4,6 +4,7 @@ class CreateAccountSettings < ActiveRecord::Migration[5.1]
       t.boolean :tax_feature
       t.boolean :shifts_feature
       t.boolean :discounts_feature
+      t.bigint  :account_id
       t.timestamps
     end
   end
