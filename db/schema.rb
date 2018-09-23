@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20180923114430) do
   end
 
   create_table "account_settings", force: :cascade do |t|
-    t.boolean "tax_feature"
-    t.boolean "shifts_feature"
-    t.boolean "discounts_feature"
+    t.boolean "tax_feature", default: false
+    t.boolean "shifts_feature", default: false
+    t.boolean "discounts_feature", default: false
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
