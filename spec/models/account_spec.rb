@@ -15,7 +15,7 @@ RSpec.describe Account, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:account_setting) }
+    it { is_expected.to have_one(:account_setting) }
     it { is_expected.to have_many(:products) }
     it { is_expected.to have_many(:variants).through(:products) }
     it { is_expected.to have_many(:invoices) }
