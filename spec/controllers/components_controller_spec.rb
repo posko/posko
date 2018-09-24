@@ -9,18 +9,21 @@ RSpec.describe ComponentsController, type: :controller do
   let(:valid_component_param) { { quantity: 1, cost: 99.9 } }
 
   before { sign_in }
+
   describe 'GET #index' do
     it 'assigns @components' do
       get :index, params: { variant_id: variant.id }
       expect(assigns(:components)).to eq([component])
     end
   end
+
   describe 'GET #new' do
     it 'assigns @component' do
       get :new, params: { variant_id: variant.id }
       expect(assigns(:component)).to be_a_new_record
     end
   end
+
   describe 'POST #create' do
     context 'with successful attempt' do
       let(:params) do
@@ -29,6 +32,7 @@ RSpec.describe ComponentsController, type: :controller do
       end
 
       before { post(:create, params: params) }
+
       it 'creates component' do
         expect(variant.components.count).to eq(1)
       end
@@ -36,6 +40,7 @@ RSpec.describe ComponentsController, type: :controller do
 
     context 'with failed attempt' do
       before { component }
+
       it "renders 'new' template" do
         params = { component: { quantity: nil, cost: 99 },
                    variant_id: variant.id }
@@ -44,6 +49,7 @@ RSpec.describe ComponentsController, type: :controller do
       end
     end
   end
+
   describe 'GET #edit' do
     it 'assigns @component' do
       params = { id: component.id }
@@ -51,6 +57,7 @@ RSpec.describe ComponentsController, type: :controller do
       expect(assigns(:component)).to eq(component)
     end
   end
+
   describe 'PATCH #update' do
     context 'with successful attempt' do
       it 'updates component' do
@@ -60,6 +67,7 @@ RSpec.describe ComponentsController, type: :controller do
         expect(response).to redirect_to(variant_components_path(variant.id))
       end
     end
+
     context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: component.id, component: { quantity: nil } }
@@ -68,6 +76,7 @@ RSpec.describe ComponentsController, type: :controller do
       end
     end
   end
+
   describe 'GET #show' do
     it 'updates component' do
       params = { id: component.id }
@@ -75,6 +84,7 @@ RSpec.describe ComponentsController, type: :controller do
       expect(assigns(:component)).to eq(component)
     end
   end
+
   describe 'DELETE #destroy' do
     it 'updates component' do
       params = { id: component.id }

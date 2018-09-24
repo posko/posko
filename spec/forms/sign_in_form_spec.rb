@@ -21,6 +21,7 @@ RSpec.describe SignInForm do
   let(:password) { 'pass' }
 
   before { user }
+
   describe '#save' do
     context 'with correct credentials' do
       it { expect(sign_in_form.save).to be_truthy }
@@ -34,6 +35,7 @@ RSpec.describe SignInForm do
       let(:password) { 'wrong password' }
 
       before { sign_in_form.save }
+
       it { expect(user.access_keys.count).to be 0 }
       it { expect(sign_in_form.errors.count).to be 1 }
     end

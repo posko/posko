@@ -3,14 +3,14 @@ FactoryBot.define do
     account               { create(:account) }
     sequence(:email)      { |n| "user#{n}@example.com" }
     sequence(:first_name) { |n| "Juan#{n}" }
-    middle_name           'Masigasig'
+    middle_name           { 'Masigasig' }
     sequence(:last_name)  { |n| "Dela Cruz#{n}" }
-    suffix                'Jr.'
-    title                 'Mr'
-    password              'password'
+    suffix                { 'Jr.' }
+    title                 { 'Mr' }
+    password              { 'password' }
 
     transient do
-      access_key_count 1
+      access_key_count { 1 }
     end
 
     after(:create) do |user, evaluator|

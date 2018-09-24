@@ -16,6 +16,7 @@ RSpec.describe Product, type: :model do
     #   # should only contain 1 variant with type :composite
     # end
   end
+
   describe 'validations' do
     subject { product }
 
@@ -33,6 +34,7 @@ RSpec.describe Product, type: :model do
         .to include('Composite product should only have 1 variant')
     end
   end
+
   describe 'associations' do
     it { is_expected.to belong_to(:account) }
     it { is_expected.to have_many(:variants) }

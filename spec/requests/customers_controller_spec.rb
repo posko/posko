@@ -39,6 +39,7 @@ RSpec.describe Api::V1::CustomersController, type: :request do
                                      })
       end
     end
+
     context 'with incorrect params' do
       it 'rejects request' do
         params = {
@@ -65,6 +66,7 @@ RSpec.describe Api::V1::CustomersController, type: :request do
         expect(response).to have_http_status(:ok)
       end
     end
+
     context 'with a non-existent customer' do
       it 'returns the 404' do
         get '/api/v1/customers/0', headers: headers

@@ -18,6 +18,7 @@ RSpec.describe UserDatatable do
   end
 
   before { user }
+
   describe '#to_json' do
     let(:expected_json) do
       {

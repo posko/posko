@@ -29,10 +29,11 @@ RSpec.describe RegistrationService do
   end
 
   describe '#user' do
+    subject { registration_service.user }
+
     before do
       registration_service.perform
     end
-    subject { registration_service.user }
 
     it { is_expected.to be_truthy }
   end
@@ -42,6 +43,7 @@ RSpec.describe RegistrationService do
 
     context 'when processed' do
       before { registration_service.perform }
+
       it { is_expected.to be_truthy }
     end
   end
@@ -51,8 +53,10 @@ RSpec.describe RegistrationService do
 
     context 'when processed' do
       before { registration_service.perform }
+
       it { is_expected.to be_truthy }
     end
+
     context 'when not yet processed' do
       it { is_expected.to be_falsey }
     end

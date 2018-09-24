@@ -7,6 +7,7 @@ RSpec.describe SessionsController, type: :controller do
       expect(assigns(:sign_in_form)).to be_instance_of(SignInForm)
     end
   end
+
   describe 'GET #create' do
     let(:account) { create(:account, account_name: 'firstcompany') }
     let(:user) do
@@ -26,12 +27,14 @@ RSpec.describe SessionsController, type: :controller do
           }
         }
       end
+
       it 'redirects to dashboard' do
         expect(assigns(:sign_in_form).account).to be_persisted
         expect(assigns(:sign_in_form).user).to be_persisted
         expect(response).to redirect_to(dashboard_path)
       end
     end
+
     context 'with incorrect credentials' do
       before do
         # create user
@@ -44,6 +47,7 @@ RSpec.describe SessionsController, type: :controller do
           }
         }
       end
+
       it 'assigns @sign_in_form' do
         expect(assigns(:sign_in_form).account).to be_persisted
         expect(assigns(:sign_in_form).user).to be_persisted

@@ -26,12 +26,14 @@ RSpec.describe InvoiceLine, type: :model do
       # expect(invoice.total_line_items_price).to eq(150)
     end
   end
+
   describe 'validations' do
     subject { variant }
 
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:price) }
   end
+
   describe 'associations' do
     it { is_expected.to belong_to(:invoice) }
     it { is_expected.to belong_to(:product) }

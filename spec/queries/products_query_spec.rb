@@ -6,6 +6,7 @@ RSpec.describe ProductsQuery, type: :query do
   let(:query) { ProductsQuery.new params, account.products }
 
   before { products }
+
   describe '#call' do
     let(:params) do
       {

@@ -45,6 +45,7 @@ RSpec.describe InvoiceForm, type: :form do
     # and_return(double(perform: true)) }
     context 'with correct input' do
       before { invoice_form.save }
+
       it { expect(invoice_form.save).to be_truthy }
     end
   end

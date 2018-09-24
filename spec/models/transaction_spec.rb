@@ -11,6 +11,7 @@ RSpec.describe Transaction, type: :model do
 
   describe 'create transaction' do
     before { transaction }
+
     it 'adds new transaction' do
       expect(transaction).to be_persisted
       expect(transaction.transaction_type).to eq('sale')
@@ -19,12 +20,14 @@ RSpec.describe Transaction, type: :model do
       expect(invoice.transactions.count).to eq(1)
     end
   end
+
   describe 'validations' do
     subject { transaction }
 
     it { is_expected.to validate_presence_of(:amount) }
     it { is_expected.to validate_presence_of(:transaction_type) }
   end
+
   describe 'associations' do
     it { is_expected.to belong_to(:invoice) }
   end

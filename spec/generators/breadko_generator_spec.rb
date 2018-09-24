@@ -9,6 +9,7 @@ RSpec.describe BreadkoGenerator, type: :generator do
     prepare_destination
     run_generator
   end
+
   after do
     system 'rm -rf spec/tmp'
   end

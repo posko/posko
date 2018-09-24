@@ -16,21 +16,25 @@ RSpec.describe CustomersController, type: :controller do
     allow(controller).to receive(:current_user).and_return(user)
     allow(controller).to receive(:current_account).and_return(user.account)
   end
+
   describe 'GET #index' do
     it 'assigns @customers' do
       get :index
       expect(assigns(:customers)).to eq([customer])
     end
   end
+
   describe 'GET #new' do
     it 'assigns @customer' do
       get :new
       expect(assigns(:customer)).to be_a_new_record
     end
   end
+
   describe 'POST #create' do
     context 'with successful attempt' do
       before { customer }
+
       it 'creates customer' do
         params = { customer: valid_customer_param }
         expect { post(:create, params: params) }
@@ -40,6 +44,7 @@ RSpec.describe CustomersController, type: :controller do
 
     context 'with failed attempt' do
       before { customer }
+
       it "renders 'new' template" do
         params = { customer: { email: nil, password: nil } }
         post(:create, params: params)
@@ -47,6 +52,7 @@ RSpec.describe CustomersController, type: :controller do
       end
     end
   end
+
   describe 'GET #edit' do
     it 'assigns @customer' do
       params = { id: customer.id }
@@ -54,6 +60,7 @@ RSpec.describe CustomersController, type: :controller do
       expect(assigns(:customer)).to eq(customer)
     end
   end
+
   describe 'PATCH #update' do
     context 'with successful attempt' do
       it 'updates customer' do
@@ -63,6 +70,7 @@ RSpec.describe CustomersController, type: :controller do
         expect(response).to redirect_to(customers_path)
       end
     end
+
     context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: customer.id, customer: { first_name: '' } }
@@ -71,6 +79,7 @@ RSpec.describe CustomersController, type: :controller do
       end
     end
   end
+
   describe 'GET #show' do
     it 'updates customer' do
       params = { id: customer.id }
@@ -78,6 +87,7 @@ RSpec.describe CustomersController, type: :controller do
       expect(assigns(:customer)).to eq(customer)
     end
   end
+
   describe 'DELETE #destroy' do
     it 'updates customer' do
       params = { id: customer.id }

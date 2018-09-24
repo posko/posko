@@ -9,11 +9,13 @@ RSpec.describe AccessKey, type: :model do
       expect(access_key.auth_token.size).to be(24)
     end
   end
+
   describe 'validations' do
     subject { access_key }
 
     it { is_expected.to validate_uniqueness_of(:token) }
   end
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
   end

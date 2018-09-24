@@ -28,6 +28,7 @@ RSpec.describe InvoiceValidator do
     context 'with correct subtotal' do
       it { is_expected.to be_valid }
     end
+
     context 'with incorrect subtotal' do
       let(:subtotal) { 10 }
 
@@ -56,6 +57,7 @@ RSpec.describe InvoiceValidator do
       end
 
       before { validatable_object.validate }
+
       it { is_expected.to be_invalid }
       it { expect(validatable_object.errors.count).to eq 5 }
     end

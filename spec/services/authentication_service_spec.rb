@@ -54,15 +54,17 @@ RSpec.describe AuthenticationService do
   end
 
   describe '#user' do
-    before { sign_in.process }
     subject { sign_in.user }
+
+    before { sign_in.process }
 
     it { is_expected.to be_present }
   end
 
   describe '#account' do
-    before { sign_in.process }
     subject { sign_in.account }
+
+    before { sign_in.process }
 
     it { is_expected.to be_present }
   end

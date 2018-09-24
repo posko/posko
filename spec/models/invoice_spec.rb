@@ -12,10 +12,12 @@ RSpec.describe Invoice, type: :model do
 
   describe '#create' do
     before { invoice }
+
     it 'creates new invoice ' do
       expect(customer.invoices.count).to eq(1)
     end
   end
+
   describe 'validations' do
     subject { invoice }
 
@@ -27,6 +29,7 @@ RSpec.describe Invoice, type: :model do
     it { is_expected.to validate_presence_of(:total_tax) }
     it { is_expected.to validate_presence_of(:total_weight) }
   end
+
   describe 'associations' do
     it { expect(invoice).to belong_to(:user) }
     it { expect(invoice).to belong_to(:account) }
@@ -51,9 +54,7 @@ RSpec.describe Invoice, type: :model do
   # end
   # describe "#recompute callback" do
   #   subject { create(:invoice) }
-  it {
-    is_expected.to callback(:pass_validations)
-      .before(:validation).on(:create)
-  }
+
+  it { expected.to callback(:pass_validations).before(:validation).on(:create) }
   # end
 end

@@ -13,9 +13,11 @@ RSpec.describe Api::V1::ProductsController, type: :request do
   let(:products) { create_list(:product, 3, account: account) }
 
   before { products }
+
   describe 'GET /api/v1/products' do
     context 'when retrieving all products' do
       before { get '/api/v1/products', headers: headers }
+
       it 'returns list of products' do
         expect(json['products'].count).to eq(3)
       end
@@ -66,6 +68,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
         expect(json['products'].count).to eq(2)
       end
     end
+
     context 'when using created_at_max' do
       it 'returns list of products' do
         # TODO: test this using past date
@@ -91,6 +94,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
         expect(response).to have_http_status(:ok)
       end
     end
+
     context 'with a non-existent product' do
       it 'returns the 404' do
         get '/api/v1/products/0', headers: headers

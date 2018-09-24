@@ -14,6 +14,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
   end
 
   before { variant }
+
   describe 'GET /api/v1/products/:product_id/variants' do
     it 'returns list of variants' do
       get "/api/v1/products/#{product.id}/variants", headers: headers
@@ -30,6 +31,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
         expect(response).to have_http_status(:ok)
       end
     end
+
     context 'with a non-existent variant' do
       it 'returns the 404' do
         get '/api/v1/variants/0', headers: headers

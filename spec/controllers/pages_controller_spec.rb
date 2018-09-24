@@ -11,6 +11,7 @@ RSpec.describe PagesController, type: :controller do
 
   describe 'GET dashboard' do
     before { get :dashboard }
+
     it { expect(response).to have_http_status(:success) }
   end
 end
