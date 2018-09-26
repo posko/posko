@@ -10,7 +10,7 @@ class ProductImporter
   def perform
     Product.transaction do
       CSV.foreach(filepath, headers: true) do |row|
-        account.products.create!(product_attributes(row))
+        find_or_create_product! row
       end
     end
   end
@@ -21,11 +21,26 @@ class ProductImporter
     @account ||= Account.find(account_id)
   end
 
+  def find_or_create_product!(row)
+    product = account.products.find_by(handle: row['Handle'])
+    product || account.products.create!(product_attributes(row))
+  end
+
+  # rubocop:disable Metrics/MethodLength
   def product_attributes(row = {})
     {
       handle: row['Handle'],
       title: row['Name'],
-      created_by_id: user_id
+      created_by_id: user_id,
+      variants_attributes: [
+        {
+          title: row['Name'],
+          price: row['Price'],
+          cost: row['Cost'],
+          barcode: row['Barcode']
+        }
+      ]
     }
   end
+  # rubocop:enable Metrics/MethodLength
 end
