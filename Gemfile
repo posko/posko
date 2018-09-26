@@ -89,7 +89,7 @@ gem 'virtus'
 gem 'pundit', '~> 1.1'
 
 # datatable
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '0.4.0'
 gem 'jquery-datatables-rails'
 
 gem 'adminlte_theme'

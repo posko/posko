@@ -15,7 +15,7 @@ RSpec.describe UserDecorator, type: :decorator do
   end
 
   describe '#name_link' do
-    name_link { user.decorate.name_link }
+    let(:name_link) { user.decorate.name_link }
 
     it {
       expect(name_link).to eq(

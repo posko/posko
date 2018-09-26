@@ -1,5 +1,4 @@
 class UserDatatable < AjaxDatatablesRails::Base
-  def_delegator :@view, :link_to
   def view_columns
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format

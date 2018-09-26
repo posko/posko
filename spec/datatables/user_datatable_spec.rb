@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UserDatatable do
+RSpec.describe UserDatatable, type: :datatable do
   let(:user_datatable) do
     described_class.new(instance_double('view', params: params),
                         options)

@@ -55,6 +55,9 @@ RSpec.describe Invoice, type: :model do
   # describe "#recompute callback" do
   #   subject { create(:invoice) }
 
-  it { expected.to callback(:pass_validations).before(:validation).on(:create) }
+  it do
+    expect(invoice).to callback(:pass_validations).before(:validation)
+                                                  .on(:create)
+  end
   # end
 end
