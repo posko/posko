@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   post 'sign_up' => 'accounts#create'
   get 'dashboard' => 'pages#dashboard'
   resources :accounts, only: [:create]
-  resources :users
+  resources :users, shallow: true do
+    resources :shifts
+  end
   resources :products, shallow: true do
     resources :variants, shallow: true do
       resources :components

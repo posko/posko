@@ -1,0 +1,61 @@
+<section class="content-header">
+</section>
+<section class="content">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Shift</h3>
+      <div class="box-tools pull-right">
+        <div class="btn-group">
+
+          <%= link_to "Add Shift", new_shift_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+      <div class="">
+        <table class="table" id="shifts-table" >
+          <thead>
+            <tr>
+              <th>Start Date </th>
+              <th>End Date </th>
+              <th>User </th>
+              <th>Starting Cash </th>
+              <th>Payments </th>
+              <th>Paid In </th>
+              <th>Paid Out </th>
+              <th>Cash </th>
+              <th> Actions </th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    $('#shifts-table').dataTable({
+      "processing": true,
+      "serverSide": true,
+      "ajax": $('#shifts-table').data('source'),
+      "pagingType": "full_numbers",
+      "columns": [
+        { "data": "start_date" },
+        { "data": "end_date" },
+        { "data": "user_id" },
+        { "data": "starting_cash" },
+        { "data": "payments" },
+        { "data": "paid_in" },
+        { "data": "paid_out" },
+        { "data": "cash" },
+        { "data": "actions", "sortable": false }
+      ]
+      // pagingType is optional, if you want full pagination controls.
+      // Check dataTables documentation to learn more about
+      // available options.
+    });
+  });
+</script>
