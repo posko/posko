@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get 'dashboard' => 'pages#dashboard'
   resources :accounts, only: [:create]
   resources :users, shallow: true do
-    resources :shifts
+    resources :shifts, shallow: true do
+      resources :shift_activities
+    end
   end
   resources :products, shallow: true do
     resources :variants, shallow: true do

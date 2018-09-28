@@ -3,6 +3,7 @@ FactoryBot.define do
     account
     customer
     user
+    shift
 
     invoice_number            { 1001 }
     total_line_items_price    { 110 }
