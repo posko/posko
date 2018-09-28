@@ -1,5 +1,5 @@
 class <%= objects.camelize %>Controller < ApplicationController
-  before_action :find_<%= object %>, except: [:index, :new, :create]
+  before_action :<%= object %>, except: [:index, :new, :create]
   def index
     @<%= objects %> = current_account.<%= objects %>
     respond_to do |format|
@@ -45,7 +45,7 @@ class <%= objects.camelize %>Controller < ApplicationController
 
   private
 
-  def find_<%= object %>
+  def <%= object %>
     @<%= object %> ||= current_account.<%= objects %>.find(params[:id])
   end
 
