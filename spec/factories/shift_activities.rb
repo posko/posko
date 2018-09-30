@@ -5,5 +5,13 @@ FactoryBot.define do
     amount      { 0 }
     remarks     { 'Sample String' }
     shift_activity_type { 'pay_in' }
+
+    trait :pay_in do
+      shift_activity_type { :pay_in }
+    end
+
+    trait :pay_out do
+      shift_activity_type { :pay_out }
+    end
   end
 end
