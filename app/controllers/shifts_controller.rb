@@ -16,28 +16,24 @@ class ShiftsController < ApplicationController
     end
   end
 
-  def edit
-    @shift = Shift.find(params[:id])
-  end
-
-  def update
-    @shift = Shift.find(params[:id])
-
-    if @shift.update(shift_params)
-      redirect_to user_shifts_path @shift.user
-    else
-      render 'edit'
-    end
-  end
-
   def show
     @shift = Shift.find(params[:id])
   end
 
-  def destroy
+  def end_shift
     @shift = Shift.find(params[:id])
-    @shift.destroy
-    redirect_to user_shifts_path @shift.user
+  end
+
+  def finalize_shift
+    @shift = Shift.find(params[:id])
+    shift_attributes = ShiftCalculatorService.perform(shift: @shift).attributes
+    @shift.assign_attributes(shift_attributes)
+    @shift.shift_status = 'ended'
+    if @shift.save
+      redirect_to @shift
+    else
+      render :end_shift
+    end
   end
 
   private

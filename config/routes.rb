@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :users, shallow: true do
     resources :shifts, shallow: true do
       resources :shift_activities
+      member do
+        get :end_shift
+        patch :finalize_shift
+      end
     end
   end
   resources :products, shallow: true do

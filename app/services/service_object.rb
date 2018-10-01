@@ -10,7 +10,11 @@ class ServiceObject
 
   def perform
     @performed = true
-    perform_service
+    if perform_service
+      self
+    else
+      false
+    end
   end
 
   def performed?

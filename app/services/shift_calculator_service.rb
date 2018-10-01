@@ -21,6 +21,15 @@ class ShiftCalculatorService < ServiceObject
     @paid_out ||= compute_paid_out
   end
 
+  def attributes
+    {
+      cash: cash,
+      payments: payments,
+      paid_in: paid_in,
+      paid_out: paid_out
+    }
+  end
+
   private
 
   def perform_service

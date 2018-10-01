@@ -1,4 +1,5 @@
 class Shift < ApplicationRecord
+  enum shift_status: [:started, :ended]
   belongs_to :user
 
   has_many :shift_activities, dependent: :destroy

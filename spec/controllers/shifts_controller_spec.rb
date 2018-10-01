@@ -47,51 +47,40 @@ RSpec.describe ShiftsController, type: :controller do
     # end
   end
 
-  describe 'GET #edit' do
-    it 'assigns @shift' do
-      params = { id: shift.id }
-      get :edit, params: params
-      expect(assigns(:shift)).to eq(shift)
-    end
-  end
-
-  describe 'PATCH #update' do
-    context 'with successful attempt' do
-      it 'updates shift' do
-        params = { id: shift.id, shift: { starting_cash: 100 } }
-        patch :update, params: params
-        expect(assigns(:shift).starting_cash).to eq(100)
-        expect(response).to redirect_to(user_shifts_path(user))
-      end
-    end
-
-    context 'with failed attempt' do
-      it "renders 'edit'" do
-        params = { id: shift.id, shift: { starting_cash: nil } }
-        patch :update, params: params
-        expect(response).to render_template('edit')
-      end
-    end
-  end
-
   describe 'GET #show' do
     it 'updates shift' do
       params = { id: shift.id }
-      patch :show, params: params
+      get :show, params: params
       expect(assigns(:shift)).to eq(shift)
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'GET #end_shift' do
     it 'updates shift' do
       params = { id: shift.id }
-      delete :destroy, params: params
+      get :end_shift, params: params
       expect(assigns(:shift)).to eq(shift)
     end
-    it 'raises an exception' do
-      expect do
-        delete :destroy, params: { id: 'nothing' }
-      end.to raise_error(ActiveRecord::RecordNotFound)
+  end
+
+  describe 'PATCH #finalize_shift' do
+    before do
+      create(:invoice, subtotal: 1000, shift: shift)
+      create(:shift_activity, :pay_in, amount: 500, shift: shift)
+      create(:shift_activity, :pay_in, amount: 200, shift: shift)
+      create(:shift_activity, :pay_out, amount: 100, shift: shift)
+    end
+
+    it 'updates shift' do
+      params = { id: shift.id }
+      patch :finalize_shift, params: params
+      expect(response).to redirect_to(shift)
+      expect(assigns(:shift)).to eq(shift)
+      expect(assigns(:shift)).to be_ended
+      expect(assigns(:shift).cash).to eq 1800
+      expect(assigns(:shift).paid_in).to eq 700
+      expect(assigns(:shift).paid_out).to eq 100
+      expect(assigns(:shift).payments).to eq 1000
     end
   end
 end

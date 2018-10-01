@@ -37,4 +37,19 @@ RSpec.describe ShiftCalculatorService, type: :service do
       end
     end
   end
+
+  describe '#attributes' do
+    before do
+      create(:invoice, subtotal: 1000, shift: shift)
+      create(:shift_activity, :pay_in, amount: 500, shift: shift)
+      create(:shift_activity, :pay_in, amount: 200, shift: shift)
+      create(:shift_activity, :pay_out, amount: 100, shift: shift)
+      service.perform
+    end
+
+    it { expect(service.attributes[:cash]).to eq(1800) }
+    it { expect(service.attributes[:paid_in]).to eq(700) }
+    it { expect(service.attributes[:paid_out]).to eq(100) }
+    it { expect(service.attributes[:payments]).to eq(1000) }
+  end
 end
