@@ -5,7 +5,6 @@
 [![Build Status](https://travis-ci.org/neume/posko.svg?branch=develop)](https://travis-ci.org/neume/posko)
 [![Maintainability](https://api.codeclimate.com/v1/badges/12cd8cf666a27e7c7b10/maintainability)](https://codeclimate.com/github/neume/posko/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/12cd8cf666a27e7c7b10/test_coverage)](https://codeclimate.com/github/neume/posko/test_coverage)
-[![CodeFactor](https://www.codefactor.io/repository/github/neume/posko/badge)](https://www.codefactor.io/repository/github/neume/posko)
 
 # Specs
 * Tested on Ruby ``` 2.4.3 ```
@@ -16,13 +15,8 @@
   Run ``` bin/setup ```
 
 ## Else (development)
-  Instead of ```db:rollback && db:migrate```,
-
   Run ``` bin/update ```
-
-  This command will drop your database and recreates it. **Your data will be purged**.
-
-
+  
 ### Model Diagram
 ![Model Diagram][model-diagram]
 
