@@ -1,11 +1,12 @@
 class InvoiceCreationService < ServiceObject
-  attr_reader :invoice, :invoice_lines, :user, :customer
+  attr_reader :invoice, :invoice_lines, :user, :customer, :shift
   def initialize(options = {})
     @invoice_number         = options.fetch(:invoice_number)
     @invoice_lines_params   = options.fetch(:invoice_lines)
     @user                   = options.fetch(:user)
-    @customer               = options[:customer]
     @account                = options.fetch(:account)
+    @customer               = options[:customer]
+    @shift                  = options[:shift]
     reset_variables
   end
 
@@ -51,7 +52,8 @@ class InvoiceCreationService < ServiceObject
       invoice_number: invoice_number,
       customer: customer,
       invoice_status: 'fulfilled',
-      user: user
+      user: user,
+      shift: shift
     )
   end
 
