@@ -16,7 +16,7 @@
 
 ## Else (development)
   Run ``` bin/update ```
-  
+
 ### Model Diagram
 ![Model Diagram][model-diagram]
 
@@ -40,7 +40,7 @@ The API references is available on [POSko API Docs](https://neume.github.io/posk
 You can contribute by documenting our API [here](https://github.com/neume/posko-api-docs).
 
 ## Postman
-[Here](https://www.getpostman.com/collections/9dfaf1eb5d5768ecaae0)'s the postman collection.
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/9dfaf1eb5d5768ecaae0)
 
 There are some automations implemented there using postman test script. It stores your token and then includes it on requests with authorization procedure.
 
