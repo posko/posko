@@ -11,14 +11,13 @@ def system!(*args)
 end
 
 chdir APP_ROOT do
-  puts "\nCopying sample files"
   unless File.exist?('config/database.yml')
-    puts 'Copying database.yml'
+    puts 'Creating database.yml'
     cp 'config/database.sample.yml', 'config/database.yml'
   end
 
   unless File.exist?('config/secrets.yml')
-    puts 'Copying secrets.yml'
+    puts 'Creating secrets.yml'
     cp 'config/secrets.sample.yml', 'config/secrets.yml'
   end
 end
