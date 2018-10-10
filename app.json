@@ -35,7 +35,13 @@
     }
   },
   "scripts": {
-    "postdeploy": "bin/heroku_setup",
-    "deploy": "bin/heroku_deploy"
+    "postdeploy": "bin/heroku_setup"
+  },
+  "production": {
+    "ymls": {
+      "scripts": {
+        "production": "bin/heroku_deploy"
+      }
+    }
   }
 }
