@@ -12,7 +12,7 @@ RSpec.describe ProductExporter, type: :exporter do
       barcode: '100001'
     )
   end
-  let(:exporter) { described_class.new(records: Product.all ) }
+  let(:exporter) { described_class.new(records: Product.all) }
 
   describe '#perform' do
     let(:result) { exporter.csv.split("\n") }
