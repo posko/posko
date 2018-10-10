@@ -35,6 +35,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "cp ./config/database.sample.yml ./config/database.yml && cp ./config/secrets.sample.yml ./config/secrets.yml && bundle exec rake db:migrate db:seed"
+    "postdeploy": "cp config/database.sample.yml config/database.yml && cp config/secrets.sample.yml config/secrets.yml && bundle exec rake db:migrate db:seed"
   }
 }
