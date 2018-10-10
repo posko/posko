@@ -35,6 +35,7 @@
     }
   },
   "scripts": {
-    "postdeploy": "bin/heroku_setup"
+    "postdeploy": "bin/heroku_setup",
+    "deploy": "bin/heroku_deploy"
   }
 }
