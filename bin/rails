@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
-if ['s', 'server'].include? ARGV[0]
-  require_relative 'initial_setup'
-end
+require_relative 'initial_setup' if ['s', 'server'].include? ARGV[0]
 
 begin
   load File.expand_path('spring', __dir__)
