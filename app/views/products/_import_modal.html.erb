@@ -1,0 +1,14 @@
+<div class='modal-dialog'>
+  <div class='modal-content'>
+    <div class='modal-body'>
+      <%= form_tag import_products_path, multipart: true, remote: true do %>
+        <div class="form-group">
+          <%= label_tag :file %>
+          <%= file_field_tag :file, class: "form-control" %>
+        </div>
+        <div>
+          <%= submit_tag "Submit", class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+</div>

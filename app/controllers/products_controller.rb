@@ -1,6 +1,14 @@
 class ProductsController < ApplicationController
   def index
     @products = current_account.products
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        exporter = ProductExporter.new(records: @products)
+        send_data exporter.csv, filename: 'products.csv'
+      end
+    end
   end
 
   def new
@@ -11,11 +19,7 @@ class ProductsController < ApplicationController
     @product = current_account.products.new(
       product_params.merge(created_by: current_user)
     )
-    if @product.save
-      redirect_to products_path
-    else
-      render 'new'
-    end
+    redirect_to products_path
   end
 
   def edit
@@ -39,6 +43,20 @@ class ProductsController < ApplicationController
     @product = current_account.products.find(params[:id])
     @product.deleted_status!
     redirect_to products_path
+  end
+
+  def import
+    @importer = ProductImporter.new(
+      filepath: params[:file].path,
+      user_id: current_user.id,
+      account_id: current_account.id
+    )
+
+    if @importer.perform
+      redirect_to products_path
+    else
+      render :import
+    end
   end
 
   private

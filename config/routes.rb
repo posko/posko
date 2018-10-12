@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     end
   end
   resources :products, shallow: true do
+    collection do
+      get :import_modal
+      post :import
+    end
     resources :variants, shallow: true do
       resources :components
     end
