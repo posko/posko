@@ -19,7 +19,13 @@ class ProductsController < ApplicationController
     @product = current_account.products.new(
       product_params.merge(created_by: current_user)
     )
-    redirect_to products_path
+    @product.variants.new(price: @product.price, title: @product.title)
+
+    if @product.save
+      redirect_to products_path
+    else
+      render :new
+    end
   end
 
   def edit

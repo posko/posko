@@ -23,7 +23,11 @@ class ProductImporter
 
   def find_or_create_product!(row)
     product = account.products.find_by(handle: row['Handle'])
-    product || account.products.create!(product_attributes(row))
+    if product
+      product.update!(product_attributes(row))
+    else
+      account.products.create!(product_attributes(row))
+    end
   end
 
   # rubocop:disable Metrics/MethodLength

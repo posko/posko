@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   enum product_type: [:regular, :composite, :component]
-
+  enum product_status: [:drafted, :active]
   attr_accessor :price
 
   has_many :variants, dependent: :destroy
