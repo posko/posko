@@ -22,16 +22,16 @@ RSpec.describe AccountsController, type: :controller do
     context 'with valid params' do
       it 'signs up an account' do
         get :create,
-            params: {
-              registration_form: {
-                account_name: 'new_company',
-                company: 'New Company Inc.',
-                first_name: 'Juan',
-                last_name: 'Dela Cruz',
-                email: 'juan@new_company.com',
-                password: 'thebestjuan'
-              }
+          params: {
+            registration_form: {
+              account_name: 'new_company',
+              company: 'New Company Inc.',
+              first_name: 'Juan',
+              last_name: 'Dela Cruz',
+              email: 'juan@new_company.com',
+              password: 'thebestjuan'
             }
+          }
         expect(assigns(:registration_form).account).to be_persisted
         expect(assigns(:registration_form).user).to be_persisted
       end

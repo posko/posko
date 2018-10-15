@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe UserDecorator, type: :decorator do
   let(:user) do
     create(:user,
-           first_name: 'Cardo',
-           last_name: 'Dalisay',
-           suffix: 'Jr.')
+      first_name: 'Cardo',
+      last_name: 'Dalisay',
+      suffix: 'Jr.')
   end
 
   describe '#name' do

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       format.html
       format.json do
         render json: UserDatatable.new(view_context,
-                                       current_account: current_account)
+          current_account: current_account)
       end
     end
   end

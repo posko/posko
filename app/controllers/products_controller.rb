@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = current_account.products.new
+    @product = ProductForm.new product: current_account.products.new
   end
 
   def create

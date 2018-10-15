@@ -6,8 +6,8 @@ RSpec.describe Invoice, type: :model do
   let(:customer) { create(:customer) }
   let(:invoice) do
     create(:invoice,
-           customer: customer,
-           account: customer.account)
+      customer: customer,
+      account: customer.account)
   end
 
   describe '#create' do

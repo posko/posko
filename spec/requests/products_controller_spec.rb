@@ -26,8 +26,8 @@ RSpec.describe Api::V1::ProductsController, type: :request do
     context 'when using ids' do
       it 'retrieves products by id' do
         get '/api/v1/products',
-            params: { ids: [products[0].id, products[1].id] },
-            headers: headers
+          params: { ids: [products[0].id, products[1].id] },
+          headers: headers
         expect(json['products'].count).to eq(2)
       end
     end
@@ -47,8 +47,8 @@ RSpec.describe Api::V1::ProductsController, type: :request do
     context 'when using since_id' do
       it 'returns list of products' do
         get '/api/v1/products',
-            params: { since_id: products[1].id },
-            headers: headers
+          params: { since_id: products[1].id },
+          headers: headers
         expect(json['products'].count).to eq(1)
       end
     end
@@ -63,8 +63,8 @@ RSpec.describe Api::V1::ProductsController, type: :request do
         create(:product, account: account)
         Timecop.return
         get '/api/v1/products',
-            params: { created_at_min: product1.created_at },
-            headers: headers
+          params: { created_at_min: product1.created_at },
+          headers: headers
         expect(json['products'].count).to eq(2)
       end
     end
@@ -79,8 +79,8 @@ RSpec.describe Api::V1::ProductsController, type: :request do
         create(:product, account: account)
         Timecop.return
         get '/api/v1/products',
-            params: { created_at_max: product1.created_at + 1.second },
-            headers: headers
+          params: { created_at_max: product1.created_at + 1.second },
+          headers: headers
         expect(json['products'].count).to eq(2)
       end
     end

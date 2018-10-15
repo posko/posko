@@ -17,12 +17,12 @@ class InvoiceCreationService < ServiceObject
   protected
 
   attr_accessor :total_price, :subtotal, :total_weight, :total_tax,
-                :total_line_items_price, :total_discounts
+    :total_line_items_price, :total_discounts
 
   private
 
   attr_reader :customer_id, :invoice_number, :invoice_params,
-              :invoice_lines_params, :account
+    :invoice_lines_params, :account
 
   def perform_service
     return false unless valid?
