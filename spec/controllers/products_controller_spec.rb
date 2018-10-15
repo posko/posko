@@ -23,7 +23,7 @@ RSpec.describe ProductsController, type: :controller do
   describe 'GET #new' do
     it 'assigns @product' do
       get :new
-      expect(assigns(:product)).to be_a_new_record
+      expect(assigns(:product)).to be_instance_of(ProductForm)
     end
   end
 
@@ -35,6 +35,7 @@ RSpec.describe ProductsController, type: :controller do
 
       it 'creates product' do
         expect(account.products.count).to eq(1)
+        expect(account.variants.count).to eq(1)
       end
     end
 

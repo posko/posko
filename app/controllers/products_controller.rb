@@ -12,14 +12,11 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = ProductForm.new product: current_account.products.new
+    @product = ProductForm.new
   end
 
   def create
-    @product = current_account.products.new(
-      product_params.merge(created_by: current_user)
-    )
-    @product.variants.new(price: @product.price, title: @product.title)
+    @product = ProductForm.new product_params.merge(created_by: current_user)
 
     if @product.save
       redirect_to products_path
@@ -68,6 +65,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:title, :price, :vendor, :product_type)
+    params.require(:product).permit(:title, :price, :vendor)
   end
 end
