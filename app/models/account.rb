@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  has_one  :account_setting, dependent: :destroy
   has_many :users, dependent: :destroy
   has_many :products, dependent: :destroy
   has_many :invoices, dependent: :destroy
