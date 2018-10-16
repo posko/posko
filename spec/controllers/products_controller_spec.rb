@@ -29,7 +29,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe 'POST #create' do
     context 'with successful attempt' do
-      let(:params) { { product_form: valid_product_param } }
+      let(:params) { { product: valid_product_param } }
 
       before { post(:create, params: params) }
 
@@ -43,7 +43,7 @@ RSpec.describe ProductsController, type: :controller do
       before { product }
 
       it "renders 'new' template" do
-        params = { product_form: { title: nil, price: '99.9' } }
+        params = { product: { title: nil, price: '99.9' } }
         post(:create, params: params)
         expect(response).to render_template 'new'
       end
@@ -61,7 +61,7 @@ RSpec.describe ProductsController, type: :controller do
   describe 'PATCH #update' do
     context 'with successful attempt' do
       it 'updates product' do
-        params = { id: product.id, product_form: { title: 'High Quality Bag' } }
+        params = { id: product.id, product: { title: 'High Quality Bag' } }
         patch :update, params: params
         expect(assigns(:product).title).to eq('High Quality Bag')
         expect(response).to redirect_to(products_path)
@@ -70,7 +70,7 @@ RSpec.describe ProductsController, type: :controller do
 
     context 'with failed attempt' do
       it "renders 'edit'" do
-        params = { id: product.id, product_form: { title: nil } }
+        params = { id: product.id, product: { title: nil } }
         patch :update, params: params
         expect(response).to render_template('edit')
       end

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = current_account.products
+    @products = current_account.products.active_status
 
     respond_to do |format|
       format.html
@@ -26,11 +26,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = current_account.products.find(params[:id])
+    product = current_account.products.find(params[:id])
+    @product = ProductForm.new product: product
   end
 
   def update
-    @product = current_account.products.find(params[:id])
+    product = current_account.products.find(params[:id])
+    @product = ProductForm.new product: product
     if @product.update product_params
       redirect_to products_path
     else
@@ -65,6 +67,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product_form).permit(:title, :price, :vendor)
+    params.require(:product).permit(:title, :price, :cost, :barcode)
   end
 end

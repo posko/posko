@@ -18,7 +18,6 @@
           <thead>
             <tr>
               <th> Title </th>
-              <th> Vendor </th>
               <th> Type </th>
               <th> Status </th>
               <th> Actions </th>
@@ -28,7 +27,6 @@
             <% @products.each do |product| %>
               <tr>
                 <td><%= product.title %></td>
-                <td><%= product.vendor %></td>
                 <td><%= product.product_type.humanize %> </td>
                 <td><%= product.status.humanize %> </td>
                 <td><%= render "actions", product: product %> </td>

@@ -4,8 +4,8 @@ class ProductCreationService < ServiceObject
   attr_reader :product, :variant
 
   def initialize(options = {})
-    @account = options.fetch(:account)
     @created_by = options.fetch(:created_by)
+    @account = options[:account] || created_by.account
     @title = options.fetch(:title)
     @sku = options.fetch(:sku)
     @price = options.fetch(:price)

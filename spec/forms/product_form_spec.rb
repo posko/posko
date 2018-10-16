@@ -8,7 +8,6 @@ RSpec.describe ProductForm, type: :form do
     described_class.new(
       created_by: user,
       title: 'Bag',
-      vendor: 'Hawk',
       price: 2500,
       cost: 1680,
       sku: '1000011',

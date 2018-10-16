@@ -7,7 +7,6 @@ RSpec.describe ProductCreationService do
   describe '#perform' do
     let(:params) do
       {
-        account: account,
         created_by: user,
         title: 'bag',
         vendor: 'hawk',
