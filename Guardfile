@@ -25,8 +25,9 @@
 #  * 'just' rspec: 'rspec'
 
 require 'active_support/inflector'
+separator = 'echo "----------------------------------------------------------";'
 group :red_green_refactor, halt_on_fail: true do
-  guard :rspec, cmd: 'bundle exec rspec' do
+  guard :rspec, cmd: "#{separator}bundle exec rspec" do
     require 'guard/rspec/dsl'
     # require "terminal-notifier-guard"
     dsl = Guard::RSpec::Dsl.new(self)
