@@ -6,6 +6,7 @@ RSpec.describe Variant, type: :model do
 
   describe 'create variant' do
     before { product.variants.create(price: 100, title: 'Large') }
+
     it 'adds new variant' do
       expect(product.variants.count).to eq(1)
     end

@@ -18,7 +18,7 @@ class BreadkoGenerator < Rails::Generators::NamedBase
 
   def generate_app_classes
     template 'breadkos_controller.erb',
-             "app/controllers/#{objects}_controller.rb"
+      "app/controllers/#{objects}_controller.rb"
     template 'breadko_model.erb', "app/models/#{object}.rb"
   end
 
@@ -32,7 +32,7 @@ class BreadkoGenerator < Rails::Generators::NamedBase
 
   def generate_specs
     template 'breadkos_controller_spec.erb',
-             "spec/controllers/#{objects}_controller_spec.rb"
+      "spec/controllers/#{objects}_controller_spec.rb"
     template 'breadko_model_spec.erb', "spec/models/#{object}_spec.rb"
     template 'breadkos_factory.erb', "spec/factories/#{objects}.rb"
   end

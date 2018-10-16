@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe UserDatatable do
+RSpec.describe UserDatatable, type: :datatable do
   let(:user_datatable) do
     described_class.new(instance_double('view', params: params),
-                        options)
+      options)
   end
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
@@ -18,6 +18,7 @@ RSpec.describe UserDatatable do
   end
 
   before { user }
+
   describe '#to_json' do
     let(:expected_json) do
       {

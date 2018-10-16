@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+require 'pathname'
+require 'fileutils'
+require_relative 'string_colors'
+include FileUtils
+
+# rubocop:disable Style/SpecialGlobalVars
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('..', __dir__)
+
+chdir APP_ROOT do
+  system 'bundle exec rspec -f p', out: File::NULL
+  if $? == 0
+    puts 'RSpec passed!'.green
+  else
+    puts 'RSpec failed!'.red
+  end
+
+  system 'bundle exec rubocop --rails', out: File::NULL
+  if $? == 0
+    puts 'Rubocop passed!'.green
+  else
+    puts 'Rubocop failed!'.red
+  end
+end
+# rubocop:enable Style/SpecialGlobalVars

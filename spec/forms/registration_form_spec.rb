@@ -16,6 +16,7 @@ RSpec.describe RegistrationForm do
     it { expect(registration_form).to be_valid }
     context 'with correct input' do
       before { registration_form.save }
+
       it 'creates a new account with user' do
         expect(User.count).to be 1
         expect(Account.count).to be 1

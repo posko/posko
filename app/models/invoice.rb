@@ -6,6 +6,7 @@ class Invoice < ApplicationRecord
   belongs_to :account
   belongs_to :user
   belongs_to :customer, optional: true
+  belongs_to :shift, optional: true
 
   validates :invoice_number, presence: true
   validates :total_line_items_price, presence: true

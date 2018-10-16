@@ -4,10 +4,10 @@ RSpec.describe AuthenticationService do
   let(:account) { create(:account, name: 'posko') }
   let(:user) do
     create(:user,
-           email: 'a@a.com',
-           password: 'pass',
-           account: account,
-           access_key_count: 0)
+      email: 'a@a.com',
+      password: 'pass',
+      account: account,
+      access_key_count: 0)
   end
   let(:sign_in) do
     user
@@ -54,15 +54,17 @@ RSpec.describe AuthenticationService do
   end
 
   describe '#user' do
-    before { sign_in.process }
     subject { sign_in.user }
+
+    before { sign_in.process }
 
     it { is_expected.to be_present }
   end
 
   describe '#account' do
-    before { sign_in.process }
     subject { sign_in.account }
+
+    before { sign_in.process }
 
     it { is_expected.to be_present }
   end

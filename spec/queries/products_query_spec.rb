@@ -6,6 +6,7 @@ RSpec.describe ProductsQuery, type: :query do
   let(:query) { ProductsQuery.new params, account.products }
 
   before { products }
+
   describe '#call' do
     let(:params) do
       {
@@ -72,7 +73,7 @@ RSpec.describe ProductsQuery, type: :query do
       create(:product, account: account)
       Timecop.return
       q = ProductsQuery.new({ created_at_min: product1.created_at },
-                            account.products)
+        account.products)
       expect(q.call.count).to eq(2)
     end
 
@@ -87,7 +88,7 @@ RSpec.describe ProductsQuery, type: :query do
       create(:product, account: account)
       Timecop.return
       q = ProductsQuery.new({ created_at_max: product1.created_at + 1 },
-                            account.products)
+        account.products)
       expect(q.call.count).to eq(2)
     end
   end

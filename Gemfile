@@ -44,7 +44,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'hirb'
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
@@ -89,7 +88,7 @@ gem 'virtus'
 gem 'pundit', '~> 1.1'
 
 # datatable
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '0.4.0'
 gem 'jquery-datatables-rails'
 
 gem 'adminlte_theme'
@@ -99,7 +98,6 @@ gem 'jquery-rails', '~> 4.3'
 
 # Decorator
 gem 'draper'
-# gem "faker" #production for now
 
 # Pagination
 gem 'kaminari'
@@ -108,3 +106,6 @@ gem 'kaminari'
 # gem "cocoon"
 
 gem 'queryko'
+
+# used for demo
+gem 'faker'

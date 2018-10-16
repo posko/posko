@@ -12,30 +12,36 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   before { sign_in }
+
   describe 'GET #index' do
     it 'assigns @products' do
       get :index
       expect(assigns(:products)).to eq([product])
     end
   end
+
   describe 'GET #new' do
     it 'assigns @product' do
       get :new
-      expect(assigns(:product)).to be_a_new_record
+      expect(assigns(:product)).to be_instance_of(ProductForm)
     end
   end
+
   describe 'POST #create' do
     context 'with successful attempt' do
       let(:params) { { product: valid_product_param } }
 
       before { post(:create, params: params) }
+
       it 'creates product' do
         expect(account.products.count).to eq(1)
+        expect(account.variants.count).to eq(1)
       end
     end
 
     context 'with failed attempt' do
       before { product }
+
       it "renders 'new' template" do
         params = { product: { title: nil, price: '99.9' } }
         post(:create, params: params)
@@ -43,6 +49,7 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
+
   describe 'GET #edit' do
     it 'assigns @product' do
       params = { id: product.id }
@@ -50,6 +57,7 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:product)).to eq(product)
     end
   end
+
   describe 'PATCH #update' do
     context 'with successful attempt' do
       it 'updates product' do
@@ -59,6 +67,7 @@ RSpec.describe ProductsController, type: :controller do
         expect(response).to redirect_to(products_path)
       end
     end
+
     context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: product.id, product: { title: nil } }
@@ -67,6 +76,7 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
   end
+
   describe 'GET #show' do
     it 'updates product' do
       params = { id: product.id }
@@ -74,6 +84,7 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:product)).to eq(product)
     end
   end
+
   describe 'DELETE #destroy' do
     it 'updates product' do
       params = { id: product.id }

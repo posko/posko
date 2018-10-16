@@ -86,6 +86,7 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
         expect(response).to have_http_status(:ok)
       end
     end
+
     context 'with a non-existent invoice' do
       it 'returns the 404' do
         get '/api/v1/invoices/0', headers: headers

@@ -44,3 +44,6 @@ Naming/AccessorMethodName:
 
 RSpec/MultipleExpectations:
   Max: 10
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation

@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+require 'pathname'
+require 'fileutils'
+include FileUtils
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('..', __dir__)
+
+def system!(*args)
+  system(*args) || abort("\nCommand #{args} failed")
+end
+
+chdir APP_ROOT do
+  puts 'Installing dependencies =='
+  system! 'gem install bundler --conservative'
+  system('bundle check') || system!('bundle install')
+
+  puts 'Installing dependencies =='
+  system! 'gem install bundler --conservative'
+  system('bundle check') || system!('bundle install')
+
+  puts "\nMigrating database"
+  system! 'bin/rails db:migrate'
+
+  puts "\nSeeding database"
+  system! 'bin/rails db:seed'
+end

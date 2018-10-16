@@ -36,6 +36,7 @@ RSpec.describe ServiceObject do
 
   describe '#errors' do
     before { custom_service.simulate_an_error }
+
     it 'adds error' do
       expect(custom_service.errors.count).to eq(1)
     end

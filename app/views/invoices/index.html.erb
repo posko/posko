@@ -25,7 +25,7 @@
             <% @invoices.each do |invoice| %>
               <tr>
                 <td> <%= invoice.invoice_number %> </td>
-                <td> <%= invoice.customer.first_name %> </td>
+                <td> <%= invoice.customer.first_name if invoice.customer %> </td>
                 <td> <%= render "actions", invoice: invoice %> </td>
               </tr>
             <% end %>

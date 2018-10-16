@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+
+require_relative 'initial_setup' if ['s', 'server'].include? ARGV[0]
+
 begin
   load File.expand_path('spring', __dir__)
 rescue LoadError => e

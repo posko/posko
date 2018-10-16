@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180923114430) do
+ActiveRecord::Schema.define(version: 20180928114555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,9 @@ ActiveRecord::Schema.define(version: 20180923114430) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "shift_id"
+    t.index ["shift_id", "user_id"], name: "index_invoices_on_shift_id_and_user_id"
+    t.index ["shift_id"], name: "index_invoices_on_shift_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -149,6 +152,8 @@ ActiveRecord::Schema.define(version: 20180923114430) do
     t.integer "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "handle_count", default: 0
+    t.index ["account_id", "handle"], name: "index_products_on_account_id_and_handle", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
@@ -162,6 +167,36 @@ ActiveRecord::Schema.define(version: 20180923114430) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shift_activities", force: :cascade do |t|
+    t.bigint "shift_id"
+    t.date "date"
+    t.text "remarks"
+    t.decimal "amount"
+    t.integer "shift_activity_type", default: 0
+    t.integer "shift_activity_status", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shift_id"], name: "index_shift_activities_on_shift_id"
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.decimal "starting_cash"
+    t.decimal "payments"
+    t.decimal "paid_in"
+    t.decimal "paid_out"
+    t.decimal "cash"
+    t.integer "status", default: 0
+    t.integer "shift_status", default: 0
+    t.integer "shift_type", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -220,6 +255,7 @@ ActiveRecord::Schema.define(version: 20180923114430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "selling_policy", default: 0
+    t.decimal "cost"
   end
 
 end

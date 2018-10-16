@@ -1,30 +1,39 @@
-<%= form_for @product do |f| %>
-  <div class="box-header">
-    <h3 class="box-title">Edit Product</h3>
-    <div class="box-tools pull-right">
-      <div class="btn-group">
-        <%= link_to "Cancel",products_path, class: "btn btn-danger" %>
+<section class='content-header'>
+</section>
+<section class='content'>
+  <div class='row'>
+    <div class="col-md-6">
+      <div class="box">
+        <%= form_for @product do |f| %>
+          <div class="box-header">
+            <h3 class="box-title">Edit Product</h3>
+            <div class="box-tools pull-right">
+              <div class="btn-group">
+                <%= link_to "Cancel",products_path, class: "btn btn-danger" %>
+              </div>
+              <%= f.submit "Update", class: "btn btn-primary" %>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <%= f.label :title %>
+              <%= f.text_field :title, class: "form-control"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :price %>
+              <%= f.number_field :price, class: "form-control"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :vendor %>
+              <%= f.text_field :vendor, class: "form-control"%>
+            </div>
+            <div class="form-group">
+              <%= f.label :product_type %>
+              <%= f.select :product_type, Product.product_types.map {|p| [p[0].capitalize, p[0]]}, {}, class: "form-control"%>
+            </div>
+          </div>
+        <% end %>
       </div>
-
-      <%= f.submit "Update", class: "btn btn-primary" %>
     </div>
   </div>
-  <div class="box-body">
-      <div class="form-group">
-        <%= f.label :title %>
-        <%= f.text_field :title, class: "form-control"%>
-      </div>
-      <div class="form-group">
-        <%= f.label :price %>
-        <%= f.number_field :price, class: "form-control"%>
-      </div>
-      <div class="form-group">
-        <%= f.label :vendor %>
-        <%= f.text_field :vendor, class: "form-control"%>
-      </div>
-      <div class="form-group">
-        <%= f.label :product_type %>
-        <%= f.select :product_type, Product.product_types.map {|p| [p[0].capitalize, p[0]]}, {}, class: "form-control"%>
-      </div>
-  </div>
-<% end %>
+</section>

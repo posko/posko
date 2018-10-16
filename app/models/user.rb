@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   has_many :invoices, dependent: :destroy
   has_many :access_keys, dependent: :destroy
+  has_many :shifts, dependent: :destroy
   # has_many :user_branches
   # has_many :branches
   validates :email, :first_name, :last_name, presence: true

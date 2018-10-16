@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe UserDecorator, type: :decorator do
   let(:user) do
     create(:user,
-           first_name: 'Cardo',
-           last_name: 'Dalisay',
-           suffix: 'Jr.')
+      first_name: 'Cardo',
+      last_name: 'Dalisay',
+      suffix: 'Jr.')
   end
 
   describe '#name' do
@@ -15,10 +15,10 @@ RSpec.describe UserDecorator, type: :decorator do
   end
 
   describe '#name_link' do
-    subject { user.decorate.name_link }
+    let(:name_link) { user.decorate.name_link }
 
     it {
-      is_expected.to eq(
+      expect(name_link).to eq(
         "<a href=\"/users/#{user.id}\">Cardo Dalisay Jr.</a>"
       )
     }

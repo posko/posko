@@ -13,23 +13,27 @@ RSpec.describe VariantsController, type: :controller do
   end
 
   before { sign_in }
+
   describe 'GET #index' do
     it 'assigns @variants' do
       get :index, params: { product_id: product.id }
       expect(assigns(:variants)).to eq([variant])
     end
   end
+
   describe 'GET #new' do
     it 'assigns @variant' do
       get :new, params: { product_id: product.id }
       expect(assigns(:variant)).to be_a_new_record
     end
   end
+
   describe 'POST #create' do
     context 'with successful attempt' do
       let(:params) { { variant: valid_variant_param, product_id: product.id } }
 
       before { post(:create, params: params) }
+
       it 'creates variant' do
         expect(account.variants.count).to eq(1)
       end
@@ -37,6 +41,7 @@ RSpec.describe VariantsController, type: :controller do
 
     context 'with failed attempt' do
       before { variant }
+
       it "renders 'new' template" do
         params = { variant: { title: nil, price: '99.9' },
                    product_id: product.id }
@@ -45,6 +50,7 @@ RSpec.describe VariantsController, type: :controller do
       end
     end
   end
+
   describe 'GET #edit' do
     it 'assigns @variant' do
       params = { id: variant.id }
@@ -52,6 +58,7 @@ RSpec.describe VariantsController, type: :controller do
       expect(assigns(:variant)).to eq(variant)
     end
   end
+
   describe 'PATCH #update' do
     context 'with successful attempt' do
       it 'updates variant' do
@@ -61,6 +68,7 @@ RSpec.describe VariantsController, type: :controller do
         expect(response).to redirect_to(product_variants_path(product.id))
       end
     end
+
     context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: variant.id, variant: { title: nil } }
@@ -69,6 +77,7 @@ RSpec.describe VariantsController, type: :controller do
       end
     end
   end
+
   describe 'GET #show' do
     it 'updates variant' do
       params = { id: variant.id }
@@ -76,6 +85,7 @@ RSpec.describe VariantsController, type: :controller do
       expect(assigns(:variant)).to eq(variant)
     end
   end
+
   describe 'DELETE #destroy' do
     it 'updates variant' do
       params = { id: variant.id }

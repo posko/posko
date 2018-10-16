@@ -24,15 +24,17 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
   end
 
   describe "POST #create" do
-    context "successful attempt" do
+    context 'with successful attempt' do
       before { <%= object %> }
       it "creates <%= object %>" do
         params = { <%= object %>: { } }
-        expect { post(:create, params: params) }.to change(<%= object.camelize %>, :count).by(1)
+        expect do
+          post(:create, params: params)
+        end.to change(<%= object.camelize %>, :count).by(1)
       end
     end
 
-    # context "failed attempt" do
+    # context 'with failed attempt' do
     #   before { <%= object %> }
     #   it "renders 'new' template" do
     #     params = { <%= object %>: { id: nil } }
@@ -51,7 +53,7 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
   end
 
   describe "PATCH #update" do
-    context "successful attempt" do
+    context 'with successful attempt' do
       it "updates <%= object %>" do
         params = { id: <%= object %>.id, <%= object %>: { name: "admin" } }
         patch :update, params: params
@@ -60,7 +62,7 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
       end
     end
 
-    context "failed attempt" do
+    context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: <%= object %>.id, <%= object %>: { name: nil } }
         patch :update, params: params
@@ -76,7 +78,7 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
       expect(assigns(:<%= object %>)).to eq(<%= object %>)
     end
   end
-  
+
   describe "DELETE #destroy" do
     it "updates <%= object %>" do
       params = { id: <%= object %>.id }
@@ -84,7 +86,9 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
       expect(assigns(:<%= object %>)).to eq(<%= object %>)
     end
     it "raises an exception" do
-      expect { delete :destroy, params: { id: "nothing" } }.to raise_error(ActiveRecord::RecordNotFound)
+      expect do
+        delete :destroy, params: { id: "nothing" }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

@@ -12,6 +12,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   before { allow(controller).to receive(:current_user).and_return(user) }
+
   describe 'GET #index' do
     it 'assigns @users' do
       get :index
@@ -27,15 +28,18 @@ RSpec.describe UsersController, type: :controller do
       expect(response.body).to include_json("recordsTotal": 1)
     end
   end
+
   describe 'GET #new' do
     it 'assigns @user' do
       get :new
       expect(assigns(:user)).to be_a_new_record
     end
   end
+
   describe 'POST #create' do
     context 'with successful attempt' do
       before { user }
+
       it 'creates user' do
         params = { user: valid_user_param }
         expect { post(:create, params: params) }.to change(User, :count).by(1)
@@ -44,6 +48,7 @@ RSpec.describe UsersController, type: :controller do
 
     context 'with failed attempt' do
       before { user }
+
       it "renders 'new' template" do
         params = { user: { email: nil, password: nil } }
         post(:create, params: params)
@@ -51,6 +56,7 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
   describe 'GET #edit' do
     it 'assigns @user' do
       params = { id: user.id }
@@ -58,6 +64,7 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq(user)
     end
   end
+
   describe 'PATCH #update' do
     context 'with successful attempt' do
       it 'updates user' do
@@ -67,6 +74,7 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to redirect_to(users_path)
       end
     end
+
     context 'with failed attempt' do
       it "renders 'edit'" do
         params = { id: user.id, user: { email: 'wrongformat' } }
@@ -75,6 +83,7 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
   describe 'GET #show' do
     it 'updates user' do
       params = { id: user.id }
@@ -82,6 +91,7 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq(user)
     end
   end
+
   describe 'DELETE #destroy' do
     it 'updates user' do
       params = { id: user.id }

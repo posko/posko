@@ -15,9 +15,9 @@ RSpec.describe Api::V1::InvoiceLinesController, type: :request do
 
   let(:invoice_line) do
     create(:invoice_line,
-           price: 100,
-           title: 'Large',
-           invoice: invoice)
+      price: 100,
+      title: 'Large',
+      invoice: invoice)
   end
 
   describe 'GET /api/v1/invoices/:invoice_id/invoice_lines' do
@@ -37,6 +37,7 @@ RSpec.describe Api::V1::InvoiceLinesController, type: :request do
         expect(response).to have_http_status(:ok)
       end
     end
+
     context 'with a non-existent invoice' do
       it 'returns the 404' do
         get '/api/v1/invoice_lines/0', headers: headers

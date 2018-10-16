@@ -4,9 +4,9 @@ RSpec.describe 'Auth', type: :request do
   let(:account) { create(:account) }
   let(:user) do
     create(:user,
-           password: 'pass',
-           account: account,
-           access_key_count: 0)
+      password: 'pass',
+      account: account,
+      access_key_count: 0)
   end
   let(:access_key) { user.access_keys.first }
   let(:successful_sign_in) do

@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Account, type: :model do
   let(:account) do
     create(:account,
-           name: 'first_company',
-           company: 'First Company')
+      name: 'first_company',
+      company: 'First Company')
   end
 
   describe 'Account creation' do
