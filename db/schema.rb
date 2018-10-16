@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20180928114555) do
     t.index ["user_id"], name: "index_access_keys_on_user_id"
   end
 
+  create_table "account_settings", force: :cascade do |t|
+    t.boolean "tax_feature", default: false
+    t.boolean "shifts_feature", default: false
+    t.boolean "discounts_feature", default: false
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.string "company", null: false
