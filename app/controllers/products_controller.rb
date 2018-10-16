@@ -4,10 +4,11 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv do
-        exporter = ProductExporter.new(records: @products)
-        send_data exporter.csv, filename: 'products.csv'
+      format.json do
+        render json: ProductDatatable.new(view_context,
+          current_account: current_account)
       end
+      format.csv { csv_format }
     end
   end
 
@@ -68,5 +69,10 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :price, :cost, :barcode)
+  end
+
+  def csv_format
+    exporter = ProductExporter.new(records: @products)
+    send_data exporter.csv, filename: 'products.csv'
   end
 end

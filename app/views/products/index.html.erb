@@ -3,38 +3,53 @@
 <section class="content">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Product</h3>
+      <h3 class="box-title">Products</h3>
       <div class="box-tools pull-right">
         <div class="btn-group">
-          <%= link_to "Import", import_modal_products_path, remote: true, class: "btn btn-sm" %>
-          <%= link_to "Export", products_path(format: :csv), class: "btn btn-sm" %>
-          <%= link_to "Add Product", new_product_path, class: "btn btn-sm btn-primary" %>
+          <%= link_to fa_icon('upload'), import_modal_products_path, remote: true, class: "btn btn-box-tool dropdown-toggle" %>
+          <%= link_to fa_icon('download'), products_path(format: :csv), class: "btn btn-box-tool dropdown-toggle" %>
+          <%= link_to fa_icon('plus'), new_product_path, class: "btn btn-box-tool dropdown-toggle" %>
         </div>
       </div>
     </div>
     <div class="box-body">
-      <div class="">
-        <table class="table" id="products-table" >
-          <thead>
-            <tr>
-              <th> Title </th>
-              <th> Type </th>
-              <th> Status </th>
-              <th> Actions </th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @products.each do |product| %>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table" id="products-table" data-source="<%= products_path(format: :json)%>" >
+            <thead>
               <tr>
-                <td><%= product.title %></td>
-                <td><%= product.product_type.humanize %> </td>
-                <td><%= product.status.humanize %> </td>
-                <td><%= render "actions", product: product %> </td>
+                <th> Title </th>
+                <th> Type </th>
+                <th> Status </th>
+                <th> Actions </th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+  <script>
+    $(document).on('turbolinks:load', function() {
+      if ($('#products-table_wrapper').length == 0) {
+        $('#products-table').dataTable({
+          "processing": true,
+          "serverSide": true,
+          "ajax": $('#products-table').data('source'),
+          "pagingType": "full_numbers",
+          "columns": [
+            {"data": "title"},
+            {"data": "product_type"},
+            {"data": "status"},
+            {"data": "actions", "sortable": false}
+          ]
+          // pagingType is optional, if you want full pagination controls.
+          // Check dataTables documentation to learn more about
+          // available options.
+        });
+      }
+    });
+  </script>
 </section>

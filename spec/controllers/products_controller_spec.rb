@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
-  let(:product) { create(:product, account: account) }
+  let(:product) { create(:product, :with_variant, account: account) }
   let(:valid_product_param) do
     { title: 'Bag',
       price: '99.9',
@@ -54,7 +54,7 @@ RSpec.describe ProductsController, type: :controller do
     it 'assigns @product' do
       params = { id: product.id }
       get :edit, params: params
-      expect(assigns(:product)).to eq(product)
+      expect(assigns(:product)).to be_instance_of(ProductForm)
     end
   end
 
@@ -63,7 +63,7 @@ RSpec.describe ProductsController, type: :controller do
       it 'updates product' do
         params = { id: product.id, product: { title: 'High Quality Bag' } }
         patch :update, params: params
-        expect(assigns(:product).title).to eq('High Quality Bag')
+        expect(product.reload.title).to eq('High Quality Bag')
         expect(response).to redirect_to(products_path)
       end
     end

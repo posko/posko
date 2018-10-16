@@ -7,6 +7,8 @@ class FormObject
     else
       false
     end
+  rescue ActiveRecord::RecordInvalid
+    false
   end
 
   def save!
@@ -20,6 +22,8 @@ class FormObject
     else
       false
     end
+  rescue ActiveRecord::RecordInvalid
+    false
   end
   # rubocop:enable Rails/ActiveRecordAliases
 

@@ -31,6 +31,7 @@ class ProductForm < FormObject
     assign_attributes options
     Product.transaction do
       product.save! # it saves default_variant also
+      default_variant.save!
     end
   end
 
