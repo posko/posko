@@ -2,51 +2,68 @@
 </section>
 <section class="content">
   <div class='row'>
-    <div class='col-md-12'>
-      <div class="box">
-        <div class="box-body">
-          <div class="">
-            <h1> Welcome to POSko </h1>
-          </div>
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3><%= @invoices.count %> </h3>
+          <p>Invoices</p>
         </div>
+        <div class="icon">
+          <%= fa_icon 'shopping-cart' %>
+        </div>
+        <%= link_to fa_icon('arrow-circle-right', text: 'More Info'),
+          invoices_path,
+          class: 'small-box-footer'
+        %>
       </div>
     </div>
-    <div class='col-md-6'>
-      <div class="box">
-        <div class="box-body">
-          <div class="">
-            <h1> Invoices: <%= @invoices.count %> </h1>
-          </div>
+
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3><%= @products.count %> </h3>
+          <p>Products</p>
         </div>
+        <div class="icon">
+          <%= fa_icon 'cube' %>
+        </div>
+        <%= link_to fa_icon('arrow-circle-right', text: 'More Info'),
+          products_path,
+          class: 'small-box-footer'
+        %>
       </div>
     </div>
-    <div class='col-md-6'>
-      <div class="box">
-        <div class="box-body">
-          <div class="">
-            <h1> Products: <%= @products.count %> </h1>
-          </div>
+
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3><%= @variants.count %> </h3>
+          <p>Variants</p>
         </div>
+        <div class="icon">
+          <%= fa_icon 'cubes' %>
+        </div>
+        <%= link_to fa_icon('arrow-circle-right', text: 'More Info'),
+          products_path,
+          class: 'small-box-footer'
+        %>
       </div>
     </div>
-    <div class='col-md-6'>
-      <div class="box">
-        <div class="box-body">
-          <div class="">
-            <h1> Variants: <%= @variants.count %> </h1>
-          </div>
+
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3><%= @users.count %> </h3>
+          <p>Users</p>
         </div>
-      </div>
-    </div>
-    <div class='col-md-6'>
-      <div class="box">
-        <div class="box-body">
-          <div class="">
-            <h1> Users: <%= @users.count %> </h1>
-          </div>
+        <div class="icon">
+          <%= fa_icon 'users' %>
         </div>
+        <%= link_to fa_icon('arrow-circle-right', text: 'More Info'),
+          users_path,
+          class: 'small-box-footer'
+        %>
       </div>
     </div>
   </div>
-
 </section>
