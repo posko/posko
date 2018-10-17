@@ -35,14 +35,20 @@
               </div>
               <div class='col-md-6'>
                 <div class="form-group">
+                  <%= f.label :selling_policy, "Sold by" %>
+                  <%= f.select :selling_policy, selling_policy_options, {}, class: "form-control"%>
+                </div>
+              </div>
+              <div class='col-md-6'>
+                <div class="form-group">
                   <%= f.label :barcode %>
                   <%= f.text_field :barcode, class: "form-control"%>
                 </div>
               </div>
               <div class='col-md-6'>
                 <div class="form-group">
-                  <%= f.label :selling_policy, "Sold by" %>
-                  <%= f.select :selling_policy, selling_policy_options, {}, class: "form-control"%>
+                  <%= f.label :sku, "SKU" %>
+                  <%= f.text_field :sku, class: "form-control"%>
                 </div>
               </div>
               <div class='col-md-6'>

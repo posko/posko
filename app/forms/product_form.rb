@@ -5,7 +5,7 @@ class ProductForm < FormObject
 
   delegate :persisted?, :id, :title, :created_by, to: :product
   delegate :price, :cost, :barcode, :compare_at_price, :selling_policy,
-    :open_price, to: :default_variant
+    :open_price, :sku, to: :default_variant
 
   validates :title, presence: true
   validates :price, presence: true
@@ -47,11 +47,12 @@ class ProductForm < FormObject
   end
 
   def assign_default_variant(options = {})
-    attrs = options.slice(:price, :cost, :barcode, :compare_at_price, :open_price,
-      :selling_policy)
+    attrs = options.slice(:price, :cost, :barcode, :compare_at_price,
+      :open_price, :sku, :selling_policy)
     default_variant.assign_attributes(attrs)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def service_object
     @service_object ||= ProductCreationService.new(
       created_by: created_by,
@@ -65,4 +66,5 @@ class ProductForm < FormObject
       selling_policy: selling_policy
     )
   end
+  # rubocop:enable Metrics/MethodLength
 end

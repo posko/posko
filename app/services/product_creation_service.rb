@@ -40,6 +40,7 @@ class ProductCreationService < ServiceObject
   def create_variant!
     product.variants.create!(
       title: title,
+      sku: sku,
       cost: cost,
       price: price,
       barcode: barcode,
