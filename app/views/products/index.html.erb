@@ -6,9 +6,17 @@
       <h3 class="box-title">Products</h3>
       <div class="box-tools pull-right">
         <div class="btn-group">
-          <%= link_to fa_icon('upload'), import_modal_products_path, remote: true, class: "btn btn-box-tool dropdown-toggle" %>
-          <%= link_to fa_icon('download'), products_path(format: :csv), class: "btn btn-box-tool dropdown-toggle" %>
-          <%= link_to fa_icon('plus'), new_product_path, class: "btn btn-box-tool dropdown-toggle" %>
+          <%= link_to fa_icon('upload', text: 'Import'),
+            import_modal_products_path,
+            remote: true,
+            class: "btn btn-box-tool" %>
+          <%= link_to fa_icon('download',
+            text: 'Export'),
+            products_path(format: :csv),
+          class: "btn btn-box-tool" %>
+          <%= link_to fa_icon('plus', text: 'New'),
+            new_product_path,
+            class: "btn text-green btn-box-tool" %>
         </div>
       </div>
     </div>
