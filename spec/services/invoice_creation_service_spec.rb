@@ -11,7 +11,7 @@ RSpec.describe InvoiceCreationService do
     let(:params) do
       {
         customer_id: customer_id,
-        invoice_number: '1232',
+        invoice_number: invoice_number,
         user: user,
         account: account,
         invoice_lines: invoice_lines
@@ -35,10 +35,10 @@ RSpec.describe InvoiceCreationService do
         }
       ]
     end
+    let(:invoice_number) { '19921' }
+    let(:customer_id) { customer.id }
 
     context 'with correct params' do
-      let(:customer_id) { customer.id }
-
       it 'creates an invoice' do
         service = described_class.new(params)
         expect(service).to be_valid
@@ -53,13 +53,24 @@ RSpec.describe InvoiceCreationService do
       end
     end
 
-    # TODO: this chunk doesn't do anything yet
-    # context "faulty params" do
-    #   let(:invoice_number) { nil }
-    #   it "returns false" do
-    #     service = InvoiceCreationService.perform(params)
-    #     expect(service.valid?).to be_falsey
-    #   end
-    # end
+    context 'with faulty params' do
+      let(:invoice_number) { nil }
+
+      it 'returns false' do
+        service = described_class.perform(params)
+        expect(service).not_to be_valid
+      end
+    end
+
+    context 'with an exeception' do
+      let(:invoice_number) { nil }
+
+      it 'returns false' do
+        service = described_class.new(params)
+        allow(service).to receive(:valid?).and_return(true)
+
+        expect(service.perform).to be_falsey
+      end
+    end
   end
 end

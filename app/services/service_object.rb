@@ -9,8 +9,8 @@ class ServiceObject
   end
 
   def perform
-    @performed = true
-    if perform_service
+    if valid? && perform_service
+      @performed = true
       self
     else
       false
@@ -29,6 +29,10 @@ class ServiceObject
 
   def perform_service
     raise "'perform_service' method Not implemented"
+  end
+
+  def valid?
+    true
   end
 
   def add_error(message)

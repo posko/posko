@@ -3,20 +3,19 @@ require 'rails_helper'
 RSpec.describe ProductCreationService do
   let(:user) { create(:user) }
   let(:account) { user.account }
+  let(:params) do
+    {
+      created_by: user,
+      title: 'bag',
+      vendor: 'hawk',
+      price: 100,
+      cost: 65,
+      compare_at_price: 140,
+      sku: '111000'
+    }
+  end
 
   describe '#perform' do
-    let(:params) do
-      {
-        created_by: user,
-        title: 'bag',
-        vendor: 'hawk',
-        price: 100,
-        cost: 65,
-        compare_at_price: 140,
-        sku: '111000'
-      }
-    end
-
     context 'with correct params' do
       it 'creates an invoice' do
         service = described_class.new(params)

@@ -11,7 +11,7 @@ class InvoiceCreationService < ServiceObject
   end
 
   def valid?
-    true
+    !invoice_number.nil?
   end
 
   protected

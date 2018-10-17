@@ -12,7 +12,7 @@ class FormObject
   end
 
   def save!
-    save || raise(ActiveResource::ResourceInvalid)
+    save || raise(ActiveRecord::RecordInvalid)
   end
 
   # rubocop:disable Rails/ActiveRecordAliases
@@ -27,8 +27,8 @@ class FormObject
   end
   # rubocop:enable Rails/ActiveRecordAliases
 
-  def update!
-    update || raise(ActiveResource::ResourceInvalid)
+  def update!(options = {})
+    update(options) || raise(ActiveRecord::RecordInvalid)
   end
 
   def persist!

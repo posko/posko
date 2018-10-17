@@ -1,5 +1,4 @@
 class RegistrationService < ServiceObject
-  # Add more attributes if you'd like to
   attr_reader(
     :account_name,
     :company,
@@ -22,10 +21,6 @@ class RegistrationService < ServiceObject
 
   private
 
-  def processed?
-    @processed
-  end
-
   def perform_service
     ActiveRecord::Base.transaction do
       create_account!
@@ -46,6 +41,6 @@ class RegistrationService < ServiceObject
   end
 
   def valid?
-    account_name && company_name
+    account_name && company
   end
 end
