@@ -48,6 +48,7 @@ RSpec.describe InvoiceCreationService do
         expect(service).to be_performed
         expect(account.invoice_lines.count).to be(2)
         expect(invoice.total_line_items_price).to eq(303)
+        expect(invoice.subtotal).to eq(303)
         expect(invoice.total_weight).to eq(2)
       end
     end

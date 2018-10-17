@@ -83,20 +83,23 @@ class InvoiceCreationService < ServiceObject
   # TODO: implement discount lines
   def compute_discount(line); end
 
-  def compute_subtotal
-    self.total_price = self.total_line_items_price - total_discounts
-  end
-
-  def compute_total_price
-    self.total_price = subtotal # + others if ever
-  end
-
   def calculate_invoice
     compute_subtotal
     compute_total_price
 
     invoice.total_line_items_price = self.total_line_items_price
     invoice.total_price = total_price
-    invoice.total_weight = self.total_weight
+    invoice.subtotal = subtotal
+    invoice.total_weight = total_weight
+  end
+
+  # subtotal is the price after discount but before taxes
+  def compute_subtotal
+    self.subtotal = self.total_line_items_price + total_discounts
+  end
+
+  # total_price includes discount taxes and line prices
+  def compute_total_price
+    self.total_price = subtotal # + taxes + others if ever
   end
 end
