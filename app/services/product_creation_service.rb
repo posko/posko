@@ -1,6 +1,6 @@
 class ProductCreationService < ServiceObject
-  attr_reader :title, :sku, :price, :cost,
-    :compare_at_price, :account, :created_by
+  attr_reader :title, :sku, :price, :cost, :barcode,
+    :compare_at_price, :account, :created_by, :selling_policy, :open_price
   attr_reader :product, :variant
 
   def initialize(options = {})
@@ -10,6 +10,8 @@ class ProductCreationService < ServiceObject
     @sku = options.fetch(:sku)
     @price = options.fetch(:price)
     @cost = options[:cost]
+    @selling_policy = options[:selling_policy]
+    @open_price = options[:open_price]
     @barcode = options[:barcode]
   end
 
@@ -40,7 +42,10 @@ class ProductCreationService < ServiceObject
       title: title,
       cost: cost,
       price: price,
-      compare_at_price: compare_at_price
+      barcode: barcode,
+      compare_at_price: compare_at_price,
+      selling_policy: selling_policy,
+      open_price: open_price
     )
   end
 end

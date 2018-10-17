@@ -2,7 +2,7 @@
 </section>
 <section class='content'>
   <div class='row'>
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div class="box">
         <%= form_for @product do |f| %>
           <div class="box-header">
@@ -14,22 +14,47 @@
               <%= f.submit "Update", class: "btn btn-primary" %>
             </div>
           </div>
+
           <div class="box-body">
             <div class="form-group">
               <%= f.label :title %>
               <%= f.text_field :title, class: "form-control"%>
             </div>
-            <div class="form-group">
-              <%= f.label :price %>
-              <%= f.number_field :price, class: "form-control"%>
-            </div>
-            <div class="form-group">
-              <%= f.label :cost %>
-              <%= f.text_field :cost, class: "form-control"%>
-            </div>
-            <div class="form-group">
-              <%= f.label :barcode %>
-              <%= f.text_field :barcode, class: "form-control"%>
+            <div class='row'>
+              <div class='col-md-6'>
+                <div class="form-group">
+                  <%= f.label :price %>
+                  <%= f.number_field :price, class: "form-control"%>
+                </div>
+              </div>
+              <div class='col-md-6'>
+                <div class="form-group">
+                  <%= f.label :cost %>
+                  <%= f.text_field :cost, class: "form-control"%>
+                </div>
+              </div>
+              <div class='col-md-6'>
+                <div class="form-group">
+                  <%= f.label :barcode %>
+                  <%= f.text_field :barcode, class: "form-control"%>
+                </div>
+              </div>
+              <div class='col-md-6'>
+                <div class="form-group">
+                  <%= f.label :selling_policy, "Sold by" %>
+                  <%= f.select :selling_policy, selling_policy_options, {}, class: "form-control"%>
+                </div>
+              </div>
+              <div class='col-md-6'>
+                <div class="form-group">
+                  <div class='checkbox'>
+                    <label>
+                      <%= f.check_box(:open_price) %> Open Price
+                      <i class='help-block'> Check this to indicate price upon sale </i>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
