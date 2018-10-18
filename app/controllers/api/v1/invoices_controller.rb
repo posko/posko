@@ -34,7 +34,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
       :invoice_number,
       :subtotal,
       invoice_lines: invoice_line_params,
-      customer: [:first_name, :last_name, :email]
+      customer: [:id, :first_name, :last_name, :email]
     )
   end
 

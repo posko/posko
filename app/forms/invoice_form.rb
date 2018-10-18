@@ -14,7 +14,6 @@ class InvoiceForm < FormObject
 
   def save
     if valid? && service_object.perform
-      puts customer
       self.customer = service_object.customer
       true
     else
