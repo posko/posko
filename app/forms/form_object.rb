@@ -34,4 +34,8 @@ class FormObject
   def persist!
     raise 'persist! method not defined'
   end
+
+  def update_attributes(_options = {})
+    raise 'persist! method not defined'
+  end
 end

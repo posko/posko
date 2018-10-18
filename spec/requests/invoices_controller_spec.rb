@@ -29,7 +29,7 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
     let(:params) do
       {
         invoice: {
-          customer_id: customer.id,
+          customer: { id: customer.id },
           invoice_number: 25,
           subtotal: 303,
           invoice_lines: [

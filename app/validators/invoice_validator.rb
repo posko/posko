@@ -8,14 +8,6 @@ class InvoiceValidator < ActiveModel::Validator
       # stop accumulating if attributes are incomplete
       add_line_amount line unless incomplete_attributes
     end
-    subtotal_validation unless incomplete_attributes
-  end
-
-  # Validates the subtotal of invoice
-  def subtotal_validation
-    return unless subtotal != record.subtotal.to_f
-
-    record.errors.add(:subtotal, 'does not match the total invoice line amount')
   end
 
   def add_line_amount(line)

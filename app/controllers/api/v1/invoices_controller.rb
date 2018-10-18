@@ -31,10 +31,10 @@ class Api::V1::InvoicesController < Api::V1::ApiController
 
   def invoice_params
     params.require(:invoice).permit(
-      :customer_id,
       :invoice_number,
       :subtotal,
-      invoice_lines: invoice_line_params
+      invoice_lines: invoice_line_params,
+      customer: [:first_name, :last_name, :email]
     )
   end
 

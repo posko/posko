@@ -24,24 +24,6 @@ RSpec.describe InvoiceValidator do
   end
   let(:subtotal) { 32 }
 
-  describe 'invoice subtotal' do
-    context 'with correct subtotal' do
-      it { is_expected.to be_valid }
-    end
-
-    context 'with incorrect subtotal' do
-      let(:subtotal) { 10 }
-
-      it { is_expected.to be_invalid }
-    end
-
-    context 'without subtotal' do
-      let(:subtotal) { nil }
-
-      it { is_expected.to be_invalid }
-    end
-  end
-
   describe 'invoice lines\' attributes' do
     context 'with complete attributes' do
       it { is_expected.to be_valid }

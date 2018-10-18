@@ -10,11 +10,11 @@ RSpec.describe InvoiceCreationService do
   describe '#perform' do
     let(:params) do
       {
-        customer_id: customer_id,
         invoice_number: invoice_number,
         user: user,
         account: account,
-        invoice_lines: invoice_lines
+        invoice_lines: invoice_lines,
+        customer: customer_params
       }
     end
     let(:invoice_lines) do
@@ -36,11 +36,11 @@ RSpec.describe InvoiceCreationService do
       ]
     end
     let(:invoice_number) { '19921' }
-    let(:customer_id) { customer.id }
+    let(:customer_params) { { id: customer.id } }
+    let(:service) { described_class.new(params) }
 
     context 'with correct params' do
       it 'creates an invoice' do
-        service = described_class.new(params)
         expect(service).to be_valid
         expect(service.perform).to be_truthy
         invoice = service.invoice
@@ -57,7 +57,7 @@ RSpec.describe InvoiceCreationService do
       let(:invoice_number) { nil }
 
       it 'returns false' do
-        service = described_class.perform(params)
+        service.perform
         expect(service).not_to be_valid
       end
     end
@@ -65,12 +65,24 @@ RSpec.describe InvoiceCreationService do
     context 'with an exeception' do
       let(:invoice_number) { nil }
 
-      it 'returns false' do
-        service = described_class.new(params)
-        allow(service).to receive(:valid?).and_return(true)
+      before { allow(service).to receive(:valid?).and_return(true) }
 
-        expect(service.perform).to be_falsey
+      it { expect(service.perform).to be_falsey }
+    end
+
+    context 'with new customer' do
+      let(:customer_params) do
+        {
+          first_name: 'Kaneki',
+          last_name: 'Ken',
+          email: 'kaneki@ken.com'
+        }
       end
+
+      before { service.perform }
+
+      it { expect(Customer.count).to eq(1) }
+      it { expect(Customer.first).to eq(service.customer) }
     end
   end
 end

@@ -1,5 +1,5 @@
 class InvoiceForm < FormObject
-  attr_accessor :invoice_number, :invoice_lines, :subtotal, :user, :customer_id,
+  attr_accessor :invoice_number, :invoice_lines, :subtotal, :user, :customer,
     :account
 
   delegate :invoice, to: :service_object
@@ -14,6 +14,8 @@ class InvoiceForm < FormObject
 
   def save
     if valid? && service_object.perform
+      puts customer
+      self.customer = service_object.customer
       true
     else
       false
@@ -30,9 +32,5 @@ class InvoiceForm < FormObject
       customer: customer,
       caller: self
     )
-  end
-
-  def customer
-    @customer = Customer.find_by(id: customer_id)
   end
 end

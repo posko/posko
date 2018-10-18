@@ -1,17 +1,23 @@
 class InvoiceCreationService < ServiceObject
-  attr_reader :invoice, :invoice_lines, :user, :customer, :shift
+  attr_reader :invoice, :invoice_lines, :user, :shift
   def initialize(options = {})
     @invoice_number         = options.fetch(:invoice_number)
     @invoice_lines_params   = options.fetch(:invoice_lines)
     @user                   = options.fetch(:user)
     @account                = options.fetch(:account)
-    @customer               = options[:customer]
+    @customer_params        = options[:customer]
     @shift                  = options[:shift]
     reset_variables
   end
 
   def valid?
     !invoice_number.nil?
+  end
+
+  def customer
+    return nil unless customer_params
+
+    @customer ||= find_or_create_customer
   end
 
   protected
@@ -21,8 +27,8 @@ class InvoiceCreationService < ServiceObject
 
   private
 
-  attr_reader :customer_id, :invoice_number, :invoice_params,
-    :invoice_lines_params, :account
+  attr_reader :invoice_number, :invoice_params,
+    :invoice_lines_params, :account, :customer_params
 
   def perform_service
     return false unless valid?
@@ -45,6 +51,23 @@ class InvoiceCreationService < ServiceObject
     @total_tax              = 0
     @total_discounts        = 0
     @total_line_items_price = 0
+  end
+
+  def find_or_create_customer
+    if customer_params[:id]
+      account.customers.find customer_params[:id]
+    else
+      create_customer!
+    end
+  end
+
+  def create_customer!
+    attrs = {
+      first_name: customer_params.fetch(:first_name),
+      last_name: customer_params.fetch(:last_name),
+      email: customer_params[:email]
+    }
+    account.customers.create!(attrs)
   end
 
   def build_invoice
