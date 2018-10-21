@@ -7,7 +7,6 @@ class InvoiceForm < FormObject
   validates :invoice_number, presence: true
   validates :invoice_number, numericality: true
   validates :invoice_lines, presence: true
-  validates :subtotal, presence: true
   validates :user, presence: true
   validates :account, presence: true
   validates_with InvoiceValidator, if: :invoice_lines

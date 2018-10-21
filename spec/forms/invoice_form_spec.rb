@@ -55,7 +55,6 @@ RSpec.describe InvoiceForm, type: :form do
     it { expect(invoice_form).to validate_presence_of(:invoice_lines) }
     it { expect(invoice_form).to validate_presence_of(:invoice_number) }
     it { expect(invoice_form).to validate_numericality_of(:invoice_number) }
-    it { expect(invoice_form).to validate_presence_of(:subtotal) }
     it { expect(invoice_form).to validate_with(InvoiceValidator) }
   end
 end
