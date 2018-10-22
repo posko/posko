@@ -2,7 +2,7 @@ require 'generator_spec'
 require 'rails_helper'
 require 'generators/breadko/breadko_generator.rb'
 RSpec.describe BreadkoGenerator, type: :generator do
-  destination File.expand_path('../tmp', __dir__)
+  destination File.expand_path('../tmp/generator', __dir__)
   arguments %w[posts content:string tags:string --with-datatable]
 
   before do
@@ -11,7 +11,7 @@ RSpec.describe BreadkoGenerator, type: :generator do
   end
 
   after do
-    system 'rm -rf spec/tmp'
+    system 'rm -rf spec/tmp/generator/*'
   end
 
   it 'creates a test initializer' do

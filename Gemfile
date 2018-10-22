@@ -70,6 +70,7 @@ group :test do
   gem 'database_cleaner'
   gem 'generator_spec'
   gem 'guard-rspec', require: false
+  gem 'pdf-inspector', require: false
   gem 'rails-controller-testing'
   gem 'rspec-json_expectations', require: false
   gem 'shoulda-callback-matchers', '~> 1.1.1'
@@ -109,3 +110,6 @@ gem 'queryko'
 
 # used for demo
 gem 'faker'
+
+# PDF generator
+gem 'prawn'
