@@ -58,6 +58,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    barby (0.6.6)
     bcrypt (3.1.12)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
@@ -385,6 +386,7 @@ PLATFORMS
 DEPENDENCIES
   adminlte_theme
   ajax-datatables-rails (= 0.4.0)
+  barby
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller

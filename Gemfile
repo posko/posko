@@ -113,3 +113,5 @@ gem 'faker'
 
 # PDF generator
 gem 'prawn'
+
+gem 'barby'

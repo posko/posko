@@ -18,8 +18,8 @@ end
 
 account = @registration_form.account
 user = @registration_form.user
-sku = '000001'
-3.times.each do |_x|
+sku = '000000001'
+100.times.each do |_x|
   title = Faker::Commerce.product_name
   product = account.products.create(title: title, created_by: user)
   2.times do |_y|
