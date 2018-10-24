@@ -32,6 +32,26 @@ class ProductImporter
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
+  def create_product(row)
+    ProductCreationService.perform(
+      created_by: user,
+      title: row['Title'],
+      sku: '',
+      price: row['Price'],
+      cost: row['Cost'],
+      barcode: row['Barcode'],
+      compare_at_price: 0,
+      open_price: false,
+      selling_policy: :each
+    )
+  end
+  # rubocop:enable Metrics/MethodLength
+
+  def user
+    @user ||= User.find(@user_id)
+  end
+
   def find_product(row)
     if row['Handle']
       account.products.find_by(handle: row['Handle'])

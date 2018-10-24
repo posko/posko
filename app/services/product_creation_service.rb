@@ -37,6 +37,7 @@ class ProductCreationService < ServiceObject
     @product = account.products.create!(title: title, created_by: created_by)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_variant!
     product.variants.create!(
       title: title,
@@ -46,7 +47,9 @@ class ProductCreationService < ServiceObject
       barcode: barcode,
       compare_at_price: compare_at_price,
       selling_policy: selling_policy,
-      open_price: open_price
+      open_price: open_price,
+      default: true
     )
   end
+  # rubocop:enable Metrics/MethodLength
 end
