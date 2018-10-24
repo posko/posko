@@ -1,4 +1,4 @@
-require "prawn/measurement_extensions"
+require 'prawn/measurement_extensions'
 class PdfObject < Prawn::Document
   def initialize(*args)
     super page_setup

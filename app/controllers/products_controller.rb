@@ -3,11 +3,6 @@ class ProductsController < ApplicationController
     @products = current_account.products.active_status
     respond_to do |format|
       format.html
-      format.pdf do
-        variants = current_account.variants.active_status
-        send_data BarcodesPdf.new(variants: variants).render, filename: 'test',
-          disposition: 'inline'
-      end
       format.json do
         render json: ProductDatatable.new(view_context,
           current_account: current_account)

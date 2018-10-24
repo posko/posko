@@ -26,6 +26,11 @@ class Product < ApplicationRecord
     end
   end
 
+  # TODO: should be defined explicitly
+  def default_variant
+    variants.first
+  end
+
   def create_unique_handle
     subject = account.products.find_by(handle: title.parameterize)
     self.handle = generate_new_handle subject

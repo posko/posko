@@ -22,11 +22,22 @@ class ProductImporter
   end
 
   def find_or_create_product!(row)
-    product = account.products.find_by(handle: row['Handle'])
+    product = find_product(row)
     if product
-      product.update!(product_attributes(row))
+      attrs = product_attributes(row)
+      product.update!(attrs.except(:handle, :variants_attributes))
+      product.default_variant.update!(attrs[:variants_attributes].first)
     else
       account.products.create!(product_attributes(row))
+    end
+  end
+
+  def find_product(row)
+    if row['Handle']
+      account.products.find_by(handle: row['Handle'])
+    else
+      handle = row['Name'].parameterize
+      account.products.find_by(handle: handle)
     end
   end
 
