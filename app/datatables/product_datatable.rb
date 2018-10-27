@@ -1,4 +1,5 @@
 class ProductDatatable < AjaxDatatablesRails::Base
+  def_delegators :@view, :number_to_currency
   def view_columns
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
@@ -14,6 +15,8 @@ class ProductDatatable < AjaxDatatablesRails::Base
       {
         title: record.decorate.title_link,
         product_type: record.product_type.humanize,
+        price: number_to_currency(record.price, unit: 'P '),
+        cost: number_to_currency(record.cost, unit: 'P '),
         status: record.status.humanize,
         actions: actions(record)
       }
