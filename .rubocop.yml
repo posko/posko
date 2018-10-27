@@ -6,6 +6,9 @@ AllCops:
   Exclude:
     - db/schema.rb
     - vendor/**/*
+    - config/deploy/*
+    - config/deploy.rb
+    - sandbox/*
 
 Style/FrozenStringLiteralComment:
   Enabled: false

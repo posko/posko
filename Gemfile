@@ -59,9 +59,9 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
-  gem "capistrano", "~> 3.11", require: false
+  gem 'capistrano', '~> 3.11', require: false
   gem 'capistrano-bundler', '~> 1.4'
-  gem "capistrano-rails", "~> 1.4", require: false
+  gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano3-puma'
   gem 'guard-rubocop'

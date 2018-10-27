@@ -37,9 +37,13 @@ class ProductCreationService < ServiceObject
     @product = account.products.create!(title: title, created_by: created_by)
   end
 
+  def link_variant_to_product
+    product.update(default_variant: variant)
+  end
+
   # rubocop:disable Metrics/MethodLength
   def create_variant!
-    product.variants.create!(
+    @variant = product.variants.create!(
       title: title,
       sku: sku,
       cost: cost,

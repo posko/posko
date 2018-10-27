@@ -21,6 +21,7 @@ RSpec.describe ProductCreationService do
         service = described_class.new(params)
         expect(service).to be_valid
         expect(service.perform).to be_truthy
+        expect(service.product.default_variant).to be_truthy
         expect(Product.count).to eq(1)
         expect(Variant.count).to eq(1)
       end

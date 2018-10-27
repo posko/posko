@@ -28,8 +28,11 @@ coverage
 # Ignore atom imdone files
 .imdone
 
-
+# Ignore Deployment config
 Capfile
 config/deploy.rb
 config/nginx.conf
 config/deploy/*
+
+# Ignore sandbox directory
+sandbox

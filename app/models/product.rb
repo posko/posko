@@ -6,6 +6,8 @@ class Product < ApplicationRecord
   has_many :variants, dependent: :destroy
   has_many :invoice_lines, dependent: :destroy
   has_many :components, through: :variants
+
+  belongs_to :default_variant, class_name: 'Variant', optional: true
   belongs_to :account
   belongs_to :created_by, class_name: 'User'
 
@@ -17,6 +19,8 @@ class Product < ApplicationRecord
   validate :default_variant_only, if: :composite?
 
   before_validation :create_unique_handle, on: :create
+
+  delegate :price, :cost, to: :default_variant
 
   def default_variant_only
     if variants.size > 1
