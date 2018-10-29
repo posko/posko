@@ -1,10 +1,25 @@
 # POS using rails [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/neume/posko/tree/develop)
-  An open source POS written on rails. Hopefully, it can support real world scenario.
+  A free to use POS app written on rails. It currently targets small-size businesses like 'retail stores', restaurants and others.
 
 
 [![Build Status](https://travis-ci.org/neume/posko.svg?branch=develop)](https://travis-ci.org/neume/posko)
 [![Maintainability](https://api.codeclimate.com/v1/badges/12cd8cf666a27e7c7b10/maintainability)](https://codeclimate.com/github/neume/posko/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/12cd8cf666a27e7c7b10/test_coverage)](https://codeclimate.com/github/neume/posko/test_coverage)
+
+# Demo App
+Try it [here](https://posko.herokuapp.com/)
+
+This demo app resets every 6 hours. It is hosted on a free dyno that might not be
+available at the moment of your visit. It is also implemented minimally with less to no
+proper security measures.
+
+*This app instance is hosted for **DEMO** purposes only and is **NOT MONITORED** actively. Do not
+leave any personal information like passwords, email, etc. It is advisable to use
+made-up **emails** and **password** for your own safety.*
+
+*The owner of this app will not
+be liable for any data breach due to this demo app's lack of proper security
+measures.*
 
 # Specs
 * Tested on Ruby ``` 2.4.3 ```
@@ -59,7 +74,7 @@ These variables are based on rails defaults and seed data. Change it according t
 [Android App](https://github.com/edwnmrtnz/posko) by [edwnmrtnz](https://github.com/edwnmrtnz)
 
 # Desktop App
-  It will follow after the release of version 1. I plan to utilize the power of ```Electron```
+  [Posko Electron](https://github.com/neume/posko-electron) is now on its way. This is the first attempt to bring posko on desktops
 
 # Contributing
   Contributions/Suggestions are very welcome. Check it out [here](https://github.com/neume/posko])
