@@ -12,8 +12,7 @@ RSpec.describe PagesController, type: :controller do
 
   describe 'GET dashboard' do
     before do
-      product = create(:product, account: account)
-      create(:variant, product: product)
+      create(:product, account: account)
       get :dashboard
     end
 

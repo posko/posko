@@ -4,7 +4,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
   let(:user) { create(:user) }
   let(:account) { user.account }
   let(:product) { create(:product, account: account) }
-  let(:variant) { create(:variant, product: product) }
+  let(:variant) { product.default_variant }
   let(:access_key) { user.access_keys.first }
 
   let(:headers) do
@@ -13,7 +13,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
     { 'HTTP_AUTHORIZATION': basic_auth(token, auth_token) }
   end
 
-  before { variant }
+  before { product }
 
   describe 'GET /api/v1/products/:product_id/variants' do
     it 'returns list of variants' do

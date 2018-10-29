@@ -17,7 +17,7 @@ RSpec.describe VariantsController, type: :controller do
   describe 'GET #index' do
     it 'assigns @variants' do
       get :index, params: { product_id: product.id }
-      expect(assigns(:variants)).to eq([variant])
+      expect(assigns(:variants).count).to eq(1)
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe VariantsController, type: :controller do
       before { post(:create, params: params) }
 
       it 'creates variant' do
-        expect(account.variants.count).to eq(1)
+        expect(account.variants.count).to eq(2)
       end
     end
 

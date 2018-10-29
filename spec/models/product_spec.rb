@@ -8,7 +8,7 @@ RSpec.describe Product, type: :model do
       let(:product) { create(:product, product_type: :regular) }
 
       it 'adds product with default variant' do
-        expect(product.variants.count).to eq(0)
+        expect(product.variants.count).to eq(1)
       end
     end
     # describe 'composite' do
@@ -30,7 +30,6 @@ RSpec.describe Product, type: :model do
     end
     it 'validates composite_variant_count to be 1' do
       product = create(:product, :composite)
-      product.variants.create(attributes_for(:variant))
       expect(product).to be_composite
       expect(product).to be_valid
       product.variants.new(attributes_for(:variant))

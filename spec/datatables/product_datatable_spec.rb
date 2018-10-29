@@ -1,16 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe ProductDatatable, type: :datatable do
-  let(:product_datatable) do
-    described_class.new(instance_double('view', params: params),
-      options)
-  end
+  let(:product_datatable) { described_class.new(view, options) }
+
   let(:account) { create(:account) }
   let(:product) { create(:product, account: account) }
+
   # supporting data
-  let(:params) do
-    ActionController::Parameters.new('columns': {})
+  let(:view) do
+    params = ActionController::Parameters.new('columns': {})
+    view_double = instance_double('view', params: params)
+    view_double.extend ActiveSupport::NumberHelper
   end
+
   let(:options) do
     {
       current_account: account
