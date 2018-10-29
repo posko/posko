@@ -1,8 +1,7 @@
 class Api::V1::VariantsController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @variants = VariantsQuery.new(params, product.variants).call
-    render json: { variants: @variants }
+    render json: { variants: variants }
   end
 
   def show
@@ -18,6 +17,14 @@ class Api::V1::VariantsController < Api::V1::ApiController
 
   def product_params
     params.require(:product).permit(:first_name, :last_name, :email)
+  end
+
+  def variants
+    if params[:product_id]
+      VariantsQuery.new(params, product.variants).call
+    else
+      VariantsQuery.new(params, current_account.variants).call
+    end
   end
 
   def product

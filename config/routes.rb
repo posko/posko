@@ -43,6 +43,7 @@ Rails.application.routes.draw do
             resources :components
           end
         end
+        resources :variants, only: :index
         resources :invoices, shallow: true do
           resources :invoice_lines
         end

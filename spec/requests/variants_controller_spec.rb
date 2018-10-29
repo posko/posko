@@ -23,6 +23,14 @@ RSpec.describe Api::V1::ProductsController, type: :request do
     end
   end
 
+  describe 'GET /api/v1/variants' do
+    it 'returns list of variants' do
+      get '/api/v1/variants', headers: headers
+      expect(json['variants'].count).to eq(1)
+      expect(json).to include_json(variants: [])
+    end
+  end
+
   describe 'GET /api/v1/variants/:id' do
     context 'with existing variant' do
       it 'returns the variant' do
