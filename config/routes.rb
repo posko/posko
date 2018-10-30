@@ -47,6 +47,12 @@ Rails.application.routes.draw do
         resources :invoices, shallow: true do
           resources :invoice_lines
         end
+        resources :shifts do
+          collection do
+            get :current
+            patch :end_shift
+          end
+        end
       end
     end
   end

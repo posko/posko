@@ -13,4 +13,8 @@ class User < ApplicationRecord
   validates :email, :first_name, :last_name, presence: true
   validates :email, format: /@/, uniqueness: true
   # after_create :generate_new_access_key
+
+  def current_shift
+    shifts.started.first
+  end
 end
