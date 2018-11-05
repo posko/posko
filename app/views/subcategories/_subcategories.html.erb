@@ -1,0 +1,11 @@
+<ul>
+  <% category.subcategories.each do |category| %>
+    <li>
+      <%= category.name %>
+      <%= link_to '+', new_category_subcategory_path(category_id: category.id) %>
+      <% if category.subcategories.count > 0 %>
+        <%= render 'subcategories/subcategories', category: category %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

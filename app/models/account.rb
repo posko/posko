@@ -7,6 +7,7 @@ class Account < ApplicationRecord
   has_many :customers, dependent: :destroy
   has_many :roles, dependent: :destroy
   has_many :variants, through: :products
+  has_many :categories, dependent: :destroy
 
   alias_attribute :account_name, :name
   # has_many :branches

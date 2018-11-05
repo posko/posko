@@ -63,6 +63,12 @@
           <span> Roles </span>
         </a>
       </li>
+      <li class="<%= params["controller"] == "categories" ? "active" : ""%>">
+        <a href="<%= categories_path %>">
+          <i class="fa fa-circle"></i>
+          <span> Categories </span>
+        </a>
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->

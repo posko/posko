@@ -23,5 +23,6 @@ RSpec.describe Account, type: :model do
     it { is_expected.to have_many(:customers) }
     it { is_expected.to have_many(:roles) }
     it { is_expected.to have_many(:users) }
+    it { is_expected.to have_many(:categories) }
   end
 end
