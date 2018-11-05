@@ -35,17 +35,52 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         post 'sign_in' => 'auth#sign_in'
-        resources :users
-        resources :access_keys
-        resources :customers
-        resources :products, shallow: true do
-          resources :variants, shallow: true do
-            resources :components
+        resources :users do
+          collection do
+            get :count
           end
         end
-        resources :variants, only: :index
+        resources :access_keys do
+          collection do
+            get :count
+          end
+        end
+        resources :customers do
+          collection do
+            get :count
+          end
+        end
+
+        resources :variants, only: [:index, :count] do
+          collection do
+            get :count
+          end
+        end
+
+        resources :products, shallow: true do
+          collection do
+            get :count
+          end
+          resources :variants, shallow: true do
+            collection do
+              get :count
+            end
+            resources :components do
+              collection do
+                get :count
+              end
+            end
+          end
+        end
         resources :invoices, shallow: true do
-          resources :invoice_lines
+          collection do
+            get :count
+          end
+          resources :invoice_lines do
+            collection do
+              get :count
+            end
+          end
         end
         resources :shifts do
           collection do

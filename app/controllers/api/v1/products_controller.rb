@@ -5,6 +5,11 @@ class Api::V1::ProductsController < Api::V1::ApiController
     render json: { products: @products }
   end
 
+  def count
+    @products = ProductsQuery.new(params, Product.all).call
+    render json: { count: @products.count }
+  end
+
   def show
     @product = current_account.products.find_by id: params[:id]
     if @product

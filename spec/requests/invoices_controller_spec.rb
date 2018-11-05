@@ -25,6 +25,15 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
     end
   end
 
+  describe 'GET /api/v1/invoices/count' do
+    it 'counts invoices' do
+      invoice
+      get '/api/v1/invoices/count', headers: headers
+      expect(response).to have_http_status(:ok)
+      expect(json).to include_json(count: 1)
+    end
+  end
+
   describe 'POST /api/v1/invoices' do
     let(:params) do
       {

@@ -21,6 +21,14 @@ RSpec.describe Api::V1::CustomersController, type: :request do
     end
   end
 
+  describe 'GET /api/v1/customers/count' do
+    it 'counts customers' do
+      create(:customer, account: account)
+      get '/api/v1/customers/count', headers: headers
+      expect(json).to include_json(count: 1)
+    end
+  end
+
   describe 'POST /api/v1/customers' do
     context 'with correct params' do
       it 'creates a customer' do

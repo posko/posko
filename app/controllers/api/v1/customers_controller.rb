@@ -5,6 +5,11 @@ class Api::V1::CustomersController < Api::V1::ApiController
     render json: { customers: @customers }
   end
 
+  def count
+    @customers = CustomersQuery.new(params, current_account.customers).call
+    render json: { count: @customers.count }
+  end
+
   def create
     @customer = current_account.customers.new customer_params
     if @customer.save

@@ -11,10 +11,18 @@ RSpec.describe Api::V1::AccessKeysController, type: :request do
   end
 
   describe 'GET /api/v1/access_keys' do
-    it 'returns current account' do
+    it 'returns access key list' do
       user.access_keys.create
       get '/api/v1/access_keys', headers: headers
       expect(json).to include_json(access_keys: [])
+    end
+  end
+
+  describe 'GET /api/v1/access_keys/count' do
+    it 'counts access keys' do
+      user.access_keys.create
+      get '/api/v1/access_keys/count', headers: headers
+      expect(json).to include_json(count: 2)
     end
   end
 end

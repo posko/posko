@@ -86,6 +86,14 @@ RSpec.describe Api::V1::ProductsController, type: :request do
     end
   end
 
+  describe 'GET /api/v1/products/count' do
+    it 'counts products' do
+      get '/api/v1/products/count', headers: headers
+      expect(response).to have_http_status(:ok)
+      expect(json).to include_json(count: 3)
+    end
+  end
+
   describe 'GET /api/v1/products/:id' do
     context 'with existing product' do
       it 'returns the product' do

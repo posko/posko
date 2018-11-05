@@ -4,4 +4,9 @@ class Api::V1::UsersController < Api::V1::ApiController
     @users = UsersQuery.new(params, current_account.users).call
     render json: { users: @users }
   end
+
+  def count
+    @users = UsersQuery.new(params, current_account.users).call
+    render json: { count: @users.count }
+  end
 end

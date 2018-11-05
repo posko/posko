@@ -5,6 +5,11 @@ class Api::V1::InvoicesController < Api::V1::ApiController
     render json: { invoices: @invoices }
   end
 
+  def count
+    @invoices = InvoicesQuery.new(params, current_account.invoices).call
+    render json: { count: @invoices.count }
+  end
+
   def create
     @invoice_form = InvoiceForm.new(invoice_params)
     @invoice_form.user = current_user

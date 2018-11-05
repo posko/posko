@@ -4,6 +4,10 @@ class Api::V1::VariantsController < Api::V1::ApiController
     render json: { variants: variants }
   end
 
+  def count
+    render json: { count: variants.count }
+  end
+
   def show
     @variant = Variant.find_by id: params[:id]
     if @variant
