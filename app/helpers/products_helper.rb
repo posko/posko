@@ -4,4 +4,11 @@ module ProductsHelper
       [k.humanize, k]
     end
   end
+
+  def category_options
+    options = Category.all.collect do |category|
+      [category.name, { data: { directory: category.directory } }, category.id]
+    end
+    options_for_select options
+  end
 end

@@ -120,3 +120,5 @@ gem 'faker'
 gem 'prawn'
 
 gem 'barby'
+
+gem 'select2-rails'

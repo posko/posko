@@ -68,7 +68,7 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :price, :cost, :barcode,
-      :open_price, :selling_policy, :sku)
+      :open_price, :selling_policy, :sku, category_ids: [])
   end
 
   def csv_format

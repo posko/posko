@@ -1,9 +1,9 @@
 class ProductForm < FormObject
   attr_accessor :title, :sku, :price, :cost, :barcode, :compare_at_price,
-    :created_by, :product, :open_price
+    :created_by, :product, :open_price, :category_ids
   attr_reader :account
 
-  delegate :persisted?, :id, :title, :created_by, to: :product
+  delegate :persisted?, :id, :title, :created_by, :category_ids, to: :product
   delegate :price, :cost, :barcode, :compare_at_price, :selling_policy,
     :open_price, :sku, to: :default_variant
 
@@ -42,7 +42,7 @@ class ProductForm < FormObject
   end
 
   def assign_product(options = {})
-    attrs = options.slice(:title, :created_by, :created_by_id)
+    attrs = options.slice(:title, :created_by, :created_by_id, :category_ids)
     product.assign_attributes(attrs)
   end
 
@@ -63,7 +63,8 @@ class ProductForm < FormObject
       barcode: barcode,
       compare_at_price: compare_at_price,
       open_price: open_price,
-      selling_policy: selling_policy
+      selling_policy: selling_policy,
+      category_ids: category_ids
     )
   end
   # rubocop:enable Metrics/MethodLength

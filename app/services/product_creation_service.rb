@@ -1,5 +1,5 @@
 class ProductCreationService < ServiceObject
-  attr_reader :title, :sku, :price, :cost, :barcode,
+  attr_reader :title, :sku, :price, :cost, :barcode, :category_ids,
     :compare_at_price, :account, :created_by, :selling_policy, :open_price
   attr_reader :product, :variant
 
@@ -13,6 +13,7 @@ class ProductCreationService < ServiceObject
     @selling_policy = options[:selling_policy]
     @open_price = options[:open_price]
     @barcode = options[:barcode]
+    @category_ids = options[:category_ids]
   end
 
   def valid?
@@ -34,7 +35,8 @@ class ProductCreationService < ServiceObject
   end
 
   def create_product!
-    @product = account.products.create!(title: title, created_by: created_by)
+    @product = account.products.create!(title: title, created_by: created_by,
+    category_ids: category_ids)
   end
 
   def link_variant_to_product

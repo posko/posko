@@ -61,10 +61,36 @@
                   </div>
                 </div>
               </div>
+              <div class='col-md-6'>
+                <div class="form-group">
+                  <%= f.label :category_ids, "Categories" %>
+                  <%= f.select :category_ids, category_options, {}, multiple: 'multiple',
+                    class: 'form-control', data: { placeholder: 'Select Category' }
+                  %>
+                </div>
+              </div>
+
             </div>
           </div>
         <% end %>
       </div>
     </div>
   </div>
+  <script>
+    function formatCategory(category) {
+      if (!category.id) {
+        return category.text;
+      }
+      var c = $(category.element)
+      var $category = $(
+        '<h4 class="text-bold">' + c.html() + '</h4>' +
+        '<div>' + c.data().directory + '</div>'
+      );
+      return $category;
+    };
+
+    $("#product_category_ids").select2({
+      templateResult: formatCategory
+    });
+  </script>
 </section>
