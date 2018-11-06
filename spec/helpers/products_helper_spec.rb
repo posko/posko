@@ -12,9 +12,14 @@ RSpec.describe ProductsHelper, type: :helper do
     subject { category_options }
 
     let(:category) { create(:category) }
+    let(:html) do
+      directory = category.directory
+      id = category.id
+      "<option data-directory=\"#{directory}\" value=\"#{id}\">Men</option>"
+    end
 
     before { category }
 
-    it { is_expected.to eq([[category.name, category.id]]) }
+    it { is_expected.to eq(html) }
   end
 end

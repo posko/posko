@@ -9,11 +9,7 @@ class ProductCreationService < ServiceObject
     @title = options.fetch(:title)
     @sku = options.fetch(:sku)
     @price = options.fetch(:price)
-    @cost = options[:cost]
-    @selling_policy = options[:selling_policy]
-    @open_price = options[:open_price]
-    @barcode = options[:barcode]
-    @category_ids = options[:category_ids]
+    init_optional_params options
   end
 
   def valid?
@@ -21,6 +17,14 @@ class ProductCreationService < ServiceObject
   end
 
   private
+
+  def init_optional_params(options = {})
+    @cost = options[:cost]
+    @selling_policy = options[:selling_policy]
+    @open_price = options[:open_price]
+    @barcode = options[:barcode]
+    @category_ids = options[:category_ids]
+  end
 
   def perform_service
     return false unless valid?
@@ -36,7 +40,7 @@ class ProductCreationService < ServiceObject
 
   def create_product!
     @product = account.products.create!(title: title, created_by: created_by,
-    category_ids: category_ids)
+                                        category_ids: category_ids)
   end
 
   def link_variant_to_product
