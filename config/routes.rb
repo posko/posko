@@ -60,6 +60,12 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :categories do
+          collection do
+            get :count
+          end
+        end
+
         resources :products, shallow: true do
           collection do
             get :count
