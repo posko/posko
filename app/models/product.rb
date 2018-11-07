@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   has_many :components, through: :variants
   has_many :classifications, dependent: :destroy
   has_many :categories, through: :classifications
+  has_many :option_types, dependent: :destroy
 
   belongs_to :default_variant, class_name: 'Variant', optional: true
   belongs_to :account

@@ -1,0 +1,23 @@
+<section class="content-header">
+</section>
+<section class="content">
+  <%= render 'index', option_types: @option_types, product: @product %>
+</section>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    it { is_expected.to have_many(:components) }
+    $('#option_types-table').dataTable({
+      "processing": true,
+      "serverSide": true,
+      "ajax": $('#option_types-table').data('source'),
+      "pagingType": "full_numbers",
+      "columns": [
+        { "data": "actions", "sortable": false }
+      ]
+      // pagingType is optional, if you want full pagination controls.
+      // Check dataTables documentation to learn more about
+      // available options.
+    });
+  });
+</script>

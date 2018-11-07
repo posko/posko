@@ -1,0 +1,28 @@
+<section class="content-header">
+</section>
+<section class="content">
+  <div class='row'>
+    <div class='col-md-8 col-xs-12'>
+      <div class="box">
+        <%= form_for [@product, @option_type] do |f| %>
+          <div class="box-header">
+            <h3 class="box-title">New OptionType</h3>
+            <div class="box-tools pull-right">
+              <div class="btn-group">
+                <%= link_to "Cancel", product_path(@product), class: "btn btn-danger" %>
+              </div>
+
+              <%= f.submit "Create", class: "btn btn-primary" %>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: "form-control"%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

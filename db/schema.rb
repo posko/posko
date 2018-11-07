@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181106131212) do
+ActiveRecord::Schema.define(version: 20181107102305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,16 @@ ActiveRecord::Schema.define(version: 20181106131212) do
     t.bigint "shift_id"
     t.index ["shift_id", "user_id"], name: "index_invoices_on_shift_id_and_user_id"
     t.index ["shift_id"], name: "index_invoices_on_shift_id"
+  end
+
+  create_table "option_types", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "name", null: false
+    t.integer "option_type_type", default: 0
+    t.integer "option_type_status", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|

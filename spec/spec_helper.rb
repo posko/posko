@@ -26,6 +26,9 @@ SimpleCov.start 'rails' do
   add_group 'Forms', 'app/forms'
   add_group 'Decorators', 'app/decorators'
   add_group 'Datatables', 'app/datatables'
+  add_group 'Importers', 'app/importers'
+  add_group 'Exporters', 'app/exporters'
+  add_group 'Documents', 'app/documents'
 end
 
 RSpec.configure do |config|

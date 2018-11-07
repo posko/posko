@@ -46,6 +46,7 @@ RSpec.describe Product, type: :model do
     it { is_expected.to have_many(:variants) }
     it { is_expected.to have_many(:invoice_lines) }
     it { is_expected.to have_many(:components) }
+    it { is_expected.to have_many(:option_types) }
   end
 
   describe 'callbacks' do

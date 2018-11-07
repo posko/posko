@@ -15,4 +15,5 @@
         <%= link_to "Variants", product_variants_path(@product.id) %>
     </div>
   </div>
+  <%= render 'option_types/index', product: @product, option_types: @product.option_types %>
 </section>
