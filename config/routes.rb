@@ -44,11 +44,13 @@ Rails.application.routes.draw do
             get :count
           end
         end
+
         resources :access_keys do
           collection do
             get :count
           end
         end
+
         resources :customers do
           collection do
             get :count
@@ -79,6 +81,11 @@ Rails.application.routes.draw do
               collection do
                 get :count
               end
+            end
+          end
+          resources :option_types do
+            collection do
+              get :count
             end
           end
         end
