@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :roles
 
   constraints format: 'json' do
-    namespace :api do
+    namespace :api, defaults: { format: :json } do
       namespace :v1 do
         post 'sign_in' => 'auth#sign_in'
         resources :users do

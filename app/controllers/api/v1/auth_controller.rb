@@ -4,7 +4,6 @@ class Api::V1::AuthController < Api::V1::ApiController
     if @sign_in_form.save
       @user = @sign_in_form.user
       @access_key = @sign_in_form.access_key
-      render status: :ok
     else
       render status: :unauthorized, json: {
         messages: @sign_in_form.errors.full_messages
