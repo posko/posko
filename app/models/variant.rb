@@ -6,6 +6,7 @@ class Variant < ApplicationRecord
   has_many :components, dependent: :destroy
 
   belongs_to :product
+  belongs_to :option_value, optional: true
 
   validates :title, presence: true
   validates :price, presence: true

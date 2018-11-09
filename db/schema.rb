@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181107102305) do
+ActiveRecord::Schema.define(version: 20181109045410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,17 @@ ActiveRecord::Schema.define(version: 20181107102305) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "option_values", force: :cascade do |t|
+    t.bigint "option_type_id"
+    t.string "name"
+    t.integer "option_value_type", default: 0
+    t.integer "option_value_status", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_type_id"], name: "index_option_values_on_option_type_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "account_id"
     t.string "title"
@@ -295,6 +306,8 @@ ActiveRecord::Schema.define(version: 20181107102305) do
     t.decimal "cost"
     t.boolean "open_price", default: false
     t.boolean "default", default: false
+    t.bigint "option_value_id"
+    t.index ["option_value_id"], name: "index_variants_on_option_value_id"
   end
 
 end

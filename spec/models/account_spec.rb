@@ -24,5 +24,7 @@ RSpec.describe Account, type: :model do
     it { is_expected.to have_many(:roles) }
     it { is_expected.to have_many(:users) }
     it { is_expected.to have_many(:categories) }
+    it { is_expected.to have_many(:option_types) }
+    it { is_expected.to have_many(:option_values).through(:option_types) }
   end
 end

@@ -29,7 +29,9 @@ Rails.application.routes.draw do
     resources :variants, shallow: true do
       resources :components
     end
-    resources :option_types
+    resources :option_types, shallow: true do
+      resources :option_values
+    end
   end
   resources :customers
   resources :invoices

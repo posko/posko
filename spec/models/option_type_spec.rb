@@ -13,7 +13,8 @@ RSpec.describe OptionType, type: :model do
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:name) }
   end
-  # describe "Associations" do
-  #   it { is_expected.to have_many(:user_option_types) }
-  # end
+
+  describe 'Associations' do
+    it { is_expected.to have_many(:option_values) }
+  end
 end
