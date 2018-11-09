@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :product do
     account
     created_by { association(:user) }
-    title { 'Bread' }
+    sequence(:title) { |x| "Bread#{x}" }
     trait :composite do
       product_type { :composite }
     end

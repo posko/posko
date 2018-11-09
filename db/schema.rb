@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181109045410) do
+ActiveRecord::Schema.define(version: 20181109143540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,19 @@ ActiveRecord::Schema.define(version: 20181109045410) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "option_value_variants", force: :cascade do |t|
+    t.bigint "variant_id"
+    t.bigint "option_value_id"
+    t.integer "option_value_variant_status", default: 0
+    t.integer "status", default: 0
+    t.integer "option_value_variant_type", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_value_id"], name: "index_option_value_variants_on_option_value_id"
+    t.index ["variant_id", "option_value_id"], name: "index_option_value_variants_on_variant_id_and_option_value_id"
+    t.index ["variant_id"], name: "index_option_value_variants_on_variant_id"
   end
 
   create_table "option_values", force: :cascade do |t|
