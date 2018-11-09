@@ -4,11 +4,10 @@ class Variant < ApplicationRecord
 
   has_many :invoice_lines, dependent: :destroy
   has_many :components, dependent: :destroy
-  has_many :option_value_varaints, dependent: :destroy
-  has_many :option_value, through: :option_value_varaints
+  has_many :option_value_variants, dependent: :destroy
+  has_many :option_values, through: :option_value_variants
 
   belongs_to :product
-  belongs_to :option_value, optional: true
 
   validates :title, presence: true
   validates :price, presence: true

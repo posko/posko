@@ -21,7 +21,10 @@ RSpec.describe Variant, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:product) }
-    it { is_expected.to belong_to(:option_value) }
+    it { is_expected.to belong_to(:option_value_variants) }
+    it do
+      is_expected.to have_many(:option_values).through(:option_value_variants)
+    end
 
     it { is_expected.to have_many(:invoice_lines) }
     it { is_expected.to have_many(:components) }
