@@ -15,7 +15,15 @@ chdir APP_ROOT do
   # Add necessary setup steps to this file.
 
   puts 'Generating model diagram'
-  system! "railroady -blamM --hide-through | \
-  sed -E 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' | \
-  dot -Tsvg > doc/models_brief.svg"
+
+  railroady_cmd = 'railroady -blamM --hide-through'
+  sed_cmd = 'sed -r \'s/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g\''
+  neato_cmd = "neato -Tsvg"
+  output = "./doc/models_brief.svg"
+
+  cmd = "#{railroady_cmd} |  #{sed_cmd} |  #{neato_cmd} > #{output}"
+
+  system! cmd
 end
+
+# railroady -blamM --hide-through | sed -r 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' | dot -Tsvg > /home/joseph/github/neume/posko/doc/models_brief.svg
