@@ -85,9 +85,14 @@ Rails.application.routes.draw do
               end
             end
           end
-          resources :option_types do
+          resources :option_types, shallow: true do
             collection do
               get :count
+            end
+            resources :option_values do
+              collection do
+                get :count
+              end
             end
           end
         end
