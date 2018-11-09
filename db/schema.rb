@@ -319,8 +319,6 @@ ActiveRecord::Schema.define(version: 20181109143540) do
     t.decimal "cost"
     t.boolean "open_price", default: false
     t.boolean "default", default: false
-    t.bigint "option_value_id"
-    t.index ["option_value_id"], name: "index_variants_on_option_value_id"
   end
 
 end

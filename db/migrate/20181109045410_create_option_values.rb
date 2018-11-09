@@ -10,8 +10,5 @@ class CreateOptionValues < ActiveRecord::Migration[5.1]
     end
 
     add_index :option_values, :option_type_id
-
-    add_column :variants, :option_value_id, :bigint
-    add_index :variants, :option_value_id
   end
 end
