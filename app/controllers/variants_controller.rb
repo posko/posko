@@ -11,7 +11,7 @@ class VariantsController < ApplicationController
   def create
     @variant = product.variants.new variant_params
     if @variant.save
-      redirect_to product_variants_path(@variant.product_id)
+      redirect_to @variant.product
     else
       render 'new'
     end
@@ -24,7 +24,7 @@ class VariantsController < ApplicationController
   def update
     @variant = current_account.variants.find(params[:id])
     if @variant.update variant_params
-      redirect_to product_variants_path(@variant.product_id)
+      redirect_to @variant.product
     else
       render 'edit'
     end
@@ -43,7 +43,7 @@ class VariantsController < ApplicationController
   private
 
   def variant_params
-    params.require(:variant).permit(:title, :price, :sku, :variant_type,
+    params.require(:variant).permit(:price, :sku, :variant_type,
       option_value_ids: [])
   end
 

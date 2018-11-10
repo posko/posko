@@ -9,8 +9,16 @@ class Variant < ApplicationRecord
 
   belongs_to :product
 
-  validates :title, presence: true
   validates :price, presence: true
+
+  def option_value_names
+    opts = option_values.pluck(:name).join(', ')
+    "#{opts}"
+  end
+
+  def self.not_default
+    self.where(default: false)
+  end
 end
 
 # parent_variant_id and parent_product_id are no longer used.

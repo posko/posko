@@ -20,19 +20,24 @@ account = @registration_form.account
 user = @registration_form.user
 sku = '000000001'
 100.times.each do |_x|
-  title = Faker::Commerce.product_name
-  product = account.products.create(title: title, created_by: user)
-  2.times do |_y|
-    var = {
-      title: "#{Faker::Color.unique.color_name.titleize} #{title}",
-      sku: sku.next!,
-      price: Faker::Commerce.price(100..200, false),
-      compare_at_price: Faker::Commerce.price(200..300, false),
-      barcode: "B#{sku}"
-    }
-    product.variants.create(var)
-  end
-  Faker::Color.unique.clear
+  property = {
+    created_by: user,
+    title: Faker::Commerce.product_name,
+    price: Faker::Commerce.price(100..200, false),
+    cost: Faker::Commerce.price(50..100, false),
+    compare_at_price: Faker::Commerce.price(200..300, false),
+    sku: sku.next!
+  }
+  service = ProductCreationService.new property
+  service.perform
+
+  option_type = service.product.option_types.create(name: 'Size')
+  option_type.option_values.create(name: 'Small')
+  option_type.option_values.create(name: 'Large')
+  option_type = service.product.option_types.create(name: 'Color')
+  option_type.option_values.create(name: 'Red')
+  option_type.option_values.create(name: 'Blue')
+
 end
 
 Rails.logger.debug "\nCreating Customer:"

@@ -10,10 +10,13 @@
     </div>
   </div>
   <div class="box-body">
-      <div class="form-group">
-        <%= f.label :title %>
-        <%= f.text_field :title, class: "form-control"%>
-      </div>
+      <% @product.option_types.each do |option_type| %>
+        <div class="form-group">
+          <%= f.label :option_value_ids %>
+          <%= f.select :option_value_ids, option_type.option_values.map{ |ov| [ov.name, ov.id]}, {}, class: "form-control",
+          name: "variant[option_value_ids][]" %>
+        </div>
+      <% end %>
       <div class="form-group">
         <%= f.label :price %>
         <%= f.number_field :price, class: "form-control"%>

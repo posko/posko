@@ -14,11 +14,6 @@
         </div>
       </div>
       <div class="box-body">
-          <div class="form-group">
-            <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control"%>
-          </div>
-
           <% @product.option_types.each do |option_type| %>
             <div class="form-group">
               <%= f.label :option_value_ids %>
