@@ -37,7 +37,7 @@ class VariantsController < ApplicationController
   def destroy
     @variant = current_account.variants.find(params[:id])
     @variant.deleted_status!
-    redirect_to product_variants_path(@variant.product_id)
+    redirect_to @variant.product
   end
 
   private

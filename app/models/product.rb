@@ -23,7 +23,7 @@ class Product < ApplicationRecord
 
   before_validation :create_unique_handle, on: :create
 
-  delegate :price, :cost, to: :default_variant
+  delegate :price, :cost, :sku, :barcode, to: :default_variant
 
   def default_variant_only
     if variants.size > 1

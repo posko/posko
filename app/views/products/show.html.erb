@@ -7,6 +7,9 @@
       <h2> <%= @product.title %> </h2>
 
         <%= link_to "Back to Products", products_path %>
+        <div> Barcode: <%= @product.barcode %> </div>
+        <div> SKU: <%= @product.sku %> </div>
+        <div> Price: <%= number_to_currency @product.price, unit: 'P' %> </div>
         <div> Vendor: <%= @product.vendor %></div>
         <div> Product Type: <%= @product.product_type.humanize %> </div>
     </div>

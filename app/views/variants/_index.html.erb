@@ -15,19 +15,19 @@
           <tr>
             <th> Properties </th>
             <th> SKU </th>
-            <th> Type </th>
+            <th> Price </th>
             <th> Status </th>
             <th> Actions </th>
           </tr>
         </thead>
         <tbody>
-          <% variants.not_default.each do |variant| %>
+          <% variants.active_status.not_default.each do |variant| %>
             <tr>
               <td><%= variant.option_value_names %></td>
               <td><%= variant.sku %></td>
-              <td><%= variant.variant_type.humanize %> </td>
+              <td><%= number_to_currency variant.price, unit: 'P ' %> </td>
               <td><%= variant.status.humanize %> </td>
-              <td><%= render "actions", variant: variant, product: product %> </td>
+              <td><%= render "variants/actions", variant: variant, product: product %> </td>
             </tr>
           <% end %>
 
