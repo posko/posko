@@ -8,9 +8,9 @@ RSpec.describe BarcodesPdf, type: :document do
 
     before do
       product = create(:product, title: 'Bread')
-      create(:variant, title: 'Bread', product: product)
+      create(:variant, product: product)
     end
 
-    it { expect(inspector.strings).to include('Bread') }
+    it { expect(inspector.strings).to include(variants.first.barcode) }
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe InvoiceLine, type: :model do
   let(:product) { create(:product) }
-  let(:variant) { product.variants.create(price: 100, title: 'Large') }
+  let(:variant) { product.variants.create(price: 100) }
   let(:invoice) { create(:invoice) }
   let(:invoice_line) do
     invoice.invoice_lines.create(product: product,
@@ -28,9 +28,8 @@ RSpec.describe InvoiceLine, type: :model do
   end
 
   describe 'validations' do
-    subject { variant }
+    subject { invoice_line }
 
-    it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:price) }
   end
 

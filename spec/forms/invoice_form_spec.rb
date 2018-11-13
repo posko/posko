@@ -4,7 +4,7 @@ RSpec.describe InvoiceForm, type: :form do
   let(:user) { create(:user) }
   let(:account) { user.account }
   let(:product) { create(:product, account: account) }
-  let(:variant) { product.variants.create(price: 100, title: 'Large') }
+  let(:variant) { product.variants.create(price: 100) }
   let(:customer) { create(:customer, account: account) }
 
   let(:invoice_form) do
@@ -25,7 +25,6 @@ RSpec.describe InvoiceForm, type: :form do
         variant_id: variant.id,
         product_id: product.id,
         price: 101,
-        title: variant.title,
         quantity: 2,
         weight: 1
       },
@@ -33,7 +32,6 @@ RSpec.describe InvoiceForm, type: :form do
         variant_id: variant.id,
         product_id: product.id,
         price: 101,
-        title: variant.title,
         quantity: 1,
         weight: 1
       }

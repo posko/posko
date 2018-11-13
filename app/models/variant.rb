@@ -12,12 +12,11 @@ class Variant < ApplicationRecord
   validates :price, presence: true
 
   def option_value_names
-    opts = option_values.pluck(:name).join(', ')
-    "#{opts}"
+    option_values.pluck(:name).join(', ')
   end
 
   def self.not_default
-    self.where(default: false)
+    where(default: false)
   end
 end
 

@@ -69,7 +69,6 @@ class ProductImporter
       created_by_id: user_id,
       variants_attributes: [
         {
-          title: row['Name'],
           price: row['Price'],
           cost: row['Cost'],
           barcode: row['Barcode']

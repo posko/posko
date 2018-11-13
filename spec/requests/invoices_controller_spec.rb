@@ -6,7 +6,7 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
   let(:customer) { create(:customer, account: account) }
   let(:invoice) { create(:invoice, account: user.account, user: user) }
   let(:product) { create(:product, account: account) }
-  let(:variant) { product.variants.create(price: 100, title: 'Large') }
+  let(:variant) { product.variants.create(price: 100) }
   let(:access_key) { user.access_keys.first }
 
   let(:headers) do
@@ -46,7 +46,6 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
               variant_id: variant.id,
               product_id: product.id,
               price: 101,
-              title: variant.title,
               quantity: 2,
               weight: 1
             },
@@ -54,7 +53,6 @@ RSpec.describe Api::V1::InvoicesController, type: :request do
               variant_id: variant.id,
               product_id: product.id,
               price: 101,
-              title: variant.title,
               quantity: 1,
               weight: 1
             }

@@ -37,7 +37,6 @@ sku = '000000001'
   option_type = service.product.option_types.create(name: 'Color')
   option_type.option_values.create(name: 'Red')
   option_type.option_values.create(name: 'Blue')
-
 end
 
 Rails.logger.debug "\nCreating Customer:"

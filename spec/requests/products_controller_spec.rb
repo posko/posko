@@ -99,6 +99,7 @@ RSpec.describe Api::V1::ProductsController, type: :request do
       it 'returns the product' do
         get "/api/v1/products/#{product.id}", headers: headers
         expect(json).to include_json(product: {})
+        expect(json).to include_json(product: { variants: [] })
         expect(response).to have_http_status(:ok)
       end
     end

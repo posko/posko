@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181109143540) do
+ActiveRecord::Schema.define(version: 20181112113814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -305,7 +305,6 @@ ActiveRecord::Schema.define(version: 20181109143540) do
     t.integer "product_id", null: false
     t.integer "parent_product_id"
     t.integer "parent_variant_id"
-    t.string "title"
     t.string "sku"
     t.decimal "price"
     t.decimal "compare_at_price"

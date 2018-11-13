@@ -47,10 +47,8 @@ class ProductCreationService < ServiceObject
     product.update(default_variant: variant)
   end
 
-  # rubocop:disable Metrics/MethodLength
   def create_variant!
     @variant = product.variants.create!(
-      title: title,
       sku: sku,
       cost: cost,
       price: price,
@@ -61,5 +59,4 @@ class ProductCreationService < ServiceObject
       default: true
     )
   end
-  # rubocop:enable Metrics/MethodLength
 end

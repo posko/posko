@@ -48,6 +48,6 @@ class BarcodesPdf < PdfObject
   end
 
   def draw_barcode_text(variant)
-    draw_text variant.title.first(20), at: [0.2.in, 0.75.in]
+    draw_text variant.option_value_names.first(20), at: [0.2.in, 0.75.in]
   end
 end

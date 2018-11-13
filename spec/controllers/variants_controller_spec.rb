@@ -43,7 +43,7 @@ RSpec.describe VariantsController, type: :controller do
       before { variant }
 
       it "renders 'new' template" do
-        params = { variant: { title: nil, price: '99.9' },
+        params = { variant: { price: nil },
                    product_id: product.id }
         post(:create, params: params)
         expect(response).to render_template 'new'
@@ -62,16 +62,16 @@ RSpec.describe VariantsController, type: :controller do
   describe 'PATCH #update' do
     context 'with successful attempt' do
       it 'updates variant' do
-        params = { id: variant.id, variant: { title: 'High Quality Bag' } }
+        params = { id: variant.id, variant: { price: 100 } }
         patch :update, params: params
-        expect(assigns(:variant).title).to eq('High Quality Bag')
-        expect(response).to redirect_to(product_variants_path(product.id))
+        expect(assigns(:variant).price).to eq(100)
+        expect(response).to redirect_to(product_path(product.id))
       end
     end
 
     context 'with failed attempt' do
       it "renders 'edit'" do
-        params = { id: variant.id, variant: { title: nil } }
+        params = { id: variant.id, variant: { price: nil } }
         patch :update, params: params
         expect(response).to render_template('edit')
       end

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Variant, type: :model do
   let(:product) { create(:product) }
-  let(:variant) { product.variants.create(price: 100, title: 'Large') }
+  let(:variant) { product.variants.create(price: 100) }
 
   describe 'create variant' do
-    before { product.variants.create(price: 100, title: 'Large') }
+    before { product.variants.create(price: 100) }
 
     it 'adds new variant' do
       expect(product.variants.count).to eq(2)
