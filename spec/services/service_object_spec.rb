@@ -12,6 +12,7 @@ RSpec.describe ServiceObject do
       end
     end
   end
+
   let(:performless_service_class) { Class.new(ServiceObject) {} }
   let(:custom_service) { custom_service_class.new }
 
@@ -30,6 +31,22 @@ RSpec.describe ServiceObject do
         end.to raise_exception.with_message(
           "'perform_service' method Not implemented"
         )
+      end
+    end
+  end
+
+  describe '.perform!' do
+    before do
+      custom_service_class.class_eval do
+        def perform_service
+          false
+        end
+      end
+    end
+
+    context 'with failing service' do
+      it do
+        expect { custom_service_class.perform! }.to raise_error(StandardError)
       end
     end
   end

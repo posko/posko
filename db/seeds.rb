@@ -1,10 +1,10 @@
 require 'faker'
 
 options = {}
-options['account_name']  = ENV['DEMO_ACCOUNT_NAME'] || 'first_company'
+options['account_name']  = ENV['DEMO_ACCOUNT_NAME'] || 'example'
 options['company']       = ENV['DEMO_COMPANY'] || 'First Company'
-options['email']         = ENV['DEMO_EMAIL'] || 'admin@first_company.com'
-options['password']      = ENV['DEMO_PASSWORD'] || 'pass'
+options['email']         = ENV['DEMO_EMAIL'] || 'posko@example.com'
+options['password']      = ENV['DEMO_PASSWORD'] || 'posko'
 options['first_name']    = ENV['DEMO_FIRST_NAME'] || 'Juan'
 options['last_name']     = ENV['DEMO_LAST_NAME'] || 'Dela Cruz'
 

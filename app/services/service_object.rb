@@ -8,6 +8,11 @@ class ServiceObject
     obj
   end
 
+  def self.perform!(options = {})
+    obj = new options
+    obj.perform!
+  end
+
   def perform
     if valid? && perform_service
       @performed = true
@@ -17,12 +22,20 @@ class ServiceObject
     end
   end
 
+  def perform!
+    perform || raise(StandardError.new('Failed to perform service', self))
+  end
+
   def performed?
     @performed || false
   end
 
   def errors
-    @errors ||= []
+    @errors ||= ActiveModel::Errors.new(self)
+  end
+
+  def valid?
+    true
   end
 
   private
@@ -31,11 +44,11 @@ class ServiceObject
     raise "'perform_service' method Not implemented"
   end
 
-  def valid?
-    true
+  def perform_validation
+    true # Override this method
   end
 
   def add_error(message)
-    errors.push(message)
+    errors.add(:base, message)
   end
 end

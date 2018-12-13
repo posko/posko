@@ -8,15 +8,15 @@
       <%= render "errors", object: @sign_in_form %>
       <%= form_for @sign_in_form, url: sign_in_path do |f| %>
         <div class="form-group has-feedback">
-          <%= f.text_field :account_name, class: "form-control", value: "first_company", placeholder: "Account ID" %>
+          <%= f.text_field :account_name, class: "form-control", placeholder: "Account ID" %>
           <span class="glyphicon glyphicon-briefcase form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <%= f.text_field :email, class: "form-control", value: "admin@first_company.com", placeholder: "Email" %>
+          <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <%= f.password_field :password, class: "form-control", value: "mypassword", placeholder: "Password" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           <div class="row">
             <div class="col-xs-6 col-xs-offset-6">
