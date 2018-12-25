@@ -39,6 +39,14 @@ Rails.application.routes.draw do
       get :print
     end
   end
+  resources :barcodes do
+    get :search
+    get :print
+  end
+  resources :barcodes do
+    get :search
+    get :print
+  end
   resources :customers
   resources :invoices
   resources :roles

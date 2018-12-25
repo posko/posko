@@ -10,7 +10,7 @@ class BarcodesController < ApplicationController
 
   def print
     @variants = current_account.variants.find_by_id(params.permit(:ids))
-    
+
   end
 
   private
