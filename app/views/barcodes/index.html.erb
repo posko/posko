@@ -98,7 +98,13 @@
 
   $('#barcode_print_button').on('click', function(){
     url = '<%= (print_barcodes_path(format: :pdf)) %>'
-    ids = [1, 2, 3]
+    console.log('heha')
+    ids = $.map(barcodes, function(item) {
+      console.log(item)
+      return item.id
+    })
+    // ids = [1,2,3]
+    console.log(ids)
     complete_url = url + '?ids=' + ids
     window.open(complete_url, '_blank');
   })

@@ -9,8 +9,15 @@ class BarcodesController < ApplicationController
   end
 
   def print
-    @variants = current_account.variants.find_by_id(params.permit(:ids))
-
+    @variants = current_account.variants.where(id: params[:ids].split(','))
+    puts @variants.count
+    respond_to do |format|
+      format.html
+      format.pdf do
+        send_data BarcodesPdf.new(variants: @variants).render,
+          filename: 'barcodes.pdf', disposition: :inline
+      end
+    end
   end
 
   private

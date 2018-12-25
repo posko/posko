@@ -37,7 +37,7 @@ class BarcodesPdf < PdfObject
     bounding_box position, options do
       stroke_bounds
       draw_barcode_text variant
-      generate_barcode(self, variant.barcode)
+      generate_barcode(self, variant.barcode || 'NO BARCODE')
       draw_text variant.barcode, at: [0.2.in, 0.1.in]
     end
   end
