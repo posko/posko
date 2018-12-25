@@ -1,0 +1,106 @@
+<section class="content-header">
+</section>
+<section class="content">
+  <div class=row>
+    <div class='col-xs-12'>
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Items</h3>
+          <div class="box-tools pull-right">
+            <div class="btn-group">
+              <%= button_tag fa_icon('print',
+              text: 'Print'),
+              class: 'btn btn-box-tool',
+              id: 'barcode_print_button' %>
+            </div>
+          </div>
+        </div>
+        <div class="box-body">
+          <div class='row' style='margin-bottom: 10rem;'>
+            <div class='col-xs-12'>
+              <%= select :barcode, :variants, [], {}, class: 'form-control',
+                include_blank: true%>
+            </div>
+          </div>
+          <ul id='barcode_list'>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var barcodes = []
+    function formatVariant(variant) {
+      console.log(variant)
+      if (variant.loading) {
+        return variant.text
+      }
+      console.log(variant)
+      if (!variant.id) {
+        return variant.text
+      }
+      return $(formatBarcodeItem(variant))
+    }
+    function formatVariantSelection(variant) {
+      return variant.title || 'Add Product'
+    }
+    $("#barcode_variants").select2({
+      templateResult: formatVariant,
+      templateSelection: formatVariantSelection,
+      minimumInputLength: 1,
+      minimumResultsForSearch: 2,
+      placeholder: "Search Product",
+      allowClear: true,
+      delay: 250,
+      ajax: {
+        url: '<%= search_barcodes_path %>',
+        dataType: 'json',
+        type: "GET",
+        data: function (params) {
+          var query = {
+            q: params.term,
+          }
+          return query
+        },
+        cache: true
+      }
+  })
+
+  $('#barcode_variants').on('select2:select', function(e){
+    data = e.params.data
+    appendToBarcodeList(data)
+    $('#barcode_variants').val(null).trigger('change')
+    setTimeout(function(){
+      $('#barcode_variants').select2('open')
+    }, 100)
+  })
+  $('#barcode_variants').data('select2').on('open', function (e) {
+    // $('#barcode_variants').results.clear();
+    // $('#barcode_variants').dropdown._positionDropdown();
+
+  });
+  function appendToBarcodeList(item){
+    markup = '<li>' + formatBarcodeItem(item) + '</li>'
+    $('#barcode_list').prepend($(markup))
+    barcodes.push(item)
+  }
+
+  function formatBarcodeItem(item) {
+    markup = '<h4 class="text-bold">' + item.title + '</h4>'
+    if(item.barcode) {
+      markup += '<div><b>Barcode:</b>' + item.barcode + '</div>'
+    }
+    if(item.sku) {
+      markup += '<div><b>SKU:</b>' + item.sku + '</div>'
+    }
+    return markup
+  }
+
+  $('#barcode_print_button').on('click', function(){
+    url = '<%= (print_barcodes_path(format: :pdf)) %>'
+    ids = [1, 2, 3]
+    complete_url = url + '?ids=' + ids
+    window.open(complete_url, '_blank');
+  })
+  </script>
+</section>

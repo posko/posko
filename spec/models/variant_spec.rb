@@ -33,4 +33,13 @@ RSpec.describe Variant, type: :model do
     it { is_expected.to define_enum_for(:variant_type) }
     it { is_expected.to define_enum_for(:selling_policy) }
   end
+
+  describe '.search(term)' do
+    before do
+      create(:product, title: 'Hello Tshirt')
+      create(:product, title: 'Bag')
+    end
+
+    it { expect(described_class.search('ello').count).to eq(1)}
+  end
 end

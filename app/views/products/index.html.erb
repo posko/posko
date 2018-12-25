@@ -6,6 +6,10 @@
       <h3 class="box-title">Products</h3>
       <div class="box-tools pull-right">
         <div class="btn-group">
+          <%= link_to fa_icon('barcode',
+          text: 'Barcodes'),
+          barcodes_path,
+          class: 'btn btn-box-tool' %>
           <%= link_to fa_icon('upload', text: 'Import'),
             import_modal_products_path,
             remote: true,
@@ -13,6 +17,7 @@
           <%= link_to fa_icon('download',
             text: 'Export'),
             products_path(format: :csv),
+
           class: "btn btn-box-tool" %>
           <%= link_to fa_icon('plus', text: 'New'),
             new_product_path,

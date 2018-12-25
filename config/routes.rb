@@ -33,6 +33,12 @@ Rails.application.routes.draw do
       resources :option_values
     end
   end
+  resources :barcodes do
+    collection do
+      get :search
+      get :print
+    end
+  end
   resources :customers
   resources :invoices
   resources :roles
