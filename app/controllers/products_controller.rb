@@ -59,8 +59,6 @@ class ProductsController < ApplicationController
 
     if @importer.perform
       redirect_to products_path
-    else
-      render :import
     end
   end
 

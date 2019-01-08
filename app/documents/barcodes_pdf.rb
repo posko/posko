@@ -35,7 +35,7 @@ class BarcodesPdf < PdfObject
   def draw_barcode(variant, position, options = {})
     options = { width: 2.in, height: 1.in }.merge(options)
     bounding_box position, options do
-      stroke_bounds
+      # stroke_bounds
       draw_barcode_text variant
       generate_barcode(self, variant.barcode || 'NO BARCODE')
       draw_text variant.barcode, at: [0.2.in, 0.1.in]
@@ -44,7 +44,7 @@ class BarcodesPdf < PdfObject
 
   def generate_barcode(pdf, barcode)
     b = Barby::Code128.new barcode
-    b.annotate_pdf(pdf, height: 0.25.in, y: 0.30.in, x: 0.2.in)
+    b.annotate_pdf(pdf, height: 0.5.in, y: 0.30.in, x: 0.1.in, xdim: 0.9)
   end
 
   def draw_barcode_text(variant)

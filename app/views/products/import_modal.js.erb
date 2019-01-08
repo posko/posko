@@ -1,2 +1,2 @@
-$('#app-modal').html('<%= j render "import_modal" %>')
+$('#app-modal').html('<%= j render "import_modal", importer: @importer %>')
 $('#app-modal').modal('show')

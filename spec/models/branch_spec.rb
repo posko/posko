@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Branch, type: :model do
   let(:branch) { create(:branch) }
-  describe "Factory" do
-    it "creates necessary data" do
+
+  describe 'Factory' do
+    it 'creates necessary data' do
       expect(branch).to be_present
       expect(Branch.count).to eq(1)
     end

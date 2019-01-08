@@ -9,25 +9,26 @@ RSpec.describe BranchesController, type: :controller do
     allow(controller).to receive(:current_account).and_return(user.account)
   end
 
-  describe "GET #index" do
-    it "assigns @branches" do
+  describe 'GET #index' do
+    it 'assigns @branches' do
       get :index
       expect(assigns(:branches)).to eq([branch])
     end
   end
 
-  describe "GET #new" do
-    it "assigns @branch" do
+  describe 'GET #new' do
+    it 'assigns @branch' do
       get :new
       expect(assigns(:branch)).to be_a_new_record
     end
   end
 
-  describe "POST #create" do
+  describe 'POST #create' do
     context 'with successful attempt' do
       before { branch }
-      it "creates branch" do
-        params = { branch: { } }
+
+      it 'creates branch' do
+        params = { branch: {} }
         expect do
           post(:create, params: params)
         end.to change(Branch, :count).by(1)
@@ -44,20 +45,20 @@ RSpec.describe BranchesController, type: :controller do
     # end
   end
 
-  describe "GET #edit" do
-    it "assigns @branch" do
+  describe 'GET #edit' do
+    it 'assigns @branch' do
       params = { id: branch.id }
       get :edit, params: params
       expect(assigns(:branch)).to eq(branch)
     end
   end
 
-  describe "PATCH #update" do
+  describe 'PATCH #update' do
     context 'with successful attempt' do
-      it "updates branch" do
-        params = { id: branch.id, branch: { name: "admin" } }
+      it 'updates branch' do
+        params = { id: branch.id, branch: { name: 'admin' } }
         patch :update, params: params
-        expect(assigns(:branch).name).to eq("admin")
+        expect(assigns(:branch).name).to eq('admin')
         expect(response).to redirect_to(branches_path)
       end
     end
@@ -71,23 +72,23 @@ RSpec.describe BranchesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "updates branch" do
+  describe 'GET #show' do
+    it 'updates branch' do
       params = { id: branch.id }
       patch :show, params: params
       expect(assigns(:branch)).to eq(branch)
     end
   end
 
-  describe "DELETE #destroy" do
-    it "updates branch" do
+  describe 'DELETE #destroy' do
+    it 'updates branch' do
       params = { id: branch.id }
       delete :destroy, params: params
       expect(assigns(:branch)).to eq(branch)
     end
-    it "raises an exception" do
+    it 'raises an exception' do
       expect do
-        delete :destroy, params: { id: "nothing" }
+        delete :destroy, params: { id: 'nothing' }
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

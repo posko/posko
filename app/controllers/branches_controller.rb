@@ -4,7 +4,7 @@ class BranchesController < ApplicationController
     @branches = current_account.branches
     respond_to do |format|
       format.html
-          end
+    end
   end
 
   def new
@@ -44,6 +44,6 @@ class BranchesController < ApplicationController
   end
 
   def branch_params
-    params.require(:branch).permit()
+    params.require(:branch).permit
   end
 end

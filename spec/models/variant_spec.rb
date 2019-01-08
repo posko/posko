@@ -40,6 +40,6 @@ RSpec.describe Variant, type: :model do
       create(:product, title: 'Bag')
     end
 
-    it { expect(described_class.search('ello').count).to eq(1)}
+    it { expect(described_class.search('ello').count).to eq(1) }
   end
 end

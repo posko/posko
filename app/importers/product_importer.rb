@@ -1,5 +1,5 @@
 require 'csv'
-class ProductImporter
+class ProductImporter < ImporterObject
   attr_reader :filepath, :account_id, :user_id
   def initialize(options = {})
     @account_id = options.fetch(:account_id)
@@ -8,17 +8,34 @@ class ProductImporter
   end
 
   def perform
-    Product.transaction do
-      CSV.foreach(filepath, headers: true) do |row|
-        find_or_create_product! row
+    if valid?
+      Product.transaction do
+        CSV.foreach(filepath, headers: true) do |row|
+          find_or_create_product! row
+        end
       end
+      true
+    else
+      false
     end
+  end
+
+  def valid?
+    CSV.foreach(filepath, headers: true) do |row|
+      validate_row row, $.
+    end
+    errors.count == 0
   end
 
   private
 
   def account
     @account ||= Account.find(account_id)
+  end
+
+  def validate_row(row, line)
+    errors.add(:base, "Name is blank at line #{line}") unless row['Name']
+    errors.add(:base, "Price is blank at line #{line}") unless row['Price']
   end
 
   def find_or_create_product!(row)

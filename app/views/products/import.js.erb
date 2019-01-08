@@ -1,4 +1,9 @@
-$('#app-modal').modal('hide')
-$('#app-modal').html('')
-// TODO: refresh datatable
-document.location.reload();
+<% if @importer.errors.count == 0 %>
+  $('#app-modal').modal('hide')
+  $('#app-modal').html('')
+  // TODO: refresh datatable
+  document.location.reload();
+<% else %>
+  $('#app-modal').html('<%= j render "import_modal", importer: @importer %>')
+
+<% end %>
