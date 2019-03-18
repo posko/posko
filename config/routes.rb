@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  mount Posko::Browser::Engine => "/posko-browser"
+  mount Posko::Browser::Engine => '/posko-browser'
   root 'sessions#new'
   delete 'sign_out' => 'sessions#destroy'
   get 'sign_out' => 'sessions#destroy'

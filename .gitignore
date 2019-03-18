@@ -36,3 +36,4 @@ config/deploy/*
 
 # Ignore sandbox directory
 sandbox
+manual

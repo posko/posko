@@ -1,6 +1,5 @@
 class BarcodesController < ApplicationController
-  def index
-  end
+  def index; end
 
   def search
     # TODO: Use query/finder object
@@ -10,7 +9,6 @@ class BarcodesController < ApplicationController
 
   def print
     @variants = current_account.variants.where(id: params[:ids].split(','))
-    puts @variants.count
     respond_to do |format|
       format.html
       format.pdf do

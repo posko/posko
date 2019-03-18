@@ -56,6 +56,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running
   # in the background. Read more: https://github.com/rails/spring
+  gem 'bcrypt_pbkdf', require: false # capistrano prerequisite
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
@@ -64,6 +65,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano-rbenv', '~> 2.1', require: false
   gem 'capistrano3-puma', require: false
+  gem 'ed25519', require: false # capistrano prerequisite
   gem 'guard-rubocop'
   gem 'license_finder'
   gem 'railroady'

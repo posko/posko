@@ -48,7 +48,8 @@ RSpec.describe AuthenticationService do
       it 'rejects user' do
         expect(with_x_sign_in.process).to be_falsey
         expect(with_x_sign_in.errors.size).to eq(1)
-        expect(with_x_sign_in.errors.first).to eq('Incorrect credentials')
+        expect(with_x_sign_in.errors.first)
+          .to eq([:base, 'Incorrect credentials'])
       end
     end
   end
