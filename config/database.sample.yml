@@ -78,6 +78,13 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+staging:
+  <<: *default
+  database: posko_staging
+  username: posko
+  password: <%= ENV['POSKO_DATABASE_PASSWORD'] %>
+
 production:
   <<: *default
   database: posko_production
