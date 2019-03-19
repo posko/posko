@@ -126,3 +126,5 @@ gem 'barby'
 gem 'select2-rails'
 
 gem 'posko-browser'
+
+gem "sentry-raven"

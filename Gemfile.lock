@@ -140,6 +140,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.9.1)
       i18n (>= 0.7)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
@@ -219,6 +221,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -349,6 +352,8 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    sentry-raven (2.9.0)
+      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     shoulda-callback-matchers (1.1.4)
       activesupport (>= 3)
@@ -466,6 +471,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   select2-rails
   selenium-webdriver
+  sentry-raven
   shoulda-callback-matchers (~> 1.1.1)
   shoulda-matchers
   simplecov
