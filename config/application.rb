@@ -16,7 +16,7 @@ module Posko
     # -- all .rb files in that directory are automatically loaded.
 
     Raven.configure do |config|
-      config.dsn = <%= ENV['SENTRY_DSN'] %>
+      config.dsn = ENV['SENTRY_DSN'].to_s
       config.environments = %w[staging production]
     end
   end
