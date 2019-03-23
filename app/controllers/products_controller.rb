@@ -46,7 +46,11 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = current_account.products.find(params[:id])
+
+    # TODO: Need this to be enclosed in a service
     @product.deleted_status!
+    @product.variants.each(&:deleted_status!)
+
     redirect_to products_path
   end
 

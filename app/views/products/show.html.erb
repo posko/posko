@@ -1,17 +1,17 @@
 <section class="content-header">
 </section>
 <section class="content">
+  <%= link_to "Back to Products", products_path %>
   <div class="box">
-
     <div class="box-body">
       <h2> <%= @product.title %> </h2>
 
-        <%= link_to "Back to Products", products_path %>
         <div> Barcode: <%= @product.barcode %> </div>
         <div> SKU: <%= @product.sku %> </div>
         <div> Price: <%= number_to_currency @product.price, unit: 'P' %> </div>
         <div> Vendor: <%= @product.vendor %></div>
         <div> Product Type: <%= @product.product_type.humanize %> </div>
+        <%= link_to "Delete", @product, method: :delete, class: 'btn btn-sm btn-danger' %>
     </div>
   </div>
   <%= render 'option_types/index', product: @product, option_types: @product.option_types %>
