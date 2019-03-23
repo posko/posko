@@ -33,8 +33,8 @@ RSpec.describe Invoice, type: :model do
   describe 'associations' do
     it { expect(invoice).to belong_to(:user) }
     it { expect(invoice).to belong_to(:account) }
-    it { expect(invoice).to belong_to(:customer) }
-    it { expect(invoice).to belong_to(:shift) }
+    it { expect(invoice).to belong_to(:customer).optional }
+    it { expect(invoice).to belong_to(:shift).optional }
     # it { expect(user).to have_many(:variants) }
   end
   # describe '#recompute_values' do

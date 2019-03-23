@@ -113,7 +113,7 @@ gem 'kaminari'
 # gem 'carrierwave', '~> 1.0'
 # gem "cocoon"
 
-gem 'queryko'
+gem 'queryko', path: '/Users/joseph/neume/queryko'
 
 # used for demo
 gem 'faker'

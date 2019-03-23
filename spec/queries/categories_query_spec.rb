@@ -9,7 +9,7 @@ RSpec.describe CategoriesQuery, type: :query do
     c << create(:category, name: 'Pants', account: account)
     c
   end
-  let(:query) { CategoriesQuery.new params, account.categories }
+  let(:query) { described_class.new params, account.categories }
 
   before { categories }
 
@@ -78,7 +78,7 @@ RSpec.describe CategoriesQuery, type: :query do
       Timecop.freeze(Time.current + 2.days)
       create(:category, name: 'Shirt', account: account)
       Timecop.return
-      q = CategoriesQuery.new({ created_at_min: category1.created_at },
+      q = described_class.new({ created_at_min: category1.created_at },
         account.categories)
       expect(q.call.count).to eq(2)
     end
@@ -93,7 +93,7 @@ RSpec.describe CategoriesQuery, type: :query do
       Timecop.freeze(Time.current - 2.days)
       create(:category, name: 'Shirt', account: account)
       Timecop.return
-      q = CategoriesQuery.new({ created_at_max: category1.created_at + 1 },
+      q = described_class.new({ created_at_max: category1.created_at + 1 },
         account.categories)
       expect(q.call.count).to eq(2)
     end
@@ -101,7 +101,7 @@ RSpec.describe CategoriesQuery, type: :query do
 
   describe '#add_range_attributes' do
     it 'adds created_at' do
-      expect(CategoriesQuery.range_attributes.count).to eq(3)
+      expect(described_class.range_attributes.count).to eq(3)
     end
   end
 end

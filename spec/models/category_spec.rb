@@ -19,9 +19,9 @@ RSpec.describe Category, type: :model do
 
   describe 'Associations' do
     it { is_expected.to have_many(:subcategories) }
-    it { is_expected.to belong_to(:parent) }
     it { is_expected.to have_many(:classifications) }
     it { is_expected.to have_many(:products).through(:classifications) }
+    it { expect(category).to belong_to(:parent).optional }
   end
 
   describe 'model' do

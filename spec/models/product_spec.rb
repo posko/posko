@@ -41,8 +41,10 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'associations' do
+    subject { product }
+
     it { is_expected.to belong_to(:account) }
-    it { is_expected.to belong_to(:default_variant) }
+    it { is_expected.to belong_to(:default_variant).optional }
     it { is_expected.to have_many(:variants) }
     it { is_expected.to have_many(:invoice_lines) }
     it { is_expected.to have_many(:components) }
@@ -50,9 +52,7 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'callbacks' do
-    it do
-      expect(product).to callback(:create_unique_handle).before(:validation)
-    end
+    it { is_expected.to callback(:create_unique_handle).before(:validation) }
   end
 
   describe 'model' do
