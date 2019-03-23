@@ -100,7 +100,7 @@ gem 'ajax-datatables-rails', '0.4.0'
 gem 'jquery-datatables-rails'
 
 gem 'adminlte_theme'
-gem 'bootstrap-sass', '3.3.7'
+gem 'bootstrap-sass', '3.4.1'
 gem 'font-awesome-rails', '~> 4.7'
 gem 'jquery-rails', '~> 4.3'
 
@@ -113,7 +113,7 @@ gem 'kaminari'
 # gem 'carrierwave', '~> 1.0'
 # gem "cocoon"
 
-gem 'queryko', path: '/Users/joseph/neume/queryko'
+gem 'queryko', '1.1.2'
 
 # used for demo
 gem 'faker'
