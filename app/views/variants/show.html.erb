@@ -5,11 +5,10 @@
 
     <div class="box-body">
       <h2> Variant </h2>
-      <div> Title: <%= @variant.title %></div>
+      <div> Title: <%= @variant.product.title %></div>
       <div> SKU: <%= @variant.sku %></div>
       <div> Variant Type: <%= @variant.variant_type.humanize %> </div>
-
-      <%= link_to "Back to Variants", variants_path %>
+      <%= link_to "Back to Product", @variant.product %>
     </div>
   </div>
 </section>

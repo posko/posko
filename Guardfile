@@ -87,7 +87,7 @@ group :red_green_refactor, halt_on_fail: true do
     # notification :terminal_notifier
   end
 
-  guard :rubocop, cli: '--rails' do
+  guard :rubocop, cli: ['--rails', '--auto-correct'] do
     watch(/.+\.rb$/)
     watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
   end
