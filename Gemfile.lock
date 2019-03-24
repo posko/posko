@@ -70,6 +70,7 @@ GEM
     bindex (0.5.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    blueprinter (0.13.2)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -430,6 +431,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   better_errors
   binding_of_caller
+  blueprinter
   bootstrap-sass (= 3.4.1)
   bullet
   byebug
