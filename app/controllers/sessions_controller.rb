@@ -1,28 +1,25 @@
 class SessionsController < ApplicationController
   skip_before_action :check_session
-  # layout 'base'
-  def new
-    @sign_in_form = SignInForm.new
-  end
 
   def create
-    @sign_in_form = SignInForm.new sign_in_form_params
-    if @sign_in_form.save
-      session[:user_id] = @sign_in_form.user.id
-      redirect_to dashboard_path
+    sign_in_form = SignInForm.new sign_in_params
+    if sign_in_form.save
+      session[:user_id] = sign_in_form.user.id
+      session[:access_token] = sign_in_form.access_key.token
+      render json: { user: UserBlueprint.render_as_hash(sign_in_form.user) }
     else
-      render 'new'
+      render status: :unauthorized, json: { message: 'Invalid credentials' }
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to sign_in_path
+    render json: { message: 'Successfully signed out' }
   end
 
   private
 
-  def sign_in_form_params
-    params.require(:sign_in_form).permit(:account_name, :email, :password)
+  def sign_in_params
+    params.permit(:account_name, :email, :password)
   end
 end

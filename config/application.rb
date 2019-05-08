@@ -17,6 +17,9 @@ module Posko
 
     config.api_only = true
 
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_posko_web'
+
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_DSN'].to_s
       config.environments = %w[staging production]
