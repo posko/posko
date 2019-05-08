@@ -1,5 +1,4 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+class ApplicationController < ActionController::API
   before_action :check_session
   before_action :set_raven_context
   helper_method :current_user, :current_account

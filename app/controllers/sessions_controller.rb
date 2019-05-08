@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :check_session
-  layout 'base'
+  # layout 'base'
   def new
     @sign_in_form = SignInForm.new
   end

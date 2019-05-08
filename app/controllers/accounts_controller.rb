@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   skip_before_action :check_session
-  layout 'base'
+  # layout 'base'
 
   def new
     @registration_form = RegistrationForm.new
