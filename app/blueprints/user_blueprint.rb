@@ -7,4 +7,8 @@ class UserBlueprint < Blueprinter::Base
   fields :title
 
   fields :user_type, :user_status, :status
+
+  view :destroyed do
+    fields :deleted
+  end
 end

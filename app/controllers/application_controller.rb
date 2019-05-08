@@ -2,7 +2,15 @@ class ApplicationController < ActionController::API
   before_action :check_session
   before_action :set_raven_context
   helper_method :current_user, :current_account
-
+  rescue_from ActiveRecord::RecordNotFound do
+    render status: 404, json: {
+        error: {
+          message: "Record not found",
+          code: 404
+        }
+      }
+  end
+  
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -24,5 +32,9 @@ class ApplicationController < ActionController::API
 
   def render_unauthorized
     render status: :unauthorized, json: { message: 'Unauthorized '}
+  end
+
+  def render_record_invalid(obj)
+    render status: :unprocessable_entity, json: { errors: obj.errors }
   end
 end

@@ -1,44 +1,36 @@
 class UsersController < ApplicationController
-  before_action :user, except: [:index, :new, :create]
+  before_action :check_session
+  
   def index
+    puts current_user.id
     @users = current_account.users
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: UserDatatable.new(view_context,
-          current_account: current_account)
-      end
-    end
-  end
-
-  def new
-    @user = current_account.users.new
+    render json: { users: UsersQuery.new(params, @users).call }
   end
 
   def create
     @user = current_account.users.new user_params
     if @user.save
-      redirect_to users_path
+      render json:{ user: UserBlueprint.render_as_hash(@user) }
     else
-      render 'new'
+      render_record_invalid(@user)
     end
   end
-
-  def edit; end
 
   def update
-    if @user.update(user_params)
-      redirect_to users_path
+    if user.update(user_params)
+      render json:{ user: UserBlueprint.render_as_hash(user) }
     else
-      render 'edit'
+      render_record_invalid(user)
     end
   end
 
-  def show; end
+  def show
+    render json:{ user: UserBlueprint.render_as_hash(user) }
+  end
 
   def destroy
-    @user.destroy
-    redirect_to users_path
+    user.destroy
+    render json:{ user: UserBlueprint.render_as_hash(user) }
   end
 
   private
