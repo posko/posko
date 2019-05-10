@@ -1,39 +1,32 @@
 class BranchesController < ApplicationController
-  before_action :branch, except: [:index, :new, :create]
   def index
     @branches = current_account.branches
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def new
-    @branch = current_account.branches.new
+    render json: blueprint(BranchesQuery.new(params, @branches).call)
   end
 
   def create
     @branch = current_account.branches.new branch_params
     if @branch.save
-      redirect_to branches_path
+      render json: blueprint(branch)
     else
-      render 'new'
+      render_record_invalid(branch)
     end
   end
-
-  def edit; end
 
   def update
-    if @branch.update(branch_params)
-      redirect_to branches_path
+    if branch.update(branch_params)
+      render json: blueprint(branch)
     else
-      render 'edit'
+      render_record_invalid(branch)
     end
   end
 
-  def show; end
+  def show
+    render json: blueprint(branch)
+  end
 
   def destroy
-    @branch.destroy
+    branch.destroy
     redirect_to branches_path
   end
 

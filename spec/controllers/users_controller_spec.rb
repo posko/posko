@@ -18,22 +18,6 @@ RSpec.describe UsersController, type: :controller do
       get :index
       expect(assigns(:users)).to eq([user])
     end
-
-    it 'returns a json object' do
-      get :index, format: :json,
-                  params: {
-                    "columns[0][data]": 'name',
-                    "columns[0][search][regex]": false
-                  }
-      expect(response.body).to include_json("recordsTotal": 1)
-    end
-  end
-
-  describe 'GET #new' do
-    it 'assigns @user' do
-      get :new
-      expect(assigns(:user)).to be_a_new_record
-    end
   end
 
   describe 'POST #create' do
@@ -52,35 +36,26 @@ RSpec.describe UsersController, type: :controller do
       it "renders 'new' template" do
         params = { user: { email: nil, password: nil } }
         post(:create, params: params)
-        expect(response).to render_template 'new'
+        expect(json).to include_json(errors: {})
       end
-    end
-  end
-
-  describe 'GET #edit' do
-    it 'assigns @user' do
-      params = { id: user.id }
-      get :edit, params: params
-      expect(assigns(:user)).to eq(user)
     end
   end
 
   describe 'PATCH #update' do
+    before { patch :update, params: params }
+
     context 'with successful attempt' do
-      it 'updates user' do
-        params = { id: user.id, user: { email: 'updated@email.com' } }
-        patch :update, params: params
-        expect(assigns(:user).email).to eq('updated@email.com')
-        expect(response).to redirect_to(users_path)
-      end
+      let(:params) { { id: user.id, user: { email: 'updated@email.com' } } }
+
+      it { expect(assigns(:user).email).to eq('updated@email.com') }
+      it { expect(json).to include_json(user: {}) }
     end
 
     context 'with failed attempt' do
-      it "renders 'edit'" do
-        params = { id: user.id, user: { email: 'wrongformat' } }
-        patch :update, params: params
-        expect(response).to render_template('edit')
-      end
+      let(:params) { { id: user.id, user: { email: 'wrongformat' } } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
@@ -93,15 +68,19 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'updates user' do
-      params = { id: user.id }
-      delete :destroy, params: params
-      expect(assigns(:user)).to eq(user)
+    before { delete :destroy, params: params }
+
+    context 'with existing record' do
+      let(:params) { { id: user.id } }
+
+      it { expect(assigns(:user)).to be_destroyed }
     end
-    it 'raises an exception' do
-      expect do
-        delete :destroy, params: { id: 'nothing' }
-      end.to raise_error(ActiveRecord::RecordNotFound)
+
+    context 'with non-existing record' do
+      let(:params) { { id: 'nothing' } }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(json).to include_json(error: {}) }
     end
   end
 end

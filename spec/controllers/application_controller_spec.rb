@@ -24,7 +24,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
     it 'returns current account' do
       get :index
-      expect(response).to redirect_to(sign_in_path)
+      expect(json).to include_json(message: 'Unauthorized')
     end
   end
 end

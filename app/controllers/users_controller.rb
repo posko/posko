@@ -1,16 +1,15 @@
 class UsersController < ApplicationController
   before_action :check_session
-  
+
   def index
-    puts current_user.id
     @users = current_account.users
-    render json: { users: UsersQuery.new(params, @users).call }
+    render json: blueprint(UsersQuery.new(params, @users).call)
   end
 
   def create
     @user = current_account.users.new user_params
     if @user.save
-      render json:{ user: UserBlueprint.render_as_hash(@user) }
+      render json: blueprint(@user)
     else
       render_record_invalid(@user)
     end
@@ -18,19 +17,19 @@ class UsersController < ApplicationController
 
   def update
     if user.update(user_params)
-      render json:{ user: UserBlueprint.render_as_hash(user) }
+      render json: blueprint(user)
     else
       render_record_invalid(user)
     end
   end
 
   def show
-    render json:{ user: UserBlueprint.render_as_hash(user) }
+    render json: blueprint(user)
   end
 
   def destroy
     user.destroy
-    render json:{ user: UserBlueprint.render_as_hash(user) }
+    render json: blueprint(user)
   end
 
   private

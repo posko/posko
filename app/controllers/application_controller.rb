@@ -4,13 +4,13 @@ class ApplicationController < ActionController::API
   helper_method :current_user, :current_account
   rescue_from ActiveRecord::RecordNotFound do
     render status: 404, json: {
-        error: {
-          message: "Record not found",
-          code: 404
-        }
+      error: {
+        message: 'Record not found',
+        code: 404
       }
+    }
   end
-  
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -22,7 +22,9 @@ class ApplicationController < ActionController::API
   private
 
   def check_session
-    render status: :unauthorized, json: { message: 'Unauthorized '} unless current_user
+    return if current_user
+
+    render_unauthorized
   end
 
   def set_raven_context
@@ -31,10 +33,27 @@ class ApplicationController < ActionController::API
   end
 
   def render_unauthorized
-    render status: :unauthorized, json: { message: 'Unauthorized '}
+    render status: :unauthorized, json: { message: 'Unauthorized' }
   end
 
   def render_record_invalid(obj)
     render status: :unprocessable_entity, json: { errors: obj.errors }
+  end
+
+  def blueprint(obj, options = {})
+    model_name, hash_object = derive_blueprint_keys obj
+    blueprint_klass = "#{model_name}Blueprint".constantize
+
+    { hash_object => blueprint_klass.render_as_hash(obj, options) }
+  end
+
+  def derive_blueprint_keys(obj)
+    model_name = obj.model_name.name
+    hash_object = if obj.class.name.split('::').last == 'Relation'
+                    model_name.pluralize.underscore
+                  else
+                    model_name.underscore
+                  end
+    [model_name, hash_object]
   end
 end

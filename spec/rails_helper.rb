@@ -102,6 +102,7 @@ RSpec.configure do |config|
   config.raise_errors_for_deprecations!
 
   config.include Requests::JsonHelpers, type: :request
+  config.include Requests::JsonHelpers, type: :controller
 
   config.include Requests::AuthHelpers, type: :request
   config.include ControllerHelpers::Session, type: :controller
