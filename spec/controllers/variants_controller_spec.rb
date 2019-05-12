@@ -5,98 +5,88 @@ RSpec.describe VariantsController, type: :controller do
   let(:user) { create(:user, account: account) }
   let(:product) { create(:product, account: account) }
   let(:variant) { create(:variant, product: product) }
-  let(:valid_variant_param) do
-    { title: 'Red Bag',
-      price: '99.9',
-      variant_type: 'regular',
-      vendor: 'Bag Company' }
-  end
 
-  before { sign_in }
+  before { allow(controller).to receive(:current_user).and_return(user) }
 
   describe 'GET #index' do
-    it 'assigns @variants' do
-      get :index, params: { product_id: product.id }
-      expect(assigns(:variants).count).to eq(1)
-    end
-  end
+    before { get :index, params: { product_id: product.id } }
 
-  describe 'GET #new' do
-    it 'assigns @variant' do
-      get :new, params: { product_id: product.id }
-      expect(assigns(:variant)).to be_a_new_record
-    end
+    it { expect(assigns(:variants).count).to eq(1) }
   end
 
   describe 'POST #create' do
     context 'with successful attempt' do
-      let(:params) { { variant: valid_variant_param, product_id: product.id } }
+      let(:params) do
+        {
+          variant: {
+            title: 'Red Bag',
+            price: '99.9',
+            variant_type: 'regular',
+            vendor: 'Bag Company'
+          },
+          product_id: product.id
+        }
+      end
 
       before { post(:create, params: params) }
 
-      it 'creates variant' do
-        expect(account.variants.count).to eq(2)
-      end
+      it { expect(account.variants.count).to eq(2) }
+      it { expect(json).to include_json(variant: {}) }
     end
 
     context 'with failed attempt' do
-      before { variant }
-
-      it "renders 'new' template" do
-        params = { variant: { price: nil },
-                   product_id: product.id }
-        post(:create, params: params)
-        expect(response).to render_template 'new'
+      let(:params) do
+        {
+          variant: { price: nil },
+          product_id: product.id
+        }
       end
-    end
-  end
 
-  describe 'GET #edit' do
-    it 'assigns @variant' do
-      params = { id: variant.id }
-      get :edit, params: params
-      expect(assigns(:variant)).to eq(variant)
+      before { post(:create, params: params) }
+
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'PATCH #update' do
+    before { patch :update, params: params }
+
     context 'with successful attempt' do
-      it 'updates variant' do
-        params = { id: variant.id, variant: { price: 100 } }
-        patch :update, params: params
-        expect(assigns(:variant).price).to eq(100)
-        expect(response).to redirect_to(product_path(product.id))
-      end
+      let(:params) { { id: variant.id, variant: { price: 100 } } }
+
+      it { expect(json).to include_json(variant: { price: '100.0' }) }
     end
 
     context 'with failed attempt' do
-      it "renders 'edit'" do
-        params = { id: variant.id, variant: { price: nil } }
-        patch :update, params: params
-        expect(response).to render_template('edit')
-      end
+      let(:params) { { id: variant.id, variant: { price: nil } } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'GET #show' do
-    it 'updates variant' do
-      params = { id: variant.id }
-      patch :show, params: params
-      expect(assigns(:variant)).to eq(variant)
-    end
+    before { get :show, params: { id: variant.id } }
+
+    it { expect(assigns(:variant)).to eq(variant) }
+    it { expect(json).to include_json(variant: {}) }
   end
 
   describe 'DELETE #destroy' do
-    it 'updates variant' do
-      params = { id: variant.id }
-      delete :destroy, params: params
-      expect(assigns(:variant)).to eq(variant)
-      expect(assigns(:variant)).to be_deleted_status
+    before { delete :destroy, params: params }
+
+    context 'with existing record' do
+      let(:params) { { id: variant.id } }
+
+      it { expect(assigns(:variant)).to be_destroyed }
+      it { expect(json).to include_json(variant: {}) }
     end
-    it 'raises an exception' do
-      expect do
-        delete :destroy, params: { id: 'nothing' }
-      end.to raise_error(ActiveRecord::RecordNotFound)
+
+    context 'with non-existing record' do
+      let(:params) { { id: 'nothing' } }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(json).to include_json(error: {}) }
     end
   end
 end

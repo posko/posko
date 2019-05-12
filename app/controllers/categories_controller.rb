@@ -1,41 +1,35 @@
 class CategoriesController < ApplicationController
-  before_action :category, except: [:index, :new, :create]
   def index
     @categories = current_account.categories.first_level
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def new
-    @category = current_account.categories.new
+    render json: blueprint(@categories)
   end
 
   def create
     @category = current_account.categories.new category_params
-    if @category.save
-      redirect_to categories_path
+    if category.save
+      render json: blueprint(category)
     else
-      render 'new'
+      render_record_invalid(category)
     end
   end
 
-  # def edit; end
-  #
-  # def update
-  #   if @category.update(category_params)
-  #     redirect_to categories_path
-  #   else
-  #     render 'edit'
-  #   end
-  # end
-  #
-  # def show; end
-  #
-  # def destroy
-  #   @category.destroy
-  #   redirect_to categories_path
-  # end
+  def update
+    if category.update(category_params)
+      render json: blueprint(category)
+    else
+      render_record_invalid(category)
+    end
+  end
+
+  def show
+    render json: blueprint(category)
+  end
+
+  def destroy
+    category.destroy
+    render json: blueprint(category)
+  end
+
 
   private
 

@@ -1,82 +1,66 @@
 class ProductsController < ApplicationController
   def index
     @products = current_account.products.active_status
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: ProductDatatable.new(view_context,
-          current_account: current_account)
-      end
-      format.csv { csv_format }
-    end
-  end
-
-  def new
-    @product = ProductForm.new
+    render json: blueprint(@products)
+    # TODO: Implement CSV
+    # format.csv { csv_format }
   end
 
   def create
     @product = ProductForm.new product_params.merge(created_by: current_user)
 
-    if @product.save
-      redirect_to products_path
+    if product.save
+      render json: product
     else
-      render :new
+      render_record_invalid(product)
     end
   end
 
-  def edit
-    product = current_account.products.find(params[:id])
-    @product = ProductForm.new product: product
-  end
-
   def update
-    product = current_account.products.find(params[:id])
-    @product = ProductForm.new product: product
-    if @product.update product_params
-      redirect_to products_path
+    if product.update(product_params)
+      render json: blueprint(product)
     else
-      render 'edit'
+      render_record_invalid(product)
     end
   end
 
   def show
-    @product = current_account.products.find(params[:id])
+    render json: blueprint(product)
   end
 
   def destroy
-    @product = current_account.products.find(params[:id])
-
-    # TODO: Need this to be enclosed in a service
-    @product.deleted_status!
-    @product.variants.each(&:deleted_status!)
-
-    redirect_to products_path
+    product.destroy
+    render json: blueprint(product)
   end
 
-  def import
-    @importer = ProductImporter.new(
-      filepath: params[:file].path,
-      user_id: current_user.id,
-      account_id: current_account.id
-    )
-
-    if @importer.perform
-      redirect_to products_path
-    else
-      render :import
-    end
-  end
+  # def import
+  #   @importer = ProductImporter.new(
+  #     filepath: params[:file].path,
+  #     user_id: current_user.id,
+  #     account_id: current_account.id
+  #   )
+  #
+  #   if @importer.perform
+  #     render json: { message: 'Import success'}
+  #   else
+  #     render status: :unprocessable_entity,
+  #       json: { message: 'Something went wrong importing product csv'}
+  #   end
+  # end
 
   private
+
+  def product
+    @product ||= current_account.products.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:title, :price, :cost, :barcode,
       :open_price, :selling_policy, :sku, category_ids: [])
   end
 
-  def csv_format
-    exporter = ProductExporter.new(records: @products)
-    send_data exporter.csv, filename: 'products.csv'
-  end
+  # def csv_format
+  #   exporter = ProductExporter.new(records: @products)
+  #   send_data exporter.csv, filename: 'products.csv'
+  # end
 end

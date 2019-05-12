@@ -2,14 +2,6 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
-  let(:valid_user_param) do
-    {
-      email: 'valid@email.com',
-      first_name: 'first',
-      last_name: 'last',
-      password: 'pass'
-    }
-  end
 
   before { allow(controller).to receive(:current_user).and_return(user) }
 
@@ -17,34 +9,43 @@ RSpec.describe UsersController, type: :controller do
     it 'assigns @users' do
       get :index
       expect(assigns(:users)).to eq([user])
+      expect(json).to include_json(users: [])
     end
   end
 
   describe 'POST #create' do
     context 'with successful attempt' do
-      before { user }
+      let(:params) do
+        {
 
-      it 'creates user' do
-        params = { user: valid_user_param }
-        expect { post(:create, params: params) }.to change(User, :count).by(1)
+          user: {
+            email: 'valid@email.com',
+            first_name: 'first',
+            last_name: 'last',
+            password: 'pass'
+          }
+        }
       end
+
+      before { post(:create, params: params) }
+
+      # Including current user
+      it { expect(User.count).to eq(2) }
     end
 
     context 'with failed attempt' do
-      before { user }
+      let(:params) { { user: { email: nil, password: nil } } }
 
-      it "renders 'new' template" do
-        params = { user: { email: nil, password: nil } }
-        post(:create, params: params)
-        expect(json).to include_json(errors: {})
-      end
+      before { post(:create, params: params) }
+
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'PATCH #update' do
     before { patch :update, params: params }
 
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) { { id: user.id, user: { email: 'updated@email.com' } } }
 
       it { expect(assigns(:user).email).to eq('updated@email.com') }
@@ -60,20 +61,21 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #show' do
-    it 'updates user' do
-      params = { id: user.id }
-      patch :show, params: params
-      expect(assigns(:user)).to eq(user)
-    end
+    before { get :show, params: { id: user.id } }
+
+    it { expect(assigns(:user)).to eq(user) }
+    it { expect(json).to include_json(user: {}) }
   end
 
   describe 'DELETE #destroy' do
     before { delete :destroy, params: params }
 
     context 'with existing record' do
-      let(:params) { { id: user.id } }
+      let(:user1) { create(:user, account: user.account) }
+      let(:params) { { id: user1.id } }
 
       it { expect(assigns(:user)).to be_destroyed }
+      it { expect(json).to include_json(user: {}) }
     end
 
     context 'with non-existing record' do

@@ -3,15 +3,15 @@ class UsersController < ApplicationController
 
   def index
     @users = current_account.users
-    render json: blueprint(UsersQuery.new(params, @users).call)
+    render json: blueprint(@users)
   end
 
   def create
     @user = current_account.users.new user_params
-    if @user.save
-      render json: blueprint(@user)
+    if user.save
+      render json: blueprint(user)
     else
-      render_record_invalid(@user)
+      render_record_invalid(user)
     end
   end
 

@@ -4,95 +4,77 @@ RSpec.describe CategoriesController, type: :controller do
   let(:user) { create(:user) }
   let(:category) { create(:category, account: user.account) }
 
-  before do
-    allow(controller).to receive(:current_user).and_return(user)
-    allow(controller).to receive(:current_account).and_return(user.account)
-  end
+  before { allow(controller).to receive(:current_user).and_return(user) }
 
   describe 'GET #index' do
-    before { category }
-
-    it 'assigns @categories' do
+    before do
+      category
       get :index
-      expect(assigns(:categories).count).to eq(1)
     end
-  end
 
-  describe 'GET #new' do
-    it 'assigns @category' do
-      get :new
-      expect(assigns(:category)).to be_a_new_record
-    end
+    it { expect(assigns(:categories)).to eq([category]) }
+    it { expect(json).to include_json(categories: []) }
   end
 
   describe 'POST #create' do
     context 'with successful attempt' do
-      before { category }
+      let(:params) { { category: { name: 'juice' } } }
 
-      it 'creates category' do
-        params = { category: { name: 'juice' } }
-        expect do
-          post(:create, params: params)
-        end.to change(Category, :count).by(1)
-      end
+      before { post(:create, params: params) }
+
+      it { expect(Category.count).to eq(1) }
+      it { expect(json).to include_json(category: {}) }
     end
 
     context 'with failed attempt' do
-      before { category }
+      let(:params) { { category: { name: nil } } }
 
-      it "renders 'new' template" do
-        params = { category: { name: nil } }
-        post(:create, params: params)
-        expect(response).to render_template 'new'
-      end
+      before { post(:create, params: params) }
+
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
-  # describe 'GET #edit' do
-  #   it 'assigns @category' do
-  #     params = { id: category.id, category: { name: 'juice'} }
-  #     get :edit, params: params
-  #     expect(assigns(:category).reload.name).to eq('juice')
-  #   end
-  # end
-  #
-  # describe 'PATCH #update' do
-  #   context 'with successful attempt' do
-  #     it 'updates category' do
-  #       params = { id: category.id, category: { name: 'juice' } }
-  #       patch :update, params: params
-  #       expect(assigns(:category).name).to eq('juice')
-  #       expect(response).to redirect_to(categories_path)
-  #     end
-  #   end
-  #
-  #   context 'with failed attempt' do
-  #     it "renders 'edit'" do
-  #       params = { id: category.id, category: { name: nil } }
-  #       patch :update, params: params
-  #       expect(response).to render_template('edit')
-  #     end
-  #   end
-  # end
-  #
-  # describe 'GET #show' do
-  #   it 'updates category' do
-  #     params = { id: category.id }
-  #     patch :show, params: params
-  #     expect(assigns(:category)).to eq(category)
-  #   end
-  # end
-  #
-  # describe 'DELETE #destroy' do
-  #   it 'updates category' do
-  #     params = { id: category.id }
-  #     delete :destroy, params: params
-  #     expect(assigns(:category)).to eq(category)
-  #   end
-  #   it 'raises an exception' do
-  #     expect do
-  #       delete :destroy, params: { id: 'nothing' }
-  #     end.to raise_error(ActiveRecord::RecordNotFound)
-  #   end
-  # end
+  describe 'PATCH #update' do
+    before { patch :update, params: params }
+
+    context 'with passing params' do
+      let(:params) { { id: category.id, category: { name: 'juice' } } }
+
+      it { expect(assigns(:category).name).to eq('juice') }
+      it { expect(json).to include_json(category: {}) }
+    end
+
+    context 'with failed attempt' do
+      let(:params) { { id: category.id, category: { name: nil } } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json).to include_json(errors: {}) }
+    end
+  end
+
+  describe 'GET #show' do
+    before { get :show, params: { id: category.id } }
+
+    it { expect(assigns(:category)).to eq(category) }
+    it { expect(json).to include_json(category: {}) }
+  end
+
+  describe 'DELETE #destroy' do
+    before { delete :destroy, params: params }
+
+    context 'with existing record' do
+      let(:params) { { id: category.id } }
+
+      it { expect(assigns(:category)).to be_destroyed }
+      it { expect(json).to include_json(category: {}) }
+    end
+
+    context 'with non-existing record' do
+      let(:params) { { id: 'nothing' } }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(json).to include_json(error: {}) }
+    end
+  end
 end

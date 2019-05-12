@@ -1,45 +1,40 @@
 class RolesController < ApplicationController
   def index
     @roles = current_account.roles
-  end
-
-  def new
-    @role = current_account.roles.new
+    render json: blueprint(@roles)
   end
 
   def create
     @role = current_account.roles.new role_params
-    if @role.save
-      redirect_to roles_path
+    if role.save
+      render json: blueprint(role)
     else
-      render 'new'
+      render_record_invalid(role)
     end
   end
 
-  def edit
-    @role = current_account.roles.find(params[:id])
-  end
-
   def update
-    @role = current_account.roles.find(params[:id])
-    if @role.update role_params
-      redirect_to roles_path
+    if role.update role_params
+      render json: blueprint(role)
     else
-      render 'edit'
+      render_record_invalid(role)
     end
   end
 
   def show
-    @role = current_account.roles.find(params[:id])
+    render json: blueprint(role)
   end
 
   def destroy
-    @role = current_account.roles.find(params[:id])
-    @role.deleted_status!
-    redirect_to roles_path
+    role.destroy
+    render json: blueprint(role)
   end
 
   private
+
+  def role
+    @role ||= current_account.roles.find(params[:id])
+  end
 
   def role_params
     params.require(:role).permit(:name)
