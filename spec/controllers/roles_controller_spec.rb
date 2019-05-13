@@ -47,7 +47,6 @@ RSpec.describe RolesController, type: :controller do
       it { expect(json).to include_json(role: {}) }
     end
 
-
     context 'with failing params' do
       let(:params) { { id: role.id, role: { name: nil } } }
 

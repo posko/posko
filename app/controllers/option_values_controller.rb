@@ -1,40 +1,33 @@
 class OptionValuesController < ApplicationController
-  before_action :option_value, except: [:index, :new, :create]
   def index
-    @option_values = option_type.option_values
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def new
-    @option_value = option_type.option_values.new
+    @option_values = current_account.option_values
+    render json: blueprint(@option_values)
   end
 
   def create
     @option_value = option_type.option_values.new option_value_params
-    if @option_value.save
-      redirect_to @option_value
+    if option_value.save
+      render json: blueprint(option_value)
     else
-      render 'new'
+      render_record_invalid(option_value)
     end
   end
-
-  def edit; end
 
   def update
-    if @option_value.update(option_value_params)
-      redirect_to @option_value
+    if option_value.update(option_value_params)
+      render json: blueprint(option_value)
     else
-      render 'edit'
+      render_record_invalid(option_value)
     end
   end
 
-  def show; end
+  def show
+    render json: blueprint(option_value)
+  end
 
   def destroy
-    @option_value.destroy
-    redirect_to option_type_option_values_path @option_value
+    option_value.destroy
+    render json: blueprint(option_value)
   end
 
   private

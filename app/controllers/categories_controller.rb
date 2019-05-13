@@ -30,7 +30,6 @@ class CategoriesController < ApplicationController
     render json: blueprint(category)
   end
 
-
   private
 
   def category

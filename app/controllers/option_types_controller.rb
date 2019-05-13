@@ -1,40 +1,35 @@
 class OptionTypesController < ApplicationController
-  before_action :option_type, except: [:index, :new, :create]
   def index
     @option_types = product.option_types
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def new
-    @option_type = product.option_types.new
+    render json: blueprint(@option_types)
   end
 
   def create
     @option_type = product.option_types.new option_type_params
-    if @option_type.save
-      redirect_to @option_type
+    if option_type.save
+      render json: blueprint(option_type)
     else
-      render 'new'
+      render_record_invalid(option_type)
     end
   end
 
   def edit; end
 
   def update
-    if @option_type.update(option_type_params)
-      redirect_to @option_type
+    if option_type.update(option_type_params)
+      render json: blueprint(option_type)
     else
-      render 'edit'
+      render_record_invalid(option_type)
     end
   end
 
-  def show; end
+  def show
+    render json: blueprint(option_type)
+  end
 
   def destroy
-    @option_type.destroy
-    redirect_to product_option_types_path @option_type.product
+    option_type.destroy
+    render json: blueprint(option_type)
   end
 
   private
@@ -44,7 +39,7 @@ class OptionTypesController < ApplicationController
   end
 
   def option_type
-    @option_type ||= OptionType.find(params[:id])
+    @option_type ||= current_account.option_types.find(params[:id])
   end
 
   def option_type_params

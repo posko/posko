@@ -5,95 +5,77 @@ RSpec.describe OptionTypesController, type: :controller do
   let(:product) { create(:product, account: user.account) }
   let(:option_type) { create(:option_type, product: product) }
 
-  before do
-    allow(controller).to receive(:current_user).and_return(user)
-    allow(controller).to receive(:current_account).and_return(user.account)
-  end
+  before { allow(controller).to receive(:current_user).and_return(user) }
 
   describe 'GET #index' do
-    before { product }
-
-    it 'assigns @option_types' do
+    before do
+      option_type
       get :index, params: { product_id: product.id }
-      expect(assigns(:option_types)).to eq([option_type])
     end
-  end
 
-  describe 'GET #new' do
-    it 'assigns @option_type' do
-      get :new, params: { product_id: product.id }
-      expect(assigns(:option_type)).to be_a_new_record
-    end
+    it { expect(assigns(:option_types)).to eq([option_type]) }
+    it { expect(json).to include_json(option_types: []) }
   end
 
   describe 'POST #create' do
     context 'with successful attempt' do
-      before { option_type }
+      let(:params) { { product_id: product.id, option_type: { name: 'Size' } } }
 
-      it 'creates option_type' do
-        params = { product_id: product.id, option_type: { name: 'Size' } }
-        expect do
-          post(:create, params: params)
-        end.to change(OptionType, :count).by(1)
-      end
+      before { post(:create, params: params) }
+
+      it { expect(OptionType.count).to eq(1) }
+      it { expect(json).to include_json(option_type: {}) }
     end
 
-    # context 'with failed attempt' do
-    #   before { option_type }
-    #   it "renders 'new' template" do
-    #     params = { option_type: { id: nil } }
-    #     post(:create, params: params)
-    #     expect(response).to render_template "new"
-    #   end
-    # end
-  end
+    context 'with failed attempt' do
+      let(:params) { { product_id: product.id, option_type: { name: nil } } }
 
-  describe 'GET #edit' do
-    it 'assigns @option_type' do
-      params = { id: option_type.id }
-      get :edit, params: params
-      expect(assigns(:option_type)).to eq(option_type)
+      before { post(:create, params: params) }
+
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'PATCH #update' do
-    context 'with successful attempt' do
-      it 'updates option_type' do
-        params = { id: option_type.id, option_type: { name: 'admin' } }
-        patch :update, params: params
-        expect(assigns(:option_type).name).to eq('admin')
-        expect(response).to redirect_to(option_type_path(option_type))
-      end
+    before { patch :update, params: params }
+
+    context 'with passing params' do
+      let(:params) { { id: option_type.id, option_type: { name: 'admin' } } }
+
+      it { expect(assigns(:option_type).name).to eq('admin') }
+      it { expect(json).to include_json(option_type: {}) }
     end
 
     context 'with failed attempt' do
-      it "renders 'edit'" do
-        params = { id: option_type.id, option_type: { name: nil } }
-        patch :update, params: params
-        expect(response).to have_http_status(:ok)
-        expect(response).to render_template('edit')
-      end
+      let(:params) { { id: option_type.id, option_type: { name: nil } } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'GET #show' do
-    it 'updates option_type' do
-      params = { id: option_type.id }
-      patch :show, params: params
-      expect(assigns(:option_type)).to eq(option_type)
-    end
+    before { get :show, params: { id: option_type.id } }
+
+    it { expect(assigns(:option_type)).to eq(option_type) }
+    it { expect(json).to include_json(option_type: {}) }
   end
 
   describe 'DELETE #destroy' do
-    it 'updates option_type' do
-      params = { id: option_type.id }
-      delete :destroy, params: params
-      expect(assigns(:option_type)).to eq(option_type)
+    before { delete :destroy, params: params }
+
+    context 'with existing record' do
+      let(:params) { { id: option_type.id } }
+
+      it { expect(assigns(:option_type)).to be_destroyed }
+      it { expect(json).to include_json(option_type: {}) }
     end
-    it 'raises an exception' do
-      expect do
-        delete :destroy, params: { id: 'nothing' }
-      end.to raise_error(ActiveRecord::RecordNotFound)
+
+    context 'with non-existing record' do
+      let(:params) { { id: 'nothing' } }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(json).to include_json(error: {}) }
     end
   end
 end

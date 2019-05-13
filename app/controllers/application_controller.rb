@@ -50,7 +50,7 @@ class ApplicationController < ActionController::API
   def derive_blueprint_keys(obj)
     model_name = obj.model_name.name
     hash_object = if obj.class.name.split('::').last == 'AssociationRelation' ||
-                    obj.class.name.split('::').last == 'CollectionProxy'
+                     obj.class.name.split('::').last == 'CollectionProxy'
                     model_name.pluralize.underscore
                   else
                     model_name.underscore

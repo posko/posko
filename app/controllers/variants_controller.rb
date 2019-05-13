@@ -1,5 +1,4 @@
 class VariantsController < ApplicationController
-  before_action :product, only: [:new, :create]
   def index
     @variants = product.variants
     render json: blueprint(@variants)
@@ -36,6 +35,7 @@ class VariantsController < ApplicationController
   def variant
     @variant ||= current_account.variants.find(params[:id])
   end
+
   def variant_params
     params.require(:variant).permit(:price, :sku, :variant_type,
       option_value_ids: [])
