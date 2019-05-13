@@ -10,6 +10,7 @@ class Account < ApplicationRecord
   has_many :option_types, through: :products
   has_many :option_values, through: :option_types
   has_many :categories, dependent: :destroy
+  has_many :components, through: :variants
 
   alias_attribute :account_name, :name
   # has_many :branches

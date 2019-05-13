@@ -6,96 +6,89 @@ RSpec.describe ComponentsController, type: :controller do
   let(:product) { create(:product, account: account) }
   let(:variant) { create(:variant, product: product) }
   let(:component) { create(:component, variant: variant) }
-  let(:valid_component_param) { { quantity: 1, cost: 99.9 } }
 
-  before { sign_in }
+  before { allow(controller).to receive(:current_user).and_return(user) }
 
   describe 'GET #index' do
-    it 'assigns @components' do
+    before do
+      component
       get :index, params: { variant_id: variant.id }
-      expect(assigns(:components)).to eq([component])
     end
-  end
 
-  describe 'GET #new' do
-    it 'assigns @component' do
-      get :new, params: { variant_id: variant.id }
-      expect(assigns(:component)).to be_a_new_record
-    end
+    it { expect(assigns(:components)).to eq([component]) }
+    it { expect(json).to include_json(components: []) }
   end
 
   describe 'POST #create' do
     context 'with successful attempt' do
       let(:params) do
-        { component: valid_component_param,
-          variant_id: variant.id }
+        {
+          component: { quantity: 1, cost: 99.9 },
+          variant_id: variant.id
+        }
       end
 
       before { post(:create, params: params) }
 
-      it 'creates component' do
-        expect(variant.components.count).to eq(1)
-      end
+      it { expect(Component.count).to eq(1) }
+      it { expect(json).to include_json(component: {}) }
     end
 
     context 'with failed attempt' do
-      before { component }
-
-      it "renders 'new' template" do
-        params = { component: { quantity: nil, cost: 99 },
-                   variant_id: variant.id }
-        post(:create, params: params)
-        expect(response).to render_template 'new'
+      let(:params) do
+        {
+          component: { quantity: nil, cost: 99 },
+          variant_id: variant.id
+        }
       end
-    end
-  end
 
-  describe 'GET #edit' do
-    it 'assigns @component' do
-      params = { id: component.id }
-      get :edit, params: params
-      expect(assigns(:component)).to eq(component)
+      before { post(:create, params: params) }
+
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'PATCH #update' do
-    context 'with successful attempt' do
-      it 'updates component' do
-        params = { id: component.id, component: { quantity: 2, cost: 99 } }
-        patch :update, params: params
-        expect(assigns(:component).quantity).to eq(2)
-        expect(response).to redirect_to(variant_components_path(variant.id))
+    before { patch :update, params: params }
+
+    context 'with passing params' do
+      let(:params) do
+        { id: component.id, component: { quantity: 2, cost: 99 } }
       end
+
+      it { expect(json).to include_json(component: { quantity: '2.0' }) }
     end
 
     context 'with failed attempt' do
-      it "renders 'edit'" do
-        params = { id: component.id, component: { quantity: nil } }
-        patch :update, params: params
-        expect(response).to render_template('edit')
-      end
+      let(:params) { { id: component.id, component: { quantity: nil } } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'GET #show' do
-    it 'updates component' do
-      params = { id: component.id }
-      patch :show, params: params
-      expect(assigns(:component)).to eq(component)
-    end
+    before { get :show, params: { id: component.id } }
+
+    it { expect(assigns(:component)).to eq(component) }
+    it { expect(json).to include_json(component: {}) }
   end
 
   describe 'DELETE #destroy' do
-    it 'updates component' do
-      params = { id: component.id }
-      delete :destroy, params: params
-      expect(assigns(:component)).to eq(component)
-      expect(assigns(:component)).to be_deleted_status
+    before { delete :destroy, params: params }
+
+    context 'with existing record' do
+      let(:params) { { id: component.id } }
+
+      it { expect(assigns(:component)).to be_destroyed }
+      it { expect(json).to include_json(component: {}) }
     end
-    it 'raises an exception' do
-      expect do
-        delete :destroy, params: { id: 'nothing' }
-      end.to raise_error(ActiveRecord::RecordNotFound)
+
+    context 'with non-existing record' do
+      let(:params) { { id: 'nothing' } }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(json).to include_json(error: {}) }
     end
   end
 end
