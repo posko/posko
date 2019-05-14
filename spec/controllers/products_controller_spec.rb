@@ -17,6 +17,15 @@ RSpec.describe ProductsController, type: :controller do
     it { expect(json).to include_json(products: []) }
   end
 
+  describe 'GET #count' do
+    before do
+      create_list(:product, 2, account: account)
+      get :count
+    end
+
+    it { expect(json).to include_json(count: 2) }
+  end
+
   describe 'POST #create' do
     context 'with successful attempt' do
       let(:params) do

@@ -14,6 +14,26 @@ RSpec.describe VariantsController, type: :controller do
     it { expect(assigns(:variants).count).to eq(1) }
   end
 
+  describe 'GET #count' do
+    before do
+      create_list(:variant, 1, product: product)
+      create(:product, account: account)
+      get :count, params: params
+    end
+
+    context 'with parent id' do
+      let(:params) { { product_id: product.id } }
+
+      it { expect(json).to include_json(count: 2) }
+    end
+
+    context 'without parent id' do
+      let(:params) { {} }
+
+      it { expect(json).to include_json(count: 3) }
+    end
+  end
+
   describe 'POST #create' do
     context 'with successful attempt' do
       let(:params) do

@@ -22,18 +22,30 @@ Rails.application.routes.draw do
       end
     end
   end
+  #
+  # resources :variants, only: [:index] do
+  #   collection { get :count }
+  # end
+  get 'variants', to: 'variants#index'
+
   resources :products, shallow: true do
     collection do
+      get :count
       get :import_modal
       post :import
     end
     resources :variants, shallow: true do
+      collection do
+        get :count
+      end
       resources :components
     end
     resources :option_types, shallow: true do
       resources :option_values
     end
   end
+  get 'variants/count', to: 'variants#count'
+
   resources :barcodes do
     collection do
       get :search

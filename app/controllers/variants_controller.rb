@@ -1,7 +1,12 @@
 class VariantsController < ApplicationController
   def index
-    @variants = product.variants
-    render json: blueprint(@variants)
+    @variants = source_parent.variants.active_status
+    render json: blueprint(VariantsQuery.new(params, @variants).call)
+  end
+
+  def count
+    @variants = source_parent.variants.active_status
+    render json: { count: VariantsQuery.new(params, @variants).total_count }
   end
 
   def create
@@ -36,12 +41,16 @@ class VariantsController < ApplicationController
     @variant ||= current_account.variants.find(params[:id])
   end
 
+  def product
+    @product ||= current_account.products.find(params[:product_id])
+  end
+
+  def source_parent
+    params[:product_id] ? product : current_account
+  end
+
   def variant_params
     params.require(:variant).permit(:price, :sku, :variant_type,
       option_value_ids: [])
-  end
-
-  def product
-    @product ||= current_account.products.find(params[:product_id])
   end
 end
