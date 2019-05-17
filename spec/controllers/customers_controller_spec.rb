@@ -9,7 +9,6 @@ RSpec.describe CustomersController, type: :controller do
     allow(controller).to receive(:current_account).and_return(user.account)
   end
 
-
   describe 'GET #index' do
     before do
       customer
@@ -22,7 +21,6 @@ RSpec.describe CustomersController, type: :controller do
 
   describe 'POST #create' do
     context 'with passing params' do
-
       let(:params) do
         {
           customer: {
@@ -33,6 +31,7 @@ RSpec.describe CustomersController, type: :controller do
           }
         }
       end
+
       before { post(:create, params: params) }
 
       it { expect(Customer.count).to eq(1) }
@@ -67,7 +66,6 @@ RSpec.describe CustomersController, type: :controller do
       it { expect(json).to include_json(errors: {}) }
     end
   end
-
 
   describe 'GET #show' do
     before { get :show, params: { id: customer.id } }

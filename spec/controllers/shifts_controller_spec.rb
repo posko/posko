@@ -11,7 +11,7 @@ RSpec.describe ShiftsController, type: :controller do
   describe 'GET #index' do
     before do
       shift
-      get :index, params: { user_id: user.id}
+      get :index, params: { user_id: user.id }
     end
 
     it { expect(assigns(:shifts)).to eq([shift]) }
@@ -22,7 +22,7 @@ RSpec.describe ShiftsController, type: :controller do
     before { post(:create, params: params) }
 
     context 'with passing params' do
-      let(:params) { { user_id: user.id,  shift: { starting_cash: 10 }  } }
+      let(:params) { { user_id: user.id, shift: { starting_cash: 10 } } }
 
       it { expect(Shift.count).to eq(1) }
       it { expect(json).to include_json(shift: {}) }
@@ -42,7 +42,6 @@ RSpec.describe ShiftsController, type: :controller do
     it { expect(response).to have_http_status(:success) }
     it { expect(json).to include_json(shift: {}) }
   end
-
 
   describe 'PATCH #finalize_shift' do
     let(:params) { { id: shift.id } }
