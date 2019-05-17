@@ -6,9 +6,5 @@ class CategoryBlueprint < Blueprinter::Base
   fields :name, :depth, :directory
 
   fields :category_status, :status
-  # field :category_type
-
-  view :destroyed do
-    fields :deleted
-  end
+  fields :created_at, :updated_at
 end

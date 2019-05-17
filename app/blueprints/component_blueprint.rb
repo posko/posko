@@ -5,4 +5,5 @@ class ComponentBlueprint < Blueprinter::Base
   fields :quantity, :cost
 
   fields :component_type, :component_status, :status
+  fields :created_at, :updated_at
 end

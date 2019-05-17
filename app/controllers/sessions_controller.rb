@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if @sign_in_form.save
       session[:user_id] = @sign_in_form.user.id
       session[:access_token] = @sign_in_form.access_key.token
-      render json: { user: SignInBlueprint.render_as_hash(@sign_in_form.user) }
+      render json: SignInBlueprint.render_as_hash(@sign_in_form)
     else
       render status: :unauthorized, json: { message: 'Invalid credentials' }
     end

@@ -5,7 +5,5 @@ class ProductBlueprint < Blueprinter::Base
 
   fields :product_type, :product_status, :status
 
-  view :destroyed do
-    fields :deleted
-  end
+  fields :created_at, :updated_at
 end

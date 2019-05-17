@@ -4,4 +4,6 @@ class AccountSettingBlueprint < Blueprinter::Base
   fields :tax_feature, :shifts_feature, :discounts_feature
 
   association :account, blueprint: AccountBlueprint, default: {}
+
+  fields :created_at, :updated_at
 end

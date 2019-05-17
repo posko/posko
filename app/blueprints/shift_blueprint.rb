@@ -7,4 +7,6 @@ class ShiftBlueprint < Blueprinter::Base
   fields :starting_cash, :payments, :paid_in, :paid_out, :cash
 
   fields :shift_type, :shift_status, :status
+
+  fields :created_at, :updated_at
 end

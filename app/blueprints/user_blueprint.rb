@@ -8,6 +8,8 @@ class UserBlueprint < Blueprinter::Base
 
   fields :user_type, :user_status, :status
 
+  fields :created_at, :updated_at
+
   view :destroyed do
     fields :deleted
   end

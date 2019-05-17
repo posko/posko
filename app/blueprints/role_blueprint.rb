@@ -7,7 +7,5 @@ class RoleBlueprint < Blueprinter::Base
 
   fields :role_type, :role_status, :status
 
-  view :destroyed do
-    fields :deleted
-  end
+  fields :created_at, :updated_at
 end

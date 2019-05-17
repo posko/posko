@@ -1,12 +1,4 @@
 class ShiftActivitiesController < ApplicationController
-  before_action :shift_activity, except: [:index, :new, :create]
-  def index
-    @shift_activities = shift.shift_activities
-    respond_to do |format|
-      format.html
-    end
-  end
-
   def index
     @shift_activities = shift.shift_activities
     render json: blueprint(@shift_activities)
@@ -37,30 +29,6 @@ class ShiftActivitiesController < ApplicationController
     shift_activity.destroy
     render json: blueprint(shift_activity)
   end
-
-  # def create
-  #   @shift_activity = shift.shift_activities.new shift_activity_params
-  #   if shift_activity.save
-  #     redirect_to shift_shift_activities_path(shift)
-  #   else
-  #     render 'new'
-  #   end
-  # end
-  #
-  # def update
-  #   if @shift_activity.update(shift_activity_params)
-  #     redirect_to shift_shift_activities_path(@shift_activity.shift)
-  #   else
-  #     render 'edit'
-  #   end
-  # end
-  #
-  # def show; end
-  #
-  # def destroy
-  #   @shift_activity.destroy
-  #   redirect_to shift_shift_activities_path(@shift_activity.shift)
-  # end
 
   private
 

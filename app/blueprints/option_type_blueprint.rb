@@ -6,8 +6,4 @@ class OptionTypeBlueprint < Blueprinter::Base
 
   fields :option_type_type, :option_type_status, :status
   fields :created_at, :updated_at
-
-  view :destroyed do
-    fields :deleted
-  end
 end

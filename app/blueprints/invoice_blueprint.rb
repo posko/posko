@@ -11,8 +11,5 @@ class InvoiceBlueprint < Blueprinter::Base
 
   fields :fulfillment_status, :note
   fields :invoice_status, :status
-
-  view :destroyed do
-    fields :deleted
-  end
+  fields :created_at, :updated_at
 end

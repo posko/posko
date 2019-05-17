@@ -3,4 +3,6 @@ class AccessKeyBlueprint < Blueprinter::Base
   fields :token, :auth_token
 
   fields :access_key_status, :status
+
+  fields :created_at, :updated_at
 end

@@ -6,8 +6,5 @@ class VariantBlueprint < Blueprinter::Base
   field :default
 
   fields :variant_type, :variant_status, :status
-
-  view :destroyed do
-    fields :deleted
-  end
+  fields :created_at, :updated_at
 end

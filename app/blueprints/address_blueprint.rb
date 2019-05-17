@@ -6,6 +6,7 @@ class AddressBlueprint < Blueprinter::Base
     :default
 
   fields :address_status, :status
+  fields :created_at, :updated_at
 
   association :customer, blueprint: CustomerBlueprint, default: {}
 end
