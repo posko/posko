@@ -5,82 +5,67 @@ RSpec.describe ShiftsController, type: :controller do
   let(:shift) { create(:shift, user: user) }
 
   before do
-    shift
     allow(controller).to receive(:current_user).and_return(user)
-    allow(controller).to receive(:current_account).and_return(user.account)
   end
 
   describe 'GET #index' do
-    it 'assigns @shifts' do
-      get :index, params: { user_id: user.id }
-      expect(assigns(:shifts)).to eq([shift])
+    before do
+      shift
+      get :index, params: { user_id: user.id}
     end
-  end
 
-  describe 'GET #new' do
-    it 'assigns @shift' do
-      get :new, params: { user_id: user.id }
-      expect(assigns(:shift)).to be_a_new_record
-    end
+    it { expect(assigns(:shifts)).to eq([shift]) }
+    it { expect(json).to include_json(shifts: []) }
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
-      before { shift }
+    before { post(:create, params: params) }
 
-      it 'creates shift' do
-        params = { user_id: user.id, shift: { starting_cash: 10 } }
-        expect do
-          post(:create, params: params)
-        end.to change(Shift, :count).by(1)
-        expect(Shift.last.starting_cash).to eq(10)
-      end
+    context 'with passing params' do
+      let(:params) { { user_id: user.id,  shift: { starting_cash: 10 }  } }
+
+      it { expect(Shift.count).to eq(1) }
+      it { expect(json).to include_json(shift: {}) }
     end
 
-    # context "with failed attempt" do
-    #   before { shift }
-    #   it "renders 'new' template" do
-    #     params = { shift: { id: nil } }
-    #     post(:create, params: params)
-    #     expect(response).to render_template "new"
-    #   end
-    # end
+    context 'with failing params' do
+      let(:params) { { user_id: user.id, shift: { starting_cash: nil } } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json).to include_json(errors: {}) }
+    end
   end
 
   describe 'GET #show' do
-    it 'updates shift' do
-      params = { id: shift.id }
-      get :show, params: params
-      expect(assigns(:shift)).to eq(shift)
-    end
+    before { get :show, params: { id: shift.id } }
+
+    it { expect(response).to have_http_status(:success) }
+    it { expect(json).to include_json(shift: {}) }
   end
 
-  describe 'GET #end_shift' do
-    it 'updates shift' do
-      params = { id: shift.id }
-      get :end_shift, params: params
-      expect(assigns(:shift)).to eq(shift)
-    end
-  end
 
   describe 'PATCH #finalize_shift' do
+    let(:params) { { id: shift.id } }
+    let(:resulting_shift) do
+      {
+        shift: {
+          cash: '1800.0',
+          paid_in: '700.0',
+          paid_out: '100.0',
+          payments: '1000.0',
+          shift_status: 'ended'
+        }
+      }
+    end
+
     before do
       create(:invoice, subtotal: 1000, shift: shift)
       create(:shift_activity, :pay_in, amount: 500, shift: shift)
       create(:shift_activity, :pay_in, amount: 200, shift: shift)
       create(:shift_activity, :pay_out, amount: 100, shift: shift)
+      patch :finalize_shift, params: params
     end
 
-    it 'updates shift' do
-      params = { id: shift.id }
-      patch :finalize_shift, params: params
-      expect(response).to redirect_to(shift)
-      expect(assigns(:shift)).to eq(shift)
-      expect(assigns(:shift)).to be_ended
-      expect(assigns(:shift).cash).to eq 1800
-      expect(assigns(:shift).paid_in).to eq 700
-      expect(assigns(:shift).paid_out).to eq 100
-      expect(assigns(:shift).payments).to eq 1000
-    end
+    it { expect(json).to include_json(resulting_shift) }
   end
 end

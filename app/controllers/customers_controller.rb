@@ -1,37 +1,33 @@
 class CustomersController < ApplicationController
-  before_action :customer, except: [:index, :new, :create]
   def index
     @customers = current_account.customers
-  end
-
-  def new
-    @customer = current_account.customers.new
+    render json: blueprint(@customers)
   end
 
   def create
     @customer = current_account.customers.new customer_params
-    if @customer.save
-      redirect_to customers_path
+    if customer.save
+      render json: blueprint(customer)
     else
-      render 'new'
+      render_record_invalid(customer)
     end
   end
-
-  def edit; end
 
   def update
-    if @customer.update(customer_params)
-      redirect_to customers_path
+    if customer.update(customer_params)
+      render json: blueprint(customer)
     else
-      render 'edit'
+      render_record_invalid(customer)
     end
   end
 
-  def show; end
+  def show
+    render json: blueprint(customer)
+  end
 
   def destroy
-    @customer.destroy
-    redirect_to customers_path
+    customer.destroy
+    render json: blueprint(customer)
   end
 
   private

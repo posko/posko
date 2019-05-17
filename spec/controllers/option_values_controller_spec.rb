@@ -21,7 +21,7 @@ RSpec.describe OptionValuesController, type: :controller do
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) do
         {
           option_type_id: option_type.id,
@@ -35,7 +35,7 @@ RSpec.describe OptionValuesController, type: :controller do
       it { expect(json).to include_json(option_value: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) do
         {
           option_type_id: option_type.id,
@@ -59,7 +59,7 @@ RSpec.describe OptionValuesController, type: :controller do
       it { expect(json).to include_json(option_value: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { id: option_value.id, option_value: { name: '' } } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }

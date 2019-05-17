@@ -19,15 +19,8 @@ RSpec.describe InvoicesController, type: :controller do
     end
   end
 
-  describe 'GET #new' do
-    it 'assigns @invoice' do
-      get :new
-      expect(assigns(:invoice)).to be_a_new_record
-    end
-  end
-
   describe 'POST #create' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       before { invoice }
 
       it 'creates invoice' do
@@ -39,7 +32,7 @@ RSpec.describe InvoicesController, type: :controller do
       end
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       before { invoice }
 
       it "renders 'new' template" do
@@ -50,16 +43,8 @@ RSpec.describe InvoicesController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
-    it 'assigns @invoice' do
-      params = { id: invoice.id }
-      get :edit, params: params
-      expect(assigns(:invoice)).to eq(invoice)
-    end
-  end
-
   describe 'PATCH #update' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       it 'updates invoice' do
         params = { id: invoice.id, invoice: { invoice_number: 2 } }
         patch :update, params: params
@@ -68,7 +53,7 @@ RSpec.describe InvoicesController, type: :controller do
       end
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       it "renders 'edit'" do
         params = { id: invoice.id, invoice: { invoice_number: nil } }
         patch :update, params: params
@@ -86,15 +71,20 @@ RSpec.describe InvoicesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'updates invoice' do
-      params = { id: invoice.id }
-      delete :destroy, params: params
-      expect(assigns(:invoice)).to eq(invoice)
+    before { delete :destroy, params: params }
+
+    context 'with existing record' do
+      let(:params) { { id: invoice.id } }
+
+      it { expect(assigns(:invoice)).to be_destroyed }
+      it { expect(json).to include_json(invoice: {}) }
     end
-    it 'raises an exception' do
-      expect do
-        delete :destroy, params: { id: 'nothing' }
-      end.to raise_error(ActiveRecord::RecordNotFound)
+
+    context 'with non-existing record' do
+      let(:params) { { id: 'nothing' } }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(json).to include_json(error: {}) }
     end
   end
 end

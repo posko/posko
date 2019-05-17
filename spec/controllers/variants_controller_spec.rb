@@ -35,7 +35,7 @@ RSpec.describe VariantsController, type: :controller do
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) do
         {
           variant: {
@@ -54,7 +54,7 @@ RSpec.describe VariantsController, type: :controller do
       it { expect(json).to include_json(variant: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) do
         {
           variant: { price: nil },
@@ -71,13 +71,13 @@ RSpec.describe VariantsController, type: :controller do
   describe 'PATCH #update' do
     before { patch :update, params: params }
 
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) { { id: variant.id, variant: { price: 100 } } }
 
       it { expect(json).to include_json(variant: { price: '100.0' }) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { id: variant.id, variant: { price: nil } } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }

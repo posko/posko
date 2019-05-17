@@ -24,7 +24,7 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
   end
 
   describe "POST #create" do
-    context 'with successful attempt' do
+    context 'with passing params' do
       before { <%= object %> }
       it "creates <%= object %>" do
         params = { <%= object %>: { } }
@@ -34,7 +34,7 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
       end
     end
 
-    # context 'with failed attempt' do
+    # context 'with failing params' do
     #   before { <%= object %> }
     #   it "renders 'new' template" do
     #     params = { <%= object %>: { id: nil } }
@@ -53,7 +53,7 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
   end
 
   describe "PATCH #update" do
-    context 'with successful attempt' do
+    context 'with passing params' do
       it "updates <%= object %>" do
         params = { id: <%= object %>.id, <%= object %>: { name: "admin" } }
         patch :update, params: params
@@ -62,7 +62,7 @@ RSpec.describe <%= objects.camelize %>Controller, type: :controller do
       end
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       it "renders 'edit'" do
         params = { id: <%= object %>.id, <%= object %>: { name: nil } }
         patch :update, params: params

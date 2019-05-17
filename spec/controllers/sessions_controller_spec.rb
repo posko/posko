@@ -1,69 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  describe 'GET #new' do
-    it 'assigns @sign_in_form' do
-      get :new
-      expect(assigns(:sign_in_form)).to be_instance_of(SignInForm)
-    end
+  let(:account) { create(:account, name: 'firstcompany') }
+  let(:user) do
+    create(:user, email: 'admin@firstcompany.com', password: 'password',
+                  account: account)
   end
 
   describe 'GET #create' do
-    let(:account) { create(:account, account_name: 'firstcompany') }
-    let(:user) do
-      create(:user, email: 'admin@firstcompany.com', password: 'password',
-                    account: account)
+    before do
+      user
+      post :create, params: {
+        account_name: 'firstcompany',
+        email: 'admin@firstcompany.com',
+        password: password
+      }
     end
 
     context 'with correct credentials' do
-      before do
-        # create user
-        user
-        post :create, params: {
-          sign_in_form: {
-            account_name: 'firstcompany',
-            email: 'admin@firstcompany.com',
-            password: 'password'
-          }
-        }
-      end
+      let(:password) { 'password' }
 
-      it 'redirects to dashboard' do
-        expect(assigns(:sign_in_form).account).to be_persisted
-        expect(assigns(:sign_in_form).user).to be_persisted
-        expect(response).to redirect_to(dashboard_path)
-      end
+      it { expect(response).to have_http_status(:success) }
+      it { expect(json).to include_json(user: {}) }
     end
 
     context 'with incorrect credentials' do
-      before do
-        # create user
-        user
-        post :create, params: {
-          sign_in_form: {
-            account_name: 'firstcompany',
-            email: 'admin@firstcompany.com',
-            password: 'wrongpassword'
-          }
-        }
-      end
+      let(:password) { 'wrong_password' }
 
-      it 'assigns @sign_in_form' do
-        expect(assigns(:sign_in_form).account).to be_persisted
-        expect(assigns(:sign_in_form).user).to be_persisted
-        expect(response).to render_template(:new)
-      end
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(json).to include_json(message: 'Invalid credentials') }
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'signs out user using get' do
-      get :destroy
-      expect(response).to redirect_to(sign_in_path)
-    end
     it 'signs out user using delete' do
       delete :destroy
-      expect(response).to redirect_to(sign_in_path)
+      expect(response).to have_http_status(:success)
+      expect(json).to include_json(message: 'Successfully signed out')
     end
   end
 end

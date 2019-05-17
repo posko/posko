@@ -18,7 +18,7 @@ RSpec.describe OptionTypesController, type: :controller do
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) { { product_id: product.id, option_type: { name: 'Size' } } }
 
       before { post(:create, params: params) }
@@ -27,7 +27,7 @@ RSpec.describe OptionTypesController, type: :controller do
       it { expect(json).to include_json(option_type: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { product_id: product.id, option_type: { name: nil } } }
 
       before { post(:create, params: params) }
@@ -46,7 +46,7 @@ RSpec.describe OptionTypesController, type: :controller do
       it { expect(json).to include_json(option_type: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { id: option_type.id, option_type: { name: nil } } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }

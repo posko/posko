@@ -3,101 +3,94 @@ require 'rails_helper'
 RSpec.describe CustomersController, type: :controller do
   let(:user) { create(:user) }
   let(:customer) { create(:customer) }
-  let(:valid_customer_param) do
-    {
-      email: 'valid@email.com',
-      first_name: 'first',
-      last_name: 'last',
-      password: 'pass'
-    }
-  end
 
   before do
     allow(controller).to receive(:current_user).and_return(user)
     allow(controller).to receive(:current_account).and_return(user.account)
   end
 
-  describe 'GET #index' do
-    it 'assigns @customers' do
-      get :index
-      expect(assigns(:customers)).to eq([customer])
-    end
-  end
 
-  describe 'GET #new' do
-    it 'assigns @customer' do
-      get :new
-      expect(assigns(:customer)).to be_a_new_record
+  describe 'GET #index' do
+    before do
+      customer
+      get :index
     end
+
+    it { expect(assigns(:customers)).to eq([customer]) }
+    it { expect(json).to include_json(customers: []) }
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
-      before { customer }
+    context 'with passing params' do
 
-      it 'creates customer' do
-        params = { customer: valid_customer_param }
-        expect { post(:create, params: params) }
-          .to change(Customer, :count).by(1)
+      let(:params) do
+        {
+          customer: {
+            email: 'valid@email.com',
+            first_name: 'first',
+            last_name: 'last',
+            password: 'pass'
+          }
+        }
       end
+      before { post(:create, params: params) }
+
+      it { expect(Customer.count).to eq(1) }
+      it { expect(json).to include_json(customer: {}) }
     end
 
-    context 'with failed attempt' do
-      before { customer }
+    context 'with failing params' do
+      let(:params) { { customer: { name: nil } } }
 
-      it "renders 'new' template" do
-        params = { customer: { email: nil, password: nil } }
-        post(:create, params: params)
-        expect(response).to render_template 'new'
-      end
-    end
-  end
+      before { post(:create, params: params) }
 
-  describe 'GET #edit' do
-    it 'assigns @customer' do
-      params = { id: customer.id }
-      get :edit, params: params
-      expect(assigns(:customer)).to eq(customer)
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
   describe 'PATCH #update' do
-    context 'with successful attempt' do
-      it 'updates customer' do
-        params = { id: customer.id, customer: { email: 'updated@email.com' } }
-        patch :update, params: params
-        expect(assigns(:customer).email).to eq('updated@email.com')
-        expect(response).to redirect_to(customers_path)
+    before { patch :update, params: params }
+
+    context 'with passing params' do
+      let(:params) do
+        { id: customer.id, customer: { email: 'updated@email.com' } }
       end
+
+      it { expect(assigns(:customer).email).to eq('updated@email.com') }
+      it { expect(json).to include_json(customer: {}) }
     end
 
-    context 'with failed attempt' do
-      it "renders 'edit'" do
-        params = { id: customer.id, customer: { first_name: '' } }
-        patch :update, params: params
-        expect(response).to render_template('edit')
-      end
+    context 'with failing params' do
+      let(:params) { { id: customer.id, customer: { first_name: '' } } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json).to include_json(errors: {}) }
     end
   end
 
+
   describe 'GET #show' do
-    it 'updates customer' do
-      params = { id: customer.id }
-      patch :show, params: params
-      expect(assigns(:customer)).to eq(customer)
-    end
+    before { get :show, params: { id: customer.id } }
+
+    it { expect(assigns(:customer)).to eq(customer) }
+    it { expect(json).to include_json(customer: {}) }
   end
 
   describe 'DELETE #destroy' do
-    it 'updates customer' do
-      params = { id: customer.id }
-      delete :destroy, params: params
-      expect(assigns(:customer)).to eq(customer)
+    before { delete :destroy, params: params }
+
+    context 'with existing record' do
+      let(:params) { { id: customer.id } }
+
+      it { expect(assigns(:customer)).to be_destroyed }
+      it { expect(json).to include_json(customer: {}) }
     end
-    it 'raises an exception' do
-      expect do
-        delete :destroy, params: { id: 'nothing' }
-      end.to raise_error(ActiveRecord::RecordNotFound)
+
+    context 'with non-existing record' do
+      let(:params) { { id: 'nothing' } }
+
+      it { expect(response).to have_http_status(:not_found) }
+      it { expect(json).to include_json(error: {}) }
     end
   end
 end

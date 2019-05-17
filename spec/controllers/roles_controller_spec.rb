@@ -22,13 +22,13 @@ RSpec.describe RolesController, type: :controller do
   describe 'POST #create' do
     before { post(:create, params: params) }
 
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) { { role: { name: 'supervisor' } } }
 
       it { expect(Role.count).to eq(1) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { role: { name: nil } } }
 
       before { role }

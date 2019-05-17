@@ -1,45 +1,47 @@
 class ShiftsController < ApplicationController
   def index
     @shifts = user.shifts
-  end
-
-  def new
-    @shift = user.shifts.new
+    render json: blueprint(@shifts)
   end
 
   def create
     @shift = user.shifts.new shift_params
-    if @shift.save
-      redirect_to user_shifts_path user
+    if shift.save
+      render json: blueprint(shift)
     else
-      render 'new'
+      render_record_invalid(shift)
     end
   end
 
   def show
-    @shift = Shift.find(params[:id])
+    render json: blueprint(shift)
   end
 
-  def end_shift
-    @shift = Shift.find(params[:id])
-  end
-
+  # rubocop:disable Metrics/AbcSize
   def finalize_shift
     @shift = Shift.find(params[:id])
     shift_attributes = ShiftCalculatorService.perform(shift: @shift).attributes
-    @shift.assign_attributes(shift_attributes)
-    @shift.shift_status = 'ended'
-    if @shift.save
-      redirect_to @shift
+    shift.assign_attributes(shift_attributes.merge(shift_status: :ended))
+    if shift.save
+      render json: blueprint(shift)
     else
-      render :end_shift
+      render_record_invalid(shift)
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
   def shift
-    @shift ||= user.shifts.find_by(params[:id])
+    @shift ||= source.find(params[:id])
+  end
+
+  def source
+    if params[:user_id]
+      user.shifts
+    else
+      Shift.all
+    end
   end
 
   def user

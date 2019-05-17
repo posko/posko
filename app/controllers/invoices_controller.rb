@@ -1,5 +1,4 @@
 class InvoicesController < ApplicationController
-  before_action :invoice, except: [:index, :new, :create]
   def index
     @invoices = current_account.invoices
   end
@@ -10,8 +9,8 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = current_account.invoices.new invoice_params
-    @invoice.user = current_user
-    if @invoice.save
+    invoice.user = current_user
+    if invoice.save
       redirect_to invoices_path
     else
       render 'new'
@@ -21,18 +20,20 @@ class InvoicesController < ApplicationController
   def edit; end
 
   def update
-    if @invoice.update(invoice_params)
+    if invoice.update(invoice_params)
       redirect_to invoices_path
     else
       render 'edit'
     end
   end
 
-  def show; end
+  def show
+    render json: blueprint(invoice)
+  end
 
   def destroy
-    @invoice.destroy
-    redirect_to invoices_path
+    invoice.destroy
+    render json: blueprint(invoice)
   end
 
   private

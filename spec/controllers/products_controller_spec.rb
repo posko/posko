@@ -27,7 +27,7 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) do
         {
           product: {
@@ -47,7 +47,7 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { product: { title: nil, price: '99.9' } } }
 
       before do
@@ -61,7 +61,7 @@ RSpec.describe ProductsController, type: :controller do
   describe 'PATCH #update' do
     before { patch :update, params: params }
 
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) do
         { id: product.id, product: { title: 'High Quality Bag' } }
       end
@@ -72,7 +72,7 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { id: product.id, product: { title: nil } } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }

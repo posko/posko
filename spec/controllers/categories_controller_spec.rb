@@ -17,19 +17,17 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
-      let(:params) { { category: { name: 'juice' } } }
+    before { post(:create, params: params) }
 
-      before { post(:create, params: params) }
+    context 'with passing params' do
+      let(:params) { { category: { name: 'juice' } } }
 
       it { expect(Category.count).to eq(1) }
       it { expect(json).to include_json(category: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { category: { name: nil } } }
-
-      before { post(:create, params: params) }
 
       it { expect(json).to include_json(errors: {}) }
     end
@@ -45,7 +43,7 @@ RSpec.describe CategoriesController, type: :controller do
       it { expect(json).to include_json(category: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { id: category.id, category: { name: nil } } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }

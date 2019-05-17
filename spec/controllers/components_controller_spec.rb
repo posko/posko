@@ -20,7 +20,7 @@ RSpec.describe ComponentsController, type: :controller do
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       let(:params) do
         {
           component: { quantity: 1, cost: 99.9 },
@@ -34,7 +34,7 @@ RSpec.describe ComponentsController, type: :controller do
       it { expect(json).to include_json(component: {}) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) do
         {
           component: { quantity: nil, cost: 99 },
@@ -59,7 +59,7 @@ RSpec.describe ComponentsController, type: :controller do
       it { expect(json).to include_json(component: { quantity: '2.0' }) }
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       let(:params) { { id: component.id, component: { quantity: nil } } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }

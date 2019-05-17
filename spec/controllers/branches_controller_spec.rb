@@ -26,7 +26,7 @@
 #   end
 #
 #   describe 'POST #create' do
-#     context 'with successful attempt' do
+#     context 'with passing params' do
 #       before { branch }
 #
 #       it 'creates branch' do
@@ -37,7 +37,7 @@
 #       end
 #     end
 #
-#     # context 'with failed attempt' do
+#     # context 'with failing params' do
 #     #   before { branch }
 #     #   it "renders 'new' template" do
 #     #     params = { branch: { id: nil } }
@@ -56,7 +56,7 @@
 #   end
 #
 #   describe 'PATCH #update' do
-#     context 'with successful attempt' do
+#     context 'with passing params' do
 #       it 'updates branch' do
 #         params = { id: branch.id, branch: { name: 'admin' } }
 #         patch :update, params: params
@@ -65,7 +65,7 @@
 #       end
 #     end
 #
-#     context 'with failed attempt' do
+#     context 'with failing params' do
 #       it "renders 'edit'" do
 #         params = { id: branch.id, branch: { name: nil } }
 #         patch :update, params: params

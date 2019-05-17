@@ -6,27 +6,10 @@ RSpec.describe SubcategoriesController, type: :controller do
 
   before do
     allow(controller).to receive(:current_user).and_return(user)
-    allow(controller).to receive(:current_account).and_return(user.account)
-  end
-
-  describe 'GET #new' do
-    let(:params) do
-      {
-        category_id: category.id,
-        category: {
-          name: 'orange'
-        }
-      }
-    end
-
-    it 'assigns @category' do
-      get :new, params: params
-      expect(assigns(:subcategory)).to be_a_new_record
-    end
   end
 
   describe 'POST #create' do
-    context 'with successful attempt' do
+    context 'with passing params' do
       before { category }
 
       it 'creates category' do
@@ -40,7 +23,7 @@ RSpec.describe SubcategoriesController, type: :controller do
       end
     end
 
-    context 'with failed attempt' do
+    context 'with failing params' do
       before { category }
 
       it "renders 'new' template" do
@@ -64,7 +47,7 @@ RSpec.describe SubcategoriesController, type: :controller do
   # end
   #
   # describe 'PATCH #update' do
-  #   context 'with successful attempt' do
+  #   context 'with passing params' do
   #     it 'updates category' do
   #       params = { id: category.id, category: { name: 'juice' } }
   #       patch :update, params: params
@@ -73,7 +56,7 @@ RSpec.describe SubcategoriesController, type: :controller do
   #     end
   #   end
   #
-  #   context 'with failed attempt' do
+  #   context 'with failing params' do
   #     it "renders 'edit'" do
   #       params = { id: category.id, category: { name: nil } }
   #       patch :update, params: params

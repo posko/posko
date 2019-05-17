@@ -7,35 +7,60 @@ class ShiftActivitiesController < ApplicationController
     end
   end
 
-  def new
-    @shift_activity = shift.shift_activities.new
+  def index
+    @shift_activities = shift.shift_activities
+    render json: blueprint(@shift_activities)
   end
 
   def create
     @shift_activity = shift.shift_activities.new shift_activity_params
-    if @shift_activity.save
-      redirect_to shift_shift_activities_path(shift)
+    if shift_activity.save
+      render json: blueprint(shift_activity)
     else
-      render 'new'
+      render_record_invalid(shift_activity)
     end
   end
-
-  def edit; end
 
   def update
-    if @shift_activity.update(shift_activity_params)
-      redirect_to shift_shift_activities_path(@shift_activity.shift)
+    if shift_activity.update(shift_activity_params)
+      render json: blueprint(shift_activity)
     else
-      render 'edit'
+      render_record_invalid(shift_activity)
     end
   end
 
-  def show; end
+  def show
+    render json: blueprint(shift_activity)
+  end
 
   def destroy
-    @shift_activity.destroy
-    redirect_to shift_shift_activities_path(@shift_activity.shift)
+    shift_activity.destroy
+    render json: blueprint(shift_activity)
   end
+
+  # def create
+  #   @shift_activity = shift.shift_activities.new shift_activity_params
+  #   if shift_activity.save
+  #     redirect_to shift_shift_activities_path(shift)
+  #   else
+  #     render 'new'
+  #   end
+  # end
+  #
+  # def update
+  #   if @shift_activity.update(shift_activity_params)
+  #     redirect_to shift_shift_activities_path(@shift_activity.shift)
+  #   else
+  #     render 'edit'
+  #   end
+  # end
+  #
+  # def show; end
+  #
+  # def destroy
+  #   @shift_activity.destroy
+  #   redirect_to shift_shift_activities_path(@shift_activity.shift)
+  # end
 
   private
 
