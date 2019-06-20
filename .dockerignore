@@ -1,0 +1,31 @@
+
+/.bundle
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+/node_modules
+/yarn-error.log
+/config/database.yml
+
+.byebug_history
+coverage
+/spec/tmp/*
+!/spec/tmp/.keep
+
+*.swp
+
+# Ignore atom imdone files
+.imdone
+
+# Ignore Deployment config
+Capfile
+config/deploy.rb
+config/nginx.conf
+config/deploy/*
+
+# Ignore sandbox directory
+sandbox
+manual
+.rbenv-vars

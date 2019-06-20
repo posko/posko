@@ -37,3 +37,4 @@ config/deploy/*
 # Ignore sandbox directory
 sandbox
 manual
+.rbenv-vars
