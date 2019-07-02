@@ -13,7 +13,7 @@ end
 chdir APP_ROOT do
   unless File.exist?('config/database.yml')
     puts 'Creating database.yml'
-    cp 'config/database.sample.yml', 'config/database.yml'
+    cp 'config/database.example.yml', 'config/database.yml'
   end
 
   unless File.exist?('config/secrets.yml')

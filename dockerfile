@@ -9,11 +9,15 @@ RUN apk add --no-cache --update build-base \
                                 tzdata
 
 WORKDIR /app
+
 RUN gem install bundler
 ADD Gemfile Gemfile.lock ./
-RUN bundle install --jobs 20 --retry 5 --without development test
+RUN bundle install
 
-COPY . ./
+COPY . .
+
+ADD config/database.example.yml config/database.yml
+
 EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0"]

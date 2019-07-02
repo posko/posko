@@ -7,7 +7,7 @@ addons:
   postgresql: 9.6
 before_script:
 
-  - "cp ./config/database.sample.yml ./config/database.yml"
+  - "cp ./config/database.example.yml ./config/database.yml"
   - "cp ./config/secrets.sample.yml ./config/secrets.yml"
 
   - RAILS_ENV=test bundle exec rake db:create
