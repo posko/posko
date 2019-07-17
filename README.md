@@ -66,7 +66,7 @@ You need to set up your environment variables to fully utilize that automation. 
 These variables are based on rails defaults and seed data. Change it according to your needs.
 
 # Mobile App?
-We don't have it yet. But you can develop your own Android/iOS app
+We don't have it yet. But you can develop your own Android/iOS app with our APIs
 
 # Desktop App
   [Posko Electron](https://github.com/neume/posko-electron) is now on its way. This is the first attempt to bring posko on desktops
