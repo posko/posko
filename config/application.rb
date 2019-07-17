@@ -25,5 +25,17 @@ module Posko
       config.dsn = ENV['SENTRY_DSN'].to_s
       config.environments = %w[staging production]
     end
+
+    if ENV['POSKO_CORS_ORIGIN']
+        config.middleware.insert_before 0, Rack::Cors do
+         allow do
+           origins "#{ENV.fetch('POSKO_CORS_ORIGIN') { '*' } }"
+           resource "#{ENV.fetch('POSKO_CORS_RESOURCE') { '*' } }",
+            headers: :any,
+            methods: [:get, :post, :patch, :delete, :options, :head],
+            credentials: true
+         end
+      end
+    end
   end
 end

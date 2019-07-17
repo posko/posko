@@ -130,3 +130,5 @@ gem 'posko-browser'
 gem 'sentry-raven'
 
 gem 'blueprinter'
+
+gem 'rack-cors'

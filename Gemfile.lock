@@ -263,6 +263,7 @@ GEM
       activerecord (>= 4.0)
       activesupport (>= 4.0)
     rack (2.0.6)
+    rack-cors (1.0.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     railroady (1.5.3)
@@ -465,6 +466,7 @@ DEPENDENCIES
   puma (~> 3.7)
   pundit (~> 1.1)
   queryko (= 1.1.2)
+  rack-cors
   railroady
   rails (~> 5.1.6)
   rails-controller-testing

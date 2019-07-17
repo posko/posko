@@ -16,8 +16,8 @@ test:
 
 staging:
   <<: *default
-  database: <%= ENV.fetch('POSKO_DATABASE_NAME') { 'posko_staging' }
+  database: <%= ENV.fetch('POSKO_DATABASE_NAME') { 'posko_staging' } %>
 
 production:
   <<: *default
-  database: <%= ENV.fetch('POSKO_DATABASE_NAME') { 'posko_production' }
+  database: <%= ENV.fetch('POSKO_DATABASE_NAME') { 'posko_production' } %>
