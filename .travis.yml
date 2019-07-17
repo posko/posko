@@ -7,7 +7,7 @@ env:
 addons:
   postgresql: 9.6
 install:
-  — bundle install —-jobs=3 —-retry=3
+  - bundle install --jobs=3 --retry=3
 before_script:
   - "cp ./config/database.travis.yml ./config/database.yml"
   - "cp ./config/secrets.example.yml ./config/secrets.yml"
