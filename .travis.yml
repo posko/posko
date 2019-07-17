@@ -21,6 +21,6 @@ before_script:
 script:
   - RAILS_ENV=test bundle exec rails db:migrate
   - bundle exec rspec spec
-  - rubocop --rails
+  - rubocop
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
