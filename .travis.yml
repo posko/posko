@@ -19,7 +19,6 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-   — bundle install — jobs=3 — retry=3
   - RAILS_ENV=test bundle exec rails db:migrate
   - bundle exec rspec spec
   - rubocop --rails
