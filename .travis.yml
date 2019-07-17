@@ -10,16 +10,14 @@ before_script:
 
   - "cp ./config/database.travis.yml ./config/database.yml"
   - "cp ./config/secrets.example.yml ./config/secrets.yml"
-
-  - gem install bundler
-  - RAILS_ENV=test bundle exec rake db:create
+  - RAILS_ENV=test rails db:create
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate
-  - bundle exec rspec spec
-  - bundle exec rubocop --rails
+  - RAILS_ENV=test rails db:migrate
+  - rspec spec
+  - rubocop --rails
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
