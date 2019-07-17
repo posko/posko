@@ -1,6 +1,7 @@
-# POS using rails [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/neume/posko/tree/develop)
+# POS backend [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/neume/posko/tree/develop)
   A free to use POS app written on rails. It currently targets small-size businesses like 'retail stores', restaurants and others.
 
+*This is the backend of POSko project.*
 
 [![Build Status](https://travis-ci.org/neume/posko.svg?branch=develop)](https://travis-ci.org/neume/posko)
 [![Maintainability](https://api.codeclimate.com/v1/badges/12cd8cf666a27e7c7b10/maintainability)](https://codeclimate.com/github/neume/posko/maintainability)
@@ -41,12 +42,6 @@ measures.*
   bundle exec rspec
 or
   bundle exec guard
-# Dashboard Preview
-
-![Preview][preview]
-
-[preview]: ../develop/app/assets/images/sample.png "Preview"
-
 
 # API
 ## Documentation
@@ -70,8 +65,8 @@ You need to set up your environment variables to fully utilize that automation. 
 
 These variables are based on rails defaults and seed data. Change it according to your needs.
 
-# Mobile App companion
-[Android App](https://github.com/edwnmrtnz/posko) by [edwnmrtnz](https://github.com/edwnmrtnz)
+# Mobile App?
+We don't have it yet. But you can develop your own Android/iOS app
 
 # Desktop App
   [Posko Electron](https://github.com/neume/posko-electron) is now on its way. This is the first attempt to bring posko on desktops
