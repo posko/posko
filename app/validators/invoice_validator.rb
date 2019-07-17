@@ -23,7 +23,7 @@ class InvoiceValidator < ActiveModel::Validator
       next if line[attribute]
 
       record.errors.add(attribute,
-        "does not exist on item #{line[:variant_id]}")
+                        "does not exist on item #{line[:variant_id]}")
       @incomplete_attributes = true
     end
   end

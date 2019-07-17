@@ -13,7 +13,7 @@ class BarcodesController < ApplicationController
       format.html
       format.pdf do
         send_data BarcodesPdf.new(variants: @variants).render,
-          filename: 'barcodes.pdf', disposition: :inline
+                  filename: 'barcodes.pdf', disposition: :inline
       end
     end
   end

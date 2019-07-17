@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) do
     create(:user,
-      password: 'mypassword',
-      first_name: 'Juan',
-      last_name: 'Dela Cruz',
-      suffix: 'Sr.')
+           password: 'mypassword',
+           first_name: 'Juan',
+           last_name: 'Dela Cruz',
+           suffix: 'Sr.')
   end
 
   describe 'bcrypt' do

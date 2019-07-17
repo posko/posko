@@ -1,11 +1,11 @@
 class ProductForm < FormObject
   attr_accessor :title, :sku, :price, :cost, :barcode, :compare_at_price,
-    :created_by, :product, :open_price, :category_ids
+                :created_by, :product, :open_price, :category_ids
   attr_reader :account
 
   delegate :persisted?, :id, :title, :created_by, :category_ids, to: :product
   delegate :price, :cost, :barcode, :compare_at_price, :selling_policy,
-    :open_price, :sku, to: :default_variant
+           :open_price, :sku, to: :default_variant
 
   validates :title, presence: true
   validates :price, presence: true
@@ -48,7 +48,7 @@ class ProductForm < FormObject
 
   def assign_default_variant(options = {})
     attrs = options.slice(:price, :cost, :barcode, :compare_at_price,
-      :open_price, :sku, :selling_policy)
+                          :open_price, :sku, :selling_policy)
     default_variant.assign_attributes(attrs)
   end
 

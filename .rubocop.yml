@@ -1,6 +1,9 @@
-require: rubocop-rspec
 inherit_from:
+  - .rubocop_todo.yml
   - .rubocop-disabled.yml
+
+require: rubocop-rspec
+
 
 AllCops:
   Exclude:

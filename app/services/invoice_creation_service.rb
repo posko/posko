@@ -23,12 +23,12 @@ class InvoiceCreationService < ServiceObject
   protected
 
   attr_accessor :total_price, :subtotal, :total_weight, :total_tax,
-    :total_line_items_price, :total_discounts
+                :total_line_items_price, :total_discounts
 
   private
 
   attr_reader :invoice_number, :invoice_params,
-    :invoice_lines_params, :account, :customer_params
+              :invoice_lines_params, :account, :customer_params
 
   def perform_service
     return false unless valid?
@@ -39,8 +39,8 @@ class InvoiceCreationService < ServiceObject
       calculate_invoice
       invoice.save!
     end
-  rescue ActiveRecord::RecordInvalid => exception
-    @errors = exception.record.errors.full_messages.last
+  rescue ActiveRecord::RecordInvalid => e
+    @errors = e.record.errors.full_messages.last
     false
   end
 

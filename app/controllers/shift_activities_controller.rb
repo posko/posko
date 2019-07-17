@@ -42,6 +42,6 @@ class ShiftActivitiesController < ApplicationController
 
   def shift_activity_params
     params.require(:shift_activity).permit(:date, :amount, :remarks, :shift_id,
-      :shift_activity_type)
+                                           :shift_activity_type)
   end
 end

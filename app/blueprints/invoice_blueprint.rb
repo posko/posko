@@ -5,7 +5,7 @@ class InvoiceBlueprint < Blueprinter::Base
   fields :invoice_number
 
   fields :total_line_items_price, :total_discounts, :subtotal, :total_price,
-    :total_tax, :total_weight
+         :total_tax, :total_weight
 
   fields :first_name, :middle_name, :last_name, :email, :contact_number, :suffix
 

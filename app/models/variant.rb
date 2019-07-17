@@ -25,7 +25,7 @@ class Variant < ApplicationRecord
                       .where("lower(products.title) ILIKE :term OR
         lower(variants.barcode) ILIKE :term OR
         lower(variants.sku) ILIKE :term",
-                        term: "%#{term}%")
+                             term: "%#{term}%")
   end
 end
 

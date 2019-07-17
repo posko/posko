@@ -79,7 +79,7 @@ RSpec.describe CategoriesQuery, type: :query do
       create(:category, name: 'Shirt', account: account)
       Timecop.return
       q = described_class.new({ created_at_min: category1.created_at },
-        account.categories)
+                              account.categories)
       expect(q.call.count).to eq(2)
     end
 
@@ -94,7 +94,7 @@ RSpec.describe CategoriesQuery, type: :query do
       create(:category, name: 'Shirt', account: account)
       Timecop.return
       q = described_class.new({ created_at_max: category1.created_at + 1 },
-        account.categories)
+                              account.categories)
       expect(q.call.count).to eq(2)
     end
   end

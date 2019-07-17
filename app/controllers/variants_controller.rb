@@ -51,6 +51,6 @@ class VariantsController < ApplicationController
 
   def variant_params
     params.require(:variant).permit(:price, :sku, :variant_type,
-      option_value_ids: [])
+                                    option_value_ids: [])
   end
 end

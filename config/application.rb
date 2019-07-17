@@ -19,7 +19,7 @@ module Posko
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
-      key: '_posko_web'
+                          key: '_posko_web'
 
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_DSN'].to_s
@@ -27,14 +27,14 @@ module Posko
     end
 
     if ENV['POSKO_CORS_ORIGIN']
-        config.middleware.insert_before 0, Rack::Cors do
-         allow do
-           origins "#{ENV.fetch('POSKO_CORS_ORIGIN') { '*' } }"
-           resource "#{ENV.fetch('POSKO_CORS_RESOURCE') { '*' } }",
-            headers: :any,
-            methods: [:get, :post, :patch, :delete, :options, :head],
-            credentials: true
-         end
+      config.middleware.insert_before 0, Rack::Cors do
+        allow do
+          origins (ENV.fetch('POSKO_CORS_ORIGIN') { '*' }).to_s
+          resource (ENV.fetch('POSKO_CORS_RESOURCE') { '*' }).to_s,
+                   headers: :any,
+                   methods: [:get, :post, :patch, :delete, :options, :head],
+                   credentials: true
+        end
       end
     end
   end

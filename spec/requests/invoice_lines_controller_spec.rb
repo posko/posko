@@ -15,9 +15,9 @@ RSpec.describe Api::V1::InvoiceLinesController, type: :request do
 
   let(:invoice_line) do
     create(:invoice_line,
-      price: 100,
-      title: 'Large',
-      invoice: invoice)
+           price: 100,
+           title: 'Large',
+           invoice: invoice)
   end
 
   describe 'GET /api/v1/invoices/:invoice_id/invoice_lines' do

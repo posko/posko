@@ -1,6 +1,6 @@
 class ProductCreationService < ServiceObject
   attr_reader :title, :sku, :price, :cost, :barcode, :category_ids,
-    :compare_at_price, :account, :created_by, :selling_policy, :open_price
+              :compare_at_price, :account, :created_by, :selling_policy, :open_price
   attr_reader :product, :variant
 
   def initialize(options = {})
@@ -33,8 +33,8 @@ class ProductCreationService < ServiceObject
       create_product!
       create_variant!
     end
-  rescue ActiveRecord::RecordInvalid => exception
-    @errors = exception.record.errors.full_messages.last
+  rescue ActiveRecord::RecordInvalid => e
+    @errors = e.record.errors.full_messages.last
     false
   end
 
