@@ -1,5 +1,6 @@
 dist: trusty
 language: ruby
+install: gem install bundler
 env:
   global:
     - CC_TEST_REPORTER_ID=29c2351a3fa96cdda810da571ef220ca4e026fdcd85193d7443574ce83a61f32
