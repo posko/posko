@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: <%= ENV.fetch("POSKO_DATABASE_HOST") { 'localhost' } %>
-  username: <%= ENV.fetch("POSKO_DATABASE_USERNAME") { 5 } %>
+  username: <%= ENV["POSKO_DATABASE_USERNAME"] %>
   password: <%= ENV['POSKO_DATABASE_PASSWORD'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 

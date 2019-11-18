@@ -12,15 +12,11 @@ WORKDIR /app
 
 RUN gem install bundler
 ADD Gemfile Gemfile.lock ./
-RUN bundle install --deployment --without test development
+RUN bundle install
 
 COPY . .
 
 ADD config/database.example.yml config/database.yml
-
-ENV RAILS_ENV production
-
-RUN bundle exec rails assets:precompile
 
 EXPOSE 3000
 
