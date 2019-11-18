@@ -1,3 +1,4 @@
+## This
 version: '3'
 services:
   db:
@@ -5,7 +6,9 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: dev.dockerfile
     command: rails s -b 0.0.0.0
     volumes:
       - .:/app
@@ -15,6 +18,5 @@ services:
       - POSKO_DATABASE_HOST=db
       - POSKO_DATABASE_USERNAME=postgres
       - POSKO_DATABASE_PASSWORD=''
-
     depends_on:
       - db
