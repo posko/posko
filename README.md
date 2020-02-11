@@ -58,7 +58,7 @@ You need to set up your environment variables to fully utilize that automation. 
 
 | Variable     |          Value          |
 |:-------------|:-----------------------:|
-| url          |  https://localhost:300  |
+| url          |  https://localhost:3000 |
 | account_name |      first_company      |
 | email        | admin@first_company.com |
 | password     |          pass           |
@@ -72,7 +72,7 @@ We don't have it yet. But you can develop your own Android/iOS app with our APIs
   [Posko Electron](https://github.com/neume/posko-electron) is now on its way. This is the first attempt to bring posko on desktops
 
 # Contributing
-  Contributions/Suggestions are very welcome. Check it out [here](https://github.com/neume/posko])
+  Contributions/Suggestions are very welcome. Check it out [here](https://github.com/neume/posko)
 
   There is a generator named ```breadko``` in this app. You can use it by typing this command:
 
